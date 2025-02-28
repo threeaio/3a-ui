@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { Button } from '@3a-ui/ui/button';
-import ColorPalette from './components/color-palette';
+import ColorPalette from './components/colors/color-palette';
 
 function Gradient({ conic, className, small }: { small?: boolean; conic?: boolean; className?: string }) {
   return (
@@ -24,14 +24,13 @@ export default function Page() {
   return (
     <main className="flex flex-col p-6">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-4">UI Components</h1>
         <div className="flex gap-2">
           <Button>Default</Button>
           <Button variant="outline">Outline</Button>
         </div>
       </div>
 
-      <ColorPalette />
+      
     </main>
   );
 }
