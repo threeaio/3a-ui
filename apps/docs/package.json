@@ -19,7 +19,6 @@
   "devDependencies": {
     "@next/eslint-plugin-next": "^15.1.6",
     "@3a-ui/eslint-config": "workspace:*",
-    "@3a-ui/tailwind-config": "workspace:*",
     "@3a-ui/typescript-config": "workspace:*",
     "@types/node": "^22.12.0",
     "@types/react": "^19.0.7",

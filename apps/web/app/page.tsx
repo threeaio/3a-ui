@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Card } from "@3a-ui/ui/card";
+import { Button } from "@3a-ui/ui/button";
 
 function Gradient({
   conic,
@@ -128,9 +128,9 @@ export default function Page() {
 
       <div className="grid mb-32 text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
         {LINKS.map(({ title, href, description }) => (
-          <Card href={href} key={title} title={title}>
-            {description}
-          </Card>
+          <div key={title}>
+            {title} | {description} | {href}
+          </div>
         ))}
       </div>
     </main>

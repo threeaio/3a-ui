@@ -21,7 +21,7 @@ const LINKS = [
 
 export default function Page() {
   return (
-    <main className="flex flex-col items-center justify-between min-h-screen p-24">
+    <main className="flex flex-col p-24">
       <Button>Hallo</Button>
       <Button variant="outline">Hallo</Button>
     </main>
