@@ -29,11 +29,11 @@ interface StyleguideSectionProps {
 export const StyleguideSection: React.FC<StyleguideSectionProps> = ({ title, subline, children, className = '' }) => {
   return (
     <section className={`mb-12 ${className}`}>
-      <div className="mb-6">
-        <h2 className="text-2xl font-bold">{title}</h2>
-        {subline && <p className="mt-2 text-muted-foreground">{subline}</p>}
+      <div className="mb-12 px-6 pt-10">
+        <h2 className="font-semibold">{title}</h2>
+        {subline && <p className="mt-1 text-muted-foreground">{subline}</p>}
       </div>
-      <div className="p-6 border rounded-lg bg-card">{children}</div>
+      <div className="border-t pt-12 mb-6 px-6">{children}</div>
     </section>
   );
 };

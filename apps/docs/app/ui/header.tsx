@@ -16,8 +16,8 @@ export const Header: React.FC<HeaderProps> = ({ className = '' }) => {
     <header className={`z-100 fixed top-0 mx-auto w-full  md:sticky ${className}`}>
       <div className="border bg-background flex w-full  border-b border-l border-r pl-6 ">
         {/* Logo Section */}
-        <div className=" flex grow items-center gap-4 border-r py-4 pr-6  xl:w- xl:grow-0">
-          <Logo href="/geist" />
+        <div className="-ml-px flex grow xl:w-58 xl:grow-0 items-center gap-4 border-r py-4 pr-6  xl:w- ">
+          <Logo href="/" />
         </div>
 
         {/* Right Section */}

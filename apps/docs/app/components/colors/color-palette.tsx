@@ -10,7 +10,7 @@ const ColorSwatch: React.FC<ColorSwatchProps> = ({ name, bgClass }) => {
   return (
     <div className="flex w-52 flex-col items-start group">
       <div
-        className={`${bgClass} aspect-video w-full group-first:rounded-l-lg group-last:rounded-r-lg border border-l-0 group-first:border-l-1 border-border mb-2`}
+        className={`${bgClass} h-8 w-full group-first:rounded-l-md group-last:rounded-r-md border border-l-0 group-first:border-l-1 border-border mb-2`}
       ></div>
       <span className={`text-xs block w-[90%] font-mono truncate`}>{name}</span>
     </div>
@@ -25,7 +25,7 @@ interface ColorPairProps {
 const ColorPair: React.FC<ColorPairProps> = ({ title, colors }) => {
   return (
     <div className="mb-4">
-      <h4 className="text-sm font-medium mb-2">{title}</h4>
+      <h4 className="text-sm  mb-2">{title}</h4>
       <div className="flex flex-row">
         {colors.map((color) => (
           <ColorSwatch key={color.name} name={color.name} bgClass={color.bgClass} />
@@ -42,9 +42,9 @@ interface ColorGroupProps {
 
 const ColorGroup: React.FC<ColorGroupProps> = ({ title, pairs }) => {
   return (
-    <div className="mb-8">
-      <h3 className="text-lg font-medium mb-4">{title}</h3>
-      <div className="flex gap-6 w-full flex-row flex-wrap">
+    <div className="mb-16">
+      <h3 className="font-semibold mb-4">{title}</h3>
+      <div className="flex gap-12 w-full flex-row flex-wrap">
         {pairs.map((pair) => (
           <ColorPair key={pair.title} title={pair.title} colors={pair.colors} />
         ))}
