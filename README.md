@@ -1,58 +1,80 @@
-# Turborepo Tailwind CSS starter
 
-This Turborepo starter is maintained by the Turborepo core team.
+## Applications
 
-## Using this example
+### Docs (`apps/docs`)
 
-Run the following command:
+A Next.js application that serves as documentation for the design system.
 
-```sh
-npx create-turbo@latest -e with-tailwind
-```
+- **Tech Stack**: Next.js, React 19, Tailwind CSS
+- **Purpose**: Showcases and documents the UI components
+- **Features**:
+  - Component examples
+  - Theme switching (light/dark/system)
+  - Custom header with search functionality
 
-## What's inside?
+### Web (`apps/web`)
 
-This Turborepo includes the following packages/apps:
+A Next.js application that serves as a web application using the design system.
 
-### Apps and Packages
+- **Tech Stack**: Next.js, React 19, Tailwind CSS
+- **Purpose**: Example implementation of the design system in a real application
 
-- `docs`: a [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/)
-- `web`: another [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/)
-- `ui`: a stub React component library with [Tailwind CSS](https://tailwindcss.com/) shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+## Packages
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+### UI (`packages/ui`)
 
-### Building packages/ui
+The core UI component library built with React and Tailwind CSS.
 
-This example is set up to produce compiled styles for `ui` components into the `dist` directory. The component `.tsx` files are consumed by the Next.js apps directly using `transpilePackages` in `next.config.js`. This was chosen for several reasons:
+- **Tech Stack**: React 19, Tailwind CSS 4, shadcn
+- **Components**:
+  - Button (with multiple variants)
+  - More components to be added (all from ShadCn + custom)
+- **Features**:
+  - Light/dark mode support
+  - Custom theming capabilities
+  - Utility functions for styling
 
-- Make sharing one `tailwind.config.js` to apps and packages as easy as possible.
-- Make package compilation simple by only depending on the Next.js Compiler and `tailwindcss`.
-- Ensure Tailwind classes do not overwrite each other. The `ui` package uses a `ui-` prefix for it's classes.
-- Maintain clear package export boundaries.
+### ESLint Config (`packages/eslint-config`)
 
-Another option is to consume `packages/ui` directly from source without building. If using this option, you will need to update the `tailwind.config.js` in your apps to be aware of your package locations, so it can find all usages of the `tailwindcss` class names for CSS compilation.
+Shared ESLint configurations for consistent code quality across the monorepo.
 
-For example, in [tailwind.config.js](packages/tailwind-config/tailwind.config.js):
+- **Configurations**:
+  - `base.js`: Base ESLint configuration for all projects
+  - `next.js`: Configuration for Next.js applications
+  - `react-internal.js`: Configuration for React libraries
 
-```js
-  content: [
-    // app content
-    `src/**/*.{js,ts,jsx,tsx}`,
-    // include packages if not transpiling
-    "../../packages/ui/*.{js,ts,jsx,tsx}",
-  ],
-```
+### TypeScript Config (`packages/typescript-config`)
 
-If you choose this strategy, you can remove the `tailwindcss` and `autoprefixer` dependencies from the `ui` package.
+Shared TypeScript configurations for consistent type checking across the monorepo.
 
-### Utilities
+- **Configurations**:
+  - `base.json`: Base TypeScript configuration
+  - `nextjs.json`: Configuration for Next.js applications
+  - `react-library.json`: Configuration for React libraries
 
-This Turborepo has some additional tools already setup for you:
+## Development Workflow
 
-- [Tailwind CSS](https://tailwindcss.com/) for styles
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+The monorepo uses Turborepo for task orchestration and PNPM as the package manager.
+
+### Available Scripts
+
+- `pnpm dev`: Start development servers for all applications
+- `pnpm build`: Build all applications and packages
+- `pnpm lint`: Run linting for all applications and packages
+- `pnpm check-types`: Run type checking for all applications and packages
+- `pnpm format`: Format all code with Prettier
+
+### Dependencies
+
+- Node.js >=18
+- PNPM 8.15.6
+- Turborepo 2.4.4
+
+## Design System Features
+
+The UI package is built on shadcn principles with a custom design system that includes:
+
+- Custom color schemes with light and dark mode support
+- Multiple theme variants (login-one, login-two, login-three)
+- Consistent component styling with Tailwind CSS
+- Utility functions for class name merging and styling
