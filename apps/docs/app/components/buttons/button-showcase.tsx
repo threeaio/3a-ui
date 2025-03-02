@@ -1,8 +1,8 @@
 import React from 'react';
-import { Button } from '@3a-ui/ui/button';
+import { Button, ButtonGroup } from '@3a-ui/ui/button';
 import { StyleguideSection } from '../../ui/styleguide-section';
 import { StyleguideRender } from '../../ui/styleguide-render';
-import { ArrowRight, Save, Plus, Loader2, Settings, Download, Trash, Mail } from 'lucide-react';
+import { ArrowRight, Save, Plus, Loader2, Settings, Download, Trash, Mail, Pen, Minus } from 'lucide-react';
 
 interface ButtonVariantProps {
   title: string;
@@ -79,6 +79,30 @@ export const ButtonShowcase: React.FC = () => {
           <Loader2 className="h-4 w-4 animate-spin mr-2" />
           Loading
         </Button>
+      </ButtonVariant>
+
+      <ButtonVariant title="Button-Group">
+        <ButtonGroup>
+          <Button>Action 1</Button>
+          <Button>Action 2</Button>
+          <Button>Action 3</Button>
+        </ButtonGroup>
+        <ButtonGroup>
+          <Button variant="outline">Action 1</Button>
+          <Button variant="outline">Action 2</Button>
+          <Button variant="outline">Action 3</Button>
+        </ButtonGroup>
+        <ButtonGroup>
+          <Button variant="outline" size="icon">
+            <Minus className="size-4" />
+          </Button>
+          <Button variant="outline" size="icon">
+            <Plus className="size-4" />
+          </Button>
+          <Button variant="outline" size="icon">
+            <Pen className="size-4" />
+          </Button>
+        </ButtonGroup>
       </ButtonVariant>
     </StyleguideSection>
   );
