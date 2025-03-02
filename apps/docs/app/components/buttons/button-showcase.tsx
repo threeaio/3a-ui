@@ -3,13 +3,6 @@ import { Button, ButtonGroup } from '@3a-ui/ui/button';
 import { StyleguideSection } from '../../ui/styleguide-section';
 import { StyleguideRender } from '../../ui/styleguide-render';
 import { ArrowRight, Save, Plus, Loader2, Settings, Download, Trash, Mail, Pen, Minus } from 'lucide-react';
-import { RowVisualizer } from '../../ui/row-visualizer';
-import { heightClasses } from '../../ui-config';
-
-interface ButtonVariantProps {
-  title: string;
-  children: React.ReactNode;
-}
 
 export const ButtonShowcase: React.FC = () => {
   return (

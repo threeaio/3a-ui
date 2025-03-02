@@ -1,5 +1,4 @@
 import React from 'react';
-import { heightClasses } from '../ui-config';
 
 interface RowVisualizerProps {
   rows: 1 | 2 | 3 | 4;
