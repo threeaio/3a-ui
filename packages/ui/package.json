@@ -9,7 +9,8 @@
   ],
   "exports": {
     "./styles.css": "./src/styles.css",
-    "./button": "./src/ui/button.tsx"
+    "./button": "./src/ui/button/index.ts",
+    "./lib/utils": "./src/lib/utils.ts"
   },
   "license": "MIT",
   "scripts": {

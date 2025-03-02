@@ -1,0 +1,16 @@
+---
+description: Custom theme / tailwind classes
+globs: apps/docs/**/*.tsx, packages/ui/**/*.tsx, *.css
+alwaysApply: false
+---
+
+# Custom Rules
+
+* Never use the default tailwind-color-modifiers for colors
+* Only use those provided by the theme (the theme is defined by @packages/ui/src/styles.css)
+* or look up the tailwind guide here, when unsure which utility-classes are available
+  * [tailwind-theme-guide.md](mdc:tailwind-theme-guide.md)
+
+
+
+

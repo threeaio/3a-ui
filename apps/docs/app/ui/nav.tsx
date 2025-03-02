@@ -20,7 +20,10 @@ interface NavGroup {
 const navigationGroups: NavGroup[] = [
   {
     title: 'Foundations',
-    items: [{ title: 'Colors', href: '/components/colors' }],
+    items: [
+      { title: 'Colors', href: '/components/colors' },
+      { title: 'Layout', href: '/components/layout' },
+    ],
   },
   {
     title: 'Components',
@@ -44,8 +47,8 @@ export const Sidebar: React.FC = () => {
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className={`block px-3 py-1 rounded-md  ${
-                        isActive ? 'bg-muted text-primary font-medium' : 'text-foreground hover:bg-accent/50'
+                      className={`block px-3 py-2 rounded-md  ${
+                        isActive ? 'bg-muted' : 'text-muted-foreground hover:bg-muted/50'
                       }`}
                     >
                       {item.title}

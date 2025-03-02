@@ -1,5 +1,7 @@
 import React from 'react';
 import { Search } from 'lucide-react';
+import { Button } from '@3a-ui/ui/button';
+import { cn } from '@3a-ui/ui/lib/utils';
 
 interface SearchInputProps {
   className?: string;
@@ -9,16 +11,13 @@ export const SearchInput: React.FC<SearchInputProps> = ({ className = '' }) => {
   return (
     <>
       {/* Search Button - Desktop */}
-      <button
-        className={`hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring hidden h-8 w-[220px] cursor-pointer items-center justify-between rounded-md border border-input bg-transparent pl-2 pr-1.5 font-sans text-sm text-foreground outline-none xl:flex ${className}`}
-        type="button"
-      >
+      <Button type="button" variant="outline" className={cn('hidden cursor-pointer xl:flex pr-2', className)}>
         Search 3A
-        <kbd className="rounded-sm bg-muted text-muted-foreground min-w-[1em] px-1 py-0.5 text-xs">
+        <kbd className="rounded-sm bg-muted text-muted-foreground min-w-[1em] ml-24 px-1 py-0.5 text-xs">
           <span style={{ minWidth: '1em', display: 'inline-block' }}>⌘</span>
           <span>K</span>
         </kbd>
-      </button>
+      </Button>
 
       {/* Mobile Search Button */}
       <button

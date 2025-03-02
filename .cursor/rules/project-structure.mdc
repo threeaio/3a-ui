@@ -1,0 +1,19 @@
+---
+description: Structure of this project
+globs: 
+alwaysApply: true
+---
+
+# Structure of this project 
+
+* This is a monorepo usng turborepo
+* It´s current structure is: 
+
+* Root
+  * packages
+    * eslint-config (shared eslint config)
+    * typescript-config (shared typescript config)
+    * ui (this is the ui library. It contains a Tailwind 4 - shadCN-Based UI-Library that we use in all apps. It is based on tailwind 4 so no tailwind.config.js exists in any of the packages)
+  * apps 
+    * docs (this is the styleguide/documentation app for the ui. It's purpose is to showcase the ui-package and provide usage-information)
+    * web (this will be the landing page for the project. It is not developed currently)

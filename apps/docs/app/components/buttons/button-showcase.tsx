@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from '@3a-ui/ui/button';
 import { StyleguideSection } from '../../ui/styleguide-section';
+import { StyleguideRender } from '../../ui/styleguide-render';
 import { ArrowRight, Save, Plus, Loader2, Settings, Download, Trash, Mail } from 'lucide-react';
 
 interface ButtonVariantProps {
@@ -9,19 +10,14 @@ interface ButtonVariantProps {
 }
 
 const ButtonVariant: React.FC<ButtonVariantProps> = ({ title, children }) => {
-  return (
-    <div className="mb-8">
-      <h3 className="font-semibold mb-4">{title}</h3>
-      <div className="flex flex-wrap gap-4">{children}</div>
-    </div>
-  );
+  return <StyleguideRender label={title}>{children}</StyleguideRender>;
 };
 
 export const ButtonShowcase: React.FC = () => {
   return (
     <StyleguideSection title="Button Component" subline="All available button variants and sizes">
       <ButtonVariant title="Variants">
-        <Button>Default</Button>
+        <Button>Call to Action</Button>
         <Button variant="destructive">Destructive</Button>
         <Button variant="outline">Outline</Button>
         <Button variant="secondary">Secondary</Button>
@@ -30,10 +26,16 @@ export const ButtonShowcase: React.FC = () => {
       </ButtonVariant>
 
       <ButtonVariant title="Sizes">
-        <Button size="sm">Small</Button>
-        <Button size="default">Default</Button>
-        <Button size="lg">Large</Button>
-        <Button size="icon">
+        <Button variant="outline" size="sm">
+          Small
+        </Button>
+        <Button variant="outline" size="default">
+          Default
+        </Button>
+        <Button variant="outline" size="lg">
+          Large
+        </Button>
+        <Button variant="outline" size="icon">
           <Plus className="h-4 w-4" />
         </Button>
       </ButtonVariant>
@@ -41,7 +43,7 @@ export const ButtonShowcase: React.FC = () => {
       <ButtonVariant title="With Icons">
         <Button>
           <ArrowRight className="h-4 w-4" />
-          Next
+          Next Step
         </Button>
         <Button variant="outline">
           <Save className="h-4 w-4" />
@@ -70,8 +72,10 @@ export const ButtonShowcase: React.FC = () => {
       </ButtonVariant>
 
       <ButtonVariant title="States">
-        <Button disabled>Disabled</Button>
-        <Button className="opacity-90">
+        <Button size="lg" variant="outline" disabled>
+          Disabled
+        </Button>
+        <Button size="lg" variant="outline" className="opacity-90">
           <Loader2 className="h-4 w-4 animate-spin mr-2" />
           Loading
         </Button>

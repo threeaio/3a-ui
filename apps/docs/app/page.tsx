@@ -23,9 +23,9 @@ const LINKS = [
 
 export default function Page() {
   return (
-    <main className="flex flex-col p-6">
+    <main className="flex flex-col py-12 px-8">
       <div className="mb-12">
-        <h1 className="text-3xl font-bold mb-4">3A UI Components</h1>
+        <h1 className="text-4xl font-semibold mb-4 ">3A Design System</h1>
         <p className="text-muted-foreground mb-8">
           Explore the UI components and design system used throughout the application.
         </p>

@@ -34,19 +34,19 @@ Below is a mapping of our CSS variables to their corresponding Tailwind utility 
 | `--background`             | `bg-background`                                            | `oklch(1 0 0)`              | `oklch(0.145 0 0)`          |
 | `--foreground`             | `text-foreground`                                          | `oklch(0.145 0 0)`          | `oklch(0.985 0 0)`          |
 | `--card`                   | `bg-card`                                                  | `oklch(1 0 0)`              | `oklch(0.145 0 0)`          |
-| `--card-foreground`        | `text-card-foreground`                                     | `oklch(0.145 0 0)`          | `oklch(0.985 0 0)`          |
+| `--card-foreground`        | `text-card-foreground`                                     | `oklch(0.145 0 0)`          | `oklch(0.97 0 0)`           |
 | `--popover`                | `bg-popover`                                               | `oklch(1 0 0)`              | `oklch(0.145 0 0)`          |
 | `--popover-foreground`     | `text-popover-foreground`                                  | `oklch(0.145 0 0)`          | `oklch(0.985 0 0)`          |
-| `--primary`                | `bg-primary`, `text-primary`, `border-primary`             | `oklch(0.205 0 0)`          | `oklch(0.985 0 0)`          |
-| `--primary-foreground`     | `text-primary-foreground`                                  | `oklch(0.985 0 0)`          | `oklch(0.205 0 0)`          |
+| `--primary`                | `bg-primary`, `text-primary`, `border-primary`             | `oklch(0.65 0.92 180)`      | `oklch(0.65 0.92 180)`      |
+| `--primary-foreground`     | `text-primary-foreground`                                  | `oklch(0.145 0 0)`          | `oklch(0.205 0 0)`          |
 | `--secondary`              | `bg-secondary`, `text-secondary`, `border-secondary`       | `oklch(0.97 0 0)`           | `oklch(0.269 0 0)`          |
 | `--secondary-foreground`   | `text-secondary-foreground`                                | `oklch(0.205 0 0)`          | `oklch(0.985 0 0)`          |
 | `--muted`                  | `bg-muted`, `text-muted`, `border-muted`                   | `oklch(0.97 0 0)`           | `oklch(0.269 0 0)`          |
 | `--muted-foreground`       | `text-muted-foreground`                                    | `oklch(0.556 0 0)`          | `oklch(0.708 0 0)`          |
 | `--accent`                 | `bg-accent`, `text-accent`, `border-accent`                | `oklch(0.97 0 0)`           | `oklch(0.269 0 0)`          |
 | `--accent-foreground`      | `text-accent-foreground`                                   | `oklch(0.205 0 0)`          | `oklch(0.985 0 0)`          |
-| `--destructive`            | `bg-destructive`, `text-destructive`, `border-destructive` | `oklch(0.577 0.245 27.325)` | `oklch(0.396 0.141 25.723)` |
-| `--destructive-foreground` | `text-destructive-foreground`                              | `oklch(0.577 0.245 27.325)` | `oklch(0.637 0.237 25.331)` |
+| `--destructive`            | `bg-destructive`, `text-destructive`, `border-destructive` | `oklch(0.837 0.337 25.331)` | `oklch(0.837 0.337 25.331)` |
+| `--destructive-foreground` | `text-destructive-foreground`                              | `oklch(0.145 0 0)`          | `oklch(0.145 0 0)`          |
 | `--border`                 | `border-border`                                            | `oklch(0.922 0 0)`          | `oklch(0.269 0 0)`          |
 | `--input`                  | `border-input`                                             | `oklch(0.922 0 0)`          | `oklch(0.269 0 0)`          |
 | `--ring`                   | `outline-ring`                                             | `oklch(0.87 0 0)`           | `oklch(0.439 0 0)`          |
@@ -67,16 +67,16 @@ For data visualization:
 
 For sidebar components:
 
-| CSS Variable                   | Tailwind Class                               | Light Mode Value   | Dark Mode Value              |
-| ------------------------------ | -------------------------------------------- | ------------------ | ---------------------------- |
-| `--sidebar`                    | `bg-sidebar`                                 | `oklch(0.985 0 0)` | `oklch(0.205 0 0)`           |
-| `--sidebar-foreground`         | `text-sidebar-foreground`                    | `oklch(0.145 0 0)` | `oklch(0.985 0 0)`           |
-| `--sidebar-primary`            | `bg-sidebar-primary`, `text-sidebar-primary` | `oklch(0.205 0 0)` | `oklch(0.488 0.243 264.376)` |
-| `--sidebar-primary-foreground` | `text-sidebar-primary-foreground`            | `oklch(0.985 0 0)` | `oklch(0.985 0 0)`           |
-| `--sidebar-accent`             | `bg-sidebar-accent`, `text-sidebar-accent`   | `oklch(0.97 0 0)`  | `oklch(0.269 0 0)`           |
-| `--sidebar-accent-foreground`  | `text-sidebar-accent-foreground`             | `oklch(0.205 0 0)` | `oklch(0.985 0 0)`           |
-| `--sidebar-border`             | `border-sidebar-border`                      | `oklch(0.922 0 0)` | `oklch(0.269 0 0)`           |
-| `--sidebar-ring`               | `outline-sidebar-ring`                       | `oklch(0.87 0 0)`  | `oklch(0.439 0 0)`           |
+| CSS Variable                   | Tailwind Class                               | Light Mode Value   | Dark Mode Value    |
+| ------------------------------ | -------------------------------------------- | ------------------ | ------------------ |
+| `--sidebar`                    | `bg-sidebar`                                 | `oklch(0.985 0 0)` | `oklch(0.205 0 0)` |
+| `--sidebar-foreground`         | `text-sidebar-foreground`                    | `oklch(0.145 0 0)` | `oklch(0.985 0 0)` |
+| `--sidebar-primary`            | `bg-sidebar-primary`, `text-sidebar-primary` | `oklch(0.205 0 0)` | `oklch(0.269 0 0)` |
+| `--sidebar-primary-foreground` | `text-sidebar-primary-foreground`            | `oklch(0.985 0 0)` | `oklch(0.985 0 0)` |
+| `--sidebar-accent`             | `bg-sidebar-accent`, `text-sidebar-accent`   | `oklch(0.97 0 0)`  | `oklch(0.269 0 0)` |
+| `--sidebar-accent-foreground`  | `text-sidebar-accent-foreground`             | `oklch(0.205 0 0)` | `oklch(0.985 0 0)` |
+| `--sidebar-border`             | `border-sidebar-border`                      | `oklch(0.922 0 0)` | `oklch(0.269 0 0)` |
+| `--sidebar-ring`               | `outline-sidebar-ring`                       | `oklch(0.87 0 0)`  | `oklch(0.439 0 0)` |
 
 ## Border Radius
 

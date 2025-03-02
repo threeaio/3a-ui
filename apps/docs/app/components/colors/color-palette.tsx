@@ -1,18 +1,24 @@
 import React from 'react';
 import { StyleguideSection } from '../../ui/styleguide-section';
+import { StyleguideRender } from '../../ui/styleguide-render';
 
 interface ColorSwatchProps {
   name: string;
   bgClass: string;
+  className?: string;
+  isFirst?: boolean;
+  isLast?: boolean;
 }
 
-const ColorSwatch: React.FC<ColorSwatchProps> = ({ name, bgClass }) => {
+const ColorSwatch: React.FC<ColorSwatchProps> = ({ name, bgClass, className, isFirst, isLast }) => {
   return (
-    <div className="flex w-52 flex-col items-start group">
+    <div className={`flex flex-col  items-start ${className || ''}`}>
       <div
-        className={`${bgClass} h-8 w-full group-first:rounded-l-md group-last:rounded-r-md border border-l-0 group-first:border-l-1 border-border mb-2`}
+        className={`${bgClass} h-8 w-full ${isFirst ? 'rounded-l-md border-l' : 'border-l-0'} ${
+          isLast ? 'rounded-r-md' : ''
+        } border border-border mb-2`}
       ></div>
-      <span className={`text-xs block w-[90%] font-mono truncate`}>{name}</span>
+      <span className={`text-xs block w-full text-muted-foreground font-mono truncate`}>{name}</span>
     </div>
   );
 };
@@ -24,11 +30,18 @@ interface ColorPairProps {
 
 const ColorPair: React.FC<ColorPairProps> = ({ title, colors }) => {
   return (
-    <div className="mb-4">
-      <h4 className="text-sm  mb-2">{title}</h4>
-      <div className="flex flex-row">
-        {colors.map((color) => (
-          <ColorSwatch key={color.name} name={color.name} bgClass={color.bgClass} />
+    <div className="mb-4 w-full flex-1 min-w-[300px]">
+      <h4 className="text-sm mb-2">{title}</h4>
+      <div className="flex flex-row w-full">
+        {colors.map((color, index) => (
+          <ColorSwatch
+            key={color.name}
+            name={color.name}
+            bgClass={color.bgClass}
+            className="flex-1"
+            isFirst={index === 0}
+            isLast={index === colors.length - 1}
+          />
         ))}
       </div>
     </div>
@@ -42,14 +55,13 @@ interface ColorGroupProps {
 
 const ColorGroup: React.FC<ColorGroupProps> = ({ title, pairs }) => {
   return (
-    <div className="mb-16">
-      <h3 className="font-semibold mb-4">{title}</h3>
-      <div className="flex gap-12 w-full flex-row flex-wrap">
+    <StyleguideRender label={title}>
+      <div className="flex gap-6 w-full flex-row flex-wrap">
         {pairs.map((pair) => (
           <ColorPair key={pair.title} title={pair.title} colors={pair.colors} />
         ))}
       </div>
-    </div>
+    </StyleguideRender>
   );
 };
 

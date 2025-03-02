@@ -11,7 +11,7 @@ export const Logo: React.FC<LogoProps> = ({ href = '/', className = '' }) => {
   return (
     <Link href={href} className={`flex items-center gap-4 no-underline ${className}`} data-zone="same">
       <div>
-        <svg xmlns="http://www.w3.org/2000/svg" className="size-8" fill="none" viewBox="3.63 1.2 35.56 30.33">
+        <svg xmlns="http://www.w3.org/2000/svg" className="size-6" fill="none" viewBox="3.63 1.2 35.56 30.33">
           <path d="M21.4131 20.1016L4.51416 30.9521" stroke="currentColor"></path>
           <path d="M21.4131 20.1016L38.3447 30.75" stroke="currentColor"></path>
           <path d="M21.4131 20.1016V2.39941" stroke="currentColor"></path>
@@ -19,7 +19,7 @@ export const Logo: React.FC<LogoProps> = ({ href = '/', className = '' }) => {
           <path d="M10.7715 20.1357L32.0875 20.1357" stroke="currentColor"></path>
         </svg>
       </div>
-      <p className="font-semibold text-base leading-6 tracking-[-0.32px]">Design System</p>
+      <p className="text-xs font-mono">Design Systems</p>
     </Link>
   );
 };
