@@ -1,4 +1,6 @@
 import React from 'react';
+import { heightClasses } from '../ui-config';
+import { MeasureIndicator } from './measure-indicator';
 
 interface RowVisualizerProps {
   rows: 1 | 2 | 3 | 4;
@@ -12,22 +14,24 @@ export const RowVisualizer: React.FC<RowVisualizerProps> = ({ rows = 1, classNam
 
   return (
     <div className={`relative ${className}`}>
-      {/* The row overlay */}
-      <div
-        className="absolute inset-0 pointer-events-none z-0"
-        style={{
-          display: 'grid',
-          gridTemplateRows: `repeat(${rows})`,
-          gap: '1px',
-        }}
-      >
-        {rowsArray.map((row) => (
-          <div key={`row-${row}`} className="bg-destructive/10" />
-        ))}
-      </div>
+      <MeasureIndicator left={heightClasses[rows]}>
+        {/* The row overlay */}
+        <div
+          className="absolute inset-0 pointer-events-none z-0"
+          style={{
+            display: 'grid',
+            gridTemplateRows: `repeat(${rows})`,
+            gap: '1px',
+          }}
+        >
+          {rowsArray.map((row) => (
+            <div key={`row-${row}`} className="bg-destructive/10" />
+          ))}
+        </div>
 
-      {/* The actual content */}
-      <div className="relative z-10 h-full">{children}</div>
+        {/* The actual content */}
+        <div className="relative z-10 h-full">{children}</div>
+      </MeasureIndicator>
     </div>
   );
 };
