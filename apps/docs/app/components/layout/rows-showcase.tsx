@@ -4,45 +4,10 @@ import { StyleguideRender } from '../../ui/styleguide-render';
 import { Button } from '@3a-ui/ui/button';
 import StyleguideExplanation from '../../ui/styleguide-explanation';
 import { MeasureIndicator } from '../../ui/measure-indicator';
+import { RowVisualizer } from '../../ui/row-visualizer';
+import { heightClasses } from '../../ui-config';
 
-interface RowVisualizerProps {
-  rows: 1 | 2 | 3 | 4;
-  className?: string;
-  children?: React.ReactNode;
-}
-
-const heightClasses = {
-  1: 'h-20',
-  2: 'h-40',
-  3: 'h-60',
-  4: 'h-80',
-};
-
-const RowVisualizer: React.FC<RowVisualizerProps> = ({ rows = 1, className = '', children }) => {
-  // Create an array of the specified length for rows
-  const rowsArray = Array.from({ length: rows }, (_, i) => i);
-
-  return (
-    <div className={`relative ${className}`}>
-      {/* The row overlay */}
-      <div
-        className="absolute inset-0 pointer-events-none z-0"
-        style={{
-          display: 'grid',
-          gridTemplateRows: `repeat(${rows})`,
-          gap: '1px',
-        }}
-      >
-        {rowsArray.map((row) => (
-          <div key={`row-${row}`} className="bg-destructive/10" />
-        ))}
-      </div>
-
-      {/* The actual content */}
-      <div className="relative z-10 h-full">{children}</div>
-    </div>
-  );
-};
+// The RowVisualizer component has been moved to ../../ui/row-visualizer.tsx
 
 const GridShowcase: React.FC = () => {
   return (

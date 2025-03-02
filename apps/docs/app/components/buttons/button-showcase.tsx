@@ -3,29 +3,27 @@ import { Button, ButtonGroup } from '@3a-ui/ui/button';
 import { StyleguideSection } from '../../ui/styleguide-section';
 import { StyleguideRender } from '../../ui/styleguide-render';
 import { ArrowRight, Save, Plus, Loader2, Settings, Download, Trash, Mail, Pen, Minus } from 'lucide-react';
+import { RowVisualizer } from '../../ui/row-visualizer';
+import { heightClasses } from '../../ui-config';
 
 interface ButtonVariantProps {
   title: string;
   children: React.ReactNode;
 }
 
-const ButtonVariant: React.FC<ButtonVariantProps> = ({ title, children }) => {
-  return <StyleguideRender label={title}>{children}</StyleguideRender>;
-};
-
 export const ButtonShowcase: React.FC = () => {
   return (
     <StyleguideSection title="Button Component" subline="All available button variants and sizes">
-      <ButtonVariant title="Variants">
+      <StyleguideRender label="Variants">
         <Button>Call to Action</Button>
         <Button variant="destructive">Destructive</Button>
         <Button variant="outline">Outline</Button>
         <Button variant="secondary">Secondary</Button>
         <Button variant="ghost">Ghost</Button>
         <Button variant="link">Link</Button>
-      </ButtonVariant>
+      </StyleguideRender>
 
-      <ButtonVariant title="Sizes">
+      <StyleguideRender label="Sizes">
         <Button variant="outline" size="sm">
           Small
         </Button>
@@ -38,9 +36,9 @@ export const ButtonShowcase: React.FC = () => {
         <Button variant="outline" size="icon">
           <Plus className="h-4 w-4" />
         </Button>
-      </ButtonVariant>
+      </StyleguideRender>
 
-      <ButtonVariant title="With Icons">
+      <StyleguideRender label="With Icons">
         <Button>
           <ArrowRight className="h-4 w-4" />
           Next Step
@@ -57,9 +55,9 @@ export const ButtonShowcase: React.FC = () => {
           <Trash className="h-4 w-4" />
           Delete
         </Button>
-      </ButtonVariant>
+      </StyleguideRender>
 
-      <ButtonVariant title="Icon Only">
+      <StyleguideRender label="Icon Only">
         <Button size="icon" variant="outline">
           <Mail className="h-4 w-4" />
         </Button>
@@ -69,9 +67,9 @@ export const ButtonShowcase: React.FC = () => {
         <Button size="icon">
           <Plus className="h-4 w-4" />
         </Button>
-      </ButtonVariant>
+      </StyleguideRender>
 
-      <ButtonVariant title="States">
+      <StyleguideRender label="States">
         <Button size="lg" variant="outline" disabled>
           Disabled
         </Button>
@@ -79,10 +77,10 @@ export const ButtonShowcase: React.FC = () => {
           <Loader2 className="h-4 w-4 animate-spin mr-2" />
           Loading
         </Button>
-      </ButtonVariant>
+      </StyleguideRender>
 
-      <ButtonVariant title="Button-Group">
-        <ButtonGroup>
+      <StyleguideRender label="Button-Group">
+        <ButtonGroup variant="default">
           <Button>Action 1</Button>
           <Button>Action 2</Button>
           <Button>Action 3</Button>
@@ -103,7 +101,7 @@ export const ButtonShowcase: React.FC = () => {
             <Pen className="size-4" />
           </Button>
         </ButtonGroup>
-      </ButtonVariant>
+      </StyleguideRender>
     </StyleguideSection>
   );
 };
