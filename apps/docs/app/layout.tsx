@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import Header from './ui/header';
-import Sidebar from './ui/nav';
+import Sidebar from './nav';
+
 import '@3a-ui/ui/styles.css';
 import './styles.css';
 

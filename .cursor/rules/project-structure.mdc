@@ -14,6 +14,7 @@ alwaysApply: true
     * eslint-config (shared eslint config)
     * typescript-config (shared typescript config)
     * ui (this is the ui library. It contains a Tailwind 4 - shadCN-Based UI-Library that we use in all apps. It is based on tailwind 4 so no tailwind.config.js exists in any of the packages)
+      * Please be aware that not all UI-Components live here, some are App-Specific. A UI-Component that is only used in a specific app, lives in the ui-folder of the app
   * apps 
     * docs (this is the styleguide/documentation app for the ui. It's purpose is to showcase the ui-package and provide usage-information)
     * web (this will be the landing page for the project. It is not developed currently)
