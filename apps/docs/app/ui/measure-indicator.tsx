@@ -1,4 +1,7 @@
+'use client';
+
 import React from 'react';
+import { useVisualizer } from './visualizer-toggle';
 
 export interface MeasureIndicatorProps {
   children: React.ReactNode;
@@ -10,16 +13,23 @@ export interface MeasureIndicatorProps {
 }
 
 export const MeasureIndicator = ({ children, top, right, bottom, left, className = '' }: MeasureIndicatorProps) => {
+  const { visible } = useVisualizer();
+
   return (
     <div className={`relative ${className}`}>
       {children}
 
       {/* Top measurement */}
       {top && (
-        <div className="absolute w-full -top-8 flex justify-center">
+        <div
+          className={`absolute w-full -top-8 flex justify-center transition-opacity duration-300 ease-in-out ${
+            visible ? 'opacity-100' : 'opacity-0'
+          }`}
+        >
           <div className="relative w-full h-6 mb-1">
             <div className="absolute bottom-0 left-0 w-full h-4 border-t border-l border-r border-destructive/50 border-dashed"></div>
           </div>
+
           <span className="absolute -top-0.5 text-xs px-1.5 py-0.5 rounded bg-black text-white whitespace-nowrap">
             {top}
           </span>
@@ -28,7 +38,11 @@ export const MeasureIndicator = ({ children, top, right, bottom, left, className
 
       {/* Right measurement */}
       {right && (
-        <div className="absolute h-full -right-8 top-0">
+        <div
+          className={`absolute h-full -right-8 top-0 transition-opacity duration-300 ease-in-out ${
+            visible ? 'opacity-100' : 'opacity-0'
+          }`}
+        >
           <div className="relative h-full w-6 ml-1">
             <div className="absolute top-0 left-0 w-4 h-full border-r border-t border-b border-destructive/50 border-dashed"></div>
           </div>
@@ -40,7 +54,11 @@ export const MeasureIndicator = ({ children, top, right, bottom, left, className
 
       {/* Bottom measurement */}
       {bottom && (
-        <div className="absolute w-full -bottom-8 flex justify-center">
+        <div
+          className={`absolute w-full -bottom-8 flex justify-center transition-opacity duration-300 ease-in-out ${
+            visible ? 'opacity-100' : 'opacity-0'
+          }`}
+        >
           <div className="relative w-full h-6 mt-1">
             <div className="absolute top-0 left-0 w-full h-4 border-b border-l border-r border-destructive/50 border-dashed"></div>
           </div>
@@ -52,7 +70,11 @@ export const MeasureIndicator = ({ children, top, right, bottom, left, className
 
       {/* Left measurement */}
       {left && (
-        <div className="absolute top-0 h-full -left-8">
+        <div
+          className={`absolute top-0 h-full -left-8 transition-opacity duration-300 ease-in-out ${
+            visible ? 'opacity-100' : 'opacity-0'
+          }`}
+        >
           <div className="relative h-full w-6 mr-1">
             <div className="absolute top-0 right-0 w-4 h-full border-l border-t border-b border-destructive/50 border-dashed"></div>
           </div>

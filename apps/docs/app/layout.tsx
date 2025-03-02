@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
-import Header from './ui/header';
 import Sidebar from './nav';
-
+import Header from './ui/header';
+import { VisualizerToggle } from './ui/visualizer-toggle';
 import '@3a-ui/ui/styles.css';
 import './styles.css';
 
@@ -27,11 +27,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <head></head>
       <body className={`${geist.variable} ${geistMono.variable} font-sans`}>
-        <Header />
-        <div className="flex h-[calc(100vh-4.5rem)] pt-16 md:pt-0">
-          <Sidebar />
-          <div className="flex-1 overflow-y-auto">{children}</div>
-        </div>
+        <VisualizerToggle>
+          <Header />
+          <div className="flex h-[calc(100vh-4.5rem)] pt-16 md:pt-0">
+            <Sidebar />
+            <div className="flex-1 overflow-y-auto">{children}</div>
+          </div>
+        </VisualizerToggle>
       </body>
     </html>
   );

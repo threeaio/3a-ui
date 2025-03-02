@@ -1,7 +1,7 @@
 import React from 'react';
 import Logo from './logo';
 import ThemeSwitcher from './theme-switcher';
-import SearchInput from './search-input';
+import { VisualizerToggleButton } from './visualizer-toggle';
 
 interface HeaderProps {
   className?: string;
@@ -21,7 +21,10 @@ export const Header: React.FC<HeaderProps> = ({ className = '' }) => {
         </div>
 
         {/* Right Section */}
-        <div className="flex items-center justify-end p-4 xl:grow">
+        <div className="flex items-center justify-end gap-4 p-4 xl:grow">
+          {/* Visualizer Toggle Button */}
+          <VisualizerToggleButton />
+
           {/* Search Input Component */}
           {/* <SearchInput /> */}
 

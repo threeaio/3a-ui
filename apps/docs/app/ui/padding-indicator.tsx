@@ -1,5 +1,8 @@
+'use client';
+
 import React from 'react';
 import { paddingClasses } from '../ui-config';
+import { useVisualizer } from './visualizer-toggle';
 
 type LabelPosition = 'top' | 'right' | 'bottom' | 'left';
 
@@ -11,14 +14,12 @@ interface PaddingLabelProps {
 }
 
 const PaddingLabel = ({ text, position, className = '', style = {} }: PaddingLabelProps) => {
-  // Base styles for all labels
-  const baseStyles = 'text-[11px] rounded bg-destructive/50 text-white whitespace-nowrap absolute py-[0px] px-[5px]';
+  const { visible } = useVisualizer();
 
-  // Apply different padding based on orientation
-  // const paddingClass =
-  //   position === 'left' || position === 'right'
-  //     ? 'py-[1px] px-[5px]' // Vertical padding
-  //     : 'px-[5px] pb-[1px]'; // Horizontal padding
+  // Base styles for all labels
+  const baseStyles = `text-[11px] rounded bg-destructive/50 text-white whitespace-nowrap absolute py-[0px] px-[5px] transition-opacity duration-300 ease-in-out ${
+    visible ? 'opacity-100' : 'opacity-0'
+  }`;
 
   // Use fully inline styles for precise positioning
   let positionStyle: React.CSSProperties = {};
@@ -84,6 +85,8 @@ export const PaddingIndicator = ({
   showLabels = true,
   className = '',
 }: PaddingIndicatorProps) => {
+  const { visible } = useVisualizer();
+
   // Get the appropriate padding class from the config
   const paddingClass = paddingClasses[paddingType][paddingSize];
 
@@ -93,8 +96,12 @@ export const PaddingIndicator = ({
       {children}
 
       <div className="absolute inset-0">
-        <div className={`w-full h-full  ${paddingClass}`}>
-          <div className="w-full h-full border border-destructive/50 border-dashed"></div>
+        <div className={`w-full h-full ${paddingClass}`}>
+          <div
+            className={`w-full h-full border border-destructive/50 border-dashed transition-opacity duration-300 ease-in-out ${
+              visible ? 'opacity-100' : 'opacity-0'
+            }`}
+          ></div>
         </div>
       </div>
       {showLabels && (
