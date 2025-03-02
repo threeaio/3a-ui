@@ -1,13 +1,15 @@
-'use client';
-
 import * as React from 'react';
+import { type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
+import { buttonVariants } from './button';
 
 interface ButtonGroupProps extends React.ComponentProps<'div'> {
   children: React.ReactNode;
+  size?: VariantProps<typeof buttonVariants>['size'];
+  variant?: VariantProps<typeof buttonVariants>['variant'];
 }
 
-function ButtonGroup({ className, children, ...props }: ButtonGroupProps) {
+function ButtonGroup({ className, children, size, variant, ...props }: ButtonGroupProps) {
   // Process children to modify their styling
   const childrenArray = React.Children.toArray(children);
 
@@ -22,6 +24,8 @@ function ButtonGroup({ className, children, ...props }: ButtonGroupProps) {
     // Type assertion for React element
     const buttonElement = child as React.ReactElement<{
       className?: string;
+      size?: VariantProps<typeof buttonVariants>['size'];
+      variant?: VariantProps<typeof buttonVariants>['variant'];
     }>;
 
     return React.cloneElement(buttonElement, {
@@ -36,6 +40,9 @@ function ButtonGroup({ className, children, ...props }: ButtonGroupProps) {
         // Ensure focus ring doesn't break the connected appearance
         'focus-visible:relative focus-visible:z-10',
       ),
+      // Pass down size and variant if not explicitly set on the button
+      size: buttonElement.props.size || size,
+      variant: buttonElement.props.variant || variant,
     });
   });
 

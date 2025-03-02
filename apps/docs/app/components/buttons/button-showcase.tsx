@@ -87,19 +87,19 @@ export const ButtonShowcase: React.FC = () => {
           <Button>Action 2</Button>
           <Button>Action 3</Button>
         </ButtonGroup>
-        <ButtonGroup>
-          <Button variant="outline">Action 1</Button>
-          <Button variant="outline">Action 2</Button>
-          <Button variant="outline">Action 3</Button>
+        <ButtonGroup variant="outline">
+          <Button>Action 1</Button>
+          <Button>Action 2</Button>
+          <Button>Action 3</Button>
         </ButtonGroup>
-        <ButtonGroup>
-          <Button variant="outline" size="icon">
+        <ButtonGroup variant="outline" size="icon">
+          <Button>
             <Minus className="size-4" />
           </Button>
-          <Button variant="outline" size="icon">
+          <Button>
             <Plus className="size-4" />
           </Button>
-          <Button variant="outline" size="icon">
+          <Button>
             <Pen className="size-4" />
           </Button>
         </ButtonGroup>
