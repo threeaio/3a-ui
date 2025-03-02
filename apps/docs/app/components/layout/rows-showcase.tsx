@@ -6,7 +6,8 @@ import StyleguideExplanation from '../../ui/styleguide-explanation';
 import { MeasureIndicator } from '../../ui/measure-indicator';
 import { RowVisualizer } from '../../ui/row-visualizer';
 import { heightClasses } from '../../ui-config';
-
+import { ButtonGroup } from '@3a-ui/ui/button';
+import { Minus, Plus } from 'lucide-react';
 // The RowVisualizer component has been moved to ../../ui/row-visualizer.tsx
 
 const GridShowcase: React.FC = () => {
@@ -48,13 +49,25 @@ const GridShowcase: React.FC = () => {
 
       <StyleguideRender label="Single Row with UI">
         <RowVisualizer rows={1} className="w-full">
-          <div className={`flex flex-col justify-center ${heightClasses[1]}`}>
-            <div className="flex gap-2 px-5">
-              <Button variant="outline">Button</Button>
-              <Button variant="outline">Button</Button>
-              <Button variant="outline">Button</Button>
+          <MeasureIndicator left={heightClasses[2]}>
+            <div className={`flex flex-col justify-center ${heightClasses[1]}`}>
+              <div className="flex gap-2 px-5 justify-between">
+                <ButtonGroup variant="outline">
+                  <Button>Button</Button>
+                  <Button>Button</Button>
+                  <Button>Button</Button>
+                </ButtonGroup>
+                <ButtonGroup variant="outline">
+                  <Button>
+                    <Minus />
+                  </Button>
+                  <Button>
+                    <Plus />
+                  </Button>
+                </ButtonGroup>
+              </div>
             </div>
-          </div>
+          </MeasureIndicator>
         </RowVisualizer>
       </StyleguideRender>
     </StyleguideSection>

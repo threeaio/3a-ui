@@ -2,11 +2,38 @@ import React from 'react';
 import { Button, ButtonGroup } from '@3a-ui/ui/button';
 import { StyleguideSection } from '../../ui/styleguide-section';
 import { StyleguideRender } from '../../ui/styleguide-render';
+import StyleguideExplanation from '../../ui/styleguide-explanation';
 import { ArrowRight, Save, Plus, Loader2, Settings, Download, Trash, Mail, Pen, Minus } from 'lucide-react';
 
 export const ButtonShowcase: React.FC = () => {
   return (
     <StyleguideSection title="Button Component" subline="All available button variants and sizes">
+      <StyleguideExplanation>
+        <p className="text-muted-foreground max-w-2xl leading-tight mb-5">
+          Buttons are interactive elements that trigger actions when clicked. The button system provides various
+          <span className="text-foreground"> variants, sizes, and states</span> to accommodate different UI needs:
+        </p>
+        <ul className="list-disc pl-5 text-muted-foreground max-w-2xl leading-tight mb-5 space-y-2">
+          <li>
+            <span className="text-foreground font-medium">Variants:</span> Default (primary), destructive, outline,
+            secondary, ghost, and link styles
+          </li>
+          <li>
+            <span className="text-foreground font-medium">Sizes:</span> Small, default, large, and icon-only options
+          </li>
+          <li>
+            <span className="text-foreground font-medium">States:</span> Normal, disabled, and loading states
+          </li>
+          <li>
+            <span className="text-foreground font-medium">Icons:</span> Can be combined with text or used alone
+          </li>
+          <li>
+            <span className="text-foreground font-medium">Button Groups:</span> For related actions that should be
+            visually connected
+          </li>
+        </ul>
+      </StyleguideExplanation>
+
       <StyleguideRender label="Variants">
         <Button>Call to Action</Button>
         <Button variant="destructive">Destructive</Button>
@@ -33,11 +60,11 @@ export const ButtonShowcase: React.FC = () => {
 
       <StyleguideRender label="With Icons">
         <Button>
-          <ArrowRight className="h-4 w-4" />
+          <ArrowRight className="size-4" />
           Next Step
         </Button>
         <Button variant="outline">
-          <Save className="h-4 w-4" />
+          <Save className="size-4" />
           Save
         </Button>
         <Button variant="secondary">
@@ -55,18 +82,18 @@ export const ButtonShowcase: React.FC = () => {
           <Mail className="h-4 w-4" />
         </Button>
         <Button size="icon" variant="secondary">
-          <Settings className="h-4 w-4" />
+          <Settings className="size-4" />
         </Button>
         <Button size="icon">
-          <Plus className="h-4 w-4" />
+          <Plus className="size-4" />
         </Button>
       </StyleguideRender>
 
       <StyleguideRender label="States">
-        <Button size="lg" variant="outline" disabled>
+        <Button variant="outline" disabled>
           Disabled
         </Button>
-        <Button size="lg" variant="outline" className="opacity-90">
+        <Button variant="outline" className="opacity-90">
           <Loader2 className="h-4 w-4 animate-spin mr-2" />
           Loading
         </Button>
