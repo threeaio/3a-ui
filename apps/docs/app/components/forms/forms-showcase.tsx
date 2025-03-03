@@ -38,7 +38,7 @@ const FormsShowcase: React.FC = () => {
     <StyleguideSection title="Form Components" subline="Core form components and their usage">
       {/* Individual Components */}
       <StyleguideRender label="Input">
-        <div className="space-y-5 max-w-2xl">
+        <div className="space-y-10 max-w-2xl">
           <div className="flex flex-col gap-2">
             <Label htmlFor="default">Default Input</Label>
             <Input id="default" placeholder="Enter text..." />

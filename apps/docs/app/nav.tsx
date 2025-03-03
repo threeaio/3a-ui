@@ -33,6 +33,10 @@ const navigationGroups: NavGroup[] = [
       { title: 'Forms', href: '/components/forms' },
     ],
   },
+  {
+    title: 'Features',
+    items: [{ title: 'Staff Scheduling', href: '/features/pep' }],
+  },
 ];
 
 export const Sidebar: React.FC = () => {
