@@ -12,7 +12,9 @@
   },
   "dependencies": {
     "@3a-ui/ui": "workspace:*",
+    "@tanstack/react-table": "^8.21.2",
     "lucide-react": "^0.476.0",
+    "motion": "^12.4.9",
     "next": "^15.1.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
