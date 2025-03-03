@@ -43,7 +43,7 @@ export const paddingClasses = {
     4: 'pl-20',
   },
   horizontal: {
-    1: 'px-2.5',
+    1: 'px-2',
     2: 'px-5',
     3: 'px-10',
     4: 'px-20',

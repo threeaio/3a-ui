@@ -15,7 +15,7 @@ const FormsShowcase: React.FC = () => {
     <StyleguideSection title="Form Components" subline="Core form components and their usage">
       {/* Individual Components */}
       <StyleguideRender label="Input">
-        <div className="space-y-4">
+        <div className="space-y-5">
           <div className="flex flex-col gap-2">
             <Label htmlFor="default">Default Input</Label>
             <Input id="default" placeholder="Enter text..." />
@@ -33,7 +33,7 @@ const FormsShowcase: React.FC = () => {
       </StyleguideRender>
 
       <StyleguideRender label="Textarea">
-        <div className="space-y-4">
+        <div className="space-y-5">
           <div className="flex flex-col gap-2">
             <Label htmlFor="textarea">Default Textarea</Label>
             <Textarea id="textarea" placeholder="Enter long text..." />
@@ -46,7 +46,7 @@ const FormsShowcase: React.FC = () => {
       </StyleguideRender>
 
       <StyleguideRender label="Select">
-        <div className="space-y-4">
+        <div className="space-y-5">
           <div className="flex flex-col gap-2">
             <Label htmlFor="select">Default Select</Label>
             <Select>
@@ -75,7 +75,7 @@ const FormsShowcase: React.FC = () => {
       </StyleguideRender>
 
       <StyleguideRender label="Checkbox">
-        <div className="space-y-4">
+        <div className="space-y-2">
           <div className="flex items-center gap-2">
             <Checkbox id="terms" />
             <Label htmlFor="terms">Accept terms</Label>
@@ -112,7 +112,9 @@ const FormsShowcase: React.FC = () => {
 
       {/* Demo Forms */}
       <StyleguideRender label="Single Row Form">
-        <form className={`flex items-center gap-4 border-y ${heightClasses[0]} ${paddingClasses.horizontal[2]}`}>
+        <form
+          className={`flex items-center gap-2 border rounded-xl ${heightClasses[0]} ${paddingClasses.horizontal[1]}`}
+        >
           <div className="flex-1">
             <Input placeholder="Search..." />
           </div>
@@ -121,7 +123,7 @@ const FormsShowcase: React.FC = () => {
       </StyleguideRender>
 
       <StyleguideRender label="Contact Form">
-        <form className="space-y-4 max-w-md">
+        <form className="space-y-5 max-w-md">
           <div className="flex flex-col gap-2">
             <Label htmlFor="name">Name</Label>
             <Input id="name" placeholder="Your name" />
