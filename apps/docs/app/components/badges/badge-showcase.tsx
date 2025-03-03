@@ -31,19 +31,15 @@ export const BadgeShowcase: React.FC = () => {
 
       <StyleguideRender label="Variants" classNameContent="flex justify-start flex-wrap gap-2.5">
         <Badge>Default</Badge>
-        <Badge variant="secondary">Secondary</Badge>
         <Badge variant="destructive">Destructive</Badge>
         <Badge variant="outline">Outline</Badge>
+        <Badge variant="secondary">Secondary</Badge>
       </StyleguideRender>
 
       <StyleguideRender label="With Icons" classNameContent="flex justify-start flex-wrap gap-2.5">
         <Badge>
           <Check className="size-3" />
           Completed
-        </Badge>
-        <Badge variant="secondary">
-          <Info className="size-3" />
-          Info
         </Badge>
         <Badge variant="destructive">
           <X className="size-3" />
@@ -53,13 +49,17 @@ export const BadgeShowcase: React.FC = () => {
           <AlertCircle className="size-3" />
           Warning
         </Badge>
+        <Badge variant="secondary">
+          <Info className="size-3" />
+          Info
+        </Badge>
       </StyleguideRender>
 
       <StyleguideRender label="Use Cases" classNameContent="flex justify-start flex-wrap gap-2.5">
         <Badge>New</Badge>
-        <Badge variant="secondary">In Progress</Badge>
         <Badge variant="destructive">Deprecated</Badge>
         <Badge variant="outline">Beta</Badge>
+        <Badge variant="secondary">In Progress</Badge>
       </StyleguideRender>
     </StyleguideSection>
   );

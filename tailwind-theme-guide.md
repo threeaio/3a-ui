@@ -29,6 +29,23 @@ Our Tailwind setup uses custom CSS variables that map to specific utility classe
 
 Below is a mapping of our CSS variables to their corresponding Tailwind utility classes:
 
+### Brand Colors
+
+| CSS Variable                     | Light Mode Value       | Dark Mode Value        |
+| -------------------------------- | ---------------------- | ---------------------- |
+| `--color-brand-green-for-bright` | `oklch(0.65 0.92 180)` | `oklch(0.65 0.92 180)` |
+| `--color-brand-green`            | `oklch(0.845 0.2 160)` | `oklch(0.845 0.2 160)` |
+
+### Red Colors
+
+| CSS Variable      | Light Mode Value            | Dark Mode Value             |
+| ----------------- | --------------------------- | --------------------------- |
+| `--color-red-300` | `oklch(1 0.377 25.331)`     | `oklch(1 0.377 25.331)`     |
+| `--color-red-500` | `oklch(0.857 0.337 25.331)` | `oklch(0.857 0.337 25.331)` |
+| `--color-red-700` | `oklch(0.577 0.245 27.325)` | `oklch(0.577 0.245 27.325)` |
+
+### Semantic Colors
+
 | CSS Variable               | Tailwind Class                                             | Light Mode Value            | Dark Mode Value             |
 | -------------------------- | ---------------------------------------------------------- | --------------------------- | --------------------------- |
 | `--background`             | `bg-background`                                            | `oklch(1 0 0)`              | `oklch(0.145 0 0)`          |

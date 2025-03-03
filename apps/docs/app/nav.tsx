@@ -39,19 +39,19 @@ export const Sidebar: React.FC = () => {
 
   return (
     <nav className="w-64 xl:w-64 xl:grow-0 h-full border-r border-border bg-card flex flex-col">
-      <div className="flex-1  overflow-y-auto p-5 text-sm">
+      <div className="flex-1 overflow-y-auto p-2.5 text-sm">
         {navigationGroups.map((group) => (
           <div key={group.title} className="mb-10">
             <h3 className="px-3 mt-5 mb-3 font-semibold">{group.title}</h3>
-            <ul className="space-y-1">
+            <ul className="space-y-0.5">
               {group.items.map((item) => {
                 const isActive = pathname === item.href;
                 return (
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className={`block px-3 py-2 rounded-md  ${
-                        isActive ? 'bg-muted' : 'text-muted-foreground hover:bg-muted/50'
+                      className={`px-3 h-10 flex items-center rounded-md transition-all duration-300  ${
+                        isActive ? 'bg-secondary' : 'text-secondary-foreground hover:bg-secondary'
                       }`}
                     >
                       {item.title}
