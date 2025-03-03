@@ -28,7 +28,7 @@ interface StyleguideSectionProps {
  */
 export const StyleguideSection: React.FC<StyleguideSectionProps> = ({ title, subline, children, className = '' }) => {
   return (
-    <section className={`mb-12  ${className}`}>
+    <section className={`${className}`}>
       <div className="px-10 h-40 flex flex-col justify-center">
         <h2 className="font-semibold">{title}</h2>
         {subline && <p className="mt-1 text-muted-foreground">{subline}</p>}

@@ -56,7 +56,7 @@ interface ColorGroupProps {
 const ColorGroup: React.FC<ColorGroupProps> = ({ title, pairs }) => {
   return (
     <StyleguideRender label={title}>
-      <div className="flex gap-6 w-full flex-row flex-wrap">
+      <div className="flex gap-5 w-full flex-row flex-wrap">
         {pairs.map((pair) => (
           <ColorPair key={pair.title} title={pair.title} colors={pair.colors} />
         ))}

@@ -29,7 +29,7 @@ interface MeasurementContainerProps {
 
 const MeasurementContainer = ({ visible, className, children }: MeasurementContainerProps) => (
   <div
-    className={`absolute transition-opacity duration-300 delay-100 ease-in-out ${
+    className={`absolute pointer-events-none transition-opacity duration-300 delay-100 ease-in-out ${
       visible ? 'opacity-100' : 'opacity-0'
     } ${className}`}
   >
@@ -63,7 +63,7 @@ export const DimensionIndicator = ({ children, top, right, bottom, left, classNa
   const { visible } = useVisualizer();
 
   return (
-    <div className={`relative ${className}`}>
+    <div className={`relative  ${className}`}>
       {children}
 
       {/* Top measurement */}

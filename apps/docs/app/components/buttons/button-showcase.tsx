@@ -34,7 +34,7 @@ export const ButtonShowcase: React.FC = () => {
         </ul>
       </StyleguideExplanation>
 
-      <StyleguideRender label="Variants">
+      <StyleguideRender label="Variants" classNameContent="flex justify-start flex-wrap gap-2.5">
         <Button>Call to Action</Button>
         <Button variant="destructive">Destructive</Button>
         <Button variant="outline">Outline</Button>
@@ -43,7 +43,7 @@ export const ButtonShowcase: React.FC = () => {
         <Button variant="link">Link</Button>
       </StyleguideRender>
 
-      <StyleguideRender label="Sizes">
+      <StyleguideRender label="Sizes" classNameContent="flex justify-start flex-wrap gap-2.5">
         <Button variant="outline" size="sm">
           Small
         </Button>
@@ -58,7 +58,7 @@ export const ButtonShowcase: React.FC = () => {
         </Button>
       </StyleguideRender>
 
-      <StyleguideRender label="With Icons">
+      <StyleguideRender label="With Icons" classNameContent="flex justify-start flex-wrap gap-2.5">
         <Button>
           <ArrowRight className="size-4" />
           Next Step
@@ -77,7 +77,7 @@ export const ButtonShowcase: React.FC = () => {
         </Button>
       </StyleguideRender>
 
-      <StyleguideRender label="Icon Only">
+      <StyleguideRender label="Icon Only" classNameContent="flex justify-start flex-wrap gap-2.5">
         <Button size="icon" variant="outline">
           <Mail className="h-4 w-4" />
         </Button>
@@ -89,7 +89,7 @@ export const ButtonShowcase: React.FC = () => {
         </Button>
       </StyleguideRender>
 
-      <StyleguideRender label="States">
+      <StyleguideRender label="States" classNameContent="flex justify-start flex-wrap gap-2.5">
         <Button variant="outline" disabled>
           Disabled
         </Button>
@@ -99,7 +99,7 @@ export const ButtonShowcase: React.FC = () => {
         </Button>
       </StyleguideRender>
 
-      <StyleguideRender label="Button-Group">
+      <StyleguideRender label="Button-Group" classNameContent="flex justify-start flex-wrap gap-2.5">
         <ButtonGroup variant="default">
           <Button>Action 1</Button>
           <Button>Action 2</Button>

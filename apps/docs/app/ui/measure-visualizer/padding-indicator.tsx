@@ -91,11 +91,11 @@ export const PaddingIndicator = ({
   const paddingClass = paddingClasses[paddingType][paddingSize];
 
   return (
-    <div className={`relative ${className}`}>
+    <div className={`relative  ${className}`}>
       {/* The content with the actual padding applied */}
       {children}
 
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 pointer-events-none">
         <div className={`w-full h-full ${paddingClass}`}>
           <div
             className={`w-full h-full border border-destructive/50 border-dashed transition-opacity duration-300 delay-200 ease-in-out ${

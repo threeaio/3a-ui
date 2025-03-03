@@ -19,7 +19,7 @@ export const RowVisualizer: React.FC<RowVisualizerProps> = ({ rows = 1, classNam
   const rowsArray = Array.from({ length: rows || 1 }, (_, i) => i);
 
   return (
-    <div className={`relative ${className}`}>
+    <div className={`relative  ${className}`}>
       <DimensionIndicator left={heightClasses[rows]}>
         {/* The row overlay */}
         {/* The row overlay */}

@@ -34,71 +34,67 @@ const GridShowcase: React.FC = () => {
         </div>
       </StyleguideExplanation>
 
-      <div className="space-y-6">
-        <StyleguideRender label="Single Row with Headline">
-          <RowVisualizer rows={1} className="w-full">
-            <div className={`border-y flex flex-col justify-center ${heightClasses[1]}`}>
-              <h1 className="font-semibold">Headline</h1>
-              <p className="mt-1 text-muted-foreground">Subline that is a bit longer</p>
+      <StyleguideRender label="Smallest Row with UI">
+        <RowVisualizer rows={0} className="w-full">
+          <div className={`border-y  flex flex-col justify-center ${heightClasses[0]}`}>
+            <div className={`flex gap-2  justify-between ${paddingClasses.horizontal[1]}`}>
+              <ButtonGroup variant="outline">
+                <Button>Button</Button>
+                <Button>Button</Button>
+                <Button>Button</Button>
+              </ButtonGroup>
+              <ButtonGroup variant="outline" size="icon">
+                <Button>
+                  <Minus />
+                </Button>
+                <Button>
+                  <Plus />
+                </Button>
+              </ButtonGroup>
             </div>
-          </RowVisualizer>
-        </StyleguideRender>
+          </div>
+        </RowVisualizer>
+      </StyleguideRender>
 
-        <StyleguideRender label="Double Row with Headline">
-          <RowVisualizer rows={2} className="w-full">
-            <div className={`border-y  flex flex-col justify-center ${heightClasses[2]}`}>
-              <h1 className="font-semibold">Headline</h1>
-              <p className="mt-1 text-muted-foreground">Subline that is a bit longer</p>
+      <StyleguideRender label="Single Row with UI">
+        <RowVisualizer rows={1} className="w-full">
+          <div className={`border-y  flex flex-col justify-center ${heightClasses[1]}`}>
+            <div className="flex gap-2 px-5 justify-between">
+              <ButtonGroup variant="outline">
+                <Button>Button</Button>
+                <Button>Button</Button>
+                <Button>Button</Button>
+              </ButtonGroup>
+              <ButtonGroup variant="outline" size="icon">
+                <Button>
+                  <Minus />
+                </Button>
+                <Button>
+                  <Plus />
+                </Button>
+              </ButtonGroup>
             </div>
-          </RowVisualizer>
-        </StyleguideRender>
+          </div>
+        </RowVisualizer>
+      </StyleguideRender>
 
-        <StyleguideRender label="Single Row with UI">
-          <RowVisualizer rows={1} className="w-full">
-            <PaddingIndicator paddingSize={2} paddingType="horizontal" showLabels={true}>
-              <div className={`border-y  flex flex-col justify-center ${heightClasses[1]}`}>
-                <div className="flex gap-2 px-5 justify-between">
-                  <ButtonGroup variant="outline">
-                    <Button>Button</Button>
-                    <Button>Button</Button>
-                    <Button>Button</Button>
-                  </ButtonGroup>
-                  <ButtonGroup variant="outline">
-                    <Button>
-                      <Minus />
-                    </Button>
-                    <Button>
-                      <Plus />
-                    </Button>
-                  </ButtonGroup>
-                </div>
-              </div>
-            </PaddingIndicator>
-          </RowVisualizer>
-        </StyleguideRender>
+      <StyleguideRender label="Single Row with Headline">
+        <RowVisualizer rows={1} className="w-full">
+          <div className={`border-y flex flex-col justify-center ${heightClasses[1]}`}>
+            <h1 className="font-semibold">Headline</h1>
+            <p className="mt-1 text-muted-foreground">Subline that is a bit longer</p>
+          </div>
+        </RowVisualizer>
+      </StyleguideRender>
 
-        <StyleguideRender label="Single Row with UI">
-          <RowVisualizer rows={0} className="w-full">
-            <div className={`border-y  flex flex-col justify-center ${heightClasses[0]}`}>
-              <div className={`flex gap-2  justify-between ${paddingClasses.horizontal[1]}`}>
-                <ButtonGroup variant="outline">
-                  <Button>Button</Button>
-                  <Button>Button</Button>
-                  <Button>Button</Button>
-                </ButtonGroup>
-                <ButtonGroup variant="outline">
-                  <Button>
-                    <Minus />
-                  </Button>
-                  <Button>
-                    <Plus />
-                  </Button>
-                </ButtonGroup>
-              </div>
-            </div>
-          </RowVisualizer>
-        </StyleguideRender>
-      </div>
+      <StyleguideRender label="Double Row with Headline">
+        <RowVisualizer rows={2} className="w-full">
+          <div className={`border-y  flex flex-col justify-center ${heightClasses[2]}`}>
+            <h1 className="font-semibold">Headline</h1>
+            <p className="mt-1 text-muted-foreground">Subline that is a bit longer</p>
+          </div>
+        </RowVisualizer>
+      </StyleguideRender>
     </StyleguideSection>
   );
 };
