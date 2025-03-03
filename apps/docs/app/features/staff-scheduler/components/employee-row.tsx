@@ -32,7 +32,7 @@ export const EmployeeRow: React.FC<EmployeeRowProps> = ({ employee, isExpanded, 
   return (
     <div
       className={cn(
-        'flex items-center gap-2 h-10 px-2 font-medium cursor-pointer hover:bg-muted/30 transition-colors text-sm',
+        'flex items-center gap-2 h-10 px-2 font-medium cursor-pointer hover:bg-muted/30 transition-colors text-sm min-w-72',
         className,
       )}
       onClick={onToggleExpand}

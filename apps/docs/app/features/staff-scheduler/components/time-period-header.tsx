@@ -27,10 +27,10 @@ export const TimePeriodHeader: React.FC<TimePeriodHeaderProps> = ({ period, rela
 
   return (
     <div
-      className={cn('flex flex-col items-center justify-center h-13 px-4 text-center', className)}
+      className={cn('flex text-sm flex-col items-center justify-center h-10 px-5 text-center', className)}
       title={formattedPeriod}
     >
-      <span className="font-medium">
+      <span className="font-semibold text-muted-foreground">
         {relativeIndex === 0 ? '0' : relativeIndex > 0 ? `+${relativeIndex}` : relativeIndex}
       </span>
       {/* <span className="text-xs text-muted-foreground truncate max-w-full">{formattedPeriod}</span> */}

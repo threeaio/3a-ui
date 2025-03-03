@@ -65,7 +65,7 @@ export const WorkloadCell: React.FC<WorkloadCellProps> = ({
   };
 
   return (
-    <div className={cn('flex flex-col items-center justify-center h-full py-2', className)}>
+    <div className={cn('flex flex-col items-center justify-center h-full', className)}>
       <div className="w-full flex items-center gap-2">
         <div className="w-full flex gap-2 items-center justify-center">
           <div

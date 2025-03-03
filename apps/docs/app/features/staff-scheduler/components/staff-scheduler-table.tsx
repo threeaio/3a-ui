@@ -78,7 +78,7 @@ export const StaffSchedulerTable: React.FC<StaffSchedulerTableProps> = ({ data, 
       // Employee column (sticky)
       columnHelper.display({
         id: 'employee',
-        header: () => <div className="h-10 px-5 flex flex-col justify-center">Employee</div>,
+        header: () => <div className="px-5 flex flex-col justify-center">Employee</div>,
         cell: ({ row }) => {
           const isStaffMember = 'projects' in row.original;
 
@@ -97,7 +97,7 @@ export const StaffSchedulerTable: React.FC<StaffSchedulerTableProps> = ({ data, 
           }
         },
         meta: {
-          className: 'sticky left-0 z-10 bg-background border-r border-border w-60 ',
+          className: 'sticky left-0 z-10 bg-background border-r border-border min-w-40  max-w-60',
         } as ColumnMeta,
       }),
     ];
@@ -148,7 +148,7 @@ export const StaffSchedulerTable: React.FC<StaffSchedulerTableProps> = ({ data, 
               );
             },
             meta: {
-              className: 'w-32 min-w-32',
+              className: 'w-20 min-w-20',
             } as ColumnMeta,
           },
         ) as ColumnDef<TableRow, any>,
@@ -181,16 +181,16 @@ export const StaffSchedulerTable: React.FC<StaffSchedulerTableProps> = ({ data, 
   });
 
   return (
-    <div className={cn('rounded-md border overflow-auto', className)}>
-      <table className="w-full border-collapse">
-        <thead className="bg-muted/50">
+    <div className={cn('rounded-xl border overflow-auto', className)}>
+      <table className="border-collapse">
+        <thead className="">
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
                 <th
                   key={header.id}
                   className={cn(
-                    'text-left font-normal', // border-b border-border
+                    '', // border-b border-border
                     (header.column.columnDef.meta as ColumnMeta | undefined)?.className,
                   )}
                 >
@@ -203,7 +203,7 @@ export const StaffSchedulerTable: React.FC<StaffSchedulerTableProps> = ({ data, 
         <tbody>
           {table.getRowModel().rows.map((row) => (
             // border-b border-border
-            <tr key={row.id} className={cn('last:border-0', row.depth > 0 && 'bg-muted/10')}>
+            <tr key={row.id} className={cn('last:border-0', row.depth > 0 && 'bg-destructive/10')}>
               {row.getVisibleCells().map((cell) => (
                 <td key={cell.id} className={cn((cell.column.columnDef.meta as ColumnMeta | undefined)?.className)}>
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}

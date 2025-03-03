@@ -92,7 +92,6 @@ Everytime we update values here we need to update the documentation in /tailwind
   --sidebar-ring: var(--color-gray-300);
 
   --color-destructive-foreground: var(--destructive-foreground);
-
 }
 
 /* Dark theme semantic variables */
@@ -162,7 +161,7 @@ Everytime we update values here we need to update the documentation in /tailwind
   --color-destructive-foreground: var(--destructive-foreground);
 
   --color-success: var(--color-chart-green);
-  --color-warning: var(--color-chart-amber);
+  --color-warning: var(--color-chart-yellow);
 
   --primary: var(--primary);
   --color-card: var(--card);
