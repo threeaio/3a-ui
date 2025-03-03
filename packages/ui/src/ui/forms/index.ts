@@ -4,3 +4,4 @@ export * from './radio-group';
 export * from './checkbox';
 export * from './textarea';
 export * from './label';
+export * from './input-group';

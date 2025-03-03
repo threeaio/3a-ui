@@ -2,16 +2,18 @@
 import React from 'react';
 import { StyleguideSection } from '../../ui/styleguide-section';
 import { StyleguideRender } from '../../ui/styleguide-render';
-import { heightClasses, paddingClasses } from '../../ui-config';
 import { Input } from '@3a-ui/ui/forms';
 import { Textarea } from '@3a-ui/ui/forms';
 import { Select, SelectContent, SelectTrigger, SelectValue, SelectItem } from '@3a-ui/ui/forms';
 import { Checkbox } from '@3a-ui/ui/forms';
 import { RadioGroup, RadioGroupItem } from '@3a-ui/ui/forms';
 import { Label } from '@3a-ui/ui/forms';
-import { Button, ButtonGroup } from '@3a-ui/ui/button';
-import { Search, Mail, EyeOff, Eye, Plus } from 'lucide-react';
-import { RowVisualizer } from '../../ui/measure-visualizer/row-indicator';
+import { Search, Mail, EyeOff, Eye } from 'lucide-react';
+import { SingleRowForm } from './example-forms/single-row-form';
+import { ContactForm } from './example-forms/contact-form';
+import { SimpleInputGroup } from './example-forms/simple-input-group';
+import { ErrorInputGroup } from './example-forms/error-input-group';
+import { ComplexFilterGroup } from './example-forms/complex-filter-group';
 
 const PasswordInput: React.FC<React.ComponentProps<typeof Input>> = (props) => {
   const [showPassword, setShowPassword] = React.useState(false);
@@ -176,62 +178,23 @@ const FormsShowcase: React.FC = () => {
 
       {/* Demo Forms */}
       <StyleguideRender label="Single Row Form">
-        <RowVisualizer rows={1} className="w-full">
-          <form
-            className={`flex items-center gap-2 border rounded-xl ${heightClasses[0]} ${paddingClasses.horizontal[1]} bg-background`}
-          >
-            <div className="flex items-center gap-2">
-              <Label htmlFor="rowNumber" className="text-sm whitespace-nowrap pl-2">
-                Row:
-              </Label>
-              <Input id="rowNumber" type="number" className="w-20" min="1" defaultValue="1" />
-            </div>
-            <Select defaultValue="all">
-              <SelectTrigger className="w-[140px]">
-                <SelectValue placeholder="Category" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Categories</SelectItem>
-                <SelectItem value="products">Products</SelectItem>
-                <SelectItem value="services">Services</SelectItem>
-                <SelectItem value="users">Users</SelectItem>
-              </SelectContent>
-            </Select>
-            <div className="flex-1">
-              <Input placeholder="Search..." icon={<Search className="h-4 w-4" />} clearable />
-            </div>
-            <ButtonGroup variant="outline">
-              <Button type="submit">Search</Button>
-              <Button size="icon">
-                <Plus className="size-4" />
-              </Button>
-            </ButtonGroup>
-          </form>
-        </RowVisualizer>
+        <SingleRowForm />
       </StyleguideRender>
 
       <StyleguideRender label="Contact Form">
-        <form className="space-y-5 max-w-md">
-          <div className="flex flex-col gap-2">
-            <Label htmlFor="name">Name</Label>
-            <Input id="name" placeholder="Your name" />
-          </div>
-          <div className="flex flex-col gap-2">
-            <Label htmlFor="email">Email</Label>
-            <Input id="email" type="email" placeholder="your@email.com" />
-          </div>
-          <div className="flex flex-col gap-2">
-            <Label htmlFor="message">Message</Label>
-            <Textarea id="message" placeholder="Your message..." />
-          </div>
-          <div className="flex items-center gap-2">
-            <Checkbox id="newsletter" />
-            <Label htmlFor="newsletter">Subscribe to newsletter</Label>
-          </div>
-          <Button type="submit" className="w-full">
-            Send Message
-          </Button>
-        </form>
+        <ContactForm />
+      </StyleguideRender>
+
+      <StyleguideRender label="Simple Input Group">
+        <SimpleInputGroup />
+      </StyleguideRender>
+
+      <StyleguideRender label="Input Group with Error">
+        <ErrorInputGroup />
+      </StyleguideRender>
+
+      <StyleguideRender label="Complex Filter Group">
+        <ComplexFilterGroup />
       </StyleguideRender>
     </StyleguideSection>
   );
