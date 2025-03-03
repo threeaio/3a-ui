@@ -10,7 +10,7 @@
   "exports": {
     "./styles.css": "./src/styles.css",
     "./button": "./src/ui/button/index.ts",
-    "./measure-indicator": "./src/ui/measure-indicator/index.tsx",
+    "./badge": "./src/ui/badge/index.ts",
     "./lib/utils": "./src/lib/utils.ts"
   },
   "license": "MIT",

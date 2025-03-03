@@ -27,7 +27,10 @@ const navigationGroups: NavGroup[] = [
   },
   {
     title: 'Components',
-    items: [{ title: 'Buttons', href: '/components/buttons' }],
+    items: [
+      { title: 'Buttons', href: '/components/buttons' },
+      { title: 'Badges', href: '/components/badges' },
+    ],
   },
 ];
 

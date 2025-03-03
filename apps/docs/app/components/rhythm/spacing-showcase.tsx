@@ -5,8 +5,9 @@ import StyleguideExplanation from '../../ui/styleguide-explanation';
 import { heightClasses, paddingClasses } from '../../ui-config';
 import { PaddingIndicator } from '../../ui/measure-visualizer/padding-indicator';
 import { Button, ButtonGroup } from '@3a-ui/ui/button';
-import { Plus } from 'lucide-react';
+import { Check, Plus } from 'lucide-react';
 import { RowVisualizer } from '../../ui/measure-visualizer/row-indicator';
+import { Badge } from '@3a-ui/ui/badge';
 
 type PaddingSize = 1 | 2 | 3 | 4;
 
@@ -94,12 +95,15 @@ const SpacingShowcase: React.FC = () => {
               <div className={`${paddingClasses.horizontal[1]}`}>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-5">
-                    <ButtonGroup variant="default">
+                    <ButtonGroup variant="outline">
                       <Button>Action</Button>
                       <Button>Settings</Button>
                     </ButtonGroup>
                     <span className="text-muted-foreground text-xs">|</span>
-                    <div className="text-muted-foreground text-xs">This is information</div>
+                    <Badge>
+                      <Check className="size-3" />
+                      Successfully created item
+                    </Badge>
                   </div>
 
                   <ButtonGroup variant="outline">

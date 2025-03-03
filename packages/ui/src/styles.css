@@ -28,9 +28,9 @@ Everytime we update values here we need to update the documentation in /tailwind
   --color-brand-green: oklch(0.845 0.2 160);
 
   /* Colors */
-  --color-red-300: oklch(0.837 0.337 25.331);
-  --color-red-500: oklch(0.577 0.245 27.325);
-  --color-red-700: oklch(0.396 0.141 25.723);
+  --color-red-300: oklch(1 0.377 25.331);
+  --color-red-500: oklch(0.857 0.337 25.331);
+  --color-red-700: oklch(0.577 0.245 27.325);
 
   /* Chart colors */
   --color-chart-amber: oklch(0.769 0.188 70.08);
@@ -61,8 +61,8 @@ Everytime we update values here we need to update the documentation in /tailwind
   --muted-foreground: var(--color-gray-500);
   --accent: var(--color-gray-100);
   --accent-foreground: var(--color-gray-800);
-  --destructive: var(--color-red-300);
-  --destructive-foreground: var(--color-gray-900);
+  --destructive: var(--color-red-500);
+  --destructive-foreground: var(--color-white);
   --border: var(--color-gray-200);
   --input: var(--color-gray-200);
   --ring: var(--color-gray-300);
@@ -99,7 +99,7 @@ Everytime we update values here we need to update the documentation in /tailwind
   --muted-foreground: var(--color-gray-400);
   --accent: var(--color-gray-700);
   --accent-foreground: var(--color-gray-50);
-  --destructive: var(--color-red-300);
+  --destructive: var(--color-red-500);
   --destructive-foreground: var(--color-gray-900);
   --border: var(--color-gray-700);
   --input: var(--color-gray-700);
