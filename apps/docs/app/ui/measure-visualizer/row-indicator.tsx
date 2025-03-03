@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { heightClasses } from '../ui-config';
+import { heightClasses } from '../../ui-config';
 import { useVisualizer } from './visualizer-toggle';
 
 interface RowVisualizerProps {

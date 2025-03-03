@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { paddingClasses } from '../ui-config';
+import { paddingClasses } from '../../ui-config';
 import { useVisualizer } from './visualizer-toggle';
 
 type LabelPosition = 'top' | 'right' | 'bottom' | 'left';
@@ -37,7 +37,7 @@ const PaddingLabel = ({ text, position, className = '', style = {} }: PaddingLab
       positionStyle = {
         top: '50%',
         right: '2px',
-        transform: 'translateY(-50%)',
+        transform: 'translateY(-50%) rotate(180deg)',
         writingMode: 'vertical-rl',
       };
       break;

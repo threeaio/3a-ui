@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import Sidebar from './nav';
-import Header from './ui/header';
-import { VisualizerToggle } from './ui/visualizer-toggle';
+import Header from './ui/core-layout/header';
+import { VisualizerToggle } from './ui/measure-visualizer/visualizer-toggle';
 import '@3a-ui/ui/styles.css';
 import './styles.css';
 

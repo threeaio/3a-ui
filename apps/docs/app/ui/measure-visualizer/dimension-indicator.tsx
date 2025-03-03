@@ -3,7 +3,7 @@
 import React from 'react';
 import { useVisualizer } from './visualizer-toggle';
 
-export interface MeasureIndicatorProps {
+export interface DimensionIndicatorProps {
   children: React.ReactNode;
   top?: string;
   right?: string;
@@ -12,7 +12,7 @@ export interface MeasureIndicatorProps {
   className?: string;
 }
 
-export const MeasureIndicator = ({ children, top, right, bottom, left, className = '' }: MeasureIndicatorProps) => {
+export const DimensionIndicator = ({ children, top, right, bottom, left, className = '' }: DimensionIndicatorProps) => {
   const { visible } = useVisualizer();
 
   return (

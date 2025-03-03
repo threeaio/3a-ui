@@ -22,7 +22,7 @@ const navigationGroups: NavGroup[] = [
     title: 'Foundations',
     items: [
       { title: 'Colors', href: '/components/colors' },
-      { title: 'Layout', href: '/components/layout' },
+      { title: 'Rhythm', href: '/components/rhythm' },
     ],
   },
   {
