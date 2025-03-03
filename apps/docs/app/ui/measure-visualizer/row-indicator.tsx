@@ -24,7 +24,7 @@ export const RowVisualizer: React.FC<RowVisualizerProps> = ({ rows = 1, classNam
         {/* The row overlay */}
         {/* The row overlay */}
         <div
-          className={`absolute inset-0 pointer-events-none z-0 transition-opacity duration-300 ease-in-out ${
+          className={`absolute inset-0 pointer-events-none z-0 transition-opacity duration-300 delay-0 ease-in-out ${
             visible ? 'opacity-100' : 'opacity-0'
           }`}
           style={{

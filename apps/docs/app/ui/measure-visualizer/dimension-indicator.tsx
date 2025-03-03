@@ -29,7 +29,7 @@ interface MeasurementContainerProps {
 
 const MeasurementContainer = ({ visible, className, children }: MeasurementContainerProps) => (
   <div
-    className={`absolute transition-opacity duration-300 ease-in-out ${
+    className={`absolute transition-opacity duration-300 delay-100 ease-in-out ${
       visible ? 'opacity-100' : 'opacity-0'
     } ${className}`}
   >

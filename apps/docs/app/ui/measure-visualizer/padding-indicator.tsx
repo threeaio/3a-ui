@@ -17,7 +17,7 @@ const PaddingLabel = ({ text, position, className = '', style = {} }: PaddingLab
   const { visible } = useVisualizer();
 
   // Base styles for all labels
-  const baseStyles = `text-[11px] rounded bg-destructive/50 text-white whitespace-nowrap absolute py-[0px] px-[5px] transition-opacity duration-300 ease-in-out ${
+  const baseStyles = `text-[11px] rounded bg-destructive/50 text-white whitespace-nowrap absolute py-[0px] px-[5px] transition-opacity duration-300 delay-200 ease-in-out ${
     visible ? 'opacity-100' : 'opacity-0'
   }`;
 
@@ -98,7 +98,7 @@ export const PaddingIndicator = ({
       <div className="absolute inset-0">
         <div className={`w-full h-full ${paddingClass}`}>
           <div
-            className={`w-full h-full border border-destructive/50 border-dashed transition-opacity duration-300 ease-in-out ${
+            className={`w-full h-full border border-destructive/50 border-dashed transition-opacity duration-300 delay-200 ease-in-out ${
               visible ? 'opacity-100' : 'opacity-0'
             }`}
           ></div>
