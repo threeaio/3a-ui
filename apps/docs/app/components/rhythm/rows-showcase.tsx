@@ -7,7 +7,6 @@ import { heightClasses, paddingClasses } from '../../ui-config';
 import { ButtonGroup } from '@3a-ui/ui/button';
 import { Minus, Plus } from 'lucide-react';
 import { RowVisualizer } from '../../ui/measure-visualizer/row-indicator';
-import { PaddingIndicator } from '../../ui/measure-visualizer/padding-indicator';
 
 const GridShowcase: React.FC = () => {
   return (

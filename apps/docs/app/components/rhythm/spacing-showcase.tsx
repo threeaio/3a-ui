@@ -5,7 +5,7 @@ import StyleguideExplanation from '../../ui/styleguide-explanation';
 import { heightClasses, paddingClasses } from '../../ui-config';
 import { PaddingIndicator } from '../../ui/measure-visualizer/padding-indicator';
 import { Button, ButtonGroup } from '@3a-ui/ui/button';
-import { Plus, Minus } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import { RowVisualizer } from '../../ui/measure-visualizer/row-indicator';
 
 type PaddingSize = 1 | 2 | 3 | 4;
@@ -119,7 +119,7 @@ const SpacingShowcase: React.FC = () => {
           <PaddingIndicator paddingSize={3} paddingType="horizontal" showLabels={true}>
             <div className={`border rounded-xl bg-background flex flex-col justify-center ${heightClasses[2]}`}>
               <div className={`${paddingClasses.horizontal[3]}`}>
-                <div className="flex flex-col gap-2.5">
+                <div className="flex flex-col gap-2.5 max-w-2xl">
                   <h2 className="font-semibold">Content Section</h2>
                   <p className="text-muted-foreground">
                     Here we have a fixed height row with a content section that spans multiple rows. Be aware, that the
@@ -135,9 +135,20 @@ const SpacingShowcase: React.FC = () => {
         <PaddingIndicator paddingSize={3} paddingType="full" showLabels={true}>
           <div className={`border rounded-xl bg-background w-full`}>
             <div className={`${paddingClasses.full[3]}`}>
-              <div className="flex flex-col gap-5">
-                <h2 className="font-semibold">Content Section</h2>
-                <p className="text-muted-foreground">
+              <div className="flex flex-col gap-2.5 max-w-2xl">
+                <h2 className="font-semibold ">Content Section</h2>
+                <p className="text-muted-foreground mb-2.5">
+                  This example shows how padding creates comfortable spacing in a content section that has an unknown
+                  height. So a lot of content can be added without breaking the padding. When dealing with texts or
+                  lists, just applying paddings is prefered over setting fixed heights to elements.
+                </p>
+                <p className="text-muted-foreground mb-10">
+                  This example shows how padding creates comfortable spacing in a content section that has an unknown
+                  height. So a lot of content can be added without breaking the padding. When dealing with texts or
+                  lists, just applying paddings is prefered over setting fixed heights to elements.
+                </p>
+                <h2 className="font-semibold ">Content Section</h2>
+                <p className="text-muted-foreground mb-2.5">
                   This example shows how padding creates comfortable spacing in a content section that has an unknown
                   height. So a lot of content can be added without breaking the padding. When dealing with texts or
                   lists, just applying paddings is prefered over setting fixed heights to elements.
