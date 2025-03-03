@@ -9,8 +9,9 @@ import { Select, SelectContent, SelectTrigger, SelectValue, SelectItem } from '@
 import { Checkbox } from '@3a-ui/ui/forms';
 import { RadioGroup, RadioGroupItem } from '@3a-ui/ui/forms';
 import { Label } from '@3a-ui/ui/forms';
-import { Button } from '@3a-ui/ui/button';
-import { Search, Mail, EyeOff, Eye } from 'lucide-react';
+import { Button, ButtonGroup } from '@3a-ui/ui/button';
+import { Search, Mail, EyeOff, Eye, Plus } from 'lucide-react';
+import { RowVisualizer } from '../../ui/measure-visualizer/row-indicator';
 
 const PasswordInput: React.FC<React.ComponentProps<typeof Input>> = (props) => {
   const [showPassword, setShowPassword] = React.useState(false);
@@ -35,7 +36,7 @@ const FormsShowcase: React.FC = () => {
     <StyleguideSection title="Form Components" subline="Core form components and their usage">
       {/* Individual Components */}
       <StyleguideRender label="Input">
-        <div className="space-y-5">
+        <div className="space-y-5 max-w-2xl">
           <div className="flex flex-col gap-2">
             <Label htmlFor="default">Default Input</Label>
             <Input id="default" placeholder="Enter text..." />
@@ -96,7 +97,7 @@ const FormsShowcase: React.FC = () => {
       </StyleguideRender>
 
       <StyleguideRender label="Textarea">
-        <div className="space-y-5">
+        <div className="space-y-5 max-w-2xl">
           <div className="flex flex-col gap-2">
             <Label htmlFor="textarea">Default Textarea</Label>
             <Textarea id="textarea" placeholder="Enter long text..." />
@@ -109,7 +110,7 @@ const FormsShowcase: React.FC = () => {
       </StyleguideRender>
 
       <StyleguideRender label="Select">
-        <div className="space-y-5">
+        <div className="space-y-5 max-w-2xl">
           <div className="flex flex-col gap-2">
             <Label htmlFor="select">Default Select</Label>
             <Select>
@@ -175,14 +176,38 @@ const FormsShowcase: React.FC = () => {
 
       {/* Demo Forms */}
       <StyleguideRender label="Single Row Form">
-        <form
-          className={`flex items-center gap-2 border rounded-xl ${heightClasses[0]} ${paddingClasses.horizontal[1]}`}
-        >
-          <div className="flex-1">
-            <Input placeholder="Search..." />
-          </div>
-          <Button type="submit">Search</Button>
-        </form>
+        <RowVisualizer rows={1} className="w-full">
+          <form
+            className={`flex items-center gap-2 border rounded-xl ${heightClasses[0]} ${paddingClasses.horizontal[1]} bg-background`}
+          >
+            <div className="flex items-center gap-2">
+              <Label htmlFor="rowNumber" className="text-sm whitespace-nowrap pl-2">
+                Row:
+              </Label>
+              <Input id="rowNumber" type="number" className="w-20" min="1" defaultValue="1" />
+            </div>
+            <Select defaultValue="all">
+              <SelectTrigger className="w-[140px]">
+                <SelectValue placeholder="Category" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Categories</SelectItem>
+                <SelectItem value="products">Products</SelectItem>
+                <SelectItem value="services">Services</SelectItem>
+                <SelectItem value="users">Users</SelectItem>
+              </SelectContent>
+            </Select>
+            <div className="flex-1">
+              <Input placeholder="Search..." icon={<Search className="h-4 w-4" />} clearable />
+            </div>
+            <ButtonGroup variant="outline">
+              <Button type="submit">Search</Button>
+              <Button size="icon">
+                <Plus className="size-4" />
+              </Button>
+            </ButtonGroup>
+          </form>
+        </RowVisualizer>
       </StyleguideRender>
 
       <StyleguideRender label="Contact Form">

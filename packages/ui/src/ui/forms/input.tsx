@@ -24,7 +24,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       if (inputRef.current) {
         inputRef.current.value = '';
         setHasValue(false);
-
         // Trigger native events
         const event = new Event('input', { bubbles: true });
         inputRef.current.dispatchEvent(event);
@@ -34,10 +33,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
         onClear?.();
       }
-    };
-
-    const handleIconClick = () => {
-      inputRef.current?.focus();
     };
 
     return (
@@ -67,7 +62,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
               <div
                 className={cn(
                   'absolute size-4 transition-all duration-200 ease-in-out',
-                  clearable && hasValue ? 'opacity-0 translate-x-3' : 'opacity-100 translate-x-0',
+                  clearable && hasValue ? 'opacity-0 translate-x-2' : 'opacity-100 translate-x-0',
                 )}
               >
                 <div className="text-muted-foreground/70">{icon}</div>
@@ -77,7 +72,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
               <X
                 className={cn(
                   'absolute size-4 cursor-pointer text-muted-foreground/70 hover:text-muted-foreground transition-all duration-200 ease-in-out',
-                  hasValue ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-3',
+                  hasValue ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4',
                 )}
                 onClick={handleClear}
               />
