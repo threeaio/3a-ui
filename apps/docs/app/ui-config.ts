@@ -3,6 +3,7 @@
  */
 
 export const heightClasses = {
+  0: 'h-15',
   1: 'h-20',
   2: 'h-40',
   3: 'h-60',
@@ -12,7 +13,7 @@ export const heightClasses = {
 
 export const paddingClasses = {
   full: {
-    1: 'p-2',
+    1: 'p-1',
     2: 'p-5',
     3: 'p-10',
     4: 'p-20',
@@ -42,7 +43,7 @@ export const paddingClasses = {
     4: 'pl-20',
   },
   horizontal: {
-    1: 'px-2',
+    1: 'px-2.5',
     2: 'px-5',
     3: 'px-10',
     4: 'px-20',

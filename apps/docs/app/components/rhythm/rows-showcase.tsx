@@ -3,7 +3,7 @@ import { StyleguideSection } from '../../ui/styleguide-section';
 import { StyleguideRender } from '../../ui/styleguide-render';
 import { Button } from '@3a-ui/ui/button';
 import StyleguideExplanation from '../../ui/styleguide-explanation';
-import { heightClasses } from '../../ui-config';
+import { heightClasses, paddingClasses } from '../../ui-config';
 import { ButtonGroup } from '@3a-ui/ui/button';
 import { Minus, Plus } from 'lucide-react';
 import { RowVisualizer } from '../../ui/measure-visualizer/row-indicator';
@@ -74,6 +74,28 @@ const GridShowcase: React.FC = () => {
                 </div>
               </div>
             </PaddingIndicator>
+          </RowVisualizer>
+        </StyleguideRender>
+
+        <StyleguideRender label="Single Row with UI">
+          <RowVisualizer rows={0} className="w-full">
+            <div className={`border-y  flex flex-col justify-center ${heightClasses[0]}`}>
+              <div className={`flex gap-2  justify-between ${paddingClasses.horizontal[1]}`}>
+                <ButtonGroup variant="outline">
+                  <Button>Button</Button>
+                  <Button>Button</Button>
+                  <Button>Button</Button>
+                </ButtonGroup>
+                <ButtonGroup variant="outline">
+                  <Button>
+                    <Minus />
+                  </Button>
+                  <Button>
+                    <Plus />
+                  </Button>
+                </ButtonGroup>
+              </div>
+            </div>
           </RowVisualizer>
         </StyleguideRender>
       </div>

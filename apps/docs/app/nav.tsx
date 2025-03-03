@@ -36,9 +36,9 @@ export const Sidebar: React.FC = () => {
 
   return (
     <nav className="w-64 xl:w-64 xl:grow-0 h-full border-r border-border bg-card flex flex-col">
-      <div className="flex-1  overflow-y-auto p-4 text-sm">
+      <div className="flex-1  overflow-y-auto p-5 text-sm">
         {navigationGroups.map((group) => (
-          <div key={group.title} className="mb-6">
+          <div key={group.title} className="mb-10">
             <h3 className="px-3 mt-5 mb-3 font-semibold">{group.title}</h3>
             <ul className="space-y-1">
               {group.items.map((item) => {
