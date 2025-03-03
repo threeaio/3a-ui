@@ -50,8 +50,8 @@ export const Sidebar: React.FC = () => {
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className={`px-3 h-10 flex items-center rounded-md transition-all duration-300  ${
-                        isActive ? 'bg-secondary' : 'text-secondary-foreground hover:bg-secondary'
+                      className={`px-3 h-10 flex items-center rounded-md transition-colors duration-300  ${
+                        isActive ? 'bg-secondary' : 'text-muted-foreground hover:bg-secondary'
                       }`}
                     >
                       {item.title}

@@ -3,7 +3,7 @@
  */
 
 export const heightClasses = {
-  0: 'h-14',
+  0: 'h-13',
   1: 'h-20',
   2: 'h-40',
   3: 'h-60',
