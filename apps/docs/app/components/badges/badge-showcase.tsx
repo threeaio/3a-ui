@@ -3,7 +3,7 @@ import { Badge } from '@3a-ui/ui/badge';
 import { StyleguideSection } from '../../ui/styleguide-section';
 import { StyleguideRender } from '../../ui/styleguide-render';
 import StyleguideExplanation from '../../ui/styleguide-explanation';
-import { Check, X, AlertCircle, Info } from 'lucide-react';
+import { Check, X, AlertCircle, Info, Loader2 } from 'lucide-react';
 
 export const BadgeShowcase: React.FC = () => {
   return (
@@ -31,6 +31,7 @@ export const BadgeShowcase: React.FC = () => {
 
       <StyleguideRender label="Variants" classNameContent="flex justify-start flex-wrap gap-2.5">
         <Badge>Default</Badge>
+        <Badge variant="primary">Primary</Badge>
         <Badge variant="destructive">Destructive</Badge>
         <Badge variant="outline">Outline</Badge>
         <Badge variant="secondary">Secondary</Badge>
@@ -38,25 +39,30 @@ export const BadgeShowcase: React.FC = () => {
 
       <StyleguideRender label="With Icons" classNameContent="flex justify-start flex-wrap gap-2.5">
         <Badge>
-          <Check className="size-3" />
+          <Loader2 className="size-3 animate-spin" />
+          Rendering
+        </Badge>
+        <Badge variant="primary">
+          <Check />
           Completed
         </Badge>
         <Badge variant="destructive">
-          <X className="size-3" />
+          <X />
           Rejected
         </Badge>
         <Badge variant="outline">
-          <AlertCircle className="size-3" />
+          <AlertCircle />
           Warning
         </Badge>
         <Badge variant="secondary">
-          <Info className="size-3" />
+          <Info />
           Info
         </Badge>
       </StyleguideRender>
 
       <StyleguideRender label="Use Cases" classNameContent="flex justify-start flex-wrap gap-2.5">
-        <Badge>New</Badge>
+        <Badge>Info</Badge>
+        <Badge variant="primary">New</Badge>
         <Badge variant="destructive">Deprecated</Badge>
         <Badge variant="outline">Beta</Badge>
         <Badge variant="secondary">In Progress</Badge>

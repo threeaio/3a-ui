@@ -16,7 +16,7 @@ Everytime we update values here we need to update the documentation in /tailwind
   --color-gray-300: oklch(0.87 0 0);
   --color-gray-400: oklch(0.708 0 0);
   --color-gray-500: oklch(0.556 0 0);
-  --color-gray-600: oklch(0.439 0 0);
+  --color-gray-600: oklch(0.339 0 0);
   --color-gray-700: oklch(0.269 0 0);
   --color-gray-800: oklch(0.205 0 0);
   --color-gray-900: oklch(0.145 0 0);
@@ -49,10 +49,11 @@ Everytime we update values here we need to update the documentation in /tailwind
 
 /* Light theme semantic variables */
 :root {
-  --card: var(--color-white);
-  --card-foreground: var(--color-gray-900);
-  --popover: var(--color-white);
-  --popover-foreground: var(--color-gray-900);
+  --background: var(--color-white);
+  --foreground: var(--color-gray-900);
+
+  --default: var(--color-gray-700);
+  --default-foreground: var(--color-gray-50);
   --primary: var(--color-brand-green-for-bright);
   --primary-foreground: var(--color-gray-900);
   --secondary: var(--color-gray-100);
@@ -63,9 +64,16 @@ Everytime we update values here we need to update the documentation in /tailwind
   --accent-foreground: var(--color-gray-800);
   --destructive: var(--color-red-500);
   --destructive-foreground: var(--color-white);
+
   --border: var(--color-gray-200);
-  --input: var(--color-gray-200);
+  --input: var(--color-gray-300);
   --ring: var(--color-gray-300);
+
+  --card: var(--color-white);
+  --card-foreground: var(--color-gray-900);
+  --popover: var(--color-white);
+  --popover-foreground: var(--color-gray-900);
+
   --chart-1: var(--color-chart-green);
   --chart-2: var(--color-chart-blue);
   --chart-3: var(--color-chart-indigo);
@@ -79,19 +87,16 @@ Everytime we update values here we need to update the documentation in /tailwind
   --sidebar-accent-foreground: var(--color-gray-800);
   --sidebar-border: var(--color-gray-200);
   --sidebar-ring: var(--color-gray-300);
-  --background: var(--color-white);
-  --foreground: var(--color-gray-900);
 }
 
 /* Dark theme semantic variables */
 .dark {
-  --card: var(--color-black);
-  --card-foreground: var(--color-gray-100);
-  --popover: var(--color-black);
-  --popover-foreground: var(--color-gray-50);
-  --primary: var(--color-brand-green-for-bright);
   --background: var(--color-gray-900);
   --foreground: var(--color-gray-50);
+
+  --default: var(--color-gray-50);
+  --default-foreground: var(--color-gray-900);
+  --primary: var(--color-brand-green-for-bright);
   --primary-foreground: var(--color-gray-800);
   --secondary: var(--color-gray-700);
   --secondary-foreground: var(--color-gray-50);
@@ -101,9 +106,16 @@ Everytime we update values here we need to update the documentation in /tailwind
   --accent-foreground: var(--color-gray-50);
   --destructive: var(--color-red-500);
   --destructive-foreground: var(--color-gray-900);
+
   --border: var(--color-gray-700);
-  --input: var(--color-gray-700);
+  --input: var(--color-gray-600);
   --ring: var(--color-gray-600);
+
+  --card: var(--color-black);
+  --card-foreground: var(--color-gray-100);
+  --popover: var(--color-black);
+  --popover-foreground: var(--color-gray-50);
+
   --chart-1: var(--color-chart-purple);
   --chart-2: var(--color-chart-teal);
   --chart-3: var(--color-chart-amber);
@@ -124,6 +136,8 @@ Everytime we update values here we need to update the documentation in /tailwind
   --font-mono: var(--font-mono);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-default: var(--default);
+  --color-default-foreground: var(--default-foreground);
   --color-black: var(--color-black);
   --color-white: var(--color-white);
   --primary: var(--primary);

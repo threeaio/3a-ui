@@ -15,7 +15,7 @@ export const ButtonShowcase: React.FC = () => {
         </p>
         <ul className="list-disc pl-5 text-muted-foreground max-w-2xl leading-tight mb-5 space-y-2">
           <li>
-            <span className="text-foreground font-medium">Variants:</span> Default (primary), destructive, outline,
+            <span className="text-foreground font-medium">Variants:</span> Default, Primary, destructive, outline,
             secondary, ghost, and link styles
           </li>
           <li>
@@ -35,7 +35,8 @@ export const ButtonShowcase: React.FC = () => {
       </StyleguideExplanation>
 
       <StyleguideRender label="Variants" classNameContent="flex justify-start flex-wrap gap-2.5">
-        <Button>Call to Action</Button>
+        <Button>Standard</Button>
+        <Button variant="primary">Call to Action</Button>
         <Button variant="destructive">Destructive</Button>
         <Button variant="outline">Outline</Button>
         <Button variant="secondary">Secondary</Button>
@@ -94,7 +95,7 @@ export const ButtonShowcase: React.FC = () => {
           Disabled
         </Button>
         <Button variant="outline" className="opacity-90">
-          <Loader2 className="h-4 w-4 animate-spin mr-2" />
+          <Loader2 className="size-4 animate-spin" />
           Loading
         </Button>
       </StyleguideRender>
@@ -105,7 +106,7 @@ export const ButtonShowcase: React.FC = () => {
           <Button>Action 2</Button>
           <Button>Action 3</Button>
         </ButtonGroup>
-        <ButtonGroup variant="outline">
+        <ButtonGroup variant="primary">
           <Button>Action 1</Button>
           <Button>Action 2</Button>
           <Button>Action 3</Button>

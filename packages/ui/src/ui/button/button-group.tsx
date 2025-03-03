@@ -6,7 +6,7 @@ import { buttonVariants } from './button';
 interface ButtonGroupProps extends React.ComponentProps<'div'> {
   children: React.ReactNode;
   size?: VariantProps<typeof buttonVariants>['size'];
-  variant?: VariantProps<typeof buttonVariants>['variant'];
+  variant?: VariantProps<typeof buttonVariants>['variant'] | 'primary';
 }
 
 function ButtonGroup({ className, children, size, variant, ...props }: ButtonGroupProps) {

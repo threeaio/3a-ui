@@ -9,8 +9,10 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
+        primary:
+        'bg-primary text-primary-foreground hover:bg-primary/80 focus-visible:ring-primary/20 dark:focus-visible:ring-primary/40',
         default:
-          'bg-primary text-primary-foreground hover:bg-primary/80 focus-visible:ring-primary/20 dark:focus-visible:ring-primary/40',
+          'bg-default text-default-foreground hover:bg-default/90 focus-visible:ring-default/20 dark:focus-visible:ring-default/40',
         destructive:
           'bg-destructive text-destructive-foreground hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40',
         outline: 'ring-1 ring-input bg-background hover:bg-accent hover:text-accent-foreground',
@@ -39,7 +41,8 @@ function Button({
   asChild = false,
   ...props
 }: React.ComponentProps<'button'> &
-  VariantProps<typeof buttonVariants> & {
+  { variant?: VariantProps<typeof buttonVariants>['variant'] | 'primary' } &
+  { size?: VariantProps<typeof buttonVariants>['size'] } & {
     asChild?: boolean;
   }) {
   const Comp = asChild ? Slot : 'button';

@@ -30,7 +30,7 @@ interface ColorPairProps {
 
 const ColorPair: React.FC<ColorPairProps> = ({ title, colors }) => {
   return (
-    <div className="mb-4 w-full flex-1 min-w-[300px]">
+    <div className="mb-4 w-full flex-1 min-w-[320px]">
       <h4 className="text-sm mb-2">{title}</h4>
       <div className="flex flex-row w-full">
         {colors.map((color, index) => (
@@ -82,6 +82,13 @@ export const ColorPalette: React.FC = () => {
       colors: [
         { name: 'primary', bgClass: 'bg-primary' },
         { name: 'primary-foreground', bgClass: 'bg-primary-foreground' },
+      ],
+    },
+    {
+      title: 'Default',
+      colors: [
+        { name: 'default', bgClass: 'bg-default' },
+        { name: 'default-foreground', bgClass: 'bg-default-foreground' },
       ],
     },
     {
