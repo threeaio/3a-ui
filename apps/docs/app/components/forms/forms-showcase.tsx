@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { StyleguideSection } from '../../ui/styleguide-section';
 import { StyleguideRender } from '../../ui/styleguide-render';
@@ -9,6 +10,25 @@ import { Checkbox } from '@3a-ui/ui/forms';
 import { RadioGroup, RadioGroupItem } from '@3a-ui/ui/forms';
 import { Label } from '@3a-ui/ui/forms';
 import { Button } from '@3a-ui/ui/button';
+import { Search, Mail, EyeOff, Eye } from 'lucide-react';
+
+const PasswordInput: React.FC<React.ComponentProps<typeof Input>> = (props) => {
+  const [showPassword, setShowPassword] = React.useState(false);
+
+  return (
+    <Input
+      type={showPassword ? 'text' : 'password'}
+      icon={
+        showPassword ? (
+          <EyeOff className="h-4 w-4 cursor-pointer" onClick={() => setShowPassword(false)} />
+        ) : (
+          <Eye className="h-4 w-4 cursor-pointer" onClick={() => setShowPassword(true)} />
+        )
+      }
+      {...props}
+    />
+  );
+};
 
 const FormsShowcase: React.FC = () => {
   return (
@@ -20,10 +40,53 @@ const FormsShowcase: React.FC = () => {
             <Label htmlFor="default">Default Input</Label>
             <Input id="default" placeholder="Enter text..." />
           </div>
+
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="with-icon">Input with Icon</Label>
+            <Input id="with-icon" placeholder="Search..." icon={<Search className="h-4 w-4" />} />
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="clearable">Clearable Input</Label>
+            <Input
+              id="clearable"
+              placeholder="Type to see clear button..."
+              clearable
+              onClear={() => console.log('Input cleared')}
+            />
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="icon-and-clear">Input with Icon and Clear</Label>
+            <Input
+              id="icon-and-clear"
+              placeholder="Search with clear..."
+              icon={<Search className="h-4 w-4" />}
+              clearable
+            />
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="email-input">Email Input with Icon</Label>
+            <Input
+              id="email-input"
+              type="email"
+              placeholder="your@email.com"
+              icon={<Mail className="h-4 w-4" />}
+              clearable
+            />
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="password">Password Input with Toggle</Label>
+            <PasswordInput id="password" placeholder="Enter password" />
+          </div>
+
           <div className="flex flex-col gap-2">
             <Label htmlFor="disabled">Disabled Input</Label>
             <Input id="disabled" placeholder="Disabled input" disabled />
           </div>
+
           <div className="flex flex-col gap-2">
             <Label htmlFor="error">Input with Error</Label>
             <Input id="error" placeholder="Error state" className="border-destructive" />

@@ -1,21 +1,93 @@
-import * as React from "react"
+'use client';
+import * as React from 'react';
+import { X } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
-import { cn } from "@/lib/utils"
-
-function Input({ className, type, ...props }: React.ComponentProps<"input">) {
-  return (
-    <input
-      type={type}
-      data-slot="input"
-      className={cn(
-        "border-input file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base transition-[color] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
-        "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
-        "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
-        className
-      )}
-      {...props}
-    />
-  )
+export interface InputProps extends Omit<React.ComponentProps<'input'>, 'size'> {
+  icon?: React.ReactNode;
+  clearable?: boolean;
+  onClear?: () => void;
 }
 
-export { Input }
+const Input = React.forwardRef<HTMLInputElement, InputProps>(
+  ({ className, type, icon, clearable, onClear, onChange, ...props }, ref) => {
+    const inputRef = React.useRef<HTMLInputElement>(null);
+    const [hasValue, setHasValue] = React.useState(!!props.value || !!props.defaultValue);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setHasValue(!!e.target.value);
+      onChange?.(e);
+    };
+
+    const handleClear = (e: React.MouseEvent) => {
+      e.stopPropagation();
+      if (inputRef.current) {
+        inputRef.current.value = '';
+        setHasValue(false);
+
+        // Trigger native events
+        const event = new Event('input', { bubbles: true });
+        inputRef.current.dispatchEvent(event);
+
+        const changeEvent = new Event('change', { bubbles: true });
+        inputRef.current.dispatchEvent(changeEvent);
+
+        onClear?.();
+      }
+    };
+
+    const handleIconClick = () => {
+      inputRef.current?.focus();
+    };
+
+    return (
+      <div className="relative flex items-center">
+        <input
+          type={type}
+          ref={(node) => {
+            // Handle both refs
+            if (typeof ref === 'function') ref(node);
+            else if (ref) ref.current = node;
+            inputRef.current = node;
+          }}
+          data-slot="input"
+          className={cn(
+            'border-input file:text-foreground placeholder:text-muted-foreground selection:bg-default selection:text-default-foreground flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base transition-[color] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm',
+            'focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]',
+            'aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive',
+            (icon || clearable) && 'pr-9',
+            className,
+          )}
+          onChange={handleChange}
+          {...props}
+        />
+        {(icon || clearable) && (
+          <div className="absolute right-3 flex items-center justify-center size-4 overflow-hidden">
+            {icon && (
+              <div
+                className={cn(
+                  'absolute size-4 transition-all duration-200 ease-in-out',
+                  clearable && hasValue ? 'opacity-0 translate-x-3' : 'opacity-100 translate-x-0',
+                )}
+              >
+                <div className="text-muted-foreground/70">{icon}</div>
+              </div>
+            )}
+            {clearable && (
+              <X
+                className={cn(
+                  'absolute size-4 cursor-pointer text-muted-foreground/70 hover:text-muted-foreground transition-all duration-200 ease-in-out',
+                  hasValue ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-3',
+                )}
+                onClick={handleClear}
+              />
+            )}
+          </div>
+        )}
+      </div>
+    );
+  },
+);
+Input.displayName = 'Input';
+
+export { Input };
