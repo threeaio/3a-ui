@@ -195,7 +195,7 @@ export const StaffSchedulerTable: React.FC<StaffSchedulerTableProps> = ({ data, 
                 <th
                   key={header.id}
                   className={cn(
-                    '', // border-b border-border
+                    'min-h-20', // border-b border-border
                     (header.column.columnDef.meta as ColumnMeta | undefined)?.className,
                   )}
                 >
