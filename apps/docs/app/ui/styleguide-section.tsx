@@ -1,25 +1,25 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode } from 'react'
 
 interface StyleguideSectionProps {
   /**
    * The title of the section
    */
-  title: string;
+  title: string
 
   /**
    * Optional subline text that appears below the title
    */
-  subline?: string;
+  subline?: string
 
   /**
    * The content of the section
    */
-  children: ReactNode;
+  children: ReactNode
 
   /**
    * Optional additional CSS classes for the section container
    */
-  className?: string;
+  className?: string
 }
 
 /**
@@ -35,7 +35,7 @@ export const StyleguideSection: React.FC<StyleguideSectionProps> = ({ title, sub
       </div>
       <div className="border-t p-10 mb-5">{children}</div>
     </section>
-  );
-};
+  )
+}
 
-export default StyleguideSection;
+export default StyleguideSection

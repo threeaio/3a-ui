@@ -1,19 +1,19 @@
-'use client';
+'use client'
 
-import React from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import React from 'react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 // Define the navigation item type
 interface NavItem {
-  title: string;
-  href: string;
+  title: string
+  href: string
 }
 
 // Define the navigation group type
 interface NavGroup {
-  title: string;
-  items: NavItem[];
+  title: string
+  items: NavItem[]
 }
 
 // Define the navigation data
@@ -37,10 +37,10 @@ const navigationGroups: NavGroup[] = [
     title: 'Features',
     items: [{ title: 'Staff Scheduling', href: '/features/staff-scheduler' }],
   },
-];
+]
 
 export const Sidebar: React.FC = () => {
-  const pathname = usePathname();
+  const pathname = usePathname()
 
   return (
     <nav className="w-64 xl:w-64 xl:grow-0 h-full border-r border-border bg-card flex flex-col">
@@ -50,7 +50,7 @@ export const Sidebar: React.FC = () => {
             <h3 className="px-3 mt-5 mb-3 font-semibold">{group.title}</h3>
             <ul className="space-y-0.5">
               {group.items.map((item) => {
-                const isActive = pathname === item.href;
+                const isActive = pathname === item.href
                 return (
                   <li key={item.href}>
                     <Link
@@ -62,14 +62,14 @@ export const Sidebar: React.FC = () => {
                       {item.title}
                     </Link>
                   </li>
-                );
+                )
               })}
             </ul>
           </div>
         ))}
       </div>
     </nav>
-  );
-};
+  )
+}
 
-export default Sidebar;
+export default Sidebar

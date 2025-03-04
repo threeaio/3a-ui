@@ -1,11 +1,19 @@
-'use client';
+'use client'
 
-import React, { useState } from 'react';
-import { cn } from '@3a-ui/ui/lib/utils';
-import { Button } from '@3a-ui/ui/button';
-import { Input, InputGroup, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@3a-ui/ui/forms';
-import { RotateCcw, User, File, ChevronDown, ChevronUp, Tag as TagIcon, X } from 'lucide-react';
-import { Badge } from '@3a-ui/ui/badge';
+import React, { useState } from 'react'
+import { cn } from '@3a.solutions/ui/lib/utils'
+import { Button } from '@3a.solutions/ui/button'
+import {
+  Input,
+  InputGroup,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@3a.solutions/ui/forms'
+import { RotateCcw, User, File, ChevronDown, ChevronUp, Tag as TagIcon, X } from 'lucide-react'
+import { Badge } from '@3a.solutions/ui/badge'
 
 import {
   tags,
@@ -15,20 +23,20 @@ import {
   FilterState,
   defaultFilterState,
   savedFilters,
-} from './filter-mock-data';
-import { FilterTagsDropdown } from './filter-tags-dropdown';
-import { SavedFiltersPanel } from './saved-filters-panel';
+} from './filter-mock-data'
+import { FilterTagsDropdown } from './filter-tags-dropdown'
+import { SavedFiltersPanel } from './saved-filters-panel'
 
 interface TableFilterBarProps {
   /**
    * Optional additional CSS classes
    */
-  className?: string;
+  className?: string
 
   /**
    * Callback when filters change
    */
-  onFilterChange?: (filters: FilterState) => void;
+  onFilterChange?: (filters: FilterState) => void
 }
 
 /**
@@ -37,79 +45,79 @@ interface TableFilterBarProps {
  */
 export const TableFilterBar: React.FC<TableFilterBarProps> = ({ className = '', onFilterChange }) => {
   // Filter state
-  const [filters, setFilters] = useState<FilterState>({ ...defaultFilterState });
-  const [isFavorite, setIsFavorite] = useState(false);
+  const [filters, setFilters] = useState<FilterState>({ ...defaultFilterState })
+  const [isFavorite, setIsFavorite] = useState(false)
   // State to track if the filter bar is expanded
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false)
 
   // Handle filter changes
   const handleFilterChange = (newFilters: Partial<FilterState>) => {
-    const updatedFilters = { ...filters, ...newFilters };
-    setFilters(updatedFilters);
-    onFilterChange?.(updatedFilters);
-  };
+    const updatedFilters = { ...filters, ...newFilters }
+    setFilters(updatedFilters)
+    onFilterChange?.(updatedFilters)
+  }
 
   // Handle tag selection
   const handleTagSelect = (tagId: string) => {
-    const tag = tags.find((t) => t.id === tagId);
+    const tag = tags.find((t) => t.id === tagId)
     if (tag && !filters.selectedTags.some((t) => t.id === tagId)) {
       handleFilterChange({
         selectedTags: [...filters.selectedTags, tag],
-      });
+      })
     }
-  };
+  }
 
   // Handle tag removal
   const handleTagRemove = (tagId: string) => {
     handleFilterChange({
       selectedTags: filters.selectedTags.filter((tag) => tag.id !== tagId),
-    });
-  };
+    })
+  }
 
   // Handle company selection
   const handleCompanySelect = (companyId: string) => {
-    const company = companyId === 'all' ? null : companies.find((c) => c.id === companyId) || null;
-    handleFilterChange({ company });
-  };
+    const company = companyId === 'all' ? null : companies.find((c) => c.id === companyId) || null
+    handleFilterChange({ company })
+  }
 
   // Handle managing director selection
   const handleDirectorSelect = (directorId: string) => {
-    const director = directorId === 'all' ? null : managingDirectors.find((d) => d.id === directorId) || null;
-    handleFilterChange({ managingDirector: director });
-  };
+    const director = directorId === 'all' ? null : managingDirectors.find((d) => d.id === directorId) || null
+    handleFilterChange({ managingDirector: director })
+  }
 
   // Handle tribe selection
   const handleTribeSelect = (tribeId: string) => {
-    const tribe = tribeId === 'all' ? null : tribes.find((t) => t.id === tribeId) || null;
-    handleFilterChange({ tribe });
-  };
+    const tribe = tribeId === 'all' ? null : tribes.find((t) => t.id === tribeId) || null
+    handleFilterChange({ tribe })
+  }
 
   // Reset all filters
   const handleReset = () => {
-    setFilters({ ...defaultFilterState });
-    setIsFavorite(false);
-    onFilterChange?.({ ...defaultFilterState });
-  };
+    setFilters({ ...defaultFilterState })
+    setIsFavorite(false)
+    onFilterChange?.({ ...defaultFilterState })
+  }
 
   // Toggle favorite status
   const handleToggleFavorite = () => {
-    setIsFavorite(!isFavorite);
-  };
+    setIsFavorite(!isFavorite)
+  }
 
   // Apply saved filter
   const handleApplySavedFilter = (filterId: string) => {
-    const savedFilter = savedFilters.find((f) => f.id === filterId);
+    const savedFilter = savedFilters.find((f) => f.id === filterId)
     if (savedFilter) {
-      const { id, name, ...filterState } = savedFilter;
-      setFilters(filterState);
-      onFilterChange?.(filterState);
+      const { id, name, ...filterState } = savedFilter
+      setFilters(filterState)
+      onFilterChange?.(filterState)
     }
-  };
+  }
 
   // Toggle expanded state
   const handleToggleExpand = () => {
-    setIsExpanded(!isExpanded);
-  };
+    setIsExpanded(!isExpanded)
+  }
 
   return (
     <div
@@ -126,7 +134,7 @@ export const TableFilterBar: React.FC<TableFilterBarProps> = ({ className = '', 
           <InputGroup>
             {/* Person search */}
             <Input
-              className="w-60"
+              className="w-50"
               placeholder="Search by person..."
               value={filters.personName}
               onChange={(e) => handleFilterChange({ personName: e.target.value })}
@@ -137,7 +145,7 @@ export const TableFilterBar: React.FC<TableFilterBarProps> = ({ className = '', 
 
             {/* Project search */}
             <Input
-              className="w-60"
+              className="w-50"
               placeholder="Search by project..."
               value={filters.project}
               onChange={(e) => handleFilterChange({ project: e.target.value })}
@@ -145,7 +153,8 @@ export const TableFilterBar: React.FC<TableFilterBarProps> = ({ className = '', 
               clearable
               onClear={() => handleFilterChange({ project: '' })}
             />
-
+          </InputGroup>
+          <InputGroup>
             {/* Company select */}
             <Select value={filters.company?.id || 'all'} onValueChange={handleCompanySelect}>
               <SelectTrigger className="w-40">
@@ -193,7 +202,7 @@ export const TableFilterBar: React.FC<TableFilterBarProps> = ({ className = '', 
           </InputGroup>
 
           {/* Tags button with count */}
-          <Button variant="outline" className="flex items-center gap-1" onClick={handleToggleExpand}>
+          <Button variant="ghost" className="flex items-center gap-1" onClick={handleToggleExpand}>
             <TagIcon className="size-4" />
             Tags
             {filters.selectedTags.length > 0 && (
@@ -210,6 +219,7 @@ export const TableFilterBar: React.FC<TableFilterBarProps> = ({ className = '', 
         {/* Right side with actions */}
         <div className="flex items-center gap-2 ml-2 shrink-0">
           {/* Reset button */}
+
           <Button variant="ghost" size="icon" onClick={handleReset} title="Reset filters">
             <RotateCcw className="size-4" />
           </Button>
@@ -256,5 +266,5 @@ export const TableFilterBar: React.FC<TableFilterBarProps> = ({ className = '', 
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

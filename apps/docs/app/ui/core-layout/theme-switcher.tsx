@@ -1,65 +1,65 @@
-'use client';
+'use client'
 
-import React, { useEffect, useState } from 'react';
-import { Monitor, Sun, Moon } from 'lucide-react';
+import React, { useEffect, useState } from 'react'
+import { Monitor, Sun, Moon } from 'lucide-react'
 
-type Theme = 'system' | 'light' | 'dark';
+type Theme = 'system' | 'light' | 'dark'
 
 export const ThemeSwitcher: React.FC = () => {
-  const [theme, setTheme] = useState<Theme>('light');
+  const [theme, setTheme] = useState<Theme>('light')
 
   // Initialize theme from localStorage or default to system
   useEffect(() => {
-    const storedTheme = localStorage.getItem('theme') as Theme | null;
+    const storedTheme = localStorage.getItem('theme') as Theme | null
     if (storedTheme) {
-      setTheme(storedTheme);
-      applyTheme(storedTheme);
+      setTheme(storedTheme)
+      applyTheme(storedTheme)
     } else {
       // Check if user has dark mode preference
       if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        setTheme('system');
-        applyTheme('system');
+        setTheme('system')
+        applyTheme('system')
       }
     }
 
     // Add listener for system theme changes
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
     const handleSystemThemeChange = () => {
       if (theme === 'system') {
-        applyTheme('system');
+        applyTheme('system')
       }
-    };
+    }
 
-    mediaQuery.addEventListener('change', handleSystemThemeChange);
+    mediaQuery.addEventListener('change', handleSystemThemeChange)
 
     return () => {
-      mediaQuery.removeEventListener('change', handleSystemThemeChange);
-    };
-  }, [theme]);
+      mediaQuery.removeEventListener('change', handleSystemThemeChange)
+    }
+  }, [theme])
 
   const applyTheme = (newTheme: Theme) => {
-    const root = document.documentElement;
+    const root = document.documentElement
 
     // Remove existing theme class
-    root.classList.remove('dark');
+    root.classList.remove('dark')
 
     // Apply new theme
     if (newTheme === 'dark' || (newTheme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      root.classList.add('dark');
+      root.classList.add('dark')
     }
 
     // Store theme preference
     if (newTheme !== 'system') {
-      localStorage.setItem('theme', newTheme);
+      localStorage.setItem('theme', newTheme)
     } else {
-      localStorage.setItem('theme', 'system');
+      localStorage.setItem('theme', 'system')
     }
-  };
+  }
 
   const handleThemeChange = (newTheme: Theme) => {
-    setTheme(newTheme);
-    applyTheme(newTheme);
-  };
+    setTheme(newTheme)
+    applyTheme(newTheme)
+  }
 
   return (
     <fieldset className="flex items-center border border-border rounded-full p-1 bg-card">
@@ -131,7 +131,7 @@ export const ThemeSwitcher: React.FC = () => {
         </label>
       </span>
     </fieldset>
-  );
-};
+  )
+}
 
-export default ThemeSwitcher;
+export default ThemeSwitcher

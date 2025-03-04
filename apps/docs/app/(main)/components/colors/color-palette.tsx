@@ -1,13 +1,13 @@
-import React from 'react';
-import { StyleguideSection } from '../../../ui/styleguide-section';
-import { StyleguideRender } from '../../../ui/styleguide-render';
+import React from 'react'
+import { StyleguideSection } from '../../../ui/styleguide-section'
+import { StyleguideRender } from '../../../ui/styleguide-render'
 
 interface ColorSwatchProps {
-  name: string;
-  bgClass: string;
-  className?: string;
-  isFirst?: boolean;
-  isLast?: boolean;
+  name: string
+  bgClass: string
+  className?: string
+  isFirst?: boolean
+  isLast?: boolean
 }
 
 const ColorSwatch: React.FC<ColorSwatchProps> = ({ name, bgClass, className, isFirst, isLast }) => {
@@ -20,12 +20,12 @@ const ColorSwatch: React.FC<ColorSwatchProps> = ({ name, bgClass, className, isF
       ></div>
       <span className={`text-xs block w-full text-muted-foreground font-mono truncate`}>{name}</span>
     </div>
-  );
-};
+  )
+}
 
 interface ColorPairProps {
-  title: string;
-  colors: Array<{ name: string; bgClass: string }>;
+  title: string
+  colors: Array<{ name: string; bgClass: string }>
 }
 
 const ColorPair: React.FC<ColorPairProps> = ({ title, colors }) => {
@@ -45,12 +45,12 @@ const ColorPair: React.FC<ColorPairProps> = ({ title, colors }) => {
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
 interface ColorGroupProps {
-  title: string;
-  pairs: Array<{ title: string; colors: Array<{ name: string; bgClass: string }> }>;
+  title: string
+  pairs: Array<{ title: string; colors: Array<{ name: string; bgClass: string }> }>
 }
 
 const ColorGroup: React.FC<ColorGroupProps> = ({ title, pairs }) => {
@@ -62,8 +62,8 @@ const ColorGroup: React.FC<ColorGroupProps> = ({ title, pairs }) => {
         ))}
       </div>
     </StyleguideRender>
-  );
-};
+  )
+}
 
 export const ColorPalette: React.FC = () => {
   const baseColors = [
@@ -74,7 +74,7 @@ export const ColorPalette: React.FC = () => {
         { name: 'foreground', bgClass: 'bg-foreground' },
       ],
     },
-  ];
+  ]
 
   const accentColors = [
     {
@@ -105,7 +105,7 @@ export const ColorPalette: React.FC = () => {
         { name: 'accent-foreground', bgClass: 'bg-accent-foreground' },
       ],
     },
-  ];
+  ]
 
   const utilityColors = [
     {
@@ -130,7 +130,7 @@ export const ColorPalette: React.FC = () => {
         { name: 'ring', bgClass: 'bg-ring' },
       ],
     },
-  ];
+  ]
 
   const componentColors = [
     {
@@ -147,7 +147,7 @@ export const ColorPalette: React.FC = () => {
         { name: 'popover-foreground', bgClass: 'bg-popover-foreground' },
       ],
     },
-  ];
+  ]
 
   const sidebarColors = [
     {
@@ -178,7 +178,7 @@ export const ColorPalette: React.FC = () => {
         { name: 'sidebar-ring', bgClass: 'bg-sidebar-ring' },
       ],
     },
-  ];
+  ]
 
   const chartColors = [
     {
@@ -191,7 +191,7 @@ export const ColorPalette: React.FC = () => {
         { name: 'chart-5', bgClass: 'bg-chart-5' },
       ],
     },
-  ];
+  ]
 
   return (
     <StyleguideSection title="Color Palette" subline="The complete color system used throughout the application">
@@ -202,7 +202,7 @@ export const ColorPalette: React.FC = () => {
       <ColorGroup title="Sidebar Colors" pairs={sidebarColors} />
       <ColorGroup title="Chart Colors" pairs={chartColors} />
     </StyleguideSection>
-  );
-};
+  )
+}
 
-export default ColorPalette;
+export default ColorPalette

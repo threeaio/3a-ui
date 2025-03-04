@@ -1,5 +1,5 @@
-import Sidebar from '../nav';
-import Header from '../ui/core-layout/header';
+import Sidebar from '../nav'
+import Header from '../ui/core-layout/header'
 
 export default function ComponentsLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -10,5 +10,5 @@ export default function ComponentsLayout({ children }: { children: React.ReactNo
         <div className="flex-1 overflow-y-auto">{children}</div>
       </div>
     </>
-  );
+  )
 }

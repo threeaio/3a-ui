@@ -1,5 +1,5 @@
-import FormsShowcase from './forms-showcase';
+import FormsShowcase from './forms-showcase'
 
 export default function FormsPage() {
-  return <FormsShowcase />;
+  return <FormsShowcase />
 }

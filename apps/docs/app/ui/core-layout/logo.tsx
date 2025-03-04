@@ -1,10 +1,10 @@
-import React from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
+import React from 'react'
+import Link from 'next/link'
+import Image from 'next/image'
 
 interface LogoProps {
-  href?: string;
-  className?: string;
+  href?: string
+  className?: string
 }
 
 export const Logo: React.FC<LogoProps> = ({ href = '/', className = '' }) => {
@@ -21,7 +21,7 @@ export const Logo: React.FC<LogoProps> = ({ href = '/', className = '' }) => {
       </div>
       <p className="text-xs font-mono">Design Systems</p>
     </Link>
-  );
-};
+  )
+}
 
-export default Logo;
+export default Logo

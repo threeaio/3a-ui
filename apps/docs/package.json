@@ -11,7 +11,7 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
-    "@3a-ui/ui": "workspace:*",
+    "@3a.solutions/ui": "workspace:*",
     "@tanstack/react-table": "^8.21.2",
     "lucide-react": "^0.476.0",
     "motion": "^12.4.9",

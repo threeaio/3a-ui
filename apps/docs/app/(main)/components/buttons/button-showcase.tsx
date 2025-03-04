@@ -1,9 +1,9 @@
-import React from 'react';
-import { Button, ButtonGroup } from '@3a-ui/ui/button';
-import { StyleguideSection } from '../../../ui/styleguide-section';
-import { StyleguideRender } from '../../../ui/styleguide-render';
-import StyleguideExplanation from '../../../ui/styleguide-explanation';
-import { ArrowRight, Save, Plus, Loader2, Settings, Download, Trash, Mail, Pen, Minus } from 'lucide-react';
+import React from 'react'
+import { Button, ButtonGroup } from '@3a-ui/ui/button'
+import { StyleguideSection } from '../../../ui/styleguide-section'
+import { StyleguideRender } from '../../../ui/styleguide-render'
+import StyleguideExplanation from '../../../ui/styleguide-explanation'
+import { ArrowRight, Save, Plus, Loader2, Settings, Download, Trash, Mail, Pen, Minus } from 'lucide-react'
 
 export const ButtonShowcase: React.FC = () => {
   return (
@@ -124,7 +124,7 @@ export const ButtonShowcase: React.FC = () => {
         </ButtonGroup>
       </StyleguideRender>
     </StyleguideSection>
-  );
-};
+  )
+}
 
-export default ButtonShowcase;
+export default ButtonShowcase

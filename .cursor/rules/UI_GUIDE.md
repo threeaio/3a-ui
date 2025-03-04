@@ -43,7 +43,7 @@ Import components directly from their respective packages:
 
 ```tsx
 // Button components
-import { Button, ButtonGroup } from '@3a-ui/ui/button';
+import { Button, ButtonGroup } from '@3a-ui/ui/button'
 
 // Form components
 import {
@@ -58,19 +58,19 @@ import {
   Label,
   Textarea,
   InputGroup,
-} from '@3a-ui/ui/forms';
+} from '@3a-ui/ui/forms'
 
 // Badge component
-import { Badge } from '@3a-ui/ui/badge';
+import { Badge } from '@3a-ui/ui/badge'
 
 // Tooltip components
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@3a-ui/ui/tooltip';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@3a-ui/ui/tooltip'
 
 // Slider component
-import { Slider } from '@3a-ui/ui/slider';
+import { Slider } from '@3a-ui/ui/slider'
 
 // Utility functions
-import { cn } from '@3a-ui/ui/lib/utils';
+import { cn } from '@3a-ui/ui/lib/utils'
 ```
 
 ## Utility Functions
@@ -80,10 +80,10 @@ The library exports a utility function:
 - **cn**: A utility for merging Tailwind CSS classes with proper precedence using `clsx` and `tailwind-merge`
 
 ```tsx
-import { cn } from '@3a-ui/ui/lib/utils';
+import { cn } from '@3a-ui/ui/lib/utils'
 
 // Usage
-<div className={cn('base-class', condition && 'conditional-class')}>Content</div>;
+;<div className={cn('base-class', condition && 'conditional-class')}>Content</div>
 ```
 
 ## Component Usage Examples

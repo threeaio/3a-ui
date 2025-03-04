@@ -2,9 +2,9 @@
 
 // Tags for filtering staff members
 export interface Tag {
-  id: string;
-  name: string;
-  color?: string; // Optional color for the badge
+  id: string
+  name: string
+  color?: string // Optional color for the badge
 }
 
 export const tags: Tag[] = [
@@ -16,12 +16,12 @@ export const tags: Tag[] = [
   { id: 'qa', name: 'QA', color: 'orange' },
   { id: 'devops', name: 'DevOps', color: 'cyan' },
   { id: 'mobile', name: 'Mobile', color: 'red' },
-];
+]
 
 // Companies for filtering staff members
 export interface Company {
-  id: string;
-  name: string;
+  id: string
+  name: string
 }
 
 export const companies: Company[] = [
@@ -30,12 +30,12 @@ export const companies: Company[] = [
   { id: 'initech', name: 'Initech' },
   { id: 'umbrella', name: 'Umbrella Corp' },
   { id: 'stark', name: 'Stark Industries' },
-];
+]
 
 // Managing Directors for filtering staff members
 export interface ManagingDirector {
-  id: string;
-  name: string;
+  id: string
+  name: string
 }
 
 export const managingDirectors: ManagingDirector[] = [
@@ -43,12 +43,12 @@ export const managingDirectors: ManagingDirector[] = [
   { id: 'md2', name: 'John Doe' },
   { id: 'md3', name: 'Alice Johnson' },
   { id: 'md4', name: 'Bob Williams' },
-];
+]
 
 // Tribes for filtering staff members
 export interface Tribe {
-  id: string;
-  name: string;
+  id: string
+  name: string
 }
 
 export const tribes: Tribe[] = [
@@ -57,16 +57,16 @@ export const tribes: Tribe[] = [
   { id: 'gamma', name: 'Gamma' },
   { id: 'delta', name: 'Delta' },
   { id: 'epsilon', name: 'Epsilon' },
-];
+]
 
 // Filter state interface
 export interface FilterState {
-  personName: string;
-  project: string;
-  selectedTags: Tag[];
-  company: Company | null;
-  managingDirector: ManagingDirector | null;
-  tribe: Tribe | null;
+  personName: string
+  project: string
+  selectedTags: Tag[]
+  company: Company | null
+  managingDirector: ManagingDirector | null
+  tribe: Tribe | null
 }
 
 // Default filter state
@@ -77,12 +77,12 @@ export const defaultFilterState: FilterState = {
   company: null,
   managingDirector: null,
   tribe: null,
-};
+}
 
 // Saved filter interface
 export interface SavedFilter extends FilterState {
-  id: string;
-  name: string;
+  id: string
+  name: string
 }
 
 // Mock saved filters
@@ -107,4 +107,4 @@ export const savedFilters: SavedFilter[] = [
     managingDirector: null,
     tribe: null,
   },
-]; 
+]

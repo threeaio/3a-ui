@@ -1,22 +1,22 @@
-import React from 'react';
-import { Button } from '@3a-ui/ui/button';
-export type TimeUnit = 'month' | 'week';
+import React from 'react'
+import { Button } from '@3a.solutions/ui/button'
+export type TimeUnit = 'month' | 'week'
 
 interface TimeUnitToggleProps {
   /**
    * Current selected time unit
    */
-  value: TimeUnit;
+  value: TimeUnit
 
   /**
    * Callback when time unit changes
    */
-  onChange: (value: TimeUnit) => void;
+  onChange: (value: TimeUnit) => void
 
   /**
    * Optional additional CSS classes
    */
-  className?: string;
+  className?: string
 }
 
 /**
@@ -47,5 +47,5 @@ export const TimeUnitToggle: React.FC<TimeUnitToggleProps> = ({ value, onChange,
         </Button>
       </div>
     </div>
-  );
-};
+  )
+}

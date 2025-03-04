@@ -1,5 +1,5 @@
 {
-  "name": "@3a-ui/ui",
+  "name": "@3a.solutions/ui",
   "version": "0.0.0",
   "sideEffects": [
     "**/*.css"

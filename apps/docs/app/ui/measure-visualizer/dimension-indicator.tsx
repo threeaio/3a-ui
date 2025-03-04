@@ -1,30 +1,30 @@
-'use client';
+'use client'
 
-import React from 'react';
-import { useVisualizer } from './visualizer-toggle';
+import React from 'react'
+import { useVisualizer } from './visualizer-toggle'
 
 export interface DimensionIndicatorProps {
-  children: React.ReactNode;
-  top?: string;
-  right?: string;
-  bottom?: string;
-  left?: string;
-  className?: string;
+  children: React.ReactNode
+  top?: string
+  right?: string
+  bottom?: string
+  left?: string
+  className?: string
 }
 
 interface MeasurementLabelProps {
-  value: string;
-  className: string;
+  value: string
+  className: string
 }
 
 const MeasurementLabel = ({ value, className }: MeasurementLabelProps) => (
   <span className={`text-xs px-1.5 py-0.5 rounded bg-black text-white whitespace-nowrap ${className}`}>{value}</span>
-);
+)
 
 interface MeasurementContainerProps {
-  visible: boolean;
-  className: string;
-  children: React.ReactNode;
+  visible: boolean
+  className: string
+  children: React.ReactNode
 }
 
 const MeasurementContainer = ({ visible, className, children }: MeasurementContainerProps) => (
@@ -35,11 +35,11 @@ const MeasurementContainer = ({ visible, className, children }: MeasurementConta
   >
     {children}
   </div>
-);
+)
 
 interface MeasurementBorderProps {
-  orientation: 'top' | 'right' | 'bottom' | 'left';
-  className?: string;
+  orientation: 'top' | 'right' | 'bottom' | 'left'
+  className?: string
 }
 
 const MeasurementBorder = ({ orientation, className = '' }: MeasurementBorderProps) => {
@@ -50,17 +50,17 @@ const MeasurementBorder = ({ orientation, className = '' }: MeasurementBorderPro
     bottom:
       'w-full h-6 mt-1 [&>div]:top-0 [&>div]:left-0 [&>div]:w-full [&>div]:h-4 [&>div]:border-b [&>div]:border-l [&>div]:border-r',
     left: 'h-full w-6 mr-1 [&>div]:top-0 [&>div]:right-0 [&>div]:w-4 [&>div]:h-full [&>div]:border-l [&>div]:border-t [&>div]:border-b',
-  };
+  }
 
   return (
     <div className={`relative ${borderClasses[orientation]} ${className}`}>
       <div className="absolute border-foreground/50 border-dashed"></div>
     </div>
-  );
-};
+  )
+}
 
 export const DimensionIndicator = ({ children, top, right, bottom, left, className = '' }: DimensionIndicatorProps) => {
-  const { visible } = useVisualizer();
+  const { visible } = useVisualizer()
 
   return (
     <div className={`relative  ${className}`}>
@@ -98,5 +98,5 @@ export const DimensionIndicator = ({ children, top, right, bottom, left, classNa
         </MeasurementContainer>
       )}
     </div>
-  );
-};
+  )
+}

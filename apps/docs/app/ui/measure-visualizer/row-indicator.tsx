@@ -1,22 +1,22 @@
-'use client';
+'use client'
 
-import React from 'react';
-import { heightClasses } from '../../ui-config';
-import { useVisualizer } from './visualizer-toggle';
-import { DimensionIndicator } from './dimension-indicator';
+import React from 'react'
+import { heightClasses } from '../../ui-config'
+import { useVisualizer } from './visualizer-toggle'
+import { DimensionIndicator } from './dimension-indicator'
 
 interface RowVisualizerProps {
-  rows: 0 | 1 | 2 | 3 | 4;
-  className?: string;
-  children?: React.ReactNode;
+  rows: 0 | 1 | 2 | 3 | 4
+  className?: string
+  children?: React.ReactNode
 }
 
 export const RowVisualizer: React.FC<RowVisualizerProps> = ({ rows = 1, className = '', children }) => {
   // Get visibility from context
-  const { visible } = useVisualizer();
+  const { visible } = useVisualizer()
 
   // Create an array of the specified length for rows
-  const rowsArray = Array.from({ length: rows || 1 }, (_, i) => i);
+  const rowsArray = Array.from({ length: rows || 1 }, (_, i) => i)
 
   return (
     <div className={`relative  ${className}`}>
@@ -42,5 +42,5 @@ export const RowVisualizer: React.FC<RowVisualizerProps> = ({ rows = 1, classNam
         <div className="relative z-10 h-full">{children}</div>
       </DimensionIndicator>
     </div>
-  );
-};
+  )
+}

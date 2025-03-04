@@ -1,22 +1,22 @@
-'use client';
-import React from 'react';
-import { StyleguideSection } from '../../../ui/styleguide-section';
-import { StyleguideRender } from '../../../ui/styleguide-render';
-import { Input } from '@3a-ui/ui/forms';
-import { Textarea } from '@3a-ui/ui/forms';
-import { Select, SelectContent, SelectTrigger, SelectValue, SelectItem } from '@3a-ui/ui/forms';
-import { Checkbox } from '@3a-ui/ui/forms';
-import { RadioGroup, RadioGroupItem } from '@3a-ui/ui/forms';
-import { Label } from '@3a-ui/ui/forms';
-import { Search, Mail, EyeOff, Eye } from 'lucide-react';
-import { SingleRowForm } from './example-forms/single-row-form';
-import { ContactForm } from './example-forms/contact-form';
-import { SimpleInputGroup } from './example-forms/simple-input-group';
-import { ErrorInputGroup } from './example-forms/error-input-group';
-import { ComplexFilterGroup } from './example-forms/complex-filter-group';
+'use client'
+import React from 'react'
+import { StyleguideSection } from '../../../ui/styleguide-section'
+import { StyleguideRender } from '../../../ui/styleguide-render'
+import { Input } from '@3a-ui/ui/forms'
+import { Textarea } from '@3a-ui/ui/forms'
+import { Select, SelectContent, SelectTrigger, SelectValue, SelectItem } from '@3a-ui/ui/forms'
+import { Checkbox } from '@3a-ui/ui/forms'
+import { RadioGroup, RadioGroupItem } from '@3a-ui/ui/forms'
+import { Label } from '@3a-ui/ui/forms'
+import { Search, Mail, EyeOff, Eye } from 'lucide-react'
+import { SingleRowForm } from './example-forms/single-row-form'
+import { ContactForm } from './example-forms/contact-form'
+import { SimpleInputGroup } from './example-forms/simple-input-group'
+import { ErrorInputGroup } from './example-forms/error-input-group'
+import { ComplexFilterGroup } from './example-forms/complex-filter-group'
 
 const PasswordInput: React.FC<React.ComponentProps<typeof Input>> = (props) => {
-  const [showPassword, setShowPassword] = React.useState(false);
+  const [showPassword, setShowPassword] = React.useState(false)
 
   return (
     <Input
@@ -30,8 +30,8 @@ const PasswordInput: React.FC<React.ComponentProps<typeof Input>> = (props) => {
       }
       {...props}
     />
-  );
-};
+  )
+}
 
 const FormsShowcase: React.FC = () => {
   return (
@@ -197,7 +197,7 @@ const FormsShowcase: React.FC = () => {
         <ComplexFilterGroup />
       </StyleguideRender>
     </StyleguideSection>
-  );
-};
+  )
+}
 
-export default FormsShowcase;
+export default FormsShowcase

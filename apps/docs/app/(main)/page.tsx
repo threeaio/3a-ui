@@ -1,3 +1,3 @@
 export default function MyApp() {
-  return <main>Start</main>;
+  return <main>Start</main>
 }

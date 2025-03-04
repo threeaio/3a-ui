@@ -1,9 +1,9 @@
-'use client';
-import React from 'react';
-import { Input } from '@3a-ui/ui/forms';
-import { Select, SelectContent, SelectTrigger, SelectValue, SelectItem } from '@3a-ui/ui/forms';
-import { Label } from '@3a-ui/ui/forms';
-import { InputGroup } from '@3a-ui/ui/forms';
+'use client'
+import React from 'react'
+import { Input } from '@3a-ui/ui/forms'
+import { Select, SelectContent, SelectTrigger, SelectValue, SelectItem } from '@3a-ui/ui/forms'
+import { Label } from '@3a-ui/ui/forms'
+import { InputGroup } from '@3a-ui/ui/forms'
 
 export const SimpleInputGroup: React.FC = () => {
   return (
@@ -23,5 +23,5 @@ export const SimpleInputGroup: React.FC = () => {
         <Input clearable placeholder="Search..." className="min-w-60" />
       </InputGroup>
     </div>
-  );
-};
+  )
+}

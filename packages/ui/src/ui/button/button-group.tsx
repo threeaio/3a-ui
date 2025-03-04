@@ -1,32 +1,32 @@
-import * as React from 'react';
-import { type VariantProps } from 'class-variance-authority';
-import { cn } from '@/lib/utils';
-import { buttonVariants } from './button';
+import * as React from 'react'
+import { type VariantProps } from 'class-variance-authority'
+import { cn } from '@3a.solutions/ui/lib/utils'
+import { buttonVariants } from './button'
 
 interface ButtonGroupProps extends React.ComponentProps<'div'> {
-  children: React.ReactNode;
-  size?: VariantProps<typeof buttonVariants>['size'];
-  variant?: VariantProps<typeof buttonVariants>['variant'] | 'primary';
+  children: React.ReactNode
+  size?: VariantProps<typeof buttonVariants>['size']
+  variant?: VariantProps<typeof buttonVariants>['variant'] | 'primary'
 }
 
 function ButtonGroup({ className, children, size, variant, ...props }: ButtonGroupProps) {
   // Process children to modify their styling
-  const childrenArray = React.Children.toArray(children);
+  const childrenArray = React.Children.toArray(children)
 
   const processedChildren = childrenArray.map((child, index) => {
     // Skip non-element children
-    if (!React.isValidElement(child)) return child;
+    if (!React.isValidElement(child)) return child
 
     // Apply special styling to first and last buttons
-    const isFirst = index === 0;
-    const isLast = index === childrenArray.length - 1;
+    const isFirst = index === 0
+    const isLast = index === childrenArray.length - 1
 
     // Type assertion for React element
     const buttonElement = child as React.ReactElement<{
-      className?: string;
-      size?: VariantProps<typeof buttonVariants>['size'];
-      variant?: VariantProps<typeof buttonVariants>['variant'];
-    }>;
+      className?: string
+      size?: VariantProps<typeof buttonVariants>['size']
+      variant?: VariantProps<typeof buttonVariants>['variant']
+    }>
 
     return React.cloneElement(buttonElement, {
       className: cn(
@@ -43,14 +43,14 @@ function ButtonGroup({ className, children, size, variant, ...props }: ButtonGro
       // Pass down size and variant if not explicitly set on the button
       size: buttonElement.props.size || size,
       variant: buttonElement.props.variant || variant,
-    });
-  });
+    })
+  })
 
   return (
     <div className={cn('inline-flex', className)} {...props}>
       {processedChildren}
     </div>
-  );
+  )
 }
 
-export { ButtonGroup };
+export { ButtonGroup }

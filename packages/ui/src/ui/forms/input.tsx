@@ -1,41 +1,41 @@
-'use client';
-import * as React from 'react';
-import { X } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import { useInputGroup } from './input-group';
+'use client'
+import * as React from 'react'
+import { X } from 'lucide-react'
+import { cn } from '@3a.solutions/ui/lib/utils'
+import { useInputGroup } from './input-group'
 
 export interface InputProps extends Omit<React.ComponentProps<'input'>, 'size'> {
-  icon?: React.ReactNode;
-  clearable?: boolean;
-  onClear?: () => void;
+  icon?: React.ReactNode
+  clearable?: boolean
+  onClear?: () => void
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, icon, clearable, onClear, onChange, ...props }, ref) => {
-    const inputRef = React.useRef<HTMLInputElement>(null);
-    const [hasValue, setHasValue] = React.useState(!!props.value || !!props.defaultValue);
-    const { isGroup, isFirst, isLast, error } = useInputGroup();
+    const inputRef = React.useRef<HTMLInputElement>(null)
+    const [hasValue, setHasValue] = React.useState(!!props.value || !!props.defaultValue)
+    const { isGroup, isFirst, isLast, error } = useInputGroup()
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setHasValue(!!e.target.value);
-      onChange?.(e);
-    };
+      setHasValue(!!e.target.value)
+      onChange?.(e)
+    }
 
     const handleClear = (e: React.MouseEvent) => {
-      e.stopPropagation();
+      e.stopPropagation()
       if (inputRef.current) {
-        inputRef.current.value = '';
-        setHasValue(false);
+        inputRef.current.value = ''
+        setHasValue(false)
         // Trigger native events
-        const event = new Event('input', { bubbles: true });
-        inputRef.current.dispatchEvent(event);
+        const event = new Event('input', { bubbles: true })
+        inputRef.current.dispatchEvent(event)
 
-        const changeEvent = new Event('change', { bubbles: true });
-        inputRef.current.dispatchEvent(changeEvent);
+        const changeEvent = new Event('change', { bubbles: true })
+        inputRef.current.dispatchEvent(changeEvent)
 
-        onClear?.();
+        onClear?.()
       }
-    };
+    }
 
     return (
       <div
@@ -48,9 +48,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           type={type}
           ref={(node) => {
             // Handle both refs
-            if (typeof ref === 'function') ref(node);
-            else if (ref) ref.current = node;
-            inputRef.current = node;
+            if (typeof ref === 'function') ref(node)
+            else if (ref) ref.current = node
+            inputRef.current = node
           }}
           data-slot="input"
           className={cn(
@@ -71,7 +71,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           {...props}
         />
         {(icon || clearable) && (
-          <div className="absolute right-3 flex items-center justify-center size-4 overflow-hidden">
+          <div className="absolute z-10 right-3 flex items-center justify-center size-4 overflow-hidden">
             {icon && (
               <div
                 className={cn(
@@ -94,9 +94,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           </div>
         )}
       </div>
-    );
+    )
   },
-);
-Input.displayName = 'Input';
+)
+Input.displayName = 'Input'
 
-export { Input };
+export { Input }

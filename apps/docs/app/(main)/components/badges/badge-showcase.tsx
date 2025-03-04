@@ -1,9 +1,9 @@
-import React from 'react';
-import { Badge } from '@3a-ui/ui/badge';
-import { StyleguideSection } from '../../../ui/styleguide-section';
-import { StyleguideRender } from '../../../ui/styleguide-render';
-import StyleguideExplanation from '../../../ui/styleguide-explanation';
-import { Check, X, AlertCircle, Info, Loader2 } from 'lucide-react';
+import React from 'react'
+import { Badge } from '@3a-ui/ui/badge'
+import { StyleguideSection } from '../../../ui/styleguide-section'
+import { StyleguideRender } from '../../../ui/styleguide-render'
+import StyleguideExplanation from '../../../ui/styleguide-explanation'
+import { Check, X, AlertCircle, Info, Loader2 } from 'lucide-react'
 
 export const BadgeShowcase: React.FC = () => {
   return (
@@ -68,7 +68,7 @@ export const BadgeShowcase: React.FC = () => {
         <Badge variant="secondary">In Progress</Badge>
       </StyleguideRender>
     </StyleguideSection>
-  );
-};
+  )
+}
 
-export default BadgeShowcase;
+export default BadgeShowcase

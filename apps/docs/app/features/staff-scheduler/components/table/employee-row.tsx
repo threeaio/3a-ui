@@ -1,28 +1,13 @@
-import React from 'react';
-import { ChevronDown, ChevronRight } from 'lucide-react';
-import { cn } from '@3a-ui/ui/lib/utils';
-import { StaffMember } from '../../mock-data';
+import React from 'react'
+import { ChevronDown, ChevronRight } from 'lucide-react'
+import { cn } from '@3a.solutions/ui/lib/utils'
+import { StaffMember } from '../../mock-data'
 
 interface EmployeeRowProps {
-  /**
-   * Staff member data
-   */
-  employee: StaffMember;
-
-  /**
-   * Whether the row is expanded
-   */
-  isExpanded: boolean;
-
-  /**
-   * Callback when expand/collapse is toggled
-   */
-  onToggleExpand: () => void;
-
-  /**
-   * Optional additional CSS classes
-   */
-  className?: string;
+  employee: StaffMember
+  isExpanded: boolean
+  onToggleExpand: () => void
+  className?: string
 }
 
 /**
@@ -41,8 +26,8 @@ export const EmployeeRow: React.FC<EmployeeRowProps> = ({ employee, isExpanded, 
         type="button"
         className="p-1 rounded-sm hover:bg-muted"
         onClick={(e) => {
-          e.stopPropagation();
-          onToggleExpand();
+          e.stopPropagation()
+          onToggleExpand()
         }}
         aria-label={isExpanded ? 'Collapse' : 'Expand'}
       >
@@ -54,5 +39,5 @@ export const EmployeeRow: React.FC<EmployeeRowProps> = ({ employee, isExpanded, 
       </button>
       <span>{employee.name}</span>
     </div>
-  );
-};
+  )
+}

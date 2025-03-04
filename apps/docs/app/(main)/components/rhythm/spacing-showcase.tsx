@@ -1,22 +1,22 @@
-import React from 'react';
-import { StyleguideSection } from '../../../ui/styleguide-section';
-import { StyleguideRender } from '../../../ui/styleguide-render';
-import StyleguideExplanation from '../../../ui/styleguide-explanation';
-import { heightClasses, paddingClasses } from '../../../ui-config';
-import { PaddingIndicator } from '../../../ui/measure-visualizer/padding-indicator';
-import { Button, ButtonGroup } from '@3a-ui/ui/button';
-import { Check, Plus } from 'lucide-react';
-import { RowVisualizer } from '../../../ui/measure-visualizer/row-indicator';
-import { Badge } from '@3a-ui/ui/badge';
+import React from 'react'
+import { StyleguideSection } from '../../../ui/styleguide-section'
+import { StyleguideRender } from '../../../ui/styleguide-render'
+import StyleguideExplanation from '../../../ui/styleguide-explanation'
+import { heightClasses, paddingClasses } from '../../../ui-config'
+import { PaddingIndicator } from '../../../ui/measure-visualizer/padding-indicator'
+import { Button, ButtonGroup } from '@3a-ui/ui/button'
+import { Check, Plus } from 'lucide-react'
+import { RowVisualizer } from '../../../ui/measure-visualizer/row-indicator'
+import { Badge } from '@3a-ui/ui/badge'
 
-type PaddingSize = 1 | 2 | 3 | 4;
+type PaddingSize = 1 | 2 | 3 | 4
 
 const SpacingShowcase: React.FC = () => {
   // Extract values from the full padding classes to get just the numbers
   const spacingSizes = Object.entries(paddingClasses.full).map(([key, value]) => ({
     size: Number(key) as PaddingSize,
     value: value.replace('p-', ''),
-  }));
+  }))
 
   return (
     <StyleguideSection title="Spacing System" subline="Consistent spacing throughout the app">
@@ -168,7 +168,7 @@ const SpacingShowcase: React.FC = () => {
         </PaddingIndicator>
       </StyleguideRender>
     </StyleguideSection>
-  );
-};
+  )
+}
 
-export default SpacingShowcase;
+export default SpacingShowcase

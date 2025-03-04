@@ -1,10 +1,10 @@
-import React from 'react';
-import Logo from './logo';
-import ThemeSwitcher from './theme-switcher';
-import { VisualizerToggleButton } from '../measure-visualizer/visualizer-toggle';
+import React from 'react'
+import Logo from './logo'
+import ThemeSwitcher from './theme-switcher'
+import { VisualizerToggleButton } from '../measure-visualizer/visualizer-toggle'
 
 interface HeaderProps {
-  className?: string;
+  className?: string
 }
 
 /**
@@ -35,7 +35,7 @@ export const Header: React.FC<HeaderProps> = ({ className = '' }) => {
         </div>
       </div>
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

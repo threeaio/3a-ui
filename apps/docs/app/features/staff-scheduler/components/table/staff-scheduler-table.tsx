@@ -1,6 +1,6 @@
-'use client';
+'use client'
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo } from 'react'
 import {
   useReactTable,
   getCoreRowModel,
@@ -9,42 +9,31 @@ import {
   flexRender,
   ExpandedState,
   createColumnHelper,
-} from '@tanstack/react-table';
-import { cn } from '@3a-ui/ui/lib/utils';
-import { StaffMember, Project, getTimePeriods } from '../../mock-data';
-import { TimeUnit } from '../time-unit-toggle';
-import { WorkloadCell } from './workload-cell';
-import { EmployeeRow } from './employee-row';
-import { ProjectRow } from './project-row';
-import { TimePeriodHeader } from './time-period-header';
+} from '@tanstack/react-table'
+import { cn } from '@3a.solutions/ui/lib/utils'
+import { StaffMember, Project, getTimePeriods } from '../../mock-data'
+import { TimeUnit } from '../time-unit-toggle'
+import { WorkloadCell } from './workload-cell'
+import { EmployeeRow } from './employee-row'
+import { ProjectRow } from './project-row'
+import { TimePeriodHeader } from './time-period-header'
 
 interface StaffSchedulerTableProps {
-  /**
-   * Staff members data
-   */
-  data: StaffMember[];
-
-  /**
-   * Current time unit (month or week)
-   */
-  timeUnit: TimeUnit;
-
-  /**
-   * Optional additional CSS classes
-   */
-  className?: string;
+  data: StaffMember[]
+  timeUnit: TimeUnit
+  className?: string
 }
 
 /**
  * Type for table data structure
  */
-type TableRow = StaffMember | (Project & { parentId: string });
+type TableRow = StaffMember | (Project & { parentId: string })
 
 /**
  * Custom column meta type to include className
  */
 interface ColumnMeta {
-  className?: string;
+  className?: string
 }
 
 /**
@@ -52,25 +41,25 @@ interface ColumnMeta {
  */
 export const StaffSchedulerTable: React.FC<StaffSchedulerTableProps> = ({ data, timeUnit, className = '' }) => {
   // State for expanded rows
-  const [expanded, setExpanded] = useState<ExpandedState>({});
+  const [expanded, setExpanded] = useState<ExpandedState>({})
 
   // Get time periods based on selected time unit
-  const timePeriods = useMemo(() => getTimePeriods(timeUnit), [timeUnit]);
+  const timePeriods = useMemo(() => getTimePeriods(timeUnit), [timeUnit])
 
   // Prepare data for the table
   const tableData = useMemo(() => {
-    const rows: TableRow[] = [];
+    const rows: TableRow[] = []
 
     // Add staff members as parent rows
     data.forEach((staff) => {
-      rows.push(staff);
-    });
+      rows.push(staff)
+    })
 
-    return rows;
-  }, [data]);
+    return rows
+  }, [data])
 
   // Column helper for type-safe column definitions
-  const columnHelper = createColumnHelper<TableRow>();
+  const columnHelper = createColumnHelper<TableRow>()
 
   // Define columns
   const columns = useMemo(() => {
@@ -79,69 +68,67 @@ export const StaffSchedulerTable: React.FC<StaffSchedulerTableProps> = ({ data, 
       columnHelper.display({
         id: 'employee',
         header: () => (
-          <div className="px-10 flex flex-col text-left font-normal text-sm text-muted-foreground justify-center">
-            Employee
-          </div>
+          <div className="px-10 flex flex-col text-left font-normal text-muted-foreground justify-center">Employee</div>
         ),
         cell: ({ row }) => {
-          const isStaffMember = 'projects' in row.original;
+          const isStaffMember = 'projects' in row.original
 
           if (isStaffMember) {
-            const staff = row.original as StaffMember;
+            const staff = row.original as StaffMember
             return (
               <EmployeeRow
                 employee={staff}
                 isExpanded={row.getIsExpanded()}
                 onToggleExpand={() => row.toggleExpanded()}
               />
-            );
+            )
           } else {
-            const project = row.original as Project & { parentId: string };
-            return <ProjectRow project={project} />;
+            const project = row.original as Project & { parentId: string }
+            return <ProjectRow project={project} />
           }
         },
         meta: {
           className: 'sticky left-0 z-10 bg-background border-r border-border min-w-60 w-80',
         } as ColumnMeta,
       }),
-    ];
+    ]
 
     // Add time period columns
     timePeriods.forEach((period, index) => {
-      const relativeIndex = index - Math.floor(timePeriods.length / 2);
+      const relativeIndex = index - Math.floor(timePeriods.length / 2)
 
       cols.push(
         columnHelper.accessor(
           (row) => {
             if ('projects' in row) {
               // Staff member
-              return (row as StaffMember).workload[period] ?? null;
+              return (row as StaffMember).workload[period] ?? null
             } else {
               // Project
-              return (row as Project & { parentId: string }).workload[period] ?? null;
+              return (row as Project & { parentId: string }).workload[period] ?? null
             }
           },
           {
             id: `period-${period}`,
             header: () => <TimePeriodHeader period={period} relativeIndex={relativeIndex} />,
             cell: ({ getValue, row, column }) => {
-              const value = getValue();
+              const value = getValue()
 
               // Get the current column index in the visible columns
-              const columnIndex = row.getVisibleCells().findIndex((cell) => cell.column.id === column.id);
-              const cells = row.getVisibleCells();
+              const columnIndex = row.getVisibleCells().findIndex((cell) => cell.column.id === column.id)
+              const cells = row.getVisibleCells()
 
               // Check if previous and next cells are empty (null)
-              const prevCell = columnIndex > 0 ? cells[columnIndex - 1] : null;
-              const nextCell = columnIndex < cells.length - 1 ? cells[columnIndex + 1] : null;
+              const prevCell = columnIndex > 0 ? cells[columnIndex - 1] : null
+              const nextCell = columnIndex < cells.length - 1 ? cells[columnIndex + 1] : null
 
               // Get values from adjacent cells
-              const prevCellValue = prevCell ? prevCell.getValue() : null;
-              const nextCellValue = nextCell ? nextCell.getValue() : null;
+              const prevCellValue = prevCell ? prevCell.getValue() : null
+              const nextCellValue = nextCell ? nextCell.getValue() : null
 
               // Determine if adjacent cells are empty
-              const prevCellEmpty = prevCellValue === null;
-              const nextCellEmpty = nextCellValue === null;
+              const prevCellEmpty = prevCellValue === null
+              const nextCellEmpty = nextCellValue === null
 
               return (
                 <WorkloadCell
@@ -149,18 +136,18 @@ export const StaffSchedulerTable: React.FC<StaffSchedulerTableProps> = ({ data, 
                   prevCellEmpty={prevCellEmpty}
                   nextCellEmpty={nextCellEmpty}
                 />
-              );
+              )
             },
             meta: {
               className: 'min-w-20',
             } as ColumnMeta,
           },
         ) as ColumnDef<TableRow, any>,
-      );
-    });
+      )
+    })
 
-    return cols;
-  }, [columnHelper, timePeriods]);
+    return cols
+  }, [columnHelper, timePeriods])
 
   // Set up the table
   const table = useReactTable({
@@ -176,13 +163,13 @@ export const StaffSchedulerTable: React.FC<StaffSchedulerTableProps> = ({ data, 
         return (row as StaffMember).projects.map((project) => ({
           ...project,
           parentId: (row as StaffMember).id,
-        }));
+        }))
       }
-      return [];
+      return []
     },
     getCoreRowModel: getCoreRowModel(),
     getExpandedRowModel: getExpandedRowModel(),
-  });
+  })
 
   return (
     // rounded-xl border
@@ -210,12 +197,12 @@ export const StaffSchedulerTable: React.FC<StaffSchedulerTableProps> = ({ data, 
             // Check if this is the last row of an employee group
             const isLastRowOfGroup = (() => {
               // If this is the last row overall, it's the last of its group
-              if (rowIndex === rows.length - 1) return true;
+              if (rowIndex === rows.length - 1) return true
 
               // If the next row has depth 0 (is an employee), this is the last of current group
-              const nextRow = rows[rowIndex + 1];
-              return nextRow?.depth === 0;
-            })();
+              const nextRow = rows[rowIndex + 1]
+              return nextRow?.depth === 0
+            })()
 
             return (
               <React.Fragment key={row.id}>
@@ -235,10 +222,10 @@ export const StaffSchedulerTable: React.FC<StaffSchedulerTableProps> = ({ data, 
                   </tr>
                 )}
               </React.Fragment>
-            );
+            )
           })}
         </tbody>
       </table>
     </div>
-  );
-};
+  )
+}

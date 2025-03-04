@@ -1,6 +1,6 @@
-import React from 'react';
-import GridShowcase from './rows-showcase';
-import SpacingShowcase from './spacing-showcase';
+import React from 'react'
+import GridShowcase from './rows-showcase'
+import SpacingShowcase from './spacing-showcase'
 
 export default function GridPage() {
   return (
@@ -16,5 +16,5 @@ export default function GridPage() {
       <GridShowcase />
       <SpacingShowcase />
     </main>
-  );
+  )
 }

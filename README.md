@@ -1,4 +1,3 @@
-
 ## Applications
 
 ### Docs (`apps/docs`)

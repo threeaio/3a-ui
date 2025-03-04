@@ -1,10 +1,10 @@
-'use client';
-import React from 'react';
-import { Input } from '@3a-ui/ui/forms';
-import { Textarea } from '@3a-ui/ui/forms';
-import { Label } from '@3a-ui/ui/forms';
-import { Button } from '@3a-ui/ui/button';
-import { Checkbox } from '@3a-ui/ui/forms';
+'use client'
+import React from 'react'
+import { Input } from '@3a-ui/ui/forms'
+import { Textarea } from '@3a-ui/ui/forms'
+import { Label } from '@3a-ui/ui/forms'
+import { Button } from '@3a-ui/ui/button'
+import { Checkbox } from '@3a-ui/ui/forms'
 
 export const ContactForm: React.FC = () => {
   return (
@@ -29,5 +29,5 @@ export const ContactForm: React.FC = () => {
         Send Message
       </Button>
     </form>
-  );
-};
+  )
+}

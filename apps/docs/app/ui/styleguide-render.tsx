@@ -1,11 +1,11 @@
-import { cn } from '@3a-ui/ui/lib/utils';
-import React from 'react';
+import { cn } from '@3a-ui/ui/lib/utils'
+import React from 'react'
 
 interface StyleguideRenderProps {
-  children: React.ReactNode;
-  label?: string;
-  className?: string;
-  classNameContent?: string;
+  children: React.ReactNode
+  label?: string
+  className?: string
+  classNameContent?: string
 }
 
 export const StyleguideRender: React.FC<StyleguideRenderProps> = ({
@@ -23,7 +23,7 @@ export const StyleguideRender: React.FC<StyleguideRenderProps> = ({
       )}
       <div className={classNameContent}>{children}</div>
     </div>
-  );
-};
+  )
+}
 
-export default StyleguideRender;
+export default StyleguideRender

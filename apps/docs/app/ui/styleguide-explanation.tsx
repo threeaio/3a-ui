@@ -1,16 +1,16 @@
-import { cn } from '@3a-ui/ui/lib/utils';
-import React from 'react';
+import { cn } from '@3a-ui/ui/lib/utils'
+import React from 'react'
 
 interface StyleguideExplanationProps {
   /**
    * The content of the explanation
    */
-  children: React.ReactNode;
+  children: React.ReactNode
 
   /**
    * Optional additional CSS classes
    */
-  className?: string;
+  className?: string
 }
 
 /**
@@ -23,7 +23,7 @@ export const StyleguideExplanation: React.FC<StyleguideExplanationProps> = ({ ch
     <div className={cn('pb-5', className)}>
       <div className="">{children}</div>
     </div>
-  );
-};
+  )
+}
 
-export default StyleguideExplanation;
+export default StyleguideExplanation

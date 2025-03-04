@@ -8,8 +8,7 @@ export const heightClasses = {
   2: 'h-40',
   3: 'h-60',
   4: 'h-80',
-}; 
-
+}
 
 export const paddingClasses = {
   full: {
@@ -54,4 +53,4 @@ export const paddingClasses = {
     3: 'py-10',
     4: 'py-20',
   },
-};
+}

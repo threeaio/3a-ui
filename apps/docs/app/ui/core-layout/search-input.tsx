@@ -1,10 +1,10 @@
-import React from 'react';
-import { Search } from 'lucide-react';
-import { Button } from '@3a-ui/ui/button';
-import { cn } from '@3a-ui/ui/lib/utils';
+import React from 'react'
+import { Search } from 'lucide-react'
+import { Button } from '@3a-ui/ui/button'
+import { cn } from '@3a-ui/ui/lib/utils'
 
 interface SearchInputProps {
-  className?: string;
+  className?: string
 }
 
 export const SearchInput: React.FC<SearchInputProps> = ({ className = '' }) => {
@@ -28,7 +28,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({ className = '' }) => {
         <Search size={16} className="text-foreground" />
       </button>
     </>
-  );
-};
+  )
+}
 
-export default SearchInput;
+export default SearchInput

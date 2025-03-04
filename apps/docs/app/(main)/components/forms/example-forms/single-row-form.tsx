@@ -1,13 +1,13 @@
-'use client';
-import React from 'react';
-import { Input } from '@3a-ui/ui/forms';
-import { Select, SelectContent, SelectTrigger, SelectValue, SelectItem } from '@3a-ui/ui/forms';
-import { Label } from '@3a-ui/ui/forms';
-import { Button, ButtonGroup } from '@3a-ui/ui/button';
-import { Search, Plus } from 'lucide-react';
-import { RowVisualizer } from '../../../../ui/measure-visualizer/row-indicator';
-import { InputGroup } from '@3a-ui/ui/forms';
-import { heightClasses, paddingClasses } from '../../../../ui-config';
+'use client'
+import React from 'react'
+import { Input } from '@3a-ui/ui/forms'
+import { Select, SelectContent, SelectTrigger, SelectValue, SelectItem } from '@3a-ui/ui/forms'
+import { Label } from '@3a-ui/ui/forms'
+import { Button, ButtonGroup } from '@3a-ui/ui/button'
+import { Search, Plus } from 'lucide-react'
+import { RowVisualizer } from '../../../../ui/measure-visualizer/row-indicator'
+import { InputGroup } from '@3a-ui/ui/forms'
+import { heightClasses, paddingClasses } from '../../../../ui-config'
 
 export const SingleRowForm: React.FC = () => {
   return (
@@ -43,5 +43,5 @@ export const SingleRowForm: React.FC = () => {
         </ButtonGroup>
       </form>
     </RowVisualizer>
-  );
-};
+  )
+}

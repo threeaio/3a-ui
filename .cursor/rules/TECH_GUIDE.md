@@ -144,8 +144,8 @@ Each UI component follows a consistent structure:
 
 ```tsx
 // Example of a typical component structure (button.tsx)
-import * as React from 'react';
-import { cn } from '../lib/utils';
+import * as React from 'react'
+import { cn } from '../lib/utils'
 
 // Component variant definition
 const buttonVariants = {
@@ -159,12 +159,12 @@ const buttonVariants = {
     md: 'h-10 px-4',
     lg: 'h-12 px-6 text-lg',
   },
-};
+}
 
 // Component props interface
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: keyof typeof buttonVariants.variant;
-  size?: keyof typeof buttonVariants.size;
+  variant?: keyof typeof buttonVariants.variant
+  size?: keyof typeof buttonVariants.size
 }
 
 // Component implementation
@@ -181,10 +181,10 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         {...props}
       />
-    );
+    )
   },
-);
-Button.displayName = 'Button';
+)
+Button.displayName = 'Button'
 ```
 
 ### Key Architectural Decisions
@@ -220,28 +220,28 @@ interface StyleguideSectionProps {
   /**
    * The title of the section
    */
-  title: string;
+  title: string
 
   /**
    * Optional subline text that appears below the title
    */
-  subline?: string;
+  subline?: string
 
   /**
    * The content of the section
    */
-  children: ReactNode;
+  children: ReactNode
 
   /**
    * Optional additional CSS classes for the section container
    */
-  className?: string;
+  className?: string
 }
 
 // React component with TypeScript
 export const StyleguideSection: React.FC<StyleguideSectionProps> = ({ title, subline, children, className = '' }) => {
   // Implementation
-};
+}
 ```
 
 ### Navigation Pattern
@@ -251,14 +251,14 @@ The navigation is implemented using a structured data model:
 ```tsx
 // Define the navigation item type
 interface NavItem {
-  title: string;
-  href: string;
+  title: string
+  href: string
 }
 
 // Define the navigation group type
 interface NavGroup {
-  title: string;
-  items: NavItem[];
+  title: string
+  items: NavItem[]
 }
 
 // Define the navigation data
@@ -271,7 +271,7 @@ const navigationGroups: NavGroup[] = [
     ],
   },
   // More groups...
-];
+]
 ```
 
 ### Layout Patterns
@@ -290,7 +290,7 @@ export default function ComponentsLayout({ children }: { children: React.ReactNo
         <div className="flex-1 overflow-y-auto">{children}</div>
       </div>
     </>
-  );
+  )
 }
 ```
 
@@ -313,15 +313,15 @@ export default function ComponentsLayout({ children }: { children: React.ReactNo
 const geist = Geist({
   subsets: ['latin'],
   variable: '--font-sans', // Maps the font to the CSS variable
-});
+})
 
 const geistMono = Geist_Mono({
   subsets: ['latin'],
   variable: '--font-mono', // Maps the font to the CSS variable
-});
+})
 
 // Apply in layout
-<body className={`${geist.variable} ${geistMono.variable} font-sans`}>{children}</body>;
+;<body className={`${geist.variable} ${geistMono.variable} font-sans`}>{children}</body>
 ```
 
 ## Constraints and Rules
@@ -452,24 +452,24 @@ Components should be imported directly from their respective paths in the UI pac
 
 ```tsx
 // Import a button component
-import { Button, ButtonGroup } from '@3a-ui/ui/button';
+import { Button, ButtonGroup } from '@3a-ui/ui/button'
 
 // Import form components
-import { Input, InputGroup } from '@3a-ui/ui/forms';
-import { Label } from '@3a-ui/ui/forms';
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@3a-ui/ui/forms';
-import { Checkbox } from '@3a-ui/ui/forms';
-import { Textarea } from '@3a-ui/ui/forms';
-import { RadioGroup } from '@3a-ui/ui/forms';
+import { Input, InputGroup } from '@3a-ui/ui/forms'
+import { Label } from '@3a-ui/ui/forms'
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@3a-ui/ui/forms'
+import { Checkbox } from '@3a-ui/ui/forms'
+import { Textarea } from '@3a-ui/ui/forms'
+import { RadioGroup } from '@3a-ui/ui/forms'
 
 // Import badge components
-import { Badge } from '@3a-ui/ui/badge';
+import { Badge } from '@3a-ui/ui/badge'
 
 // Import slider components
-import { Slider } from '@3a-ui/ui/slider';
+import { Slider } from '@3a-ui/ui/slider'
 
 // Import tooltip components
-import { Tooltip, TooltipTrigger, TooltipContent } from '@3a-ui/ui/tooltip';
+import { Tooltip, TooltipTrigger, TooltipContent } from '@3a-ui/ui/tooltip'
 ```
 
 ### Utility Imports
@@ -478,10 +478,10 @@ Utilities should be imported from the lib directory:
 
 ```tsx
 // Import the cn utility for class name merging
-import { cn } from '@3a-ui/ui/lib/utils';
+import { cn } from '@3a-ui/ui/lib/utils'
 
 // Import registry utilities if needed
-import { registry } from '@3a-ui/ui/lib/registry';
+import { registry } from '@3a-ui/ui/lib/registry'
 ```
 
 ### Hook Imports
@@ -490,7 +490,7 @@ Custom hooks should be imported from the hooks directory:
 
 ```tsx
 // Import the useMetaColor hook
-import { useMetaColor } from '@3a-ui/ui/hooks/use-meta-color';
+import { useMetaColor } from '@3a-ui/ui/hooks/use-meta-color'
 ```
 
 ### Icon Imports
@@ -498,7 +498,7 @@ import { useMetaColor } from '@3a-ui/ui/hooks/use-meta-color';
 Icons should be imported from lucide-react:
 
 ```tsx
-import { ChevronDown, ChevronRight, Plus, Search } from 'lucide-react';
+import { ChevronDown, ChevronRight, Plus, Search } from 'lucide-react'
 ```
 
 ## Best Practices
@@ -509,15 +509,15 @@ import { ChevronDown, ChevronRight, Plus, Search } from 'lucide-react';
 
 ```tsx
 // Recommended import ordering
-import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import { motion } from 'motion';
-import { Button } from '@3a-ui/ui/button';
-import { Input } from '@3a-ui/ui/forms';
-import { cn } from '@3a-ui/ui/lib/utils';
-import { useMetaColor } from '@3a-ui/ui/hooks/use-meta-color';
-import { useAppData } from '../../hooks/use-app-data';
-import { MyLocalComponent } from './my-local-component';
+import React, { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
+import { motion } from 'motion'
+import { Button } from '@3a-ui/ui/button'
+import { Input } from '@3a-ui/ui/forms'
+import { cn } from '@3a-ui/ui/lib/utils'
+import { useMetaColor } from '@3a-ui/ui/hooks/use-meta-color'
+import { useAppData } from '../../hooks/use-app-data'
+import { MyLocalComponent } from './my-local-component'
 ```
 
 ## Component Export Pattern
@@ -526,12 +526,12 @@ Each component directory follows a consistent export pattern through its index.t
 
 ```tsx
 // Example index.ts for button components
-export * from './button';
-export * from './button-group';
+export * from './button'
+export * from './button-group'
 ```
 
 This allows for importing multiple related components from the same path:
 
 ```tsx
-import { Button, ButtonGroup } from '@3a-ui/ui/button';
+import { Button, ButtonGroup } from '@3a-ui/ui/button'
 ```
