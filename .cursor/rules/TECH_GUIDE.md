@@ -1,6 +1,6 @@
 ---
 description: TECH AND STRUCTURE GUIDE
-globs: 
+globs:
 alwaysApply: true
 ---
 
@@ -60,7 +60,21 @@ Root
 │   ├── eslint-config/       # Shared ESLint configuration
 │   ├── typescript-config/   # Shared TypeScript configuration
 │   └── ui/                  # Core UI library (Tailwind 4 + shadcn/ui based)
-│       └── src/styles.css   # Theme definition
+│       ├── src/
+│       │   ├── ui/          # Individual UI components
+│       │   │   ├── badge/   # Badge components
+│       │   │   ├── button/  # Button components
+│       │   │   ├── forms/   # Form components (input, select, checkbox, etc.)
+│       │   │   ├── slider/  # Slider components
+│       │   │   └── tooltip/ # Tooltip components
+│       │   ├── lib/         # Utility functions
+│       │   │   ├── utils.ts # Common utilities like className merging
+│       │   │   └── registry.ts # Component registry
+│       │   ├── hooks/       # Custom React hooks
+│       │   │   └── use-meta-color.ts # Hook for color management
+│       │   ├── components/  # Higher-level components (empty currently)
+│       │   └── styles.css   # Theme definition and global styles
+│       └── package.json     # UI package dependencies
 └── apps/
     ├── docs/                # UI documentation and styleguide app
     │   ├── app/             # Next.js app directory
@@ -85,11 +99,100 @@ Root
     └── web/                 # Landing page (not currently developed)
 ```
 
+### UI Library Structure
+
+The UI library is organized into several key directories:
+
+1. **UI Components (`packages/ui/src/ui/`)**:
+
+   - Each component or component group has its own directory
+   - Component directories typically contain:
+     - Main component file (e.g., `button.tsx`)
+     - Related component variants (e.g., `button-group.tsx`)
+     - Index file for exports (e.g., `index.ts`)
+
+   Current component categories include:
+
+   - `badge/` - Badge components for displaying status or labels
+   - `button/` - Button components including variants and button groups
+   - `forms/` - Form-related components including inputs, selects, checkboxes, etc.
+   - `slider/` - Slider components for range selection
+   - `tooltip/` - Tooltip components for displaying additional information
+
+2. **Utilities (`packages/ui/src/lib/`)**:
+
+   - `utils.ts` - Common utility functions like className merging
+   - `registry.ts` - Component registry for documentation and management
+
+3. **Hooks (`packages/ui/src/hooks/`)**:
+
+   - Custom React hooks for reusable logic
+   - Currently includes `use-meta-color.ts` for color management
+
+4. **Components (`packages/ui/src/components/`)**:
+
+   - Reserved for higher-level composite components
+   - Currently empty, but available for future expansion
+
+5. **Styles (`packages/ui/src/styles.css`)**:
+   - Global styles and theme definitions
+   - Tailwind configuration and custom theme variables
+
+### Component Structure Pattern
+
+Each UI component follows a consistent structure:
+
+```tsx
+// Example of a typical component structure (button.tsx)
+import * as React from 'react';
+import { cn } from '../lib/utils';
+
+// Component variant definition
+const buttonVariants = {
+  variant: {
+    primary: 'bg-primary text-primary-foreground',
+    secondary: 'bg-secondary text-secondary-foreground',
+    // other variants...
+  },
+  size: {
+    sm: 'h-8 px-3 text-xs',
+    md: 'h-10 px-4',
+    lg: 'h-12 px-6 text-lg',
+  },
+};
+
+// Component props interface
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: keyof typeof buttonVariants.variant;
+  size?: keyof typeof buttonVariants.size;
+}
+
+// Component implementation
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant = 'primary', size = 'md', ...props }, ref) => {
+    return (
+      <button
+        className={cn(
+          'inline-flex items-center justify-center rounded-md font-medium transition-colors',
+          buttonVariants.variant[variant],
+          buttonVariants.size[size],
+          className,
+        )}
+        ref={ref}
+        {...props}
+      />
+    );
+  },
+);
+Button.displayName = 'Button';
+```
+
 ### Key Architectural Decisions
 
 1. **UI Component Organization**:
 
-   - Core, reusable UI components live in the `packages/ui` directory
+   - Core, reusable UI components live in the `packages/ui/src/ui` directory
+   - Each component category has its own subdirectory
    - App-specific UI components live in the `app/ui` directory of each app
    - Component showcase pages are organized in the `app/components` directory
 
@@ -332,10 +435,10 @@ npm run lint
    - Document any non-obvious behaviors or edge cases
 
 2. **Code Comments**:
+
    - Use JSDoc comments for functions and components
    - Explain complex logic or workarounds
    - Keep comments up-to-date with code changes
-
 
    # UI Package Import Guide
 
@@ -349,15 +452,24 @@ Components should be imported directly from their respective paths in the UI pac
 
 ```tsx
 // Import a button component
-import { Button } from '@3a-ui/ui/button';
+import { Button, ButtonGroup } from '@3a-ui/ui/button';
 
 // Import form components
-import { Input } from '@3a-ui/ui/input';
-import { Label } from '@3a-ui/ui/label';
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@3a-ui/ui/select';
+import { Input, InputGroup } from '@3a-ui/ui/forms';
+import { Label } from '@3a-ui/ui/forms';
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@3a-ui/ui/forms';
+import { Checkbox } from '@3a-ui/ui/forms';
+import { Textarea } from '@3a-ui/ui/forms';
+import { RadioGroup } from '@3a-ui/ui/forms';
 
-// Import data display components
-import { Table, TableHeader, TableBody, TableRow, TableCell } from '@3a-ui/ui/table';
+// Import badge components
+import { Badge } from '@3a-ui/ui/badge';
+
+// Import slider components
+import { Slider } from '@3a-ui/ui/slider';
+
+// Import tooltip components
+import { Tooltip, TooltipTrigger, TooltipContent } from '@3a-ui/ui/tooltip';
 ```
 
 ### Utility Imports
@@ -368,8 +480,17 @@ Utilities should be imported from the lib directory:
 // Import the cn utility for class name merging
 import { cn } from '@3a-ui/ui/lib/utils';
 
-// Import other utilities as needed
-import { formatDate } from '@3a-ui/ui/lib/date-utils';
+// Import registry utilities if needed
+import { registry } from '@3a-ui/ui/lib/registry';
+```
+
+### Hook Imports
+
+Custom hooks should be imported from the hooks directory:
+
+```tsx
+// Import the useMetaColor hook
+import { useMetaColor } from '@3a-ui/ui/hooks/use-meta-color';
 ```
 
 ### Icon Imports
@@ -392,10 +513,25 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { motion } from 'motion';
 import { Button } from '@3a-ui/ui/button';
+import { Input } from '@3a-ui/ui/forms';
 import { cn } from '@3a-ui/ui/lib/utils';
+import { useMetaColor } from '@3a-ui/ui/hooks/use-meta-color';
 import { useAppData } from '../../hooks/use-app-data';
 import { MyLocalComponent } from './my-local-component';
 ```
 
+## Component Export Pattern
 
+Each component directory follows a consistent export pattern through its index.ts file:
 
+```tsx
+// Example index.ts for button components
+export * from './button';
+export * from './button-group';
+```
+
+This allows for importing multiple related components from the same path:
+
+```tsx
+import { Button, ButtonGroup } from '@3a-ui/ui/button';
+```
