@@ -2,21 +2,21 @@
 import React from 'react';
 import { Input } from '@3a-ui/ui/forms';
 import { Select, SelectContent, SelectTrigger, SelectValue, SelectItem } from '@3a-ui/ui/forms';
-import { Label } from '@3a-ui/ui/forms';
 import { Button, ButtonGroup } from '@3a-ui/ui/button';
-import { Search } from 'lucide-react';
+import { AlertTriangle, Check, Minus, Plus, Search } from 'lucide-react';
 import { InputGroup } from '@3a-ui/ui/forms';
 import { heightClasses, paddingClasses } from '../../../ui-config';
 import { RowVisualizer } from '../../../ui/measure-visualizer/row-indicator';
+import { Badge } from '@3a-ui/ui/badge';
 
 export const ComplexFilterGroup: React.FC = () => {
   return (
     <RowVisualizer rows={2} className="w-full">
       <div
-        className={`flex rounded-xl bg-background flex-col justify-center ${heightClasses[0]} ${paddingClasses.horizontal[1]}`}
+        className={`flex rounded-xl bg-background justify-between items-center ${heightClasses[0]} ${paddingClasses.horizontal[1]}`}
       >
         <div className="flex items-center gap-2">
-          <InputGroup className="flex-1">
+          <InputGroup>
             <Select>
               <SelectTrigger className="w-40">
                 <SelectValue placeholder="Category" />
@@ -39,11 +39,24 @@ export const ComplexFilterGroup: React.FC = () => {
               </SelectContent>
             </Select>
           </InputGroup>
-          <ButtonGroup>
-            <Button variant="outline">Reset</Button>
-            <Button>Search</Button>
-          </ButtonGroup>
+          <Badge variant="primary">
+            <Check />
+            Saved
+          </Badge>
+          <Badge variant="destructive">
+            <AlertTriangle />
+            Problem
+          </Badge>
         </div>
+
+        <ButtonGroup variant="outline">
+          <Button variant="outline">
+            <Minus className="size-4" />
+          </Button>
+          <Button variant="outline">
+            <Plus className="size-4" />
+          </Button>
+        </ButtonGroup>
       </div>
     </RowVisualizer>
   );

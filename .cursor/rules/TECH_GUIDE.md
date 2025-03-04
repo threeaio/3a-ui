@@ -1,14 +1,20 @@
+---
+description: TECH AND STRUCTURE GUIDE
+globs: 
+alwaysApply: true
+---
+
 # 3A-UI Technical Guide
 
 ## Table of Contents
 
-- [Introduction](#introduction)
-- [Tech Stack](#tech-stack)
-- [Project Structure](#project-structure)
-- [Coding Patterns](#coding-patterns)
-- [Constraints and Rules](#constraints-and-rules)
-- [Development Workflow](#development-workflow)
-- [Best Practices](#best-practices)
+- [Introduction](mdc:#introduction)
+- [Tech Stack](mdc:#tech-stack)
+- [Project Structure](mdc:#project-structure)
+- [Coding Patterns](mdc:#coding-patterns)
+- [Constraints and Rules](mdc:#constraints-and-rules)
+- [Development Workflow](mdc:#development-workflow)
+- [Best Practices](mdc:#best-practices)
 
 ## Introduction
 
@@ -87,7 +93,7 @@ Root
    - App-specific UI components live in the `app/ui` directory of each app
    - Component showcase pages are organized in the `app/components` directory
 
-2. **Documentation Structure**:
+2. **Documentation Structure (apps/docs)**:
    - Each component category has its own directory in `app/components`
    - Documentation-specific UI components are in `app/ui`
    - Navigation is centralized in `app/nav.tsx`
@@ -329,3 +335,67 @@ npm run lint
    - Use JSDoc comments for functions and components
    - Explain complex logic or workarounds
    - Keep comments up-to-date with code changes
+
+
+   # UI Package Import Guide
+
+## Importing Components and Utilities
+
+When working with the 3A-UI system, you should import components and utilities directly from the UI package using the following patterns:
+
+### Component Imports
+
+Components should be imported directly from their respective paths in the UI package:
+
+```tsx
+// Import a button component
+import { Button } from '@3a-ui/ui/button';
+
+// Import form components
+import { Input } from '@3a-ui/ui/input';
+import { Label } from '@3a-ui/ui/label';
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@3a-ui/ui/select';
+
+// Import data display components
+import { Table, TableHeader, TableBody, TableRow, TableCell } from '@3a-ui/ui/table';
+```
+
+### Utility Imports
+
+Utilities should be imported from the lib directory:
+
+```tsx
+// Import the cn utility for class name merging
+import { cn } from '@3a-ui/ui/lib/utils';
+
+// Import other utilities as needed
+import { formatDate } from '@3a-ui/ui/lib/date-utils';
+```
+
+### Icon Imports
+
+Icons should be imported from lucide-react:
+
+```tsx
+import { ChevronDown, ChevronRight, Plus, Search } from 'lucide-react';
+```
+
+## Best Practices
+
+1. **Always use package imports** - Avoid relative imports that reach into the UI package internals
+2. **Import only what you need** - Use destructured imports to keep bundle size small
+3. **Consistent import ordering** - Follow the pattern of React first, then external libraries, then internal packages, then local imports
+
+```tsx
+// Recommended import ordering
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { motion } from 'motion';
+import { Button } from '@3a-ui/ui/button';
+import { cn } from '@3a-ui/ui/lib/utils';
+import { useAppData } from '../../hooks/use-app-data';
+import { MyLocalComponent } from './my-local-component';
+```
+
+
+
