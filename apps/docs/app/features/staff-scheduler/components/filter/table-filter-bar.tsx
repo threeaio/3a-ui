@@ -122,19 +122,19 @@ export const TableFilterBar: React.FC<TableFilterBarProps> = ({ className = '', 
   return (
     <div
       className={cn(
-        'px-2 flex flex-col justify-start rounded-xl bg-muted transition-all duration-300 ease-in-out overflow-hidden',
-        isExpanded ? 'h-24' : 'h-13 delay-100',
+        'px-2 flex flex-col justify-start rounded-xl bg-muted transition-all duration-240 ease-in-expo overflow-hidden',
+        isExpanded ? 'xl:h-24' : 'xl:h-13 delay-100',
         className,
       )}
     >
       {/* First row with searches, selects, and actions */}
-      <div className="h-13 py-2 flex justify-between items-center">
+      <div className="xl:h-13 py-2 flex justify-between gap-2 items-center flex-wrap">
         {/* Left side with input groups and filters */}
-        <div className="flex items-center gap-2">
-          <InputGroup>
+        <div className="flex items-center gap-2 flex-wrap shrink  ">
+          <InputGroup className="shrink-1">
             {/* Person search */}
             <Input
-              className="w-50"
+              className="md:w-50"
               placeholder="Search by person..."
               value={filters.personName}
               onChange={(e) => handleFilterChange({ personName: e.target.value })}
@@ -145,7 +145,7 @@ export const TableFilterBar: React.FC<TableFilterBarProps> = ({ className = '', 
 
             {/* Project search */}
             <Input
-              className="w-50"
+              className="md:w-50"
               placeholder="Search by project..."
               value={filters.project}
               onChange={(e) => handleFilterChange({ project: e.target.value })}
@@ -157,7 +157,7 @@ export const TableFilterBar: React.FC<TableFilterBarProps> = ({ className = '', 
           <InputGroup>
             {/* Company select */}
             <Select value={filters.company?.id || 'all'} onValueChange={handleCompanySelect}>
-              <SelectTrigger className="w-40">
+              <SelectTrigger className="md:w-40">
                 <SelectValue placeholder="Company" />
               </SelectTrigger>
               <SelectContent>
@@ -172,7 +172,7 @@ export const TableFilterBar: React.FC<TableFilterBarProps> = ({ className = '', 
 
             {/* Managing Director select */}
             <Select value={filters.managingDirector?.id || 'all'} onValueChange={handleDirectorSelect}>
-              <SelectTrigger className="w-40">
+              <SelectTrigger className="md:w-40">
                 <SelectValue placeholder="Director" />
               </SelectTrigger>
               <SelectContent>
@@ -187,7 +187,7 @@ export const TableFilterBar: React.FC<TableFilterBarProps> = ({ className = '', 
 
             {/* Tribe select */}
             <Select value={filters.tribe?.id || 'all'} onValueChange={handleTribeSelect}>
-              <SelectTrigger className="w-32">
+              <SelectTrigger className="md:w-40">
                 <SelectValue placeholder="Tribe" />
               </SelectTrigger>
               <SelectContent>
@@ -237,7 +237,7 @@ export const TableFilterBar: React.FC<TableFilterBarProps> = ({ className = '', 
       {/* Second row with tag-related components */}
       <div
         className={cn(
-          'h-13 pb-2 flex items-center gap-5',
+          'xl:h-13 pb-2 flex items-center gap-5',
           'transition-opacity duration-300  ease-in-out',
           isExpanded ? 'opacity-100 delay-200' : 'opacity-0 ',
         )}
@@ -250,12 +250,12 @@ export const TableFilterBar: React.FC<TableFilterBarProps> = ({ className = '', 
         />
 
         {/* Display selected tags */}
-        <div className="flex flex-wrap gap-1">
+        <div className="flex flex-wrap gap-2">
           {filters.selectedTags.length > 0 ? (
             filters.selectedTags.map((tag) => (
               <Badge key={tag.id} className="text-xs flex items-center gap-1">
                 {tag.name}
-                <button className="hover:text-foreground/80" onClick={() => handleTagRemove(tag.id)}>
+                <button className="hover:default-foreground/80" onClick={() => handleTagRemove(tag.id)}>
                   <X className="size-3" />
                 </button>
               </Badge>

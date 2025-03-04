@@ -7,7 +7,7 @@ export default function FeaturesLayout({ children }: { children: ReactNode }) {
   return (
     <>
       <div className="relative min-h-screen">
-        <div className="container mx-auto px-4 py-8">{children}</div>
+        {children}
         <BackButton />
         <div className="fixed bottom-4 right-4">
           <ThemeSwitcher />

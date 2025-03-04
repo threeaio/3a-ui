@@ -173,7 +173,7 @@ export const StaffSchedulerTable: React.FC<StaffSchedulerTableProps> = ({ data, 
 
   return (
     // rounded-xl border
-    <div className={cn(' overflow-auto', className)}>
+    <div className={cn('', className)}>
       <table className="w-full border-collapse">
         <thead className="">
           {table.getHeaderGroups().map((headerGroup) => (
