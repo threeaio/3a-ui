@@ -193,13 +193,17 @@ export const TableFilterBar: React.FC<TableFilterBarProps> = ({ className = '', 
           </InputGroup>
 
           {/* Tags button with count */}
-          <Button variant="outline" size="sm" className="flex items-center gap-1" onClick={handleToggleExpand}>
+          <Button variant="outline" className="flex items-center gap-1" onClick={handleToggleExpand}>
             <TagIcon className="size-4" />
             Tags
             {filters.selectedTags.length > 0 && (
               <Badge className="ml-1 size-4 px-1 rounded-full">{filters.selectedTags.length}</Badge>
             )}
-            {isExpanded ? <ChevronUp className="size-4 ml-1" /> : <ChevronDown className="size-4 ml-1" />}
+            {isExpanded ? (
+              <ChevronUp className="size-4 ml-1 text-muted-foreground opacity-50  translate-x-1" />
+            ) : (
+              <ChevronDown className="size-4 ml-1 text-muted-foreground opacity-50  translate-x-1" />
+            )}
           </Button>
         </div>
 
