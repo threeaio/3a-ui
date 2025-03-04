@@ -5,8 +5,8 @@ import { Select, SelectContent, SelectTrigger, SelectValue, SelectItem } from '@
 import { Button, ButtonGroup } from '@3a-ui/ui/button';
 import { AlertTriangle, Check, Minus, Plus, Search } from 'lucide-react';
 import { InputGroup } from '@3a-ui/ui/forms';
-import { heightClasses, paddingClasses } from '../../../ui-config';
-import { RowVisualizer } from '../../../ui/measure-visualizer/row-indicator';
+import { heightClasses, paddingClasses } from '../../../../ui-config';
+import { RowVisualizer } from '../../../../ui/measure-visualizer/row-indicator';
 import { Badge } from '@3a-ui/ui/badge';
 
 export const ComplexFilterGroup: React.FC = () => {

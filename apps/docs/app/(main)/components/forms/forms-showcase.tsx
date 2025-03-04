@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
-import { StyleguideSection } from '../../ui/styleguide-section';
-import { StyleguideRender } from '../../ui/styleguide-render';
+import { StyleguideSection } from '../../../ui/styleguide-section';
+import { StyleguideRender } from '../../../ui/styleguide-render';
 import { Input } from '@3a-ui/ui/forms';
 import { Textarea } from '@3a-ui/ui/forms';
 import { Select, SelectContent, SelectTrigger, SelectValue, SelectItem } from '@3a-ui/ui/forms';

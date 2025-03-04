@@ -5,9 +5,9 @@ import { Select, SelectContent, SelectTrigger, SelectValue, SelectItem } from '@
 import { Label } from '@3a-ui/ui/forms';
 import { Button, ButtonGroup } from '@3a-ui/ui/button';
 import { Search, Plus } from 'lucide-react';
-import { RowVisualizer } from '../../../ui/measure-visualizer/row-indicator';
+import { RowVisualizer } from '../../../../ui/measure-visualizer/row-indicator';
 import { InputGroup } from '@3a-ui/ui/forms';
-import { heightClasses, paddingClasses } from '../../../ui-config';
+import { heightClasses, paddingClasses } from '../../../../ui-config';
 
 export const SingleRowForm: React.FC = () => {
   return (

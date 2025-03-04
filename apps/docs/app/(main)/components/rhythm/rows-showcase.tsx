@@ -1,12 +1,12 @@
 import React from 'react';
-import { StyleguideSection } from '../../ui/styleguide-section';
-import { StyleguideRender } from '../../ui/styleguide-render';
+import { StyleguideSection } from '../../../ui/styleguide-section';
+import { StyleguideRender } from '../../../ui/styleguide-render';
 import { Button } from '@3a-ui/ui/button';
-import StyleguideExplanation from '../../ui/styleguide-explanation';
-import { heightClasses, paddingClasses } from '../../ui-config';
+import StyleguideExplanation from '../../../ui/styleguide-explanation';
+import { heightClasses, paddingClasses } from '../../../ui-config';
 import { ButtonGroup } from '@3a-ui/ui/button';
 import { Minus, Plus } from 'lucide-react';
-import { RowVisualizer } from '../../ui/measure-visualizer/row-indicator';
+import { RowVisualizer } from '../../../ui/measure-visualizer/row-indicator';
 
 const GridShowcase: React.FC = () => {
   return (
