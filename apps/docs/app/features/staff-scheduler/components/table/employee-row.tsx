@@ -1,7 +1,7 @@
 import React from 'react';
 import { ChevronDown, ChevronRight } from 'lucide-react';
 import { cn } from '@3a-ui/ui/lib/utils';
-import { StaffMember } from '../mock-data';
+import { StaffMember } from '../../mock-data';
 
 interface EmployeeRowProps {
   /**
@@ -32,7 +32,7 @@ export const EmployeeRow: React.FC<EmployeeRowProps> = ({ employee, isExpanded, 
   return (
     <div
       className={cn(
-        'flex items-center gap-2 h-10 px-2 font-medium cursor-pointer hover:bg-muted/30 transition-colors text-sm min-w-72',
+        'flex items-center gap-2 h-10 px-2 font-medium cursor-pointer hover:bg-muted/30 transition-colors text-sm',
         className,
       )}
       onClick={onToggleExpand}

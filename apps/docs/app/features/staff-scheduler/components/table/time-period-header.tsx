@@ -1,6 +1,6 @@
 import React from 'react';
 import { cn } from '@3a-ui/ui/lib/utils';
-import { formatTimePeriod } from '../mock-data';
+import { formatTimePeriod } from '../../mock-data';
 
 interface TimePeriodHeaderProps {
   /**
@@ -30,7 +30,7 @@ export const TimePeriodHeader: React.FC<TimePeriodHeaderProps> = ({ period, rela
       className={cn('flex text-sm flex-col items-center justify-center h-10 px-5 text-center', className)}
       title={formattedPeriod}
     >
-      <span className="font-semibold text-muted-foreground">
+      <span className="font-normal text-muted-foreground">
         {relativeIndex === 0 ? '0' : relativeIndex > 0 ? `+${relativeIndex}` : relativeIndex}
       </span>
       {/* <span className="text-xs text-muted-foreground truncate max-w-full">{formattedPeriod}</span> */}

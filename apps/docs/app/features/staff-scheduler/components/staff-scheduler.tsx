@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { cn } from '@3a-ui/ui/lib/utils';
 import { staffMembers, getWeeklyData } from '../mock-data';
 import { TimeUnitToggle, TimeUnit } from './time-unit-toggle';
-import { StaffSchedulerTable } from './staff-scheduler-table';
+import { StaffSchedulerTable } from './table/staff-scheduler-table';
 
 interface StaffSchedulerProps {
   /**

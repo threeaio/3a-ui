@@ -11,8 +11,8 @@ import {
   createColumnHelper,
 } from '@tanstack/react-table';
 import { cn } from '@3a-ui/ui/lib/utils';
-import { StaffMember, Project, getTimePeriods } from '../mock-data';
-import { TimeUnit } from './time-unit-toggle';
+import { StaffMember, Project, getTimePeriods } from '../../mock-data';
+import { TimeUnit } from '../time-unit-toggle';
 import { WorkloadCell } from './workload-cell';
 import { EmployeeRow } from './employee-row';
 import { ProjectRow } from './project-row';
@@ -78,7 +78,11 @@ export const StaffSchedulerTable: React.FC<StaffSchedulerTableProps> = ({ data, 
       // Employee column (sticky)
       columnHelper.display({
         id: 'employee',
-        header: () => <div className="px-5 flex flex-col justify-center">Employee</div>,
+        header: () => (
+          <div className="px-10 flex flex-col text-left font-normal text-sm text-muted-foreground justify-center">
+            Employee
+          </div>
+        ),
         cell: ({ row }) => {
           const isStaffMember = 'projects' in row.original;
 
@@ -97,7 +101,7 @@ export const StaffSchedulerTable: React.FC<StaffSchedulerTableProps> = ({ data, 
           }
         },
         meta: {
-          className: 'sticky left-0 z-10 bg-background border-r border-border min-w-40  max-w-60',
+          className: 'sticky left-0 z-10 bg-background border-r border-border min-w-60 w-80',
         } as ColumnMeta,
       }),
     ];
@@ -148,7 +152,7 @@ export const StaffSchedulerTable: React.FC<StaffSchedulerTableProps> = ({ data, 
               );
             },
             meta: {
-              className: 'w-20 min-w-20',
+              className: 'min-w-20',
             } as ColumnMeta,
           },
         ) as ColumnDef<TableRow, any>,
@@ -181,8 +185,9 @@ export const StaffSchedulerTable: React.FC<StaffSchedulerTableProps> = ({ data, 
   });
 
   return (
-    <div className={cn('rounded-xl border overflow-auto', className)}>
-      <table className="border-collapse">
+    // rounded-xl border
+    <div className={cn(' overflow-auto', className)}>
+      <table className="w-full border-collapse">
         <thead className="">
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
@@ -201,16 +206,37 @@ export const StaffSchedulerTable: React.FC<StaffSchedulerTableProps> = ({ data, 
           ))}
         </thead>
         <tbody>
-          {table.getRowModel().rows.map((row) => (
-            // border-b border-border
-            <tr key={row.id} className={cn('last:border-0', row.depth > 0 && 'bg-destructive/10')}>
-              {row.getVisibleCells().map((cell) => (
-                <td key={cell.id} className={cn((cell.column.columnDef.meta as ColumnMeta | undefined)?.className)}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </td>
-              ))}
-            </tr>
-          ))}
+          {table.getRowModel().rows.map((row, rowIndex, rows) => {
+            // Check if this is the last row of an employee group
+            const isLastRowOfGroup = (() => {
+              // If this is the last row overall, it's the last of its group
+              if (rowIndex === rows.length - 1) return true;
+
+              // If the next row has depth 0 (is an employee), this is the last of current group
+              const nextRow = rows[rowIndex + 1];
+              return nextRow?.depth === 0;
+            })();
+
+            return (
+              <React.Fragment key={row.id}>
+                <tr className={cn('last:border-0', row.depth > 0 && 'bg-background')}>
+                  {row.getVisibleCells().map((cell) => (
+                    <td key={cell.id} className={cn((cell.column.columnDef.meta as ColumnMeta | undefined)?.className)}>
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    </td>
+                  ))}
+                </tr>
+
+                {/* Add a spacer row after the last row of each group */}
+                {isLastRowOfGroup && (
+                  <tr className="h-5">
+                    <td className="border-r"></td>
+                    <td colSpan={row.getVisibleCells().length - 1}></td>
+                  </tr>
+                )}
+              </React.Fragment>
+            );
+          })}
         </tbody>
       </table>
     </div>

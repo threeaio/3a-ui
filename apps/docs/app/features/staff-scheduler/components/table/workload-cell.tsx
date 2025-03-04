@@ -69,7 +69,7 @@ export const WorkloadCell: React.FC<WorkloadCellProps> = ({
       <div className="w-full flex items-center gap-2">
         <div className="w-full flex gap-2 items-center justify-center">
           <div
-            className={cn('h-5 w-full flex justify-center items-center', getColorClass(value), getBorderRadiusClass())}
+            className={cn('h-4 w-full flex justify-center items-center', getColorClass(value), getBorderRadiusClass())}
           >
             <span className="text-xs font-semibold text-black/60">{value}%</span>
           </div>
