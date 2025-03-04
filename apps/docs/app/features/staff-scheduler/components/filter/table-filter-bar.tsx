@@ -196,7 +196,9 @@ export const TableFilterBar: React.FC<TableFilterBarProps> = ({ className = '', 
           <Button variant="outline" size="sm" className="flex items-center gap-1" onClick={handleToggleExpand}>
             <TagIcon className="size-4" />
             Tags
-            {filters.selectedTags.length > 0 && <Badge className="ml-1">{filters.selectedTags.length}</Badge>}
+            {filters.selectedTags.length > 0 && (
+              <Badge className="ml-1 size-4 px-1 rounded-full">{filters.selectedTags.length}</Badge>
+            )}
             {isExpanded ? <ChevronUp className="size-4 ml-1" /> : <ChevronDown className="size-4 ml-1" />}
           </Button>
         </div>
@@ -221,38 +223,32 @@ export const TableFilterBar: React.FC<TableFilterBarProps> = ({ className = '', 
       {/* Second row with tag-related components */}
       <div
         className={cn(
-          'h-13 pb-2 flex items-center px-2',
+          'h-13 pb-2 flex items-center gap-5',
           'transition-opacity duration-300  ease-in-out',
           isExpanded ? 'opacity-100 delay-200' : 'opacity-0 ',
         )}
       >
-        <div className="flex items-center gap-2">
-          <span className="text-sm font-medium text-muted-foreground">Selected Tags:</span>
+        <FilterTagsDropdown
+          selectedTags={filters.selectedTags}
+          availableTags={tags}
+          onTagSelect={handleTagSelect}
+          onTagRemove={handleTagRemove}
+        />
 
-          {/* Display selected tags */}
-          <div className="flex flex-wrap gap-1">
-            {filters.selectedTags.length > 0 ? (
-              filters.selectedTags.map((tag) => (
-                <Badge key={tag.id} className="text-xs flex items-center gap-1">
-                  {tag.name}
-                  <button className="hover:text-foreground/80" onClick={() => handleTagRemove(tag.id)}>
-                    <X className="size-3" />
-                  </button>
-                </Badge>
-              ))
-            ) : (
-              <span className="text-sm text-muted-foreground/70">No tags selected</span>
-            )}
-          </div>
-
-          {/* Tag selector dropdown */}
-          <FilterTagsDropdown
-            selectedTags={filters.selectedTags}
-            availableTags={tags}
-            onTagSelect={handleTagSelect}
-            onTagRemove={handleTagRemove}
-            className="ml-2"
-          />
+        {/* Display selected tags */}
+        <div className="flex flex-wrap gap-1">
+          {filters.selectedTags.length > 0 ? (
+            filters.selectedTags.map((tag) => (
+              <Badge key={tag.id} className="text-xs flex items-center gap-1">
+                {tag.name}
+                <button className="hover:text-foreground/80" onClick={() => handleTagRemove(tag.id)}>
+                  <X className="size-3" />
+                </button>
+              </Badge>
+            ))
+          ) : (
+            <span className="text-sm text-muted-foreground/70">No tags selected</span>
+          )}
         </div>
       </div>
     </div>
