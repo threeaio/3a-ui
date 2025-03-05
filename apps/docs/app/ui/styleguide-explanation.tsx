@@ -8,7 +8,7 @@ interface StyleguideExplanationProps {
   children: React.ReactNode
 
   /**
-   * Optional additional CSS classes
+   * Optional additional CSS classesds
    */
   className?: string
 }

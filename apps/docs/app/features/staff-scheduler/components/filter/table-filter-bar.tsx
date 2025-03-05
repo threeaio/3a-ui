@@ -15,10 +15,10 @@ import {
 import { RotateCcw, User, File, ChevronDown, ChevronUp, Tag as TagIcon, X } from 'lucide-react'
 import { Badge } from '@3a.solutions/ui/badge'
 
-import { companies, managingDirectors, tribes, tags } from './filter-mock-data'
-import { FilterTagsDropdown } from './filter-tags-dropdown'
+import { companies, managingDirectors, tribes } from './filter-mock-data'
 import { SavedFiltersPanel } from './saved-filters-panel'
 import { useFilters } from './filter-context'
+import { TagFilter } from './tag-filter'
 
 interface TableFilterBarProps {
   /**
@@ -166,23 +166,7 @@ export const TableFilterBar: React.FC<TableFilterBarProps> = ({ className = '' }
           isExpanded ? 'opacity-100 delay-200' : 'opacity-0 ',
         )}
       >
-        <FilterTagsDropdown />
-
-        {/* Display selected tags */}
-        <div className="flex flex-wrap gap-2">
-          {filters.selectedTags.length > 0 ? (
-            filters.selectedTags.map((tag) => (
-              <Badge key={tag.id} className="text-xs flex items-center gap-1">
-                {tag.name}
-                <button className="hover:default-foreground/80" onClick={() => handleTagRemove(tag.id)}>
-                  <X className="size-3" />
-                </button>
-              </Badge>
-            ))
-          ) : (
-            <span className="text-sm text-muted-foreground/70">No tags selected</span>
-          )}
-        </div>
+        <TagFilter />
       </div>
     </div>
   )

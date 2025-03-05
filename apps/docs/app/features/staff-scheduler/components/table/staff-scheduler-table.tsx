@@ -90,7 +90,8 @@ export const StaffSchedulerTable: React.FC<StaffSchedulerTableProps> = ({ data, 
           }
         },
         meta: {
-          className: 'sticky left-0 z-10 bg-background border-r border-border w-full md:w-60 xl:w-80',
+          className:
+            'sticky left-0 z-10 bg-background border-r border-border w-full md:w-60 md:min-w-60 xl:w-80 xl:min-w-80',
         } as ColumnMeta,
       }),
     ]

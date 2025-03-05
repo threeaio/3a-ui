@@ -17,7 +17,7 @@ import {
 import { User, File } from 'lucide-react'
 import { companies, managingDirectors, tribes } from './filter-mock-data'
 import { Badge } from '@3a.solutions/ui/badge'
-import { FilterTagsDropdown } from './filter-tags-dropdown'
+import { TagFilter } from './tag-filter'
 
 export const TableFilterBarMobile: React.FC = () => {
   const { filters, handleFilterChange, handleCompanySelect, handleDirectorSelect, handleTribeSelect } = useFilters()
@@ -37,9 +37,9 @@ export const TableFilterBarMobile: React.FC = () => {
           <DrawerHeader>
             <DrawerTitle>Filters</DrawerTitle>
           </DrawerHeader>
-          <div className="p-4 space-y-4">
+          <div className="flex p-5 gap-5 flex-row flex-wrap">
             {/* Search inputs */}
-            <div className="space-y-2">
+            <InputGroup className="w-full flex-1 min-w-[320px]">
               <Input
                 placeholder="Search by person..."
                 value={filters.personName}
@@ -56,10 +56,10 @@ export const TableFilterBarMobile: React.FC = () => {
                 clearable
                 onClear={() => handleFilterChange({ project: '' })}
               />
-            </div>
+            </InputGroup>
 
             {/* Selects */}
-            <div className="space-y-2">
+            <InputGroup className="w-full flex-1 min-w-[320px]">
               <Select value={filters.company?.id || 'all'} onValueChange={handleCompanySelect}>
                 <SelectTrigger>
                   <SelectValue placeholder="Company" />
@@ -101,23 +101,12 @@ export const TableFilterBarMobile: React.FC = () => {
                   ))}
                 </SelectContent>
               </Select>
-            </div>
+            </InputGroup>
 
             {/* Tags */}
             <div className="space-y-2">
               <div className="font-medium text-sm">Tags</div>
-              <FilterTagsDropdown />
-              <div className="flex flex-wrap gap-2 mt-2">
-                {filters.selectedTags.length > 0 ? (
-                  filters.selectedTags.map((tag) => (
-                    <Badge key={tag.id} className="text-xs">
-                      {tag.name}
-                    </Badge>
-                  ))
-                ) : (
-                  <span className="text-sm text-muted-foreground/70">No tags selected</span>
-                )}
-              </div>
+              <TagFilter />
             </div>
           </div>
         </DrawerContent>
