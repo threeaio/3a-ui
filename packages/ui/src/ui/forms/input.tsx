@@ -14,7 +14,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, icon, clearable, onClear, onChange, ...props }, ref) => {
     const inputRef = React.useRef<HTMLInputElement>(null)
     const [hasValue, setHasValue] = React.useState(!!props.value || !!props.defaultValue)
-    const { isGroup, isFirst, isLast, error } = useInputGroup()
+    const { isGroup, isFirst, isLast, error, behavior } = useInputGroup()
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       setHasValue(!!e.target.value)
@@ -41,7 +41,11 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       <div
         className={cn(
           'relative flex items-center',
-          isGroup && ['first:ml-0 -ml-[1px]', '[&_input]:border-r-0 last:[&_input]:border-r'],
+          isGroup && [
+            'first:ml-0 -ml-[1px]',
+            '[&_input]:border-r-0 last:[&_input]:border-r',
+            isGroup && behavior === 'distribute' && 'w-full',
+          ],
         )}
       >
         <input

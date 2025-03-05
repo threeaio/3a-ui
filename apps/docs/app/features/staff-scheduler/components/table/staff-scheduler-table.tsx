@@ -17,6 +17,7 @@ import { WorkloadCell } from './workload-cell'
 import { EmployeeRow } from './employee-row'
 import { ProjectRow } from './project-row'
 import { TimePeriodHeader } from './time-period-header'
+import { SearchX } from 'lucide-react'
 
 interface StaffSchedulerTableProps {
   data: StaffMember[]
@@ -175,29 +176,39 @@ export const StaffSchedulerTable: React.FC<StaffSchedulerTableProps> = ({ data, 
   })
 
   return (
-    <div className={cn('overflow-x-auto md:overflow-x-visible', className)}>
-      <div className="min-w-full inline-block align-middle">
-        <div className="overflow-x-auto md:overflow-x-visible">
-          <table className="w-full border-collapse overflow-auto">
-            <thead className="">
-              {table.getHeaderGroups().map((headerGroup) => (
-                <tr key={headerGroup.id}>
-                  {headerGroup.headers.map((header) => (
-                    <th
-                      key={header.id}
-                      className={cn(
-                        'min-h-20', // border-b border-border
-                        (header.column.columnDef.meta as ColumnMeta | undefined)?.className,
-                      )}
-                    >
-                      {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
-                    </th>
-                  ))}
-                </tr>
-              ))}
-            </thead>
-            <tbody>
-              {table.getRowModel().rows.map((row, rowIndex, rows) => {
+    <div className={cn('relative w-full', className)}>
+      <div className="overflow-x-auto relative">
+        <table className="w-full border-collapse">
+          <thead className="">
+            {table.getHeaderGroups().map((headerGroup) => (
+              <tr key={headerGroup.id}>
+                {headerGroup.headers.map((header) => (
+                  <th
+                    key={header.id}
+                    className={cn(
+                      'min-h-20', // border-b border-border
+                      (header.column.columnDef.meta as ColumnMeta | undefined)?.className,
+                    )}
+                  >
+                    {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
+                  </th>
+                ))}
+              </tr>
+            ))}
+          </thead>
+          <tbody>
+            {tableData.length === 0 ? (
+              <tr>
+                <td colSpan={table.getAllColumns().length} className="h-[400px]">
+                  <div className="flex flex-col items-center justify-center h-full gap-4 text-muted-foreground sticky w-screen inset-0">
+                    <SearchX className="w-16 h-16" />
+                    <p className="text-lg font-medium">No results found</p>
+                    <p className="text-sm">Try adjusting your filters to find what you're looking for</p>
+                  </div>
+                </td>
+              </tr>
+            ) : (
+              table.getRowModel().rows.map((row, rowIndex, rows) => {
                 // Check if this is the last row of an employee group
                 const isLastRowOfGroup = (() => {
                   // If this is the last row overall, it's the last of its group
@@ -230,10 +241,10 @@ export const StaffSchedulerTable: React.FC<StaffSchedulerTableProps> = ({ data, 
                     )}
                   </React.Fragment>
                 )
-              })}
-            </tbody>
-          </table>
-        </div>
+              })
+            )}
+          </tbody>
+        </table>
       </div>
     </div>
   )

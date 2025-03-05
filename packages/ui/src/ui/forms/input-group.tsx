@@ -8,6 +8,7 @@ interface InputGroupContextValue {
   isFirst: boolean
   isLast: boolean
   error?: boolean
+  behavior?: 'default' | 'distribute'
 }
 
 const InputGroupContext = React.createContext<InputGroupContextValue>({
@@ -21,9 +22,10 @@ export const useInputGroup = () => React.useContext(InputGroupContext)
 interface InputGroupProps extends React.ComponentProps<'div'> {
   children: React.ReactNode
   error?: boolean
+  behavior?: 'default' | 'distribute'
 }
 
-function InputGroup({ className, children, error, ...props }: InputGroupProps) {
+function InputGroup({ className, children, error, behavior = 'default', ...props }: InputGroupProps) {
   const childrenArray = React.Children.toArray(children).filter(React.isValidElement)
 
   const processedChildren = childrenArray.map((child, index) => {
@@ -37,6 +39,7 @@ function InputGroup({ className, children, error, ...props }: InputGroupProps) {
           isFirst: index === 0,
           isLast: index === childrenArray.length - 1,
           error,
+          behavior,
         }}
       >
         {child}
@@ -45,7 +48,12 @@ function InputGroup({ className, children, error, ...props }: InputGroupProps) {
   })
 
   return (
-    <div className={cn('inline-flex', className)} role="group" data-error={error ? '' : undefined} {...props}>
+    <div
+      className={cn(behavior === 'default' ? 'inline-flex' : 'flex', className)}
+      role="group"
+      data-error={error ? '' : undefined}
+      {...props}
+    >
       {processedChildren}
     </div>
   )

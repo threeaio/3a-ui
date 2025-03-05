@@ -37,9 +37,9 @@ export const TableFilterBarMobile: React.FC = () => {
           <DrawerHeader>
             <DrawerTitle>Filters</DrawerTitle>
           </DrawerHeader>
-          <div className="flex p-5 gap-5 flex-row flex-wrap">
+          <div className="flex p-5 gap-5 flex-col w-full">
             {/* Search inputs */}
-            <InputGroup className="w-full flex-1 min-w-[320px]">
+            <InputGroup className="w-full" behavior="distribute">
               <Input
                 placeholder="Search by person..."
                 value={filters.personName}
@@ -59,7 +59,7 @@ export const TableFilterBarMobile: React.FC = () => {
             </InputGroup>
 
             {/* Selects */}
-            <InputGroup className="w-full flex-1 min-w-[320px]">
+            <InputGroup className="w-full" behavior="distribute">
               <Select value={filters.company?.id || 'all'} onValueChange={handleCompanySelect}>
                 <SelectTrigger>
                   <SelectValue placeholder="Company" />

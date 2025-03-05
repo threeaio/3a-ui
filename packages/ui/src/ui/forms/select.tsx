@@ -20,7 +20,7 @@ function SelectValue({ ...props }: React.ComponentProps<typeof SelectPrimitive.V
 }
 
 function SelectTrigger({ className, children, ...props }: React.ComponentProps<typeof SelectPrimitive.Trigger>) {
-  const { isGroup, isFirst, isLast, error } = useInputGroup()
+  const { isGroup, isFirst, isLast, error, behavior } = useInputGroup()
 
   return (
     <div
@@ -29,6 +29,7 @@ function SelectTrigger({ className, children, ...props }: React.ComponentProps<t
         isGroup && [
           'first:ml-0 -ml-[1px]',
           '[&_[data-slot="select-trigger"]]:border-r-0 last:[&_[data-slot="select-trigger"]]:border-r',
+          behavior === 'distribute' && 'w-full',
         ],
       )}
     >
@@ -42,6 +43,7 @@ function SelectTrigger({ className, children, ...props }: React.ComponentProps<t
             isLast && '!rounded-r-md',
             'focus-visible:relative focus-visible:z-10',
           ],
+          behavior === 'distribute' && 'w-full',
           className,
         )}
         aria-invalid={error || props['aria-invalid']}
