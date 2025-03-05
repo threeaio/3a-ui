@@ -39,7 +39,7 @@ export const StaffScheduler: React.FC<StaffSchedulerProps> = ({ className = '' }
         <h2 className="font-semibold">Staff Scheduler</h2>
         <p className="mt-1 text-muted-foreground">A tool to help you manage your staff and their workload.</p>
       </div>
-      <div className="flex justify-end items-center">
+      <div className="flex justify-end items-center gap-2">
         <TimeUnitToggle value={timeUnit} onChange={setTimeUnit} />
       </div>
 
