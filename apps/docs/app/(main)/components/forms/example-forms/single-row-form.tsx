@@ -11,7 +11,7 @@ import { heightClasses, paddingClasses } from '../../../../ui-config'
 
 export const SingleRowForm: React.FC = () => {
   return (
-    <RowVisualizer rows={1} className="w-full">
+    <RowVisualizer rows={0} className="w-full">
       <form
         className={`flex items-center gap-2 border rounded-xl ${heightClasses[0]} ${paddingClasses.horizontal[1]} bg-background`}
       >

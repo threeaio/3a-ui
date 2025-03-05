@@ -28,7 +28,10 @@ const SpacingShowcase: React.FC = () => {
             eyeballing is the better approach.
           </p>
           <p className="mb-5">
-            It is recommended to use the following base values for all paddings, margins and gap-values:
+            It is recommended to use the following base values, when appropriate, for paddings, margins and gap-values
+            (or at least avoid using direct neighbours of the values described here, like{' '}
+            <span className="font-mono text-foreground">p-{Number(spacingSizes[2]!.value) + 1}</span> or{' '}
+            <span className="font-mono text-foreground">gap-{Number(spacingSizes[2]!.value) - 1}</span>.):
           </p>
           <div className="flex flex-col gap-5 mb-5">
             {spacingSizes.map(({ size, value }) => (
@@ -48,21 +51,6 @@ const SpacingShowcase: React.FC = () => {
               </div>
             ))}
           </div>
-          <p className="text-xs mb-5 ">
-            These values can be applied in different directions using the appropriate prefix. For example for paddings:
-            <span className="text-foreground ml-1 font-mono">p-</span> (all sides),
-            <span className="text-foreground ml-1 font-mono">px-</span> (horizontal),
-            <span className="text-foreground ml-1 font-mono">py-</span> (vertical),
-            <span className="text-foreground ml-1 font-mono">pt-</span> (top),
-            <span className="text-foreground ml-1 font-mono">pr-</span> (right),
-            <span className="text-foreground ml-1 font-mono">pb-</span> (bottom),
-            <span className="text-foreground ml-1 font-mono">pl-</span> (left)
-          </p>
-          <p className="text-xs text-muted-foreground">
-            Avoid using direct neighbours of the values described here, like{' '}
-            <span className="font-mono text-foreground">p-{Number(spacingSizes[1]!.value) + 1}</span> or{' '}
-            <span className="font-mono text-foreground">gap-{Number(spacingSizes[1]!.value) - 1}</span>.
-          </p>
         </div>
       </StyleguideExplanation>
 
@@ -100,7 +88,7 @@ const SpacingShowcase: React.FC = () => {
                       <Button>Settings</Button>
                     </ButtonGroup>
                     <span className="text-muted-foreground text-xs">|</span>
-                    <Badge>
+                    <Badge variant="primary">
                       <Check className="size-3" />
                       Successfully created item
                     </Badge>

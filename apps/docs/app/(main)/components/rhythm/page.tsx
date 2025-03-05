@@ -9,8 +9,8 @@ export default function GridPage() {
         <h1 className="font-semibold mb-5">Rhythm</h1>
         <p className="text-muted-foreground max-w-2xl">
           Rhythm is the art of creating a harmonious and balanced layout. It is the key to creating a visually appealing
-          and user-friendly design. It also helps to keep uniformity and composability of the components you create.
-          Technically it is about how to apply paddings, margins and height values to your components.
+          and user-friendly design. It also helps to keep uniformity and composability of the components you create &ndash; which leads to cost-friendly, agile solutions.
+          technically it is about how to apply paddings, margins and height values to your components.
         </p>
       </div>
       <GridShowcase />

@@ -34,15 +34,19 @@ export const StaffScheduler: React.FC<StaffSchedulerProps> = ({ className = '' }
   }
 
   return (
-    <div className={cn('flex flex-col gap-5', className)}>
+    <div className={cn('flex flex-col gap-5 w-full', className)}>
       <div className="flex justify-between items-center">
         <h2 className="text-xl font-semibold">Staff Scheduler</h2>
+      </div>
+      <div className="flex justify-end items-center">
         <TimeUnitToggle value={timeUnit} onChange={setTimeUnit} />
       </div>
 
-      <TableFilterBar onFilterChange={handleFilterChange} />
+      <TableFilterBar onFilterChange={handleFilterChange} className="hidden md:block" />
 
-      <StaffSchedulerTable data={data} timeUnit={timeUnit} className="max-h-[600px]" />
+      <div className="w-full">
+        <StaffSchedulerTable data={data} timeUnit={timeUnit} className="max-h-[600px]" />
+      </div>
     </div>
   )
 }

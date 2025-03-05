@@ -88,7 +88,7 @@ export const StaffSchedulerTable: React.FC<StaffSchedulerTableProps> = ({ data, 
           }
         },
         meta: {
-          className: 'sticky left-0 z-10 bg-background border-r border-border min-w-60 w-80',
+          className: 'sticky left-0 z-10 bg-background border-r border-border w-full md:w-60 xl:w-80',
         } as ColumnMeta,
       }),
     ]
@@ -139,7 +139,7 @@ export const StaffSchedulerTable: React.FC<StaffSchedulerTableProps> = ({ data, 
               )
             },
             meta: {
-              className: 'min-w-20',
+              className: 'hidden md:table-cell min-w-20',
             } as ColumnMeta,
           },
         ) as ColumnDef<TableRow, any>,
@@ -172,60 +172,66 @@ export const StaffSchedulerTable: React.FC<StaffSchedulerTableProps> = ({ data, 
   })
 
   return (
-    // rounded-xl border
-    <div className={cn('', className)}>
-      <table className="w-full border-collapse">
-        <thead className="">
-          {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
-                <th
-                  key={header.id}
-                  className={cn(
-                    'min-h-20', // border-b border-border
-                    (header.column.columnDef.meta as ColumnMeta | undefined)?.className,
-                  )}
-                >
-                  {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody>
-          {table.getRowModel().rows.map((row, rowIndex, rows) => {
-            // Check if this is the last row of an employee group
-            const isLastRowOfGroup = (() => {
-              // If this is the last row overall, it's the last of its group
-              if (rowIndex === rows.length - 1) return true
-
-              // If the next row has depth 0 (is an employee), this is the last of current group
-              const nextRow = rows[rowIndex + 1]
-              return nextRow?.depth === 0
-            })()
-
-            return (
-              <React.Fragment key={row.id}>
-                <tr className={cn('last:border-0', row.depth > 0 && 'bg-background')}>
-                  {row.getVisibleCells().map((cell) => (
-                    <td key={cell.id} className={cn((cell.column.columnDef.meta as ColumnMeta | undefined)?.className)}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                    </td>
+    <div className={cn('overflow-x-auto md:overflow-x-visible', className)}>
+      <div className="min-w-full inline-block align-middle">
+        <div className="overflow-x-auto md:overflow-x-visible">
+          <table className="w-full border-collapse overflow-auto">
+            <thead className="">
+              {table.getHeaderGroups().map((headerGroup) => (
+                <tr key={headerGroup.id}>
+                  {headerGroup.headers.map((header) => (
+                    <th
+                      key={header.id}
+                      className={cn(
+                        'min-h-20', // border-b border-border
+                        (header.column.columnDef.meta as ColumnMeta | undefined)?.className,
+                      )}
+                    >
+                      {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
+                    </th>
                   ))}
                 </tr>
+              ))}
+            </thead>
+            <tbody>
+              {table.getRowModel().rows.map((row, rowIndex, rows) => {
+                // Check if this is the last row of an employee group
+                const isLastRowOfGroup = (() => {
+                  // If this is the last row overall, it's the last of its group
+                  if (rowIndex === rows.length - 1) return true
 
-                {/* Add a spacer row after the last row of each group */}
-                {isLastRowOfGroup && (
-                  <tr className="h-5">
-                    <td className="border-r"></td>
-                    <td colSpan={row.getVisibleCells().length - 1}></td>
-                  </tr>
-                )}
-              </React.Fragment>
-            )
-          })}
-        </tbody>
-      </table>
+                  // If the next row has depth 0 (is an employee), this is the last of current group
+                  const nextRow = rows[rowIndex + 1]
+                  return nextRow?.depth === 0
+                })()
+
+                return (
+                  <React.Fragment key={row.id}>
+                    <tr className={cn('last:border-0', row.depth > 0 && 'bg-background')}>
+                      {row.getVisibleCells().map((cell) => (
+                        <td
+                          key={cell.id}
+                          className={cn((cell.column.columnDef.meta as ColumnMeta | undefined)?.className)}
+                        >
+                          {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                        </td>
+                      ))}
+                    </tr>
+
+                    {/* Add a spacer row after the last row of each group */}
+                    {isLastRowOfGroup && (
+                      <tr className="h-5">
+                        <td className="border-r"></td>
+                        <td colSpan={row.getVisibleCells().length - 1}></td>
+                      </tr>
+                    )}
+                  </React.Fragment>
+                )
+              })}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   )
 }

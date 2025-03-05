@@ -18,6 +18,7 @@
     "./dialog": "./src/ui/dialog/index.ts",
     "./command": "./src/ui/command/index.ts",
     "./combobox": "./src/ui/command/combobox.tsx",
+    "./drawer": "./src/ui/drawer/index.ts",
     "./lib/utils": "./src/lib/utils.ts"
   },
   "license": "MIT",
@@ -54,6 +55,7 @@
     "@radix-ui/react-tooltip": "^1.1.8",
     "cmdk": "1.0.0",
     "shadcn": "2.4.0-canary.9",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "vaul": "^1.1.2"
   }
 }
