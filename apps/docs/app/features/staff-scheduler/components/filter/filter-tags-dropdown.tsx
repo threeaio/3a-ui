@@ -3,27 +3,19 @@
 import React, { useState } from 'react'
 import { Button } from '@3a.solutions/ui/button'
 import { Check, Plus } from 'lucide-react'
-import { Tag } from './filter-mock-data'
 import { cn } from '@3a.solutions/ui/lib/utils'
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@3a-ui/ui/command'
 import { Popover, PopoverContent, PopoverTrigger } from '@3a-ui/ui/popover'
+import { useFilters } from './filter-context'
+import { tags } from './filter-mock-data'
 
 interface FilterTagsDropdownProps {
-  selectedTags: Tag[]
-  availableTags: Tag[]
-  onTagSelect: (tagId: string) => void
-  onTagRemove: (tagId: string) => void
   className?: string
 }
 
-export const FilterTagsDropdown: React.FC<FilterTagsDropdownProps> = ({
-  selectedTags,
-  availableTags,
-  onTagSelect,
-  onTagRemove,
-  className,
-}) => {
+export const FilterTagsDropdown: React.FC<FilterTagsDropdownProps> = ({ className }) => {
   const [open, setOpen] = useState(false)
+  const { filters, handleTagSelect, handleTagRemove } = useFilters()
 
   return (
     <div className={cn('relative', className)}>
@@ -41,17 +33,17 @@ export const FilterTagsDropdown: React.FC<FilterTagsDropdownProps> = ({
             <CommandList>
               <CommandEmpty>No tags found.</CommandEmpty>
               <CommandGroup>
-                {availableTags.map((tag) => {
-                  const isSelected = selectedTags.some((t) => t.id === tag.id)
+                {tags.map((tag) => {
+                  const isSelected = filters.selectedTags.some((t) => t.id === tag.id)
                   return (
                     <CommandItem
                       key={tag.id}
                       value={tag.id}
                       onSelect={(value) => {
                         if (isSelected) {
-                          onTagRemove(value)
+                          handleTagRemove(value)
                         } else {
-                          onTagSelect(value)
+                          handleTagSelect(value)
                         }
                       }}
                       className="px-2 py-1.5"

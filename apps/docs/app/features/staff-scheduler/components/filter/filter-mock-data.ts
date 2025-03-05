@@ -4,18 +4,13 @@
 export interface Tag {
   id: string
   name: string
-  color?: string // Optional color for the badge
 }
 
 export const tags: Tag[] = [
-  { id: 'frontend', name: 'Frontend', color: 'blue' },
-  { id: 'backend', name: 'Backend', color: 'green' },
-  { id: 'fullstack', name: 'Full Stack', color: 'purple' },
-  { id: 'design', name: 'Design', color: 'pink' },
-  { id: 'pm', name: 'Project Management', color: 'yellow' },
-  { id: 'qa', name: 'QA', color: 'orange' },
-  { id: 'devops', name: 'DevOps', color: 'cyan' },
-  { id: 'mobile', name: 'Mobile', color: 'red' },
+  { id: 'tag1', name: 'Frontend' },
+  { id: 'tag2', name: 'Backend' },
+  { id: 'tag3', name: 'DevOps' },
+  { id: 'tag4', name: 'Design' },
 ]
 
 // Companies for filtering staff members
@@ -25,11 +20,8 @@ export interface Company {
 }
 
 export const companies: Company[] = [
-  { id: 'acme', name: 'Acme Corp' },
-  { id: 'globex', name: 'Globex' },
-  { id: 'initech', name: 'Initech' },
-  { id: 'umbrella', name: 'Umbrella Corp' },
-  { id: 'stark', name: 'Stark Industries' },
+  { id: 'c1', name: 'Tech Solutions' },
+  { id: 'c2', name: 'Digital Innovations' },
 ]
 
 // Managing Directors for filtering staff members
@@ -39,10 +31,8 @@ export interface ManagingDirector {
 }
 
 export const managingDirectors: ManagingDirector[] = [
-  { id: 'md1', name: 'Jane Smith' },
-  { id: 'md2', name: 'John Doe' },
-  { id: 'md3', name: 'Alice Johnson' },
-  { id: 'md4', name: 'Bob Williams' },
+  { id: 'md1', name: 'John Director' },
+  { id: 'md2', name: 'Sarah Manager' },
 ]
 
 // Tribes for filtering staff members
@@ -52,59 +42,67 @@ export interface Tribe {
 }
 
 export const tribes: Tribe[] = [
-  { id: 'alpha', name: 'Alpha' },
-  { id: 'beta', name: 'Beta' },
-  { id: 'gamma', name: 'Gamma' },
-  { id: 'delta', name: 'Delta' },
-  { id: 'epsilon', name: 'Epsilon' },
+  { id: 't1', name: 'Platform' },
+  { id: 't2', name: 'Product' },
 ]
 
 // Filter state interface
 export interface FilterState {
   personName: string
   project: string
-  selectedTags: Tag[]
   company: Company | null
   managingDirector: ManagingDirector | null
   tribe: Tribe | null
+  selectedTags: Tag[]
 }
 
 // Default filter state
 export const defaultFilterState: FilterState = {
   personName: '',
   project: '',
-  selectedTags: [],
   company: null,
   managingDirector: null,
   tribe: null,
+  selectedTags: [],
 }
 
 // Saved filter interface
-export interface SavedFilter extends FilterState {
+export interface SavedFilter {
   id: string
   name: string
+  personName: string
+  project: string
+  company: Company | null
+  managingDirector: ManagingDirector | null
+  tribe: Tribe | null
+  selectedTags: Tag[]
+}
+
+// Helper function to safely get array item or null
+const safeGet = <T>(arr: T[], index: number): T | null => {
+  return arr[index] || null
 }
 
 // Mock saved filters
-export const savedFilters: SavedFilter[] = [
+export const mockSavedFilters: SavedFilter[] = [
   {
-    id: 'filter1',
+    id: 'sf1',
     name: 'Frontend Team',
     personName: '',
     project: '',
-    selectedTags: [tags[0]], // Frontend tag
     company: null,
-    managingDirector: null,
-    tribe: tribes[0], // Alpha tribe
+    managingDirector: safeGet(managingDirectors, 0),
+    tribe: safeGet(tribes, 0),
+    selectedTags: [tags[0]!], // Non-null assertion is safe here as we know the array has items
   },
   {
-    id: 'filter2',
-    name: 'Acme Projects',
+    id: 'sf2',
+    name: 'Backend Team',
     personName: '',
     project: '',
-    selectedTags: [],
-    company: companies[0], // Acme Corp
+    company: safeGet(companies, 0),
     managingDirector: null,
     tribe: null,
+    selectedTags: [tags[1]!], // Non-null assertion is safe here as we know the array has items
   },
 ]

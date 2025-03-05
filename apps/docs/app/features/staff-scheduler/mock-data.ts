@@ -12,6 +12,11 @@ export interface StaffMember {
   projects: Project[]
   // Aggregated workload computed from projects
   workload: Record<string, number | null>
+  // Fields for filtering
+  companyId: string
+  managingDirectorId: string
+  tribeId: string
+  tags: string[] // Array of tag IDs
 }
 
 // Mock data for the staff scheduler
@@ -19,6 +24,10 @@ export const staffMembers: StaffMember[] = [
   {
     id: '1',
     name: 'Alice Johnson',
+    companyId: 'c1',
+    managingDirectorId: 'md1',
+    tribeId: 't1',
+    tags: ['tag1', 'tag2'],
     projects: [
       {
         id: 'p1',
@@ -57,6 +66,10 @@ export const staffMembers: StaffMember[] = [
   {
     id: '2',
     name: 'Bob Smith',
+    companyId: 'c1',
+    managingDirectorId: 'md2',
+    tribeId: 't2',
+    tags: ['tag2', 'tag3'],
     projects: [
       {
         id: 'p3',
@@ -83,6 +96,10 @@ export const staffMembers: StaffMember[] = [
   {
     id: '3',
     name: 'Charlie Davis',
+    companyId: 'c2',
+    managingDirectorId: 'md1',
+    tribeId: 't1',
+    tags: ['tag1', 'tag4'],
     projects: [
       {
         id: 'p1',
