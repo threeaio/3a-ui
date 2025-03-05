@@ -68,7 +68,9 @@ export const StaffSchedulerTable: React.FC<StaffSchedulerTableProps> = ({ data, 
       columnHelper.display({
         id: 'employee',
         header: () => (
-          <div className="px-10 flex flex-col text-left font-normal text-muted-foreground justify-center">Employee</div>
+          <div className="px-10 h-20 flex flex-col text-left font-normal text-muted-foreground justify-center">
+            Employee
+          </div>
         ),
         cell: ({ row }) => {
           const isStaffMember = 'projects' in row.original

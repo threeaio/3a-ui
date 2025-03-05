@@ -29,7 +29,6 @@ export const TimeUnitToggle: React.FC<TimeUnitToggleProps> = ({ value, onChange,
         <Button
           type="button"
           variant={value === 'month' ? 'default' : 'outline'}
-          size="sm"
           className="rounded-none border-0"
           onClick={() => onChange('month')}
         >
@@ -38,7 +37,6 @@ export const TimeUnitToggle: React.FC<TimeUnitToggleProps> = ({ value, onChange,
         <Button
           type="button"
           variant={value === 'week' ? 'default' : 'outline'}
-          size="sm"
           className="rounded-none border-0"
           onClick={() => onChange('week')}
         >

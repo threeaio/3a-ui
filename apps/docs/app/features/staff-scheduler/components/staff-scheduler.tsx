@@ -6,6 +6,7 @@ import { staffMembers, getWeeklyData } from '../mock-data'
 import { TimeUnitToggle, TimeUnit } from './time-unit-toggle'
 import { StaffSchedulerTable } from './table/staff-scheduler-table'
 import { TableFilterBar, FilterState } from './filter'
+import { TableFilterBarMobile } from './filter/table-filter-bar-mobile'
 
 interface StaffSchedulerProps {
   /**
@@ -40,6 +41,9 @@ export const StaffScheduler: React.FC<StaffSchedulerProps> = ({ className = '' }
         <p className="mt-1 text-muted-foreground">A tool to help you manage your staff and their workload.</p>
       </div>
       <div className="flex justify-end items-center gap-2">
+        <div className="flex xl:hidden  items-center gap-2">
+          <TableFilterBarMobile />
+        </div>
         <TimeUnitToggle value={timeUnit} onChange={setTimeUnit} />
       </div>
 
