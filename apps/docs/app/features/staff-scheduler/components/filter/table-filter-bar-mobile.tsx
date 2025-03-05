@@ -37,7 +37,7 @@ export const TableFilterBarMobile: React.FC = () => {
           <DrawerHeader>
             <DrawerTitle>Filters</DrawerTitle>
           </DrawerHeader>
-          <div className="flex p-5 gap-5 flex-col w-full">
+          <div className="flex px-5 pb-10 gap-5 flex-col w-full">
             <div className="grid md:grid-cols-2 gap-5">
               {/* Search inputs */}
               <InputGroup className="w-full" behavior="distribute">
@@ -107,7 +107,6 @@ export const TableFilterBarMobile: React.FC = () => {
 
             {/* Tags */}
             <div className="space-y-2">
-              <div className="font-medium text-sm">Tags</div>
               <TagFilter />
             </div>
           </div>

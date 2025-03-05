@@ -20,50 +20,49 @@ export const TagFilter: React.FC<TagFilterProps> = ({ className, badgeClassName 
   const { filters, handleTagSelect, handleTagRemove } = useFilters()
 
   return (
-    <div className={cn(className, 'flex flex-row gap-2 items-center')}>
-      <Popover open={open} onOpenChange={setOpen}>
-        <PopoverTrigger asChild>
-          <Button variant="ghost" size="sm" className="flex items-center gap-2" aria-expanded={open}>
-            <Plus className="size-4" />
-            Add Tags
-          </Button>
-        </PopoverTrigger>
-        <PopoverContent className="p-0 w-60" align="start">
-          <Command>
-            <CommandInput placeholder="Search tags..." className="h-10" />
-            <div className="px-2 h-10 flex items-center text-sm font-semibold border-b">Select Tags</div>
-            <CommandList>
-              <CommandEmpty>No tags found.</CommandEmpty>
-              <CommandGroup>
-                {tags.map((tag) => {
-                  const isSelected = filters.selectedTags.some((t) => t.id === tag.id)
-                  return (
-                    <CommandItem
-                      key={tag.id}
-                      value={tag.id}
-                      onSelect={(value) => {
-                        if (isSelected) {
-                          handleTagRemove(value)
-                        } else {
-                          handleTagSelect(value)
-                        }
-                      }}
-                      className="px-2 py-1.5"
-                    >
-                      <div className="flex items-center justify-between w-full">
-                        <span className="text-sm">{tag.name}</span>
-                        {isSelected && <Check className="size-4" />}
-                      </div>
-                    </CommandItem>
-                  )
-                })}
-              </CommandGroup>
-            </CommandList>
-          </Command>
-        </PopoverContent>
-      </Popover>
-
-      <div className={cn('flex flex-wrap gap-2', badgeClassName)}>
+    <div className={cn(className)}>
+      <div className="flex flex-wrap gap-2 items-center">
+        <Popover open={open} onOpenChange={setOpen}>
+          <PopoverTrigger asChild>
+            <Badge variant="outline" className="hover:bg-muted cursor-pointer text-xs flex items-center gap-1">
+              <Plus className="size-3" />
+              Add Tags
+            </Badge>
+          </PopoverTrigger>
+          <PopoverContent className="p-0 w-60" align="start">
+            <Command>
+              <CommandInput placeholder="Search tags..." className="h-10" />
+              <div className="px-2 h-10 flex items-center text-sm font-semibold border-b">Select Tags</div>
+              <CommandList>
+                <CommandEmpty>No tags found.</CommandEmpty>
+                <CommandGroup>
+                  {tags.map((tag) => {
+                    const isSelected = filters.selectedTags.some((t) => t.id === tag.id)
+                    return (
+                      <CommandItem
+                        key={tag.id}
+                        value={tag.id}
+                        onSelect={(value) => {
+                          if (isSelected) {
+                            handleTagRemove(value)
+                          } else {
+                            handleTagSelect(value)
+                          }
+                        }}
+                        className="px-2 py-1.5"
+                      >
+                        <div className="flex items-center justify-between w-full">
+                          <span className="text-sm">{tag.name}</span>
+                          {isSelected && <Check className="size-4" />}
+                        </div>
+                      </CommandItem>
+                    )
+                  })}
+                </CommandGroup>
+              </CommandList>
+            </Command>
+          </PopoverContent>
+        </Popover>
         {filters.selectedTags.length > 0 ? (
           filters.selectedTags.map((tag) => (
             <Badge key={tag.id} className="text-xs flex items-center gap-1">
