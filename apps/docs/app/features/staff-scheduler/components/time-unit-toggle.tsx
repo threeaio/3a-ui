@@ -24,7 +24,7 @@ interface TimeUnitToggleProps {
  */
 export const TimeUnitToggle: React.FC<TimeUnitToggleProps> = ({ value, onChange, className = '' }) => {
   return (
-    <div className={`flex items-center gap-2 ${className}`}>
+    <div className={`flex items-center gap-2 py-5 ${className}`}>
       <div className="flex rounded-md overflow-hidden border border-border">
         <Button
           type="button"

@@ -4,7 +4,7 @@ import { Input } from '@3a-ui/ui/forms'
 import { Select, SelectContent, SelectTrigger, SelectValue, SelectItem } from '@3a-ui/ui/forms'
 import { Label } from '@3a-ui/ui/forms'
 import { Button, ButtonGroup } from '@3a-ui/ui/button'
-import { Search, Plus } from 'lucide-react'
+import { Search, Plus, Star } from 'lucide-react'
 import { RowVisualizer } from '../../../../ui/measure-visualizer/row-indicator'
 import { InputGroup } from '@3a-ui/ui/forms'
 import { heightClasses, paddingClasses } from '../../../../ui-config'
@@ -35,10 +35,10 @@ export const SingleRowForm: React.FC = () => {
           </Select>
           <Input placeholder="Search..." icon={<Search className="h-4 w-4" />} clearable />
         </InputGroup>
-        <ButtonGroup variant="outline">
+        <ButtonGroup>
           <Button type="submit">Search</Button>
           <Button size="icon">
-            <Plus className="size-4" />
+            <Star className="size-4" />
           </Button>
         </ButtonGroup>
       </form>

@@ -1,11 +1,10 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Button } from '@3a.solutions/ui/button'
 import { Check, Plus, X } from 'lucide-react'
 import { cn } from '@3a.solutions/ui/lib/utils'
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@3a-ui/ui/command'
-import { Popover, PopoverContent, PopoverTrigger } from '@3a-ui/ui/popover'
+import { Popover, PopoverContent, PopoverTrigger } from '@3a.solutions/ui/popover'
 import { useFilters } from './filter-context'
 import { tags } from './filter-mock-data'
 import { Badge } from '@3a.solutions/ui/badge'
@@ -15,7 +14,7 @@ interface TagFilterProps {
   badgeClassName?: string
 }
 
-export const TagFilter: React.FC<TagFilterProps> = ({ className, badgeClassName }) => {
+export const TagFilter: React.FC<TagFilterProps> = ({ className }) => {
   const [open, setOpen] = useState(false)
   const { filters, handleTagSelect, handleTagRemove } = useFilters()
 
@@ -32,7 +31,7 @@ export const TagFilter: React.FC<TagFilterProps> = ({ className, badgeClassName 
           <PopoverContent className="p-0 w-60" align="start">
             <Command>
               <CommandInput placeholder="Search tags..." className="h-10" />
-              <div className="px-2 h-10 flex items-center text-sm font-semibold border-b">Select Tags</div>
+              <div className="px-2 h-10 flex items-center text-sm text-muted-foreground pl-3">Select Tags</div>
               <CommandList>
                 <CommandEmpty>No tags found.</CommandEmpty>
                 <CommandGroup>

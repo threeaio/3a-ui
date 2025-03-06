@@ -12,7 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@3a.solutions/ui/forms'
-import { RotateCcw, User, File, ChevronDown, ChevronUp, Tag as TagIcon, X } from 'lucide-react'
+import { RotateCcw, User, File, ChevronDown, ChevronUp, Tag as TagIcon } from 'lucide-react'
 import { Badge } from '@3a.solutions/ui/badge'
 
 import { companies, managingDirectors, tribes } from './filter-mock-data'
@@ -37,7 +37,6 @@ export const TableFilterBar: React.FC<TableFilterBarProps> = ({ className = '' }
     isExpanded,
     setIsExpanded,
     handleFilterChange,
-    handleTagRemove,
     handleCompanySelect,
     handleDirectorSelect,
     handleTribeSelect,
@@ -52,7 +51,7 @@ export const TableFilterBar: React.FC<TableFilterBarProps> = ({ className = '' }
   return (
     <div
       className={cn(
-        'px-2 flex flex-col justify-start rounded-xl bg-muted transition-all duration-240 ease-in-expo overflow-hidden',
+        'flex flex-col  pr-1 justify-start  border-b border-border transition-all duration-240 ease-in-expo overflow-hidden',
         isExpanded ? 'xl:h-24' : 'xl:h-13 delay-100',
         className,
       )}
@@ -161,7 +160,7 @@ export const TableFilterBar: React.FC<TableFilterBarProps> = ({ className = '' }
       {/* Second row with tag-related components */}
       <div
         className={cn(
-          'xl:h-13 pb-2 flex items-center gap-5',
+          'xl:h-13 pb-4 flex items-center gap-5',
           'transition-opacity duration-300  ease-in-out',
           isExpanded ? 'opacity-100 delay-200' : 'opacity-0 ',
         )}

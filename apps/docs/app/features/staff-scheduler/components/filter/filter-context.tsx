@@ -11,7 +11,7 @@ import {
   tags,
   mockSavedFilters,
 } from './filter-mock-data'
-import { StaffMember } from '../table/staff-scheduler-table'
+import { StaffMember } from '../../mock-data'
 
 interface FilterContextType {
   filters: FilterState

@@ -92,7 +92,7 @@ export const StaffSchedulerTable: React.FC<StaffSchedulerTableProps> = ({ data, 
         },
         meta: {
           className:
-            'sticky left-0 z-10 bg-background border-r border-border w-full md:w-60 md:min-w-60 xl:w-80 xl:min-w-80',
+            'sticky left-0 z-10 bg-background md:border-r border-border w-full md:w-60 md:min-w-60 xl:w-80 xl:min-w-80',
         } as ColumnMeta,
       }),
     ]
@@ -202,8 +202,10 @@ export const StaffSchedulerTable: React.FC<StaffSchedulerTableProps> = ({ data, 
                 <td colSpan={table.getAllColumns().length} className="h-[400px]">
                   <div className="flex flex-col items-center justify-center h-full gap-4 text-muted-foreground sticky w-screen inset-0">
                     <SearchX className="w-16 h-16" />
-                    <p className="text-lg font-medium">No results found</p>
-                    <p className="text-sm">Try adjusting your filters to find what you're looking for</p>
+                    <p className="text-destructive/30">No results found</p>
+                    <p className="text-muted-foreground/30 text-sm">
+                      Try adjusting your filters to find what you're looking for
+                    </p>
                   </div>
                 </td>
               </tr>
@@ -235,7 +237,7 @@ export const StaffSchedulerTable: React.FC<StaffSchedulerTableProps> = ({ data, 
                     {/* Add a spacer row after the last row of each group */}
                     {isLastRowOfGroup && (
                       <tr className="h-5">
-                        <td className="border-r"></td>
+                        <td className="md:border-r"></td>
                         <td colSpan={row.getVisibleCells().length - 1}></td>
                       </tr>
                     )}

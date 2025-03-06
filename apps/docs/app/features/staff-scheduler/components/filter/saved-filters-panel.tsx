@@ -48,7 +48,7 @@ export const SavedFiltersPanel: React.FC<SavedFiltersPanelProps> = ({ className 
           </PopoverTrigger>
           <PopoverContent className="p-0 w-60" align="end">
             <Command>
-              <div className="px-2 h-10 flex items-center text-sm font-semibold">Saved Filters</div>
+              <div className="px-2 h-10 flex items-center text-sm text-muted-foreground pl-3">Saved Filters</div>
               <CommandList className="max-h-60">
                 <CommandEmpty>No saved filters found.</CommandEmpty>
                 <CommandGroup>
