@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@3a.solutions/ui": "workspace:*",
+    "@formkit/auto-animate": "^0.8.2",
     "@tanstack/react-table": "^8.21.2",
     "lucide-react": "^0.476.0",
     "motion": "^12.4.9",
