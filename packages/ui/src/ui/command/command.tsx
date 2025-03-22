@@ -120,6 +120,14 @@ function CommandShortcut({ className, ...props }: React.ComponentProps<'span'>) 
   )
 }
 
+function CommandHeading({ className, children, ...props }: React.ComponentProps<'div'>) {
+  return (
+    <div className="text-muted-foreground flex h-10 items-center px-2 pl-3 text-sm" {...props}>
+      {children}
+    </div>
+  )
+}
+
 export {
   Command,
   CommandDialog,
@@ -130,4 +138,5 @@ export {
   CommandItem,
   CommandShortcut,
   CommandSeparator,
+  CommandHeading,
 }

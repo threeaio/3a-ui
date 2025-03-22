@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { cn } from '@3a.solutions/ui/lib/utils'
 import { Button, ButtonGroup } from '@3a.solutions/ui/button'
 import { Check, ChevronDownIcon, Settings, Star } from 'lucide-react'
-import { Command, CommandEmpty, CommandGroup, CommandItem, CommandList } from '@3a.solutions/ui/command'
+import { Command, CommandEmpty, CommandGroup, CommandHeading, CommandItem, CommandList } from '@3a.solutions/ui/command'
 import { Popover, PopoverContent, PopoverTrigger } from '@3a.solutions/ui/popover'
 import { useFilters } from './filter-context'
 import { mockSavedFilters } from './filter-mock-data'
@@ -48,7 +48,7 @@ export const SavedFiltersPanel: React.FC<SavedFiltersPanelProps> = ({ className 
           </PopoverTrigger>
           <PopoverContent className="p-0 w-60" align="end">
             <Command>
-              <div className="px-2 h-10 flex items-center text-sm text-muted-foreground pl-3">Saved Filters</div>
+              <CommandHeading>Saved Filters</CommandHeading>
               <CommandList className="max-h-60">
                 <CommandEmpty>No saved filters found.</CommandEmpty>
                 <CommandGroup>

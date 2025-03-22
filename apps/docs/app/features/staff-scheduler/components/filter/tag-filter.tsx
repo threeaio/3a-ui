@@ -3,7 +3,15 @@
 import React, { useState } from 'react'
 import { Check, Plus, X } from 'lucide-react'
 import { cn } from '@3a.solutions/ui/lib/utils'
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@3a-ui/ui/command'
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandHeading,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from '@3a-ui/ui/command'
 import { Popover, PopoverContent, PopoverTrigger } from '@3a.solutions/ui/popover'
 import { useFilters } from './filter-context'
 import { tags } from './filter-mock-data'
@@ -31,7 +39,7 @@ export const TagFilter: React.FC<TagFilterProps> = ({ className }) => {
           <PopoverContent className="p-0 w-60" align="start">
             <Command>
               <CommandInput placeholder="Search tags..." className="h-10" />
-              <div className="px-2 h-10 flex items-center text-sm text-muted-foreground pl-3">Select Tags</div>
+              <CommandHeading>Select Tags</CommandHeading>
               <CommandList>
                 <CommandEmpty>No tags found.</CommandEmpty>
                 <CommandGroup>
