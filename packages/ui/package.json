@@ -11,6 +11,7 @@
     "./styles.css": "./src/styles.css",
     "./button": "./src/ui/button/index.ts",
     "./badge": "./src/ui/badge/index.ts",
+    "./badge-select": "./src/ui/badge-select/index.ts",
     "./forms": "./src/ui/forms/index.ts",
     "./tooltip": "./src/ui/tooltip/index.ts",
     "./slider": "./src/ui/slider/index.ts",

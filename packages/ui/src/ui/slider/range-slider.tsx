@@ -48,9 +48,6 @@ function RangeSlider({
   const [internalValues, setInternalValues] = React.useState<[number, number]>(value ?? defaultValue)
   const values = value ?? internalValues
 
-  // Define constants for styling consistency with the native Slider
-  const THUMB_SIZE = 16 // 4rem in pixels (size-4 class)
-
   const rangerInstance = useRanger({
     getRangerElement: () => trackRef.current,
     values: value ? value : values,
@@ -98,7 +95,10 @@ function RangeSlider({
   return (
     <div className="relative">
       <div
-        className={cn('relative flex w-full touch-none select-none items-center data-[disabled]:opacity-50', className)}
+        className={cn(
+          'relative flex w-full min-w-[200px] touch-none select-none items-center data-[disabled]:opacity-50',
+          className,
+        )}
       >
         {/* Track container with same styling as native Slider */}
         <div ref={trackRef} className="bg-default/10 relative h-1 w-full overflow-hidden rounded-full">
