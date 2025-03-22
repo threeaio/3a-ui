@@ -2,9 +2,10 @@
 
 import * as React from 'react'
 import { ChevronDownIcon } from 'lucide-react'
-import { Popover, PopoverContent, PopoverTrigger } from '@3a.solutions/ui/popover'
-import { Badge, badgeVariants } from '@3a.solutions/ui/badge'
+import { badgeVariants } from '@3a.solutions/ui/badge'
 import { cn } from '@3a.solutions/ui/lib/utils'
+import * as SelectPrimitive from '@radix-ui/react-select'
+import { Select, SelectContent, SelectItem, SelectValue } from '@3a.solutions/ui/forms'
 
 export interface BadgeSelectOption {
   value: string
@@ -27,7 +28,7 @@ export interface BadgeSelectProps {
 export function BadgeSelect({
   label,
   options,
-  value: controlledValue,
+  value,
   defaultValue,
   onValueChange,
   placeholder = '-',
@@ -36,13 +37,10 @@ export function BadgeSelect({
   contentClassName,
   disabled = false,
 }: BadgeSelectProps) {
-  const [open, setOpen] = React.useState(false)
-  const [internalValue, setInternalValue] = React.useState<string | undefined>(defaultValue)
   const [selectedLabel, setSelectedLabel] = React.useState<string>(placeholder)
   const measureRef = React.useRef<HTMLButtonElement>(null)
   const newSelectedLabelRef = React.useRef<HTMLSpanElement>(null)
   const [currentWidth, setCurrentWidth] = React.useState<string>('auto')
-  const value = controlledValue !== undefined ? controlledValue : internalValue
 
   // Initial width calculation using useLayoutEffect to ensure it happens before paint
   React.useLayoutEffect(() => {
@@ -53,13 +51,15 @@ export function BadgeSelect({
     }
   }, [selectedLabel])
 
-  // We can now remove the duplicate calculation in the first useEffect
+  // Update selected label when value changes
   React.useEffect(() => {
-    const newLabel = value ? options.find((option) => option.value === value)?.label || placeholder : placeholder
+    const newLabel = value
+      ? options.find((option) => option.value === value)?.label || placeholder
+      : defaultValue
+        ? options.find((option) => option.value === defaultValue)?.label || placeholder
+        : placeholder
     setSelectedLabel(newLabel)
-
-    // Width calculation is now handled by useLayoutEffect when selectedLabel changes
-  }, [value, options, placeholder])
+  }, [value, defaultValue, options, placeholder])
 
   // Handle value change with animation
   const handleValueChange = React.useCallback(
@@ -74,13 +74,8 @@ export function BadgeSelect({
         setCurrentWidth(width)
       }
 
-      setInternalValue(newValue)
-
       // Trigger callback
       onValueChange?.(newValue)
-
-      // Close popover
-      setOpen(false)
     },
     [options, placeholder, onValueChange],
   )
@@ -111,47 +106,37 @@ export function BadgeSelect({
   return (
     <div className="relative">
       {measureSpan}
-      <Popover open={open} onOpenChange={!disabled ? setOpen : undefined}>
-        <PopoverTrigger asChild disabled={disabled}>
-          <button
-            type="button"
-            className={cn(
-              badgeVariants({ variant }),
-              'select-none cursor-pointer pr-1.5 pl-3 text-left',
-              disabled && 'opacity-50 cursor-not-allowed',
-              className,
-            )}
-            style={{
-              width: currentWidth,
-              transition: 'width 150ms ease-out',
-            }}
-          >
-            <div className="flex items-center gap-1.5 w-full text-xs">
-              <div className="flex-1 min-w-0">
-                <span className="text-inherit opacity-50 mr-1 overflow-hidden">{label}:</span>
-                <span>{selectedLabel}</span>
-              </div>
-              <ChevronDownIcon className="size-3 shrink-0" />
+      <Select value={value} defaultValue={defaultValue} onValueChange={handleValueChange} disabled={disabled}>
+        <SelectPrimitive.Trigger
+          className={cn(
+            'flex items-center gap-1.5 w-full text-xs text-left justify-start',
+            badgeVariants({ variant }),
+            'select-none cursor-pointer pr-1.5 pl-3 min-h-0 py-1.5',
+            disabled && 'opacity-50 cursor-not-allowed',
+            'border-none shadow-none',
+            className,
+          )}
+          style={{
+            width: currentWidth,
+            transition: 'width 150ms ease-out',
+          }}
+        >
+          <div className="flex items-center gap-1.5 w-full text-xs text-left">
+            <div className="flex-1 min-w-0">
+              <span className="text-inherit opacity-50 mr-1 overflow-hidden">{label}:</span>
+              <SelectValue placeholder={placeholder} className="inline" />
             </div>
-          </button>
-        </PopoverTrigger>
-        <PopoverContent className={cn('w-auto min-w-[180px] p-0', contentClassName)} align="start">
-          <div className="py-1">
-            {options.map((option) => (
-              <div
-                key={option.value}
-                className={cn(
-                  'flex items-center px-3 py-1.5 text-sm cursor-pointer hover:bg-accent hover:text-accent-foreground',
-                  value === option.value && 'bg-accent/50',
-                )}
-                onClick={() => handleValueChange(option.value)}
-              >
-                {option.label}
-              </div>
-            ))}
+            <ChevronDownIcon className="size-3 shrink-0 ml-auto" />
           </div>
-        </PopoverContent>
-      </Popover>
+        </SelectPrimitive.Trigger>
+        <SelectContent className={contentClassName} align="start">
+          {options.map((option) => (
+            <SelectItem key={option.value} value={option.value}>
+              {option.label}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
     </div>
   )
 }

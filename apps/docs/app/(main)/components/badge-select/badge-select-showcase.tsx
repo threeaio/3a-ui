@@ -6,6 +6,7 @@ import { StyleguideSection } from '@/ui/styleguide-section'
 import { StyleguideRender } from '@/ui/styleguide-render'
 import StyleguideExplanation from '@/ui/styleguide-explanation'
 import { Button } from '@3a-ui/ui/button'
+import { Badge } from '@3a.solutions/ui/badge'
 
 export const BadgeSelectShowcase: React.FC = () => {
   const [status, setStatus] = React.useState('active')
@@ -69,20 +70,21 @@ export const BadgeSelectShowcase: React.FC = () => {
 
       <StyleguideRender label="Basic Usage" classNameContent="flex flex-col gap-5">
         <div className="flex gap-2 flex-wrap">
+          <Badge>Active</Badge>
           <BadgeSelect label="Status" options={statusOptions} value={status} onValueChange={setStatus} />
           <BadgeSelect label="Priority" options={priorityOptions} value={priority} onValueChange={setPriority} />
         </div>
         <div className="flex gap-2">
-          <Button size="sm" onClick={() => setStatus('active')}>
+          <Button variant="link" size="sm" onClick={() => setStatus('active')}>
             Set Active
           </Button>
-          <Button size="sm" onClick={() => setStatus('inactive')}>
+          <Button variant="link" size="sm" onClick={() => setStatus('inactive')}>
             Set Inactive
           </Button>
-          <Button size="sm" onClick={() => setPriority('low')}>
+          <Button variant="link" size="sm" onClick={() => setPriority('low')}>
             Set Low Priority
           </Button>
-          <Button size="sm" onClick={() => setPriority('high')}>
+          <Button variant="link" size="sm" onClick={() => setPriority('high')}>
             Set High Priority
           </Button>
         </div>
@@ -97,8 +99,8 @@ export const BadgeSelectShowcase: React.FC = () => {
       </StyleguideRender>
 
       <StyleguideRender label="With Placeholder" classNameContent="flex gap-2 flex-wrap">
-        <BadgeSelect label="Environment" options={environmentOptions} placeholder="Select..." />
-        <BadgeSelect label="Environment" options={environmentOptions} placeholder="Choose one" variant="primary" />
+        <BadgeSelect label="Environment" options={environmentOptions} placeholder="Please select" />
+        <BadgeSelect label="Environment" options={environmentOptions} placeholder="&mdash;" variant="primary" />
       </StyleguideRender>
 
       <StyleguideRender label="States" classNameContent="flex gap-2 flex-wrap">

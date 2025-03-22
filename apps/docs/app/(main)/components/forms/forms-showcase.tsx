@@ -92,7 +92,7 @@ const FormsShowcase: React.FC = () => {
 
           <div className="flex flex-col gap-2">
             <Label htmlFor="error">Input with Error</Label>
-            <Input id="error" placeholder="Error state" className="border-destructive" />
+            <Input aria-invalid id="error" placeholder="Error state" className="border-destructive" />
             <p className="text-sm text-destructive">This field is required</p>
           </div>
         </div>
