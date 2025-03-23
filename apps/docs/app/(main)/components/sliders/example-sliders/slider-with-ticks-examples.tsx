@@ -12,6 +12,10 @@ export const SliderWithTicksExamples: React.FC = () => {
   // Custom formatter to display values with temperature symbol
   const formatTemperature = (value: number) => `${value}°C`
 
+  const getBasicRangeTickLabel = (value: number, min: number, max: number) => {
+    return value == min || value == max ? value.toString() : ''
+  }
+
   return (
     <StyleguideRender label="Single Slider with Ticks">
       <div className="max-w-2xl space-y-20">
@@ -26,7 +30,10 @@ export const SliderWithTicksExamples: React.FC = () => {
               max={100}
               step={10}
               showTicks
+              showTickLabels
+              getTickLabel={(value) => getBasicRangeTickLabel(value, 0, 100)}
               value={[basicValue]}
+              tickLabelClassName="font-mono"
               onValueChange={(values) => setBasicValue(values[0] || 0)}
             />
           </div>
@@ -46,6 +53,7 @@ export const SliderWithTicksExamples: React.FC = () => {
               tickCount={6} // Specific number of ticks
               showTickLabels
               value={[customTicksValue]}
+              tickLabelClassName="font-mono"
               onValueChange={(values) => setCustomTicksValue(values[0] || 0)}
             />
           </div>
@@ -66,6 +74,7 @@ export const SliderWithTicksExamples: React.FC = () => {
               showTickLabels
               getTickLabel={formatTemperature}
               value={[temperatureValue]}
+              tickLabelClassName="font-mono"
               onValueChange={(values) => setTemperatureValue(values[0] || 22)}
             />
           </div>

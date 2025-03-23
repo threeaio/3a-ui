@@ -13,7 +13,7 @@ export const SingleRowForm: React.FC = () => {
   return (
     <RowVisualizer rows={0} className="w-full">
       <form
-        className={`flex items-center gap-2 border rounded-xl ${heightClasses[0]} ${paddingClasses.horizontal[1]} bg-background`}
+        className={`flex items-center gap-2 rounded-xl ${heightClasses[0]} ${paddingClasses.horizontal[1]} bg-background`}
       >
         <div className="flex items-center gap-2">
           <Label htmlFor="rowNumber" className="text-sm whitespace-nowrap pl-2">
@@ -37,7 +37,7 @@ export const SingleRowForm: React.FC = () => {
         </InputGroup>
         <ButtonGroup>
           <Button type="submit">Search</Button>
-          <Button size="icon">
+          <Button size="icon" className="border-l border-input/20">
             <Star className="size-4" />
           </Button>
         </ButtonGroup>

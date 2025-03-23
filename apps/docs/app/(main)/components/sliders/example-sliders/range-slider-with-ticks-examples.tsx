@@ -21,6 +21,10 @@ export const RangeSliderWithTicksExamples: React.FC = () => {
     return `${adjustedHour}${minute > 0 ? `:${minute.toString().padStart(2, '0')}` : ''} ${period}`
   }
 
+  const getBasicRangeTickLabel = (value: number, min: number, max: number) => {
+    return value == min || value == max ? value.toString() : ''
+  }
+
   return (
     <StyleguideRender label="Range Slider with Ticks">
       <div className="max-w-2xl space-y-20">
@@ -31,7 +35,17 @@ export const RangeSliderWithTicksExamples: React.FC = () => {
             <Label htmlFor="basic-range-slider">
               Range: {basicRange[0]} - {basicRange[1]}
             </Label>
-            <RangeSlider min={0} max={100} step={10} showTicks value={basicRange} onChange={setBasicRange} />
+            <RangeSlider
+              min={0}
+              max={100}
+              step={10}
+              showTicks
+              showTickLabels
+              getTickLabel={(value) => getBasicRangeTickLabel(value, 0, 100)}
+              value={basicRange}
+              tickLabelClassName="font-mono"
+              onChange={setBasicRange}
+            />
           </div>
         </div>
 
@@ -50,6 +64,7 @@ export const RangeSliderWithTicksExamples: React.FC = () => {
               tickCount={6}
               showTickLabels
               getTickLabel={formatPrice}
+              tickLabelClassName="font-mono"
               value={priceRange}
               onChange={setPriceRange}
             />
@@ -71,6 +86,7 @@ export const RangeSliderWithTicksExamples: React.FC = () => {
               tickCount={7}
               showTickLabels
               getTickLabel={formatTime}
+              tickLabelClassName="font-mono"
               value={timeRange}
               onChange={setTimeRange}
             />

@@ -87,7 +87,7 @@ const SliderShowcase: React.FC = () => {
           <div className="flex flex-col gap-5">
             <Label>Price Range (€0 - €1000)</Label>
             <RangeSlider min={0} max={1000} step={10} defaultValue={[200, 600]} />
-            <div className="text-muted-foreground flex justify-between text-sm">
+            <div className=" flex justify-between text-xs font-mono">
               <span>€0</span>
               <span>€1000</span>
             </div>

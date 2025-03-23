@@ -22,6 +22,7 @@ export function RangeSliderWithConstraintsExample() {
             leftHandleMax={-1} // Left handle cannot go above -1°C
             rightHandleMin={5} // Right handle cannot go below 5°C
             showTicks
+            tickLabelClassName="font-mono"
             tickCount={7}
             showTickLabels
             getTickLabel={(value) => `${value}°C`}

@@ -30,7 +30,7 @@ export const RangeSliderExample: React.FC = () => {
                 <Label htmlFor="price-filter" className="text-sm">
                   Price Range
                 </Label>
-                <span className="text-sm font-medium">
+                <span className="text-sm font-mono">
                   €{priceRange[0]} - €{priceRange[1]}
                 </span>
               </div>
@@ -43,7 +43,7 @@ export const RangeSliderExample: React.FC = () => {
                 onChange={(values) => setPriceRange(values)}
               />
 
-              <div className="text-muted-foreground flex justify-between pt-1 text-xs">
+              <div className="text-muted-foreground flex justify-between pt-1 text-xs font-mono">
                 <span>€0</span>
                 <span>€1000</span>
               </div>

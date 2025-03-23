@@ -16,8 +16,11 @@ alwaysApply: true
   - [Button Components](#button-components)
   - [Form Components](#form-components)
   - [Badge Component](#badge-component)
+  - [BadgeSelect Component](#badgeselect-component)
   - [Tooltip Component](#tooltip-component)
   - [Slider Component](#slider-component)
+  - [RangeSlider Component](#rangeslider-component)
+  - [Switch Component](#switch-component)
 - [Layout Patterns](#layout-patterns)
 - [Responsive Design](#responsive-design)
 - [Accessibility Considerations](#accessibility-considerations)
@@ -34,8 +37,11 @@ The library exports these main component categories:
 1. **Button Components**: `Button`, `ButtonGroup`
 2. **Form Components**: `Input`, `Select`, `Checkbox`, `RadioGroup`, `Label`, `Textarea`, `InputGroup`
 3. **Badge Component**: `Badge`
-4. **Tooltip Components**: `Tooltip`, `TooltipContent`, `TooltipProvider`, `TooltipTrigger`
-5. **Slider Component**: `Slider`
+4. **BadgeSelect Component**: `BadgeSelect`
+5. **Tooltip Components**: `Tooltip`, `TooltipContent`, `TooltipProvider`, `TooltipTrigger`
+6. **Slider Component**: `Slider`
+7. **RangeSlider Component**: `RangeSlider`, `SliderTicks`
+8. **Switch Component**: `Switch`
 
 ## How to Import Components
 
@@ -63,11 +69,19 @@ import {
 // Badge component
 import { Badge } from '@3a-ui/ui/badge'
 
+// BadgeSelect component
+import { BadgeSelect } from '@3a-ui/ui/badge-select'
+
 // Tooltip components
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@3a-ui/ui/tooltip'
 
-// Slider component
+// Slider components
 import { Slider } from '@3a-ui/ui/slider'
+import { RangeSlider } from '@3a-ui/ui/slider/range-slider'
+import { SliderTicks } from '@3a-ui/ui/slider/slider-ticks'
+
+// Switch component
+import { Switch } from '@3a-ui/ui/switch'
 
 // Utility functions
 import { cn } from '@3a-ui/ui/lib/utils'
@@ -155,7 +169,32 @@ Form components for collecting user input:
   icon={<Search className="size-4" />}
   clearable
 />
-
+      <StyleguideExplanation>
+        <p className="text-muted-foreground max-w-2xl leading-tight mb-5">
+          The BadgeSelect component combines the visual appearance of a badge with the functionality of a select
+          dropdown. It features:
+        </p>
+        <ul className="list-disc pl-5 text-muted-foreground max-w-2xl leading-tight mb-5 space-y-2">
+          <li>
+            <span className="text-foreground font-medium">Compact Design:</span> Takes minimal space while maintaining
+            functionality
+          </li>
+          <li>
+            <span className="text-foreground font-medium">Smooth Animations:</span> Elegant transitions when changing
+            values
+          </li>
+          <li>
+            <span className="text-foreground font-medium">Badge Variants:</span> Supports all badge color variants
+          </li>
+          <li>
+            <span className="text-foreground font-medium">Controlled & Uncontrolled:</span> Can be used in both modes
+          </li>
+          <li>
+            <span className="text-foreground font-medium">Accessibility:</span> Fully keyboard navigable and screen
+            reader friendly
+          </li>
+        </ul>
+      </StyleguideExplanation>
 // Input group
 <InputGroup>
   <Select>
@@ -208,6 +247,71 @@ Badges for displaying status or counts:
 <Badge variant="secondary">Count: 5</Badge>
 ```
 
+### BadgeSelect Component
+
+BadgeSelect combines the visual appearance of a badge with select dropdown functionality:
+
+```tsx
+// Define options
+const statusOptions = [
+  { value: 'active', label: 'Active' },
+  { value: 'pending', label: 'Pending' },
+  { value: 'completed', label: 'Completed' },
+]
+
+// Basic usage
+<BadgeSelect
+  label="Status"
+  options={statusOptions}
+  defaultValue="active"
+/>
+
+// With different variants
+<BadgeSelect
+  label="Priority"
+  options={priorityOptions}
+  variant="primary"
+/>
+
+<BadgeSelect
+  label="Status"
+  options={statusOptions}
+  variant="destructive"
+/>
+
+// Controlled component
+const [status, setStatus] = useState('active')
+
+<BadgeSelect
+  label="Status"
+  options={statusOptions}
+  value={status}
+  onValueChange={setStatus}
+/>
+
+// Disabled state
+<BadgeSelect
+  label="Status"
+  options={statusOptions}
+  disabled
+/>
+
+// Custom class for dropdown content
+<BadgeSelect
+  label="Status"
+  options={statusOptions}
+  contentClassName="w-40"
+/>
+```
+
+Key features:
+
+- Compact design while maintaining functionality
+- Smooth width animations when changing values
+- Supports all badge color variants
+- Can be used in both controlled and uncontrolled modes
+- Fully accessible (keyboard navigable and screen reader friendly)
+
 ### Tooltip Component
 
 Tooltips for providing additional information:
@@ -231,6 +335,93 @@ Slider for selecting values from a range:
 
 ```tsx
 <Slider defaultValue={[50]} min={0} max={100} step={1} className="w-64" />
+```
+
+### RangeSlider Component
+
+RangeSlider for selecting a range of values:
+
+```tsx
+// Basic range slider
+<RangeSlider
+  min={0}
+  max={100}
+  step={1}
+  defaultValue={[25, 75]}
+/>
+
+// With handle constraints
+<RangeSlider
+  min={0}
+  max={100}
+  defaultValue={[25, 75]}
+  leftHandleMax={50}  // Left handle can't go beyond 50
+  rightHandleMin={50} // Right handle can't go below 50
+/>
+
+// Controlled component
+const [range, setRange] = useState<[number, number]>([25, 75])
+
+<RangeSlider
+  min={0}
+  max={100}
+  value={range}
+  onChange={setRange}
+/>
+
+// With ticks
+<RangeSlider
+  min={0}
+  max={100}
+  defaultValue={[25, 75]}
+  showTicks
+  tickCount={5}
+  showTickLabels
+/>
+
+// Custom tick labels
+<RangeSlider
+  min={0}
+  max={100}
+  defaultValue={[25, 75]}
+  showTicks
+  tickCount={5}
+  showTickLabels
+  getTickLabel={(value) => `$${value}`}
+/>
+```
+
+The SliderTicks component can also be used independently:
+
+```tsx
+<SliderTicks min={0} max={100} step={10} tickCount={5} showTickLabels getTickLabel={(value) => `${value}%`} />
+```
+
+### Switch Component
+
+Switch for toggling between two states:
+
+```tsx
+// Basic switch
+<Switch />
+
+// With label
+<div className="flex items-center gap-2">
+  <Switch id="airplane-mode" />
+  <Label htmlFor="airplane-mode">Airplane Mode</Label>
+</div>
+
+// Controlled switch
+const [enabled, setEnabled] = useState(false)
+
+<Switch
+  checked={enabled}
+  onCheckedChange={setEnabled}
+/>
+
+// Disabled state
+<Switch disabled />
+<Switch checked disabled />
 ```
 
 ## Layout Patterns

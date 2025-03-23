@@ -15,7 +15,11 @@ export const BasicSliderExample: React.FC = () => {
     <StyleguideRender label="Basic Slider Eaxample">
       <div className="flex items-center gap-5">
         <Button size="icon" variant="ghost" onClick={() => setMuted(!muted)} aria-label={muted ? 'Unmute' : 'Mute'}>
-          {muted ? <VolumeX className="text-muted-foreground size-6" /> : <Volume2 className="size-6" />}
+          {muted ? (
+            <VolumeX strokeWidth={1.5} className="text-muted-foreground size-6" />
+          ) : (
+            <Volume2 strokeWidth={1.5} className="size-6" />
+          )}
         </Button>
 
         <div className="flex flex-1 flex-col gap-5">
@@ -23,7 +27,7 @@ export const BasicSliderExample: React.FC = () => {
             <Label htmlFor="volume-slider" className="text-sm">
               Volume
             </Label>
-            <span className="text-sm">{volume}%</span>
+            <span className="text-sm font-mono">{volume}%</span>
           </div>
           <Slider
             id="volume-slider"

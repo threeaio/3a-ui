@@ -70,22 +70,22 @@ export const BadgeSelectShowcase: React.FC = () => {
 
       <StyleguideRender label="Basic Usage" classNameContent="flex flex-col gap-5">
         <div className="flex gap-2 flex-wrap">
-          <Badge>Active</Badge>
+          <Badge>Regular Badge</Badge>
           <BadgeSelect label="Status" options={statusOptions} value={status} onValueChange={setStatus} />
           <BadgeSelect label="Priority" options={priorityOptions} value={priority} onValueChange={setPriority} />
         </div>
         <div className="flex gap-2">
-          <Button variant="link" size="sm" onClick={() => setStatus('active')}>
+          <Button variant="outline" size="sm" onClick={() => setStatus('active')}>
             Set Active
           </Button>
-          <Button variant="link" size="sm" onClick={() => setStatus('inactive')}>
+          <Button variant="outline" size="sm" onClick={() => setStatus('inactive')}>
             Set Inactive
           </Button>
-          <Button variant="link" size="sm" onClick={() => setPriority('low')}>
+          <Button variant="outline" size="sm" onClick={() => setPriority('low')}>
             Set Low Priority
           </Button>
-          <Button variant="link" size="sm" onClick={() => setPriority('high')}>
-            Set High Priority
+          <Button variant="outline" size="sm" onClick={() => setPriority('critical')}>
+            Set Critical Priority
           </Button>
         </div>
       </StyleguideRender>
