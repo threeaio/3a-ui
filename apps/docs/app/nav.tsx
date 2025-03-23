@@ -33,6 +33,7 @@ const navigationGroups: NavGroup[] = [
       { title: 'Badge Select', href: '/components/badge-select' },
       { title: 'Forms', href: '/components/forms' },
       { title: 'Sliders', href: '/components/sliders' },
+      { title: 'Resizable', href: '/components/resizable' },
     ],
   },
   {
