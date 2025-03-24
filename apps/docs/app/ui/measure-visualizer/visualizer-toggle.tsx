@@ -1,7 +1,7 @@
 'use client'
 
 import { Eye } from 'lucide-react'
-import { Button } from '@3a-ui/ui/button'
+import { Button } from '@3a.solutions/ui/button'
 import { EyeOff } from 'lucide-react'
 import React, { createContext, useState, useContext, Dispatch, SetStateAction } from 'react'
 

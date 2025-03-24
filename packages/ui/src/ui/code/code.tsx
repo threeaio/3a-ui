@@ -4,7 +4,7 @@ import { JSX, useLayoutEffect, useState } from 'react'
 import { highlight } from './shared'
 import { cn } from '@3a.solutions/ui/lib/utils'
 import './code.css'
-import type { BundledLanguage, BundledTheme } from 'shiki/bundle/web'
+import type { BundledLanguage, BundledTheme } from 'shiki/bundle/web' assert { 'resolution-mode': 'require' }
 
 export interface CodeProps {
   /**
