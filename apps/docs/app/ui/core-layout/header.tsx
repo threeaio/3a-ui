@@ -14,9 +14,9 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ className = '' }) => {
   return (
     <header className={`z-100 fixed top-0 mx-auto w-full  md:sticky ${className}`}>
-      <div className="border bg-background flex w-full  border-b border-l border-r pl-6 ">
+      <div className="border bg-background flex w-full  border-b justify-between">
         {/* Logo Section */}
-        <div className="-ml-px flex grow xl:w-58 xl:grow-0 items-center justify-center border-r pr-6">
+        <div className="-ml-px flex w-30 xl:w-64 xl:grow-0 items-center justify-center xl:border-r">
           <Logo href="/" />
         </div>
 
