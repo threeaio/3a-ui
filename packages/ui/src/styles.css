@@ -147,6 +147,7 @@ Everytime we update values here we need to update the documentation in /tailwind
   --color-default: var(--default);
   --color-default-foreground: var(--default-foreground);
   --color-black: var(--color-black);
+  --color-gray-dark: var(--color-gray-800);
   --color-white: var(--color-white);
 
   --color-primary: var(--primary);

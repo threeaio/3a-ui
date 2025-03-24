@@ -34,6 +34,7 @@ const navigationGroups: NavGroup[] = [
       { title: 'Forms', href: '/components/forms' },
       { title: 'Sliders', href: '/components/sliders' },
       { title: 'Resizable', href: '/components/resizable' },
+      { title: 'Code', href: '/components/code' },
     ],
   },
   {

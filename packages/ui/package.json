@@ -22,6 +22,7 @@
     "./switch": "./src/ui/switch/index.ts",
     "./drawer": "./src/ui/drawer/index.ts",
     "./resizable": "./src/ui/resizable/index.ts",
+    "./code": "./src/ui/code/index.ts",
     "./lib/utils": "./src/lib/utils.ts"
   },
   "license": "MIT",
@@ -59,8 +60,10 @@
     "@radix-ui/react-tooltip": "^1.1.8",
     "@tanstack/react-ranger": "^0.0.4",
     "cmdk": "1.0.0",
+    "hast-util-to-jsx-runtime": "^2.3.6",
     "react-resizable-panels": "^2.1.7",
     "shadcn": "2.4.0-canary.9",
+    "shiki": "^3.2.1",
     "tailwindcss-animate": "^1.0.7",
     "vaul": "^1.1.2"
   }

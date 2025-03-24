@@ -1,0 +1,24 @@
+/* Only keeping styles that can't be easily implemented with Tailwind */
+
+/* Line numbers */
+.line-numbers code {
+  counter-reset: line;
+}
+
+.line-numbers code > .line::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 1.5rem;
+  margin-right: 1rem;
+  text-align: right;
+  color: var(--muted-foreground);
+}
+
+/* Ensure code blocks maintain proper styling */
+.overflow-x-auto pre {
+  margin: 0;
+  padding: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.7;
+}

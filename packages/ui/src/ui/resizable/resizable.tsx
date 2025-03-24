@@ -3,7 +3,7 @@
 import * as React from 'react'
 import * as ResizablePrimitive from 'react-resizable-panels'
 
-import { cn } from '@/lib/utils'
+import { cn } from '@3a.solutions/ui/lib/utils'
 
 function ResizablePanelGroup({ className, ...props }: React.ComponentProps<typeof ResizablePrimitive.PanelGroup>) {
   return (
@@ -36,8 +36,8 @@ function ResizableHandle({
       {...props}
     >
       {withHandle && (
-        <div className="bg-inherit z-10 flex p-1 items-center justify-center rounded-full">
-          <span className="bg-default-foreground h-7 w-1 rounded-full" />
+        <div className="bg-inherit z-10 flex py-5 px-1 items-center justify-center rounded-sm">
+          <span className="bg-current h-7 w-0.5 rounded-full" />
         </div>
       )}
     </ResizablePrimitive.PanelResizeHandle>

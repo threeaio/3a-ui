@@ -6,19 +6,7 @@ import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@3a.soluti
 import { Button, ButtonGroup } from '@3a.solutions/ui/button'
 import { Input } from '@3a.solutions/ui/forms'
 import { Badge } from '@3a.solutions/ui/badge'
-import {
-  Search,
-  FolderIcon,
-  FileIcon,
-  ChevronRight,
-  Eye,
-  Download,
-  Share2,
-  Plus,
-  Settings,
-  User,
-  MessageSquare,
-} from 'lucide-react'
+import { Search, FolderIcon, FileIcon, ChevronRight, Eye, Download, Share2, Plus, Settings, User } from 'lucide-react'
 
 export function ResizableShowcase() {
   return (
@@ -49,7 +37,7 @@ export function ResizableShowcase() {
               </div>
             </div>
           </ResizablePanel>
-          <ResizableHandle className="bg-default w-3" withHandle />
+          <ResizableHandle className="bg-default text-default-foreground w-3" withHandle />
           <ResizablePanel defaultSize={50} className="@container bg-background rounded-lg">
             <div className="flex h-full flex-col p-5 @md:p-10">
               <div className="flex items-center justify-between">
@@ -78,14 +66,16 @@ export function ResizableShowcase() {
       <StyleguideRender>
         <ResizablePanelGroup
           direction="horizontal"
-          className="min-h-[600px] max-w-full rounded-xl border border-border bg-default"
+          className="min-h-[600px] max-w-full rounded-xl border border-border"
         >
           {/* File Explorer Panel */}
           <ResizablePanel defaultSize={25} className="@container bg-background rounded-l-lg">
             <div className="flex h-full flex-col">
               {/* Search Header */}
-              <div className="h-20 px-5 flex items-center border-b border-border">
-                <Input icon={<Search className="size-4" />} placeholder="Search files..." clearable />
+              <div className="h-20 px-5 border-b border-border flex items-center">
+                <div className="w-full">
+                  <Input className="" icon={<Search className="size-4" />} placeholder="Search files..." clearable />
+                </div>
               </div>
 
               {/* File Tree */}
@@ -101,7 +91,7 @@ export function ResizableShowcase() {
             </div>
           </ResizablePanel>
 
-          <ResizableHandle withHandle className="w-px" />
+          <ResizableHandle withHandle className="w-px text-muted" />
 
           {/* Content Preview Panel */}
           <ResizablePanel defaultSize={75} className="@container bg-background rounded-r-lg">
