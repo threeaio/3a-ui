@@ -60,83 +60,29 @@ export function CodeShowcase() {
     <StyleguideSection title="Code" subline="Component for displaying syntax-highlighted code blocks">
       {/* Basic Example */}
       <StyleguideRender label="Basic Example">
-        <div className="space-y-6">
-          <Code code={TypeScriptExample} language="typescript" theme={theme} />
-        </div>
+        <Code code={TypeScriptExample} language="typescript" theme={theme} />
       </StyleguideRender>
 
       {/* With Title */}
       <StyleguideRender label="With Title">
-        <div className="space-y-6">
-          <Code code={TypeScriptExample} language="typescript" title="Counter.tsx" theme={theme} />
-        </div>
+        <Code code={TypeScriptExample} language="typescript" title="Counter.tsx" theme={theme} />
       </StyleguideRender>
 
       {/* Line Numbers */}
       <StyleguideRender label="Line Numbers">
-        <div className="space-y-6">
-          <Code code={TypeScriptExample} language="typescript" showLineNumbers theme={theme} />
-        </div>
+        <Code code={TypeScriptExample} language="typescript" showLineNumbers theme={theme} />
       </StyleguideRender>
 
       {/* Different Languages */}
       <StyleguideRender label="Language Support">
-        <div className="space-y-6">
-          <h3 className="text-lg font-medium mb-4">TypeScript</h3>
-          <Code code={TypeScriptExample} language="typescript" title="counter.ts" showLineNumbers theme={theme} />
+        <h3 className="font-semibold mb-5">TypeScript</h3>
+        <Code code={TypeScriptExample} language="typescript" title="counter.ts" showLineNumbers theme={theme} />
 
-          <h3 className="text-lg font-medium mb-4 mt-8">Bash</h3>
-          <Code code={BashExample} language="bash" title="backup.sh" showLineNumbers theme={theme} />
+        <h3 className="font-semibold mb-5 mt-10">Bash</h3>
+        <Code code={BashExample} language="bash" title="backup.sh" showLineNumbers theme={theme} />
 
-          <h3 className="text-lg font-medium mb-4 mt-8">JSON</h3>
-          <Code code={JSONExample} language="json" title="package.json" showLineNumbers theme={theme} />
-        </div>
-      </StyleguideRender>
-
-      {/* API Reference */}
-      <StyleguideRender label="API Reference">
-        <div className="space-y-4">
-          <p className="text-sm text-muted-foreground">The Code component accepts the following props:</p>
-          <Code
-            code={`interface CodeProps {
-  /**
-   * The code string to be highlighted
-   */
-  code: string;
-  
-  /**
-   * The programming language for syntax highlighting
-   * @default "typescript"
-   */
-  language?: BundledLanguage;
-  
-  /**
-   * The theme to use for syntax highlighting
-   * @default "github-dark"
-   */
-  theme?: string;
-  
-  /**
-   * Whether to show line numbers
-   * @default false
-   */
-  showLineNumbers?: boolean;
-  
-  /**
-   * Optional title for the code block
-   */
-  title?: string;
-  
-  /**
-   * Visual variant of the code block
-   * @default "default"
-   */
-  variant?: "default" | "primary";
-}`}
-            language="typescript"
-            theme={theme}
-          />
-        </div>
+        <h3 className="font-semibold mb-5 mt-10">JSON</h3>
+        <Code code={JSONExample} language="json" title="package.json" showLineNumbers theme={theme} />
       </StyleguideRender>
     </StyleguideSection>
   )
