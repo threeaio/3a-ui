@@ -21,11 +21,11 @@ export default function Page() {
         <ScrollToTop />
         <HeroSection />
         <WordListSection />
-        {/* <FeaturesSection />
-      <BenefitsSection />
-      <TestimonialsSection />
-      <PricingSection /> */}
-        <ContactSection />
+        <FeaturesSection />
+        {/* <BenefitsSection /> */}
+        {/* <TestimonialsSection /> */}
+        {/* <PricingSection /> */}
+        {/* <ContactSection /> */}
         <FooterSection />
         <div className="fixed bottom-0 left-0 right-0 bg-gradient-to-t from-background to-transparent h-100 z-10 pointer-events-none"></div>
       </div>

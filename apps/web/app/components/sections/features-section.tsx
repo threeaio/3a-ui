@@ -4,7 +4,7 @@ import { Badge } from '@3a-ui/ui/badge'
 export function FeaturesSection() {
   return (
     <section id="features" className="relative overflow-hidden ">
-      <div className="container mx-auto px-5 md:px-10 py-20 relative z-10">
+      <div className="container mx-auto px-5 md:px-10 py-60 relative z-10">
         <div className="text-center pb-20">
           <Badge variant="outline" className="mb-5 mx-auto">
             Why Choose Us

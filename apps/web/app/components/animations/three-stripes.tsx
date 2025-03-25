@@ -1,23 +1,30 @@
 'use client'
 
+import { cn } from '@3a.solutions/ui/lib/utils'
 import { useRef, useEffect } from 'react'
 
 interface ThreeStripesProps {
   className?: string
   stripeCount?: number
   vanishingPointX?: number // 0-1 relative position
-  lineSpacing?: number // horizontal spacing between lines
+  stripeWidth?: number // width of each stripe
+  gapWidth?: number // width of gap between stripes
   verticalDistance?: number // distance between top and bottom points
   debug?: boolean // Add debug prop
+  extraHeight?: number // extra height for the stripe
+  bottomOffset?: number // new configurable value from bottom (in pixels)
 }
 
 export function ThreeStripes({
   className,
-  stripeCount = 50,
+  stripeCount = 20,
   vanishingPointX = 0.5,
-  lineSpacing = 10,
-  verticalDistance = 100,
+  stripeWidth = 20, // New default
+  gapWidth = 5, // New default
+  verticalDistance = 60,
   debug = false, // Add debug prop with default value
+  extraHeight = 880,
+  bottomOffset = 100, // new prop for bottom offset
 }: ThreeStripesProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
@@ -28,13 +35,28 @@ export function ThreeStripes({
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    // Set canvas size to match container
+    // Set canvas size to match container with retina support
     const resizeCanvas = () => {
       const container = canvas.parentElement
       if (!container) return
 
-      canvas.width = container.clientWidth
-      canvas.height = container.clientHeight
+      // Get the device pixel ratio
+      const dpr = window.devicePixelRatio || 1
+
+      // Get display size
+      const displayWidth = container.clientWidth
+      const displayHeight = container.clientHeight
+
+      // Set canvas size for retina display
+      canvas.width = Math.round(displayWidth * dpr)
+      canvas.height = Math.round(displayHeight * dpr)
+
+      // Set display size (CSS pixels)
+      canvas.style.width = `${displayWidth}px`
+      canvas.style.height = `${displayHeight}px`
+
+      // Scale the context to ensure correct drawing operations
+      ctx.scale(dpr, dpr)
     }
 
     resizeCanvas()
@@ -43,18 +65,24 @@ export function ThreeStripes({
     // Drawing function
     const draw = () => {
       const { width, height } = canvas
+      const dpr = window.devicePixelRatio || 1
 
-      // Clear canvas
-      ctx.clearRect(0, 0, width, height)
+      // Clear canvas - use display dimensions
+      ctx.clearRect(0, 0, width / dpr, height / dpr)
 
-      // Calculate horizon y-position
-      const horizonY = height / 2
+      // Calculate horizon y-position using display dimensions
+      const horizonY = height / dpr / 2
 
-      // Calculate vanishing point x-position
-      const vpX = width * vanishingPointX
+      // Calculate vanishing point x-position using display dimensions
+      const vpX = (width / dpr) * vanishingPointX
 
-      // Calculate middle x-position for centering lines
-      const centerX = width / 2
+      // Calculate middle x-position using display dimensions
+      const centerX = width / dpr / 2
+
+      // NEW: compute extension factor from bottom if bottomOffset is provided
+      const displayHeight = height / dpr
+      const computedExtensionFactor =
+        bottomOffset !== undefined ? (displayHeight - bottomOffset - horizonY) / verticalDistance : 2
 
       // Draw debug horizon line if debug mode is on
       if (debug) {
@@ -73,15 +101,18 @@ export function ThreeStripes({
         ctx.fill()
       }
 
-      // Draw stripes (pairs of lines)
-      for (let i = 0; i < stripeCount; i += 2) {
-        // Calculate points for left line of stripe
-        const leftTopX = centerX + (i - (stripeCount - 1) / 2) * lineSpacing
-        const leftTopY = horizonY - verticalDistance / 2
+      // Draw stripes
+      for (let i = 0; i < stripeCount; i++) {
+        // Calculate the starting X position for each stripe
+        const totalUnitWidth = stripeWidth + gapWidth
+        const startX = centerX + (i - (stripeCount - 1) / 2) * totalUnitWidth
 
-        // Calculate points for right line of stripe
-        const rightTopX = centerX + (i + 1 - (stripeCount - 1) / 2) * lineSpacing
-        const rightTopY = horizonY - verticalDistance / 2
+        // Calculate points for left and right edges of the stripe
+        const leftTopX = startX
+        const leftTopY = horizonY - verticalDistance / 2 - extraHeight
+
+        const rightTopX = startX + stripeWidth // Use stripeWidth for the stripe's width
+        const rightTopY = horizonY - verticalDistance / 2 - extraHeight
 
         // Calculate bottom points with perspective
         const perspectiveFactor = 1
@@ -91,7 +122,6 @@ export function ThreeStripes({
         const rightBottomY = horizonY + (verticalDistance / 2) * (1 + perspectiveFactor)
 
         // Calculate control points for curves
-
         const controlPerspectiveFactor = 0.1
         const leftBottomControlX = vpX + (leftTopX - vpX) * (1 + controlPerspectiveFactor)
         const leftBottomControlY = horizonY + (verticalDistance / 2) * (1 + controlPerspectiveFactor)
@@ -100,15 +130,15 @@ export function ThreeStripes({
 
         const controlOffset = 80
         const leftTopControlX = leftTopX
-        const leftTopControlY = leftTopY + controlOffset
+        const leftTopControlY = leftTopY + controlOffset + extraHeight
         const rightTopControlX = rightTopX
-        const rightTopControlY = rightTopY + controlOffset
+        const rightTopControlY = rightTopY + controlOffset + extraHeight
 
-        const extensionFactor = 2
-        const leftExtendedBottomX = vpX + (leftBottomX - vpX) * extensionFactor
-        const leftExtendedBottomY = horizonY + (leftBottomY - horizonY) * extensionFactor
-        const rightExtendedBottomX = vpX + (rightBottomX - vpX) * extensionFactor
-        const rightExtendedBottomY = horizonY + (rightBottomY - horizonY) * extensionFactor
+        // NEW: Use computedExtensionFactor instead of a hardcoded extension factor
+        const leftExtendedBottomX = vpX + (leftBottomX - vpX) * computedExtensionFactor
+        const leftExtendedBottomY = horizonY + (leftBottomY - horizonY) * computedExtensionFactor
+        const rightExtendedBottomX = vpX + (rightBottomX - vpX) * computedExtensionFactor
+        const rightExtendedBottomY = horizonY + (rightBottomY - horizonY) * computedExtensionFactor
 
         if (debug) {
           // Draw control points and their connections
@@ -142,7 +172,7 @@ export function ThreeStripes({
 
         // Reset styles for stripe drawing
         ctx.strokeStyle = '#666'
-        ctx.lineWidth = 2
+        ctx.lineWidth = 1
 
         // Draw the complete stripe with extended connections
         ctx.beginPath()
@@ -196,15 +226,10 @@ export function ThreeStripes({
       window.removeEventListener('resize', resizeCanvas)
       window.removeEventListener('resize', draw)
     }
-  }, [stripeCount, vanishingPointX, lineSpacing, verticalDistance, debug])
+  }, [stripeCount, vanishingPointX, stripeWidth, gapWidth, verticalDistance, debug, extraHeight, bottomOffset])
 
   return (
-    <div
-      className={`
-        absolute inset-0 w-full h-full 
-        ${className ?? ''}
-      `}
-    >
+    <div className={cn('absolute inset-0 w-full h-full', className)}>
       <canvas ref={canvasRef} className="w-full h-full" />
     </div>
   )

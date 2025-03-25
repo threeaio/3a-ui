@@ -4,8 +4,8 @@ import { NodeGardenCanvas } from '../animations/node-garden'
 export function HeroSection() {
   return (
     <section className="relative overflow-hidden">
-      {/* <span className="absolute bg-border w-px h-[200%] left-1/2 bottom-0 rotate-30 origin-bottom"></span> */}
-      <div className="h-[calc(100vh-25rem)] min-h-[600px] flex flex-col justify-center items-start px-5 md:px-10 container mx-auto pt-20 relative z-10">
+      <div className="bg-radial from-background via-transparent via-70% to-transparent absolute inset-0 z-10"></div>
+      <div className=" h-[calc(100vh-25rem)] min-h-[600px] flex flex-col justify-center items-center px-5 md:px-10 container mx-auto pt-20 relative z-10 text-center">
         <Badge variant="outline" className="mb-5">
           Business Applications Made Simple
         </Badge>

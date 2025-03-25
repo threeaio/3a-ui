@@ -1,6 +1,6 @@
 export function FooterSection() {
   return (
-    <footer className=" border-t border-border py-10">
+    <footer className=" border-t border-border py-10 z-20 relative">
       <div className="container mx-auto px-5 md:px-10">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-5 md:mb-0">
