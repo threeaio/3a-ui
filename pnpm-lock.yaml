@@ -87,6 +87,9 @@ importers:
       '@3a.solutions/ui':
         specifier: workspace:*
         version: link:../../packages/ui
+      lucide-react:
+        specifier: ^0.476.0
+        version: 0.476.0(react@19.0.0)
       next:
         specifier: ^15.1.6
         version: 15.2.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)

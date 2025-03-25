@@ -1,0 +1,15 @@
+:root {
+  /* Grayscale with subtle tint */
+  --color-white: oklch(1 0 0);
+  --color-gray-50: oklch(0.985 0.0005 185);
+  --color-gray-100: oklch(0.97 0.001 185);
+  --color-gray-200: oklch(0.922 0.0015 185);
+  --color-gray-300: oklch(0.87 0.002 185);
+  --color-gray-400: oklch(0.708 0.0025 185);
+  --color-gray-500: oklch(0.556 0.003 185);
+  --color-gray-600: oklch(0.439 0.0035 185);
+  --color-gray-700: oklch(0.369 0.004 185);
+  --color-gray-800: oklch(0.205 0.0045 185);
+  --color-gray-900: oklch(0.245 0.005 185);
+  --color-black: oklch(0.205 0.005 185);
+}

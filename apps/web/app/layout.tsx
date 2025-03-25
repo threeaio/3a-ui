@@ -1,18 +1,28 @@
 import '@3a-ui/ui/styles.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Geist, Geist_Mono } from 'next/font/google'
+import './styles.css'
 
-const inter = Inter({ subsets: ['latin'] })
+// Initialize the fonts
+const geist = Geist({
+  subsets: ['latin'],
+  variable: '--font-sans',
+})
+
+const geistMono = Geist_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono',
+})
 
 export const metadata: Metadata = {
-  title: '3a-ui - website',
-  description: '3a-ui website',
+  title: '3A - Customized Business Applications',
+  description: 'Customized, affordable and beautiful business applications built for your needs',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" suppressHydrationWarning className="dark">
+      <body className={`${geist.variable} ${geistMono.variable} font-sans`}>{children}</body>
     </html>
   )
 }
