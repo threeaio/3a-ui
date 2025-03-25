@@ -65,12 +65,12 @@ The animation creates a perspective effect through several key mathematical conc
    - This vector is scaled by `(1 + perspectiveFactor)` to extend the point away from the vanishing point
    - The result is added back to the vanishing point to get the transformed coordinate
 
-4. **Bottom Extension Factor:**
+4. **Depth Extension Factor:**
    ```typescript
-   const computedExtensionFactor =
-     bottomOffset !== undefined ? (displayHeight - bottomOffset - horizonY) / verticalDistance : 2
+   const computedDepthExtensionFactor =
+     depthOffset !== undefined ? (displayHeight - depthOffset - horizonY) / verticalDistance : 2
    ```
-   This dynamically calculates how far the stripes should extend beyond the canvas based on the available space and desired bottom offset.
+   This dynamically calculates how far the stripes should extend beyond the canvas based on the available space and desired depth offset.
 
 ### Bezier Curve Mathematics
 
@@ -85,16 +85,16 @@ For each stripe edge, the component calculates:
 1. **Control Points for the Left Curve:**
 
    ```typescript
-   const leftBottomControlX = vpX + (leftTopX - vpX) * (1 + controlPerspectiveFactor)
-   const leftBottomControlY = horizonY + (verticalDistance / 2) * (1 + controlPerspectiveFactor)
+   const leftDepthControlX = vpX + (leftTopX - vpX) * (1 + controlPerspectiveFactor)
+   const leftDepthControlY = horizonY + (verticalDistance / 2) * (1 + controlPerspectiveFactor)
    const leftTopControlX = leftTopX
    const leftTopControlY = leftTopY + controlOffset + extraHeight
    ```
 
 2. **Control Points for the Right Curve:**
    ```typescript
-   const rightBottomControlX = vpX + (rightTopX - vpX) * (1 + controlPerspectiveFactor)
-   const rightBottomControlY = horizonY + (verticalDistance / 2) * (1 + controlPerspectiveFactor)
+   const rightDepthControlX = vpX + (rightTopX - vpX) * (1 + controlPerspectiveFactor)
+   const rightDepthControlY = horizonY + (verticalDistance / 2) * (1 + controlPerspectiveFactor)
    const rightTopControlX = rightTopX
    const rightTopControlY = rightTopY + controlOffset + extraHeight
    ```
@@ -111,13 +111,13 @@ ctx.bezierCurveTo(controlPoint1X, controlPoint1Y, controlPoint2X, controlPoint2Y
 
 Each stripe is constructed as a closed path following these steps:
 
-1. Start at the extended bottom-left point
-2. Draw a line to the perspective-transformed bottom-left point
-3. Draw a Bezier curve from bottom-left to top-left
+1. Start at the extended depth-left point
+2. Draw a line to the perspective-transformed depth-left point
+3. Draw a Bezier curve from depth-left to top-left
 4. Extend upward with straight lines
 5. Draw from top-left to top-right
-6. Draw a Bezier curve from top-right to bottom-right
-7. Extend to the bottom-right extended point
+6. Draw a Bezier curve from top-right to depth-right
+7. Extend to the depth-right extended point
 8. Close the path by connecting back to the starting point
 
 This creates a complete stripe with curved transitions between straight segments, forming a visually appealing 3D perspective effect.
@@ -130,7 +130,7 @@ This creates a complete stripe with curved transitions between straight segments
 - **`gapWidth`**: Width of the gap between consecutive stripes in pixels (default: 5).
 - **`verticalDistance`**: Controls the vertical space between top and bottom points (default: 60).
 - **`extraHeight`**: Adds additional height to the stripe rendering (default: 880).
-- **`bottomOffset`**: Adjusts the vertical ending point for the bottom of the stripes in pixels (default: 100).
+- **`depthOffset`**: Adjusts the vertical ending point for the depth section of the stripes in pixels (default: 100).
 - **`debug`**: When enabled, renders visual aids for understanding the underlying geometry (default: false).
 
 ## Debug Mode

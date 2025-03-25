@@ -42,7 +42,7 @@ export function Navigation() {
 
           {/* Desktop navigation */}
           <nav className="hidden md:flex items-center gap-10 font-mono font-extralight">
-            <Link href="#features" className="text-sm hover:text-primary">
+            {/* <Link href="#features" className="text-sm hover:text-primary">
               Features
             </Link>
             <Link href="#benefits" className="text-sm hover:text-primary">
@@ -53,10 +53,12 @@ export function Navigation() {
             </Link>
             <Link href="#pricing" className="text-sm hover:text-primary">
               Pricing
-            </Link>
+            </Link> */}
             <Link href="#contact">
-              <Button className="rounded-full" variant="primary">
-                Contact Us
+              <Button className="rounded-full px-8 py-5" variant="default">
+                <span className="flex items-center gap-10">
+                  Menü <Menu className="size-4" />
+                </span>
               </Button>
             </Link>
           </nav>

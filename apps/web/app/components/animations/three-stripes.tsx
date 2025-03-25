@@ -12,7 +12,7 @@ interface ThreeStripesProps {
   verticalDistance?: number // distance between top and bottom points
   debug?: boolean // Add debug prop
   extraHeight?: number // extra height for the stripe
-  bottomOffset?: number // new configurable value from bottom (in pixels)
+  depthOffset?: number // configurable value from depth section (in pixels)
 }
 
 export function ThreeStripes({
@@ -24,7 +24,7 @@ export function ThreeStripes({
   verticalDistance = 60,
   debug = false, // Add debug prop with default value
   extraHeight = 880,
-  bottomOffset = 100, // new prop for bottom offset
+  depthOffset = 0, // renamed from bottomOffset
 }: ThreeStripesProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
@@ -79,10 +79,10 @@ export function ThreeStripes({
       // Calculate middle x-position using display dimensions
       const centerX = width / dpr / 2
 
-      // NEW: compute extension factor from bottom if bottomOffset is provided
+      // NEW: compute extension factor from depth if depthOffset is provided
       const displayHeight = height / dpr
-      const computedExtensionFactor =
-        bottomOffset !== undefined ? (displayHeight - bottomOffset - horizonY) / verticalDistance : 2
+      const computedDepthExtensionFactor =
+        depthOffset !== undefined ? (displayHeight - depthOffset - horizonY) / verticalDistance : 2
 
       // Draw debug horizon line if debug mode is on
       if (debug) {
@@ -114,19 +114,19 @@ export function ThreeStripes({
         const rightTopX = startX + stripeWidth // Use stripeWidth for the stripe's width
         const rightTopY = horizonY - verticalDistance / 2 - extraHeight
 
-        // Calculate bottom points with perspective
+        // Calculate depth points with perspective
         const perspectiveFactor = 1
-        const leftBottomX = vpX + (leftTopX - vpX) * (1 + perspectiveFactor)
-        const leftBottomY = horizonY + (verticalDistance / 2) * (1 + perspectiveFactor)
-        const rightBottomX = vpX + (rightTopX - vpX) * (1 + perspectiveFactor)
-        const rightBottomY = horizonY + (verticalDistance / 2) * (1 + perspectiveFactor)
+        const leftDepthX = vpX + (leftTopX - vpX) * (1 + perspectiveFactor)
+        const leftDepthY = horizonY + (verticalDistance / 2) * (1 + perspectiveFactor)
+        const rightDepthX = vpX + (rightTopX - vpX) * (1 + perspectiveFactor)
+        const rightDepthY = horizonY + (verticalDistance / 2) * (1 + perspectiveFactor)
 
         // Calculate control points for curves
         const controlPerspectiveFactor = 0.1
-        const leftBottomControlX = vpX + (leftTopX - vpX) * (1 + controlPerspectiveFactor)
-        const leftBottomControlY = horizonY + (verticalDistance / 2) * (1 + controlPerspectiveFactor)
-        const rightBottomControlX = vpX + (rightTopX - vpX) * (1 + controlPerspectiveFactor)
-        const rightBottomControlY = horizonY + (verticalDistance / 2) * (1 + controlPerspectiveFactor)
+        const leftDepthControlX = vpX + (leftTopX - vpX) * (1 + controlPerspectiveFactor)
+        const leftDepthControlY = horizonY + (verticalDistance / 2) * (1 + controlPerspectiveFactor)
+        const rightDepthControlX = vpX + (rightTopX - vpX) * (1 + controlPerspectiveFactor)
+        const rightDepthControlY = horizonY + (verticalDistance / 2) * (1 + controlPerspectiveFactor)
 
         const controlOffset = 80
         const leftTopControlX = leftTopX
@@ -134,11 +134,10 @@ export function ThreeStripes({
         const rightTopControlX = rightTopX
         const rightTopControlY = rightTopY + controlOffset + extraHeight
 
-        // NEW: Use computedExtensionFactor instead of a hardcoded extension factor
-        const leftExtendedBottomX = vpX + (leftBottomX - vpX) * computedExtensionFactor
-        const leftExtendedBottomY = horizonY + (leftBottomY - horizonY) * computedExtensionFactor
-        const rightExtendedBottomX = vpX + (rightBottomX - vpX) * computedExtensionFactor
-        const rightExtendedBottomY = horizonY + (rightBottomY - horizonY) * computedExtensionFactor
+        const leftExtendedDepthX = vpX + (leftDepthX - vpX) * computedDepthExtensionFactor
+        const leftExtendedDepthY = horizonY + (leftDepthY - horizonY) * computedDepthExtensionFactor
+        const rightExtendedDepthX = vpX + (rightDepthX - vpX) * computedDepthExtensionFactor
+        const rightExtendedDepthY = horizonY + (rightDepthY - horizonY) * computedDepthExtensionFactor
 
         if (debug) {
           // Draw control points and their connections
@@ -147,24 +146,24 @@ export function ThreeStripes({
 
           // Left curve control points
           ctx.beginPath()
-          ctx.arc(leftBottomControlX, leftBottomControlY, 4, 0, Math.PI * 2)
+          ctx.arc(leftDepthControlX, leftDepthControlY, 4, 0, Math.PI * 2)
           ctx.arc(leftTopControlX, leftTopControlY, 4, 0, Math.PI * 2)
           ctx.fill()
 
           // Right curve control points
           ctx.beginPath()
-          ctx.arc(rightBottomControlX, rightBottomControlY, 4, 0, Math.PI * 2)
+          ctx.arc(rightDepthControlX, rightDepthControlY, 4, 0, Math.PI * 2)
           ctx.arc(rightTopControlX, rightTopControlY, 4, 0, Math.PI * 2)
           ctx.fill()
 
           // Draw lines connecting control points to curve points
           ctx.beginPath()
-          ctx.moveTo(leftBottomX, leftBottomY)
-          ctx.lineTo(leftBottomControlX, leftBottomControlY)
+          ctx.moveTo(leftDepthX, leftDepthY)
+          ctx.lineTo(leftDepthControlX, leftDepthControlY)
           ctx.moveTo(leftTopX, leftTopY)
           ctx.lineTo(leftTopControlX, leftTopControlY)
-          ctx.moveTo(rightBottomX, rightBottomY)
-          ctx.lineTo(rightBottomControlX, rightBottomControlY)
+          ctx.moveTo(rightDepthX, rightDepthY)
+          ctx.lineTo(rightDepthControlX, rightDepthControlY)
           ctx.moveTo(rightTopX, rightTopY)
           ctx.lineTo(rightTopControlX, rightTopControlY)
           ctx.stroke()
@@ -177,14 +176,14 @@ export function ThreeStripes({
         // Draw the complete stripe with extended connections
         ctx.beginPath()
 
-        // Start from left extended bottom
-        ctx.moveTo(leftExtendedBottomX, leftExtendedBottomY)
+        // Start from left extended depth
+        ctx.moveTo(leftExtendedDepthX, leftExtendedDepthY)
 
-        // Draw to left bottom point
-        ctx.lineTo(leftBottomX, leftBottomY)
+        // Draw to left depth point
+        ctx.lineTo(leftDepthX, leftDepthY)
 
         // Draw left curve
-        ctx.bezierCurveTo(leftBottomControlX, leftBottomControlY, leftTopControlX, leftTopControlY, leftTopX, leftTopY)
+        ctx.bezierCurveTo(leftDepthControlX, leftDepthControlY, leftTopControlX, leftTopControlY, leftTopX, leftTopY)
 
         // Draw to left top extension
         ctx.lineTo(leftTopX, leftTopY - 80)
@@ -199,17 +198,17 @@ export function ThreeStripes({
         ctx.bezierCurveTo(
           rightTopControlX,
           rightTopControlY,
-          rightBottomControlX,
-          rightBottomControlY,
-          rightBottomX,
-          rightBottomY,
+          rightDepthControlX,
+          rightDepthControlY,
+          rightDepthX,
+          rightDepthY,
         )
 
-        // Draw to right extended bottom
-        ctx.lineTo(rightExtendedBottomX, rightExtendedBottomY)
+        // Draw to right extended depth
+        ctx.lineTo(rightExtendedDepthX, rightExtendedDepthY)
 
-        // Connect back to left extended bottom
-        ctx.lineTo(leftExtendedBottomX, leftExtendedBottomY)
+        // Connect back to left extended depth
+        ctx.lineTo(leftExtendedDepthX, leftExtendedDepthY)
 
         ctx.stroke()
       }
@@ -226,11 +225,12 @@ export function ThreeStripes({
       window.removeEventListener('resize', resizeCanvas)
       window.removeEventListener('resize', draw)
     }
-  }, [stripeCount, vanishingPointX, stripeWidth, gapWidth, verticalDistance, debug, extraHeight, bottomOffset])
+  }, [stripeCount, vanishingPointX, stripeWidth, gapWidth, verticalDistance, debug, extraHeight, depthOffset])
 
   return (
-    <div className={cn('absolute inset-0 w-full h-full', className)}>
+    <div className="absolute inset-0 w-full h-full">
       <canvas ref={canvasRef} className="w-full h-full" />
+      <div className="absolute inset-x-0 bottom-0 h-[30vh] bg-gradient-to-t from-black to-transparent" />
     </div>
   )
 }
