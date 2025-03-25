@@ -12,10 +12,12 @@
   },
   "dependencies": {
     "@3a.solutions/ui": "workspace:*",
+    "@types/three": "^0.174.0",
     "lucide-react": "^0.476.0",
     "next": "^15.1.6",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "three": "^0.174.0"
   },
   "devDependencies": {
     "@3a-ui/eslint-config": "workspace:*",
