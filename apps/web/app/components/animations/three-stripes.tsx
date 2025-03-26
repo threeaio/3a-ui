@@ -279,37 +279,27 @@ export function ThreeStripes({
         const rightExtendedDepthY = horizonY + (rightDepthY - horizonY) * computedDepthExtensionFactor
 
         if (debug) {
-          // Draw control points and their connections
-          ctx.fillStyle = 'blue'
-          ctx.strokeStyle = 'rgba(0, 0, 255, 0.3)'
-
-          // Left curve control points and intermediate point
-          ctx.beginPath()
-          ctx.arc(leftDepthControlX, leftDepthControlY, 4, 0, Math.PI * 2)
-          ctx.arc(leftTopControlX, leftTopControlY, 4, 0, Math.PI * 2)
-          ctx.arc(leftTopX, leftIntermediateY, 4, 0, Math.PI * 2) // Debug intermediate point
-          ctx.fill()
-
-          // Right curve control points and intermediate point
-          ctx.beginPath()
-          ctx.arc(rightDepthControlX, rightDepthControlY, 4, 0, Math.PI * 2)
-          ctx.arc(rightTopControlX, rightTopControlY, 4, 0, Math.PI * 2)
-          ctx.arc(rightTopX, rightIntermediateY, 4, 0, Math.PI * 2) // Debug intermediate point
-          ctx.fill()
-
-          // Draw lines connecting all points
-          ctx.beginPath()
-          ctx.moveTo(leftDepthX, leftDepthY)
-          ctx.lineTo(leftDepthControlX, leftDepthControlY)
-          ctx.moveTo(leftTopX, leftTopY)
-          ctx.lineTo(leftTopX, leftIntermediateY)
-          ctx.lineTo(leftTopControlX, leftTopControlY)
-          ctx.moveTo(rightDepthX, rightDepthY)
-          ctx.lineTo(rightDepthControlX, rightDepthControlY)
-          ctx.moveTo(rightTopX, rightTopY)
-          ctx.lineTo(rightTopX, rightIntermediateY)
-          ctx.lineTo(rightTopControlX, rightTopControlY)
-          ctx.stroke()
+          drawDebugPoints({
+            ctx,
+            leftDepthX,
+            leftDepthY,
+            leftDepthControlX,
+            leftDepthControlY,
+            leftTopControlX,
+            leftTopControlY,
+            leftTopX,
+            leftTopY,
+            leftIntermediateY,
+            rightDepthX,
+            rightDepthY,
+            rightDepthControlX,
+            rightDepthControlY,
+            rightTopControlX,
+            rightTopControlY,
+            rightTopX,
+            rightTopY,
+            rightIntermediateY,
+          })
         }
 
         // Reset styles for stripe drawing
@@ -406,4 +396,80 @@ export function ThreeStripes({
       <div className="absolute inset-x-0 bottom-0 h-[30vh] bg-gradient-to-t from-black to-transparent" />
     </div>
   )
+}
+
+interface DebugPoints {
+  ctx: CanvasRenderingContext2D
+  leftDepthX: number
+  leftDepthY: number
+  leftDepthControlX: number
+  leftDepthControlY: number
+  leftTopControlX: number
+  leftTopControlY: number
+  leftTopX: number
+  leftTopY: number
+  leftIntermediateY: number
+  rightDepthX: number
+  rightDepthY: number
+  rightDepthControlX: number
+  rightDepthControlY: number
+  rightTopControlX: number
+  rightTopControlY: number
+  rightTopX: number
+  rightTopY: number
+  rightIntermediateY: number
+}
+
+function drawDebugPoints({
+  ctx,
+  leftDepthX,
+  leftDepthY,
+  leftDepthControlX,
+  leftDepthControlY,
+  leftTopControlX,
+  leftTopControlY,
+  leftTopX,
+  leftTopY,
+  leftIntermediateY,
+  rightDepthX,
+  rightDepthY,
+  rightDepthControlX,
+  rightDepthControlY,
+  rightTopControlX,
+  rightTopControlY,
+  rightTopX,
+  rightTopY,
+  rightIntermediateY,
+}: DebugPoints) {
+  // Draw control points and their connections
+  ctx.fillStyle = 'blue'
+  ctx.strokeStyle = 'rgba(0, 0, 255, 0.3)'
+
+  // Left curve control points and intermediate point
+  ctx.beginPath()
+  ctx.arc(leftDepthControlX, leftDepthControlY, 4, 0, Math.PI * 2)
+  ctx.arc(leftTopControlX, leftTopControlY, 4, 0, Math.PI * 2)
+  ctx.arc(leftTopX, leftIntermediateY, 4, 0, Math.PI * 2) // Debug intermediate point
+  ctx.fill()
+
+  // Right curve control points and intermediate point
+  ctx.beginPath()
+  ctx.arc(rightDepthControlX, rightDepthControlY, 4, 0, Math.PI * 2)
+  ctx.arc(rightTopControlX, rightTopControlY, 4, 0, Math.PI * 2)
+  ctx.arc(rightTopX, rightIntermediateY, 4, 0, Math.PI * 2) // Debug intermediate point
+  ctx.fill()
+
+  // Draw lines connecting all points
+  ctx.beginPath()
+  ctx.moveTo(leftDepthX, leftDepthY)
+  ctx.lineTo(leftDepthControlX, leftDepthControlY)
+  ctx.moveTo(leftTopX, leftTopY)
+  ctx.lineTo(leftTopX, leftIntermediateY)
+  ctx.lineTo(leftTopControlX, leftTopControlY)
+  ctx.moveTo(rightDepthX, rightDepthY)
+  ctx.lineTo(rightDepthControlX, rightDepthControlY)
+  ctx.moveTo(rightTopX, rightTopY)
+  ctx.lineTo(rightTopX, rightIntermediateY)
+  ctx.lineTo(rightTopControlX, rightTopControlY)
+  ctx.stroke()
 }
