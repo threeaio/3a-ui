@@ -2,7 +2,7 @@
 
 import { useRef, useEffect } from 'react'
 import { oscillator } from '@threeaio/oscillator'
-import { circular, noise, pulse, sawtooth, sine } from '@threeaio/utils/animation'
+import { sine } from '@threeaio/utils/animation'
 
 interface ThreeStripesProps {
   className?: string
@@ -228,76 +228,75 @@ export function ThreeStripes({
         const startX = centerX - totalWidth / 2 + i * totalUnitWidth
 
         // Calculate points using currentHeight instead of animatedHeightRef.current
-        const leftTopX = startX
-        const leftTopY = horizonY - verticalDistance / 2 - currentHeight
+        const leftTopLineX = startX
+        const leftTopLineY = horizonY - verticalDistance / 2 - currentHeight
 
-        const rightTopX = startX + stripeWidth
-        const rightTopY = horizonY - verticalDistance / 2 - currentHeight
+        const rightTopLineX = startX + stripeWidth
+        const rightTopLineY = horizonY - verticalDistance / 2 - currentHeight
 
         // Calculate depth points with perspective
-
-        const leftDepthX = vanishingX + (leftTopX - vanishingX) * (1 + roundness)
-        const leftDepthY = horizonY + (verticalDistance / 2) * (1 + roundness)
-        const rightDepthX = vanishingX + (rightTopX - vanishingX) * (1 + roundness)
-        const rightDepthY = horizonY + (verticalDistance / 2) * (1 + roundness)
+        const leftFloorLineX = vanishingX + (leftTopLineX - vanishingX) * (1 + roundness)
+        const leftFloorLineY = horizonY + (verticalDistance / 2) * (1 + roundness)
+        const rightFloorLineX = vanishingX + (rightTopLineX - vanishingX) * (1 + roundness)
+        const rightFloorLineY = horizonY + (verticalDistance / 2) * (1 + roundness)
 
         // Calculate control points for curves
-        const leftDepthControlX = vanishingX + (leftTopX - vanishingX)
-        const leftDepthControlY = horizonY + verticalDistance / 2
-        const rightDepthControlX = vanishingX + (rightTopX - vanishingX)
-        const rightDepthControlY = horizonY + verticalDistance / 2
+        const leftFloorLineControlX = vanishingX + (leftTopLineX - vanishingX)
+        const leftFloorLineControlY = horizonY + verticalDistance / 2
+        const rightFloorLineControlX = vanishingX + (rightTopLineX - vanishingX)
+        const rightFloorLineControlY = horizonY + verticalDistance / 2
 
         // Control points and intermediate points for smoother transition
         const fixedIntermediateDistanceFromHorizon = intermediatePointDistanceFromHorizon
         const fixedControlDistanceFromHorizon = controlPointDistanceFromHorizon
-        const leftTopControlX = leftTopX
-        const rightTopControlX = rightTopX
+        const leftTopLineControlX = leftTopLineX
+        const rightTopLineControlX = rightTopLineX
 
         // Calculate control point Y positions
-        const leftTopControlY = Math.max(
+        const leftTopLineControlY = Math.max(
           horizonY - fixedControlDistanceFromHorizon,
-          leftTopY - controlPointOffsetFromCorner,
+          leftTopLineY - controlPointOffsetFromCorner,
         )
-        const rightTopControlY = Math.max(
+        const rightTopLineControlY = Math.max(
           horizonY - fixedControlDistanceFromHorizon,
-          rightTopY - controlPointOffsetFromCorner,
+          rightTopLineY - controlPointOffsetFromCorner,
         )
 
         // Calculate intermediate points between control points and corners
         const leftIntermediateY = Math.max(
           horizonY - fixedIntermediateDistanceFromHorizon,
-          leftTopY - intermediatePointOffsetFromCorner,
+          leftTopLineY - intermediatePointOffsetFromCorner,
         )
         const rightIntermediateY = Math.max(
           horizonY - fixedIntermediateDistanceFromHorizon,
-          rightTopY - intermediatePointOffsetFromCorner,
+          rightTopLineY - intermediatePointOffsetFromCorner,
         )
 
-        const leftExtendedDepthX = vanishingX + (leftDepthX - vanishingX) * computedDepthExtensionFactor
-        const leftExtendedDepthY = horizonY + (leftDepthY - horizonY) * computedDepthExtensionFactor
-        const rightExtendedDepthX = vanishingX + (rightDepthX - vanishingX) * computedDepthExtensionFactor
-        const rightExtendedDepthY = horizonY + (rightDepthY - horizonY) * computedDepthExtensionFactor
+        const leftExtendedFloorLineX = vanishingX + (leftFloorLineX - vanishingX) * computedDepthExtensionFactor
+        const leftExtendedFloorLineY = horizonY + (leftFloorLineY - horizonY) * computedDepthExtensionFactor
+        const rightExtendedFloorLineX = vanishingX + (rightFloorLineX - vanishingX) * computedDepthExtensionFactor
+        const rightExtendedFloorLineY = horizonY + (rightFloorLineY - horizonY) * computedDepthExtensionFactor
 
         if (debug) {
           drawDebugPoints({
             ctx,
-            leftDepthX,
-            leftDepthY,
-            leftDepthControlX,
-            leftDepthControlY,
-            leftTopControlX,
-            leftTopControlY,
-            leftTopX,
-            leftTopY,
+            leftFloorLineX,
+            leftFloorLineY,
+            leftFloorLineControlX,
+            leftFloorLineControlY,
+            leftTopLineControlX,
+            leftTopLineControlY,
+            leftTopLineX,
+            leftTopLineY,
             leftIntermediateY,
-            rightDepthX,
-            rightDepthY,
-            rightDepthControlX,
-            rightDepthControlY,
-            rightTopControlX,
-            rightTopControlY,
-            rightTopX,
-            rightTopY,
+            rightFloorLineX,
+            rightFloorLineY,
+            rightFloorLineControlX,
+            rightFloorLineControlY,
+            rightTopLineControlX,
+            rightTopLineControlY,
+            rightTopLineX,
+            rightTopLineY,
             rightIntermediateY,
           })
         }
@@ -310,51 +309,51 @@ export function ThreeStripes({
         ctx.beginPath()
 
         // Start from left extended depth
-        ctx.moveTo(leftExtendedDepthX, leftExtendedDepthY)
+        ctx.moveTo(leftExtendedFloorLineX, leftExtendedFloorLineY)
 
         // Draw to left depth point
-        ctx.lineTo(leftDepthX, leftDepthY)
+        ctx.lineTo(leftFloorLineX, leftFloorLineY)
 
         // Draw left curve starting from a fixed point above horizon
         ctx.bezierCurveTo(
-          leftDepthControlX,
-          leftDepthControlY,
-          leftTopControlX,
-          leftTopControlY,
-          leftTopX,
+          leftFloorLineControlX,
+          leftFloorLineControlY,
+          leftTopLineControlX,
+          leftTopLineControlY,
+          leftTopLineX,
           leftIntermediateY,
         )
 
         // Draw straight line to corner
-        ctx.lineTo(leftTopX, leftTopY)
+        ctx.lineTo(leftTopLineX, leftTopLineY)
 
         // Draw straight section to the top
-        ctx.lineTo(leftTopX, leftTopY)
+        ctx.lineTo(leftTopLineX, leftTopLineY)
 
         // Draw straight line at the top
-        ctx.lineTo(rightTopX, rightTopY)
+        ctx.lineTo(rightTopLineX, rightTopLineY)
 
         // Draw straight section down to corner
-        ctx.lineTo(rightTopX, rightTopY)
+        ctx.lineTo(rightTopLineX, rightTopLineY)
 
         // Draw straight line to intermediate point
-        ctx.lineTo(rightTopX, rightIntermediateY)
+        ctx.lineTo(rightTopLineX, rightIntermediateY)
 
         // Draw right curve
         ctx.bezierCurveTo(
-          rightTopControlX,
-          rightTopControlY,
-          rightDepthControlX,
-          rightDepthControlY,
-          rightDepthX,
-          rightDepthY,
+          rightTopLineControlX,
+          rightTopLineControlY,
+          rightFloorLineControlX,
+          rightFloorLineControlY,
+          rightFloorLineX,
+          rightFloorLineY,
         )
 
         // Draw to right extended depth
-        ctx.lineTo(rightExtendedDepthX, rightExtendedDepthY)
+        ctx.lineTo(rightExtendedFloorLineX, rightExtendedFloorLineY)
 
         // Connect back to left extended depth
-        ctx.lineTo(leftExtendedDepthX, leftExtendedDepthY)
+        ctx.lineTo(leftExtendedFloorLineX, leftExtendedFloorLineY)
 
         ctx.stroke()
       }
@@ -400,45 +399,45 @@ export function ThreeStripes({
 
 interface DebugPoints {
   ctx: CanvasRenderingContext2D
-  leftDepthX: number
-  leftDepthY: number
-  leftDepthControlX: number
-  leftDepthControlY: number
-  leftTopControlX: number
-  leftTopControlY: number
-  leftTopX: number
-  leftTopY: number
+  leftFloorLineX: number
+  leftFloorLineY: number
+  leftFloorLineControlX: number
+  leftFloorLineControlY: number
+  leftTopLineControlX: number
+  leftTopLineControlY: number
+  leftTopLineX: number
+  leftTopLineY: number
   leftIntermediateY: number
-  rightDepthX: number
-  rightDepthY: number
-  rightDepthControlX: number
-  rightDepthControlY: number
-  rightTopControlX: number
-  rightTopControlY: number
-  rightTopX: number
-  rightTopY: number
+  rightFloorLineX: number
+  rightFloorLineY: number
+  rightFloorLineControlX: number
+  rightFloorLineControlY: number
+  rightTopLineControlX: number
+  rightTopLineControlY: number
+  rightTopLineX: number
+  rightTopLineY: number
   rightIntermediateY: number
 }
 
 function drawDebugPoints({
   ctx,
-  leftDepthX,
-  leftDepthY,
-  leftDepthControlX,
-  leftDepthControlY,
-  leftTopControlX,
-  leftTopControlY,
-  leftTopX,
-  leftTopY,
+  leftFloorLineX,
+  leftFloorLineY,
+  leftFloorLineControlX,
+  leftFloorLineControlY,
+  leftTopLineControlX,
+  leftTopLineControlY,
+  leftTopLineX,
+  leftTopLineY,
   leftIntermediateY,
-  rightDepthX,
-  rightDepthY,
-  rightDepthControlX,
-  rightDepthControlY,
-  rightTopControlX,
-  rightTopControlY,
-  rightTopX,
-  rightTopY,
+  rightFloorLineX,
+  rightFloorLineY,
+  rightFloorLineControlX,
+  rightFloorLineControlY,
+  rightTopLineControlX,
+  rightTopLineControlY,
+  rightTopLineX,
+  rightTopLineY,
   rightIntermediateY,
 }: DebugPoints) {
   // Draw control points and their connections
@@ -447,29 +446,29 @@ function drawDebugPoints({
 
   // Left curve control points and intermediate point
   ctx.beginPath()
-  ctx.arc(leftDepthControlX, leftDepthControlY, 4, 0, Math.PI * 2)
-  ctx.arc(leftTopControlX, leftTopControlY, 4, 0, Math.PI * 2)
-  ctx.arc(leftTopX, leftIntermediateY, 4, 0, Math.PI * 2) // Debug intermediate point
+  ctx.arc(leftFloorLineControlX, leftFloorLineControlY, 4, 0, Math.PI * 2)
+  ctx.arc(leftTopLineControlX, leftTopLineControlY, 4, 0, Math.PI * 2)
+  ctx.arc(leftTopLineX, leftIntermediateY, 4, 0, Math.PI * 2) // Debug intermediate point
   ctx.fill()
 
   // Right curve control points and intermediate point
   ctx.beginPath()
-  ctx.arc(rightDepthControlX, rightDepthControlY, 4, 0, Math.PI * 2)
-  ctx.arc(rightTopControlX, rightTopControlY, 4, 0, Math.PI * 2)
-  ctx.arc(rightTopX, rightIntermediateY, 4, 0, Math.PI * 2) // Debug intermediate point
+  ctx.arc(rightFloorLineControlX, rightFloorLineControlY, 4, 0, Math.PI * 2)
+  ctx.arc(rightTopLineControlX, rightTopLineControlY, 4, 0, Math.PI * 2)
+  ctx.arc(rightTopLineX, rightIntermediateY, 4, 0, Math.PI * 2) // Debug intermediate point
   ctx.fill()
 
   // Draw lines connecting all points
   ctx.beginPath()
-  ctx.moveTo(leftDepthX, leftDepthY)
-  ctx.lineTo(leftDepthControlX, leftDepthControlY)
-  ctx.moveTo(leftTopX, leftTopY)
-  ctx.lineTo(leftTopX, leftIntermediateY)
-  ctx.lineTo(leftTopControlX, leftTopControlY)
-  ctx.moveTo(rightDepthX, rightDepthY)
-  ctx.lineTo(rightDepthControlX, rightDepthControlY)
-  ctx.moveTo(rightTopX, rightTopY)
-  ctx.lineTo(rightTopX, rightIntermediateY)
-  ctx.lineTo(rightTopControlX, rightTopControlY)
+  ctx.moveTo(leftFloorLineX, leftFloorLineY)
+  ctx.lineTo(leftFloorLineControlX, leftFloorLineControlY)
+  ctx.moveTo(leftTopLineX, leftTopLineY)
+  ctx.lineTo(leftTopLineX, leftIntermediateY)
+  ctx.lineTo(leftTopLineControlX, leftTopLineControlY)
+  ctx.moveTo(rightFloorLineX, rightFloorLineY)
+  ctx.lineTo(rightFloorLineControlX, rightFloorLineControlY)
+  ctx.moveTo(rightTopLineX, rightTopLineY)
+  ctx.lineTo(rightTopLineX, rightIntermediateY)
+  ctx.lineTo(rightTopLineControlX, rightTopLineControlY)
   ctx.stroke()
 }
