@@ -46,7 +46,7 @@ export const Logo: React.FC<LogoProps> = ({ href = '/', className = '' }) => {
         width="905"
         height="260"
         viewBox="0 0 905 260"
-        className="w-20"
+        className="w-18"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >

@@ -31,9 +31,7 @@ export function Navigation() {
   return (
     <>
       <div ref={observerRef} className="h-[1px] w-full absolute top-0" />
-      <header
-        className={`sticky top-0 left-0 right-0 z-50 duration-500 transition-all h-20 ${!isOnTop && 'bg-background shadow-sm'}`}
-      >
+      <header className={`sticky top-0 left-0 right-0 z-50 duration-500 transition-all h-40 ${!isOnTop && ''}`}>
         <div className="mx-auto container h-full flex justify-between items-center px-5 md:px-10">
           <Link href="/" className="h-1/2 max-h-16 text-xl">
             <Logo />

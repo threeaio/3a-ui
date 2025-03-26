@@ -1,7 +1,8 @@
 'use client'
 
-import { cn } from '@3a.solutions/ui/lib/utils'
 import { useRef, useEffect } from 'react'
+import { oscillator } from '@threeaio/oscillator'
+import { circular, noise, pulse, sawtooth, sine } from '@threeaio/utils/animation'
 
 interface ThreeStripesProps {
   className?: string
@@ -11,22 +12,138 @@ interface ThreeStripesProps {
   gapWidth?: number // width of gap between stripes
   verticalDistance?: number // distance between top and bottom points
   debug?: boolean // Add debug prop
-  extraHeight?: number // extra height for the stripe
+  baseHeight?: number
   depthOffset?: number // configurable value from depth section (in pixels)
+  bpm?: number
+  animationAmplitude?: number
+  waveform?: (x: number) => number
+  // Second oscillator props
+  secondaryBpm?: number
+  secondaryAmplitude?: number
+  secondaryWaveform?: (x: number) => number
+  // Bias effect props
+  bias?: number // Position of the bias peak (0-1), default 0.5
+  biasAmplitude?: number // Amplitude of the bias effect
+  biasSpread?: number // Controls how quickly the effect falls off (like standard deviation in Gaussian)
+  // Curve control configuration
+  controlPointDistanceFromHorizon?: number // How far above horizon the bezier control points are (in pixels)
+  intermediatePointDistanceFromHorizon?: number // How far above horizon the intermediate points are (in pixels)
+  controlPointOffsetFromCorner?: number // Minimum distance control points stay below corners (in pixels)
+  intermediatePointOffsetFromCorner?: number // Minimum distance intermediate points stay below corners (in pixels)
+  perspectiveFactor?: number // How much the rounding is applied to the control points (in pixels)
 }
 
 export function ThreeStripes({
-  className,
-  stripeCount = 20,
+  stripeCount = 50,
   vanishingPointX = 0.5,
-  stripeWidth = 20, // New default
-  gapWidth = 5, // New default
-  verticalDistance = 60,
-  debug = false, // Add debug prop with default value
-  extraHeight = 880,
-  depthOffset = 0, // renamed from bottomOffset
+  stripeWidth = 20,
+  gapWidth = 20,
+  verticalDistance = 160,
+  debug = false,
+  baseHeight = 20,
+  depthOffset = 0,
+  bpm = 7.5,
+  animationAmplitude = 120,
+  waveform = sine,
+  // Second oscillator defaults
+  secondaryBpm = 7.5 / 4,
+  secondaryAmplitude = 200,
+  secondaryWaveform = sine,
+  // Bias effect defaults
+  bias = 0.9,
+  biasAmplitude = 160,
+  biasSpread = 0.15, // Controls how quickly the effect falls off
+  // Curve control configuration defaults
+  controlPointDistanceFromHorizon = 2, // Control points start 10px above horizon
+  intermediatePointDistanceFromHorizon = 100, // Intermediate points start 50px above horizon
+  controlPointOffsetFromCorner = 0, // TODO: Control points stay 40px above corners
+  intermediatePointOffsetFromCorner = 0, // Intermediate points stay 20px above corners
+  perspectiveFactor = 0.7,
 }: ThreeStripesProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  // Create an array to store heights for each stripe
+  const animatedHeightsRef = useRef<number[]>(new Array(stripeCount).fill(baseHeight))
+  const requestAnimationFrameRef = useRef<number>(0)
+
+  // Animation effect
+  useEffect(() => {
+    // Helper function to calculate Gaussian-like falloff
+    const calculateBiasEffect = (position: number, bias: number, spread: number) => {
+      // Convert position to range -1 to 1 for easier calculation
+      const normalizedPos = position - bias
+      // Calculate Gaussian-like falloff (simplified for performance)
+      return Math.exp(-(normalizedPos * normalizedPos) / (2 * spread * spread))
+    }
+
+    const animate = () => {
+      const currentTime = Date.now()
+
+      // Update height for each stripe with phase offset based on index
+      for (let i = 0; i < stripeCount; i++) {
+        const phaseShift = (i / stripeCount) * Math.PI * 2 // Distribute phase shifts across 2π
+
+        // Calculate relative position for bias effect (0 to 1)
+        const relativePosition = i / (stripeCount - 1)
+        // Calculate bias multiplier (0 to 1)
+        const biasEffect = calculateBiasEffect(relativePosition, bias, biasSpread)
+
+        // Primary oscillator
+        const primaryOscillatorValue = oscillator({
+          currentTimeMs: currentTime,
+          bpm,
+          waveformfun: waveform,
+          phaseShift,
+        })
+
+        // Secondary oscillator
+        const secondaryOscillatorValue = oscillator({
+          currentTimeMs: currentTime,
+          bpm: secondaryBpm,
+          waveformfun: secondaryWaveform,
+          phaseShift: phaseShift + 0.33,
+        })
+
+        // Combine oscillators and bias effect
+        const combinedHeight =
+          baseHeight +
+          // Oscillator effects
+          primaryOscillatorValue * animationAmplitude +
+          secondaryOscillatorValue * secondaryAmplitude +
+          // Bias effect - adds extra height based on position
+          biasEffect * biasAmplitude
+
+        animatedHeightsRef.current[i] = combinedHeight
+      }
+
+      // Force redraw
+      if (canvasRef.current) {
+        const event = new Event('resize')
+        window.dispatchEvent(event)
+      }
+
+      requestAnimationFrameRef.current = requestAnimationFrame(animate)
+    }
+
+    animate()
+
+    return () => {
+      if (requestAnimationFrameRef.current) {
+        cancelAnimationFrame(requestAnimationFrameRef.current)
+      }
+    }
+  }, [
+    bpm,
+    secondaryBpm,
+    baseHeight,
+    animationAmplitude,
+    secondaryAmplitude,
+    stripeCount,
+    waveform,
+    secondaryWaveform,
+    bias,
+    biasAmplitude,
+    biasSpread,
+  ])
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -82,7 +199,7 @@ export function ThreeStripes({
       // NEW: compute extension factor from depth if depthOffset is provided
       const displayHeight = height / dpr
       const computedDepthExtensionFactor =
-        depthOffset !== undefined ? (displayHeight - depthOffset - horizonY) / verticalDistance : 2
+        depthOffset !== undefined ? Math.max(1, (displayHeight - depthOffset) / verticalDistance) : 2
 
       // Draw debug horizon line if debug mode is on
       if (debug) {
@@ -103,36 +220,58 @@ export function ThreeStripes({
 
       // Draw stripes
       for (let i = 0; i < stripeCount; i++) {
+        const currentHeight = animatedHeightsRef.current[i] as number
+
         // Calculate the starting X position for each stripe
         const totalUnitWidth = stripeWidth + gapWidth
-        const startX = centerX + (i - (stripeCount - 1) / 2) * totalUnitWidth
+        const totalWidth = stripeCount * stripeWidth + (stripeCount - 1) * gapWidth
+        const startX = centerX - totalWidth / 2 + i * totalUnitWidth
 
-        // Calculate points for left and right edges of the stripe
+        // Calculate points using currentHeight instead of animatedHeightRef.current
         const leftTopX = startX
-        const leftTopY = horizonY - verticalDistance / 2 - extraHeight
+        const leftTopY = horizonY - verticalDistance / 2 - currentHeight
 
-        const rightTopX = startX + stripeWidth // Use stripeWidth for the stripe's width
-        const rightTopY = horizonY - verticalDistance / 2 - extraHeight
+        const rightTopX = startX + stripeWidth
+        const rightTopY = horizonY - verticalDistance / 2 - currentHeight
 
         // Calculate depth points with perspective
-        const perspectiveFactor = 1
+
         const leftDepthX = vpX + (leftTopX - vpX) * (1 + perspectiveFactor)
         const leftDepthY = horizonY + (verticalDistance / 2) * (1 + perspectiveFactor)
         const rightDepthX = vpX + (rightTopX - vpX) * (1 + perspectiveFactor)
         const rightDepthY = horizonY + (verticalDistance / 2) * (1 + perspectiveFactor)
 
         // Calculate control points for curves
-        const controlPerspectiveFactor = 0.1
-        const leftDepthControlX = vpX + (leftTopX - vpX) * (1 + controlPerspectiveFactor)
-        const leftDepthControlY = horizonY + (verticalDistance / 2) * (1 + controlPerspectiveFactor)
-        const rightDepthControlX = vpX + (rightTopX - vpX) * (1 + controlPerspectiveFactor)
-        const rightDepthControlY = horizonY + (verticalDistance / 2) * (1 + controlPerspectiveFactor)
+        const leftDepthControlX = vpX + (leftTopX - vpX)
+        const leftDepthControlY = horizonY + verticalDistance / 2
+        const rightDepthControlX = vpX + (rightTopX - vpX)
+        const rightDepthControlY = horizonY + verticalDistance / 2
 
-        const controlOffset = 80
+        // Control points and intermediate points for smoother transition
+        const fixedIntermediateDistanceFromHorizon = intermediatePointDistanceFromHorizon
+        const fixedControlDistanceFromHorizon = controlPointDistanceFromHorizon
         const leftTopControlX = leftTopX
-        const leftTopControlY = leftTopY + controlOffset + extraHeight
         const rightTopControlX = rightTopX
-        const rightTopControlY = rightTopY + controlOffset + extraHeight
+
+        // Calculate control point Y positions
+        const leftTopControlY = Math.max(
+          horizonY - fixedControlDistanceFromHorizon,
+          leftTopY - controlPointOffsetFromCorner,
+        )
+        const rightTopControlY = Math.max(
+          horizonY - fixedControlDistanceFromHorizon,
+          rightTopY - controlPointOffsetFromCorner,
+        )
+
+        // Calculate intermediate points between control points and corners
+        const leftIntermediateY = Math.max(
+          horizonY - fixedIntermediateDistanceFromHorizon,
+          leftTopY - intermediatePointOffsetFromCorner,
+        )
+        const rightIntermediateY = Math.max(
+          horizonY - fixedIntermediateDistanceFromHorizon,
+          rightTopY - intermediatePointOffsetFromCorner,
+        )
 
         const leftExtendedDepthX = vpX + (leftDepthX - vpX) * computedDepthExtensionFactor
         const leftExtendedDepthY = horizonY + (leftDepthY - horizonY) * computedDepthExtensionFactor
@@ -144,33 +283,37 @@ export function ThreeStripes({
           ctx.fillStyle = 'blue'
           ctx.strokeStyle = 'rgba(0, 0, 255, 0.3)'
 
-          // Left curve control points
+          // Left curve control points and intermediate point
           ctx.beginPath()
           ctx.arc(leftDepthControlX, leftDepthControlY, 4, 0, Math.PI * 2)
           ctx.arc(leftTopControlX, leftTopControlY, 4, 0, Math.PI * 2)
+          ctx.arc(leftTopX, leftIntermediateY, 4, 0, Math.PI * 2) // Debug intermediate point
           ctx.fill()
 
-          // Right curve control points
+          // Right curve control points and intermediate point
           ctx.beginPath()
           ctx.arc(rightDepthControlX, rightDepthControlY, 4, 0, Math.PI * 2)
           ctx.arc(rightTopControlX, rightTopControlY, 4, 0, Math.PI * 2)
+          ctx.arc(rightTopX, rightIntermediateY, 4, 0, Math.PI * 2) // Debug intermediate point
           ctx.fill()
 
-          // Draw lines connecting control points to curve points
+          // Draw lines connecting all points
           ctx.beginPath()
           ctx.moveTo(leftDepthX, leftDepthY)
           ctx.lineTo(leftDepthControlX, leftDepthControlY)
           ctx.moveTo(leftTopX, leftTopY)
+          ctx.lineTo(leftTopX, leftIntermediateY)
           ctx.lineTo(leftTopControlX, leftTopControlY)
           ctx.moveTo(rightDepthX, rightDepthY)
           ctx.lineTo(rightDepthControlX, rightDepthControlY)
           ctx.moveTo(rightTopX, rightTopY)
+          ctx.lineTo(rightTopX, rightIntermediateY)
           ctx.lineTo(rightTopControlX, rightTopControlY)
           ctx.stroke()
         }
 
         // Reset styles for stripe drawing
-        ctx.strokeStyle = '#666'
+        ctx.strokeStyle = '#44485b'
         ctx.lineWidth = 1
 
         // Draw the complete stripe with extended connections
@@ -182,17 +325,30 @@ export function ThreeStripes({
         // Draw to left depth point
         ctx.lineTo(leftDepthX, leftDepthY)
 
-        // Draw left curve
-        ctx.bezierCurveTo(leftDepthControlX, leftDepthControlY, leftTopControlX, leftTopControlY, leftTopX, leftTopY)
+        // Draw left curve starting from a fixed point above horizon
+        ctx.bezierCurveTo(
+          leftDepthControlX,
+          leftDepthControlY,
+          leftTopControlX,
+          leftTopControlY,
+          leftTopX,
+          leftIntermediateY,
+        )
 
-        // Draw to left top extension
-        ctx.lineTo(leftTopX, leftTopY - 80)
+        // Draw straight line to corner
+        ctx.lineTo(leftTopX, leftTopY)
 
-        // Draw to right top extension
-        ctx.lineTo(rightTopX, rightTopY - 80)
+        // Draw straight section to the top
+        ctx.lineTo(leftTopX, leftTopY)
 
-        // Draw to right top point
+        // Draw straight line at the top
         ctx.lineTo(rightTopX, rightTopY)
+
+        // Draw straight section down to corner
+        ctx.lineTo(rightTopX, rightTopY)
+
+        // Draw straight line to intermediate point
+        ctx.lineTo(rightTopX, rightIntermediateY)
 
         // Draw right curve
         ctx.bezierCurveTo(
@@ -225,11 +381,28 @@ export function ThreeStripes({
       window.removeEventListener('resize', resizeCanvas)
       window.removeEventListener('resize', draw)
     }
-  }, [stripeCount, vanishingPointX, stripeWidth, gapWidth, verticalDistance, debug, extraHeight, depthOffset])
+  }, [
+    stripeCount,
+    vanishingPointX,
+    stripeWidth,
+    gapWidth,
+    verticalDistance,
+    debug,
+    depthOffset,
+    bias,
+    biasAmplitude,
+    biasSpread,
+    controlPointDistanceFromHorizon,
+    intermediatePointDistanceFromHorizon,
+    controlPointOffsetFromCorner,
+    intermediatePointOffsetFromCorner,
+    perspectiveFactor,
+  ])
 
   return (
     <div className="absolute inset-0 w-full h-full">
       <canvas ref={canvasRef} className="w-full h-full" />
+      <div className="absolute inset-x-0 top-0 h-[20vh] bg-gradient-to-b from-black to-transparent opacity-80" />
       <div className="absolute inset-x-0 bottom-0 h-[30vh] bg-gradient-to-t from-black to-transparent" />
     </div>
   )

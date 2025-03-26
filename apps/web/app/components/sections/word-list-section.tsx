@@ -21,9 +21,9 @@ export function WordListSection() {
             variant="outline"
             key={index}
             className={cn(
-              'font-light border-none font-mono transition-all duration-300 hover:scale-110 hover:text-primary cursor-default text-normal px-6 py-2',
+              'font-light  transition-all duration-300 hover:scale-110 hover:text-primary cursor-default text-normal px-6 py-2',
             )}
-            style={{ transform: `rotate(${word.rotation}deg)` }}
+            style={{ transform: `rotate(${0}deg)` }}
           >
             {word.text}
           </Badge>

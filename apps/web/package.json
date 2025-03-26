@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@3a.solutions/ui": "workspace:*",
+    "@threeaio/oscillator": "^0.10.0",
     "@threeaio/utils": "^0.10.0",
     "@types/three": "^0.174.0",
     "lucide-react": "^0.476.0",
