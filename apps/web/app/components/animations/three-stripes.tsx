@@ -30,7 +30,7 @@ interface ThreeStripesProps {
   intermediatePointDistanceFromHorizon?: number // How far above horizon the intermediate points are (in pixels)
   controlPointOffsetFromCorner?: number // Minimum distance control points stay below corners (in pixels)
   intermediatePointOffsetFromCorner?: number // Minimum distance intermediate points stay below corners (in pixels)
-  perspectiveFactor?: number // How much the rounding is applied to the control points (in pixels)
+  roundness?: number // How much the rounding is applied to the control points (in pixels)
 }
 
 export function ThreeStripes({
@@ -58,7 +58,7 @@ export function ThreeStripes({
   intermediatePointDistanceFromHorizon = 100, // Intermediate points start 50px above horizon
   controlPointOffsetFromCorner = 0, // TODO: Control points stay 40px above corners
   intermediatePointOffsetFromCorner = 0, // Intermediate points stay 20px above corners
-  perspectiveFactor = 0.7,
+  roundness = 0.7,
 }: ThreeStripesProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   // Create an array to store heights for each stripe
@@ -191,7 +191,7 @@ export function ThreeStripes({
       const horizonY = height / dpr / 2
 
       // Calculate vanishing point x-position using display dimensions
-      const vpX = (width / dpr) * vanishingPointX
+      const vanishingX = (width / dpr) * vanishingPointX
 
       // Calculate middle x-position using display dimensions
       const centerX = width / dpr / 2
@@ -214,7 +214,7 @@ export function ThreeStripes({
         // Draw vanishing point
         ctx.beginPath()
         ctx.fillStyle = 'red'
-        ctx.arc(vpX, horizonY, 5, 0, Math.PI * 2)
+        ctx.arc(vanishingX, horizonY, 5, 0, Math.PI * 2)
         ctx.fill()
       }
 
@@ -236,15 +236,15 @@ export function ThreeStripes({
 
         // Calculate depth points with perspective
 
-        const leftDepthX = vpX + (leftTopX - vpX) * (1 + perspectiveFactor)
-        const leftDepthY = horizonY + (verticalDistance / 2) * (1 + perspectiveFactor)
-        const rightDepthX = vpX + (rightTopX - vpX) * (1 + perspectiveFactor)
-        const rightDepthY = horizonY + (verticalDistance / 2) * (1 + perspectiveFactor)
+        const leftDepthX = vanishingX + (leftTopX - vanishingX) * (1 + roundness)
+        const leftDepthY = horizonY + (verticalDistance / 2) * (1 + roundness)
+        const rightDepthX = vanishingX + (rightTopX - vanishingX) * (1 + roundness)
+        const rightDepthY = horizonY + (verticalDistance / 2) * (1 + roundness)
 
         // Calculate control points for curves
-        const leftDepthControlX = vpX + (leftTopX - vpX)
+        const leftDepthControlX = vanishingX + (leftTopX - vanishingX)
         const leftDepthControlY = horizonY + verticalDistance / 2
-        const rightDepthControlX = vpX + (rightTopX - vpX)
+        const rightDepthControlX = vanishingX + (rightTopX - vanishingX)
         const rightDepthControlY = horizonY + verticalDistance / 2
 
         // Control points and intermediate points for smoother transition
@@ -273,9 +273,9 @@ export function ThreeStripes({
           rightTopY - intermediatePointOffsetFromCorner,
         )
 
-        const leftExtendedDepthX = vpX + (leftDepthX - vpX) * computedDepthExtensionFactor
+        const leftExtendedDepthX = vanishingX + (leftDepthX - vanishingX) * computedDepthExtensionFactor
         const leftExtendedDepthY = horizonY + (leftDepthY - horizonY) * computedDepthExtensionFactor
-        const rightExtendedDepthX = vpX + (rightDepthX - vpX) * computedDepthExtensionFactor
+        const rightExtendedDepthX = vanishingX + (rightDepthX - vanishingX) * computedDepthExtensionFactor
         const rightExtendedDepthY = horizonY + (rightDepthY - horizonY) * computedDepthExtensionFactor
 
         if (debug) {
@@ -396,7 +396,7 @@ export function ThreeStripes({
     intermediatePointDistanceFromHorizon,
     controlPointOffsetFromCorner,
     intermediatePointOffsetFromCorner,
-    perspectiveFactor,
+    roundness,
   ])
 
   return (
