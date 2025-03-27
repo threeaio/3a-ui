@@ -9,6 +9,7 @@ import { ContactSection } from './components/sections/contact-section'
 import { FooterSection } from './components/sections/footer-section'
 import { ThreeStripes } from './components/animations/three-stripes/three-stripes'
 import { WordListSection } from './components/sections/word-list-section'
+import { ScreenshotSection } from './components/sections/screenshot-section'
 
 export default function Page() {
   return (
@@ -21,6 +22,7 @@ export default function Page() {
         <ScrollToTop />
         <HeroSection />
         <WordListSection />
+        <ScreenshotSection />
         {/* <FeaturesSection /> */}
         {/* <BenefitsSection /> */}
         {/* <TestimonialsSection /> */}
