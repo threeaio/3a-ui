@@ -64,7 +64,7 @@ const TasksPanel: React.FC<TasksPanelProps> = ({ filters }) => {
             const isExpanded = isTaskExpanded(task.id)
 
             return (
-              <div key={task.id} className="border rounded-lg overflow-hidden">
+              <div key={task.id} className="bg-card rounded-lg overflow-hidden">
                 <div className="h-20 px-5 flex items-center gap-3 hover:bg-muted">
                   <div
                     className="flex-1 flex items-center justify-between cursor-pointer"
@@ -113,7 +113,6 @@ const TasksPanel: React.FC<TasksPanelProps> = ({ filters }) => {
                             ? 'secondary'
                             : 'outline'
                       }
-                      disabled
                     />
                   </div>
                 </div>

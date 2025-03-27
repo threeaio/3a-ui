@@ -21,7 +21,26 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning className="dark">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                let isDark = window.localStorage.getItem('theme')
+                if (isDark === 'system' || !isDark) {
+                  isDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+                } else {
+                  isDark = isDark === 'dark'
+                }
+                if (isDark) {
+                  document.documentElement.classList.add('dark')
+                }
+              } catch (e) {}
+            `,
+          }}
+        />
+      </head>
       <body className={`${geist.variable} ${geistMono.variable} font-sans`}>{children}</body>
     </html>
   )

@@ -1,9 +1,8 @@
 'use client'
 
 import React, { useState } from 'react'
-import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@3a.solutions/ui/resizable'
 import Header from './header'
-import Sidebar from './sidebar'
+import Sidebar from './___sidebar'
 import ProjectsPanel from './projects-panel'
 import TasksPanel from './tasks-panel'
 import MetricsPanel from './metrics-panel'
@@ -35,54 +34,26 @@ const Dashboard: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col h-screen">
-      <Header onSearchChange={handleSearchChange} />
+    <div className="flex flex-col ">
+      <div className="flex-1 flex ">
+        {/* Main Content Area */}
+        <div className="flex-1 bg-background min-h-0 overflow-hidden">
+          <div className="flex flex-col h-full">
+            {/* Metrics Panel - 25% height */}
+            <div className="mb-10">
+              <MetricsPanel />
+            </div>
 
-      <div className="flex-1 flex overflow-hidden">
-        <ResizablePanelGroup direction="horizontal" className="min-h-0 h-full w-full">
-          {/* Sidebar */}
-          <ResizablePanel defaultSize={15} minSize={10} maxSize={30} className="bg-background">
-            <Sidebar
-              timeRanges={timeRanges}
-              projectStatuses={[{ value: 'all', label: 'All Projects' }, ...projectStatuses]}
-              taskStatuses={[{ value: 'all', label: 'All Tasks' }, ...taskStatuses]}
-              priorityLevels={[{ value: 'all', label: 'All Priorities' }, ...priorityLevels]}
-              filters={filters}
-              onFilterChange={handleFilterChange}
-            />
-          </ResizablePanel>
+            {/* Projects and Tasks - 75% height */}
+            <div className="grid grid-cols-2 gap-10">
+              {/* Projects Panel - 50% width */}
+              <ProjectsPanel filters={filters} />
 
-          <ResizableHandle withHandle />
-
-          {/* Main Content Area */}
-          <ResizablePanel defaultSize={85} className="bg-background min-h-0 overflow-hidden">
-            <ResizablePanelGroup direction="vertical" className="h-full">
-              {/* Metrics Panel */}
-              <ResizablePanel defaultSize={25} minSize={15} className="overflow-auto">
-                <MetricsPanel />
-              </ResizablePanel>
-
-              <ResizableHandle withHandle />
-
-              {/* Projects and Tasks */}
-              <ResizablePanel defaultSize={75} className="overflow-hidden min-h-0">
-                <ResizablePanelGroup direction="horizontal" className="h-full">
-                  {/* Projects Panel */}
-                  <ResizablePanel defaultSize={50} className="overflow-auto">
-                    <ProjectsPanel filters={filters} />
-                  </ResizablePanel>
-
-                  <ResizableHandle withHandle />
-
-                  {/* Tasks Panel */}
-                  <ResizablePanel defaultSize={50} className="overflow-auto">
-                    <TasksPanel filters={filters} />
-                  </ResizablePanel>
-                </ResizablePanelGroup>
-              </ResizablePanel>
-            </ResizablePanelGroup>
-          </ResizablePanel>
-        </ResizablePanelGroup>
+              {/* Tasks Panel - 50% width */}
+              <TasksPanel filters={filters} />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   )

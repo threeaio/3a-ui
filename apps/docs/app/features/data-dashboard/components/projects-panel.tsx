@@ -51,7 +51,7 @@ const ProjectsPanel: React.FC<ProjectsPanelProps> = ({ filters }) => {
       ) : (
         <div className="space-y-3">
           {filteredProjects.map((project) => (
-            <div key={project.id} className="border rounded-lg overflow-hidden">
+            <div key={project.id} className="bg-card rounded-lg overflow-hidden">
               <div
                 className="h-20 px-5 flex items-center justify-between cursor-pointer hover:bg-muted"
                 onClick={() => expandProject(project.id)}
@@ -89,7 +89,6 @@ const ProjectsPanel: React.FC<ProjectsPanelProps> = ({ filters }) => {
                           ? 'secondary'
                           : 'outline'
                     }
-                    disabled
                   />
 
                   <ChevronRight

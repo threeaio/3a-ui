@@ -24,7 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <head></head>
-      <body className={`${geist.variable} ${geistMono.variable} font-sans`}>
+      <body className={`${geist.variable} ${geistMono.variable} font-sans bg-sidebar`}>
         <VisualizerToggle>{children}</VisualizerToggle>
       </body>
     </html>

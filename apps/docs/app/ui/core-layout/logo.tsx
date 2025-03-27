@@ -42,7 +42,12 @@ export const Logo: React.FC<LogoProps> = ({ href = '/', className = '' }) => {
             strokeLinecap="round"
           ></path>
         </svg> */}
-        <svg className="w-20" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0.34 0.13 904.07 259.41">
+        <svg
+          className="w-20 max-w-full"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0.34 0.13 904.07 259.41"
+        >
           {' '}
           <path
             fillRule="evenodd"
