@@ -23,6 +23,10 @@
     "./switch": "./src/ui/switch/index.ts",
     "./drawer": "./src/ui/drawer/index.ts",
     "./resizable": "./src/ui/resizable/index.ts",
+    "./separator": "./src/ui/separator/index.ts",
+    "./sheet": "./src/ui/sheet/index.ts",
+    "./sidebar": "./src/ui/sidebar/index.ts",
+    "./skeleton": "./src/ui/skeleton/index.ts",
     "./code": "./src/ui/code/index.ts",
     "./lib/utils": "./src/lib/utils.ts"
   },
@@ -56,6 +60,7 @@
     "@radix-ui/react-progress": "^1.1.2",
     "@radix-ui/react-radio-group": "^1.2.3",
     "@radix-ui/react-select": "^2.1.6",
+    "@radix-ui/react-separator": "^1.1.2",
     "@radix-ui/react-slider": "^1.2.3",
     "@radix-ui/react-slot": "^1.1.2",
     "@radix-ui/react-switch": "^1.1.3",

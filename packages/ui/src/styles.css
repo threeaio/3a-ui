@@ -16,10 +16,10 @@ Everytime we update values here we need to update the documentation in /tailwind
   --color-gray-300: oklch(0.87 0 0);
   --color-gray-400: oklch(0.708 0 0);
   --color-gray-500: oklch(0.556 0 0);
-  --color-gray-600: oklch(0.339 0 0);
-  --color-gray-700: oklch(0.269 0 0);
-  --color-gray-800: oklch(0.205 0 0);
-  --color-gray-900: oklch(0.145 0 0);
+  --color-gray-600: oklch(0.329 0 0);
+  --color-gray-700: oklch(0.229 0 0);
+  --color-gray-800: oklch(0.195 0 0);
+  --color-gray-900: oklch(0.165 0 0);
   --color-black: oklch(0.145 0 0);
 
   /* Brand */
@@ -49,21 +49,26 @@ Everytime we update values here we need to update the documentation in /tailwind
 
 /* Light theme semantic variables */
 :root {
-  --background: var(--color-white);
-  --foreground: var(--color-gray-900);
+  --background: var(--color-gray-100);
+  --foreground: var(--color-black);
 
   --default: var(--color-gray-700);
   --default-foreground: var(--color-gray-50);
+
   --primary: var(--color-brand-green-for-bright);
   --primary-foreground: var(--color-gray-900);
+
   --secondary: var(--color-gray-100);
   --secondary-foreground: var(--color-gray-800);
+
   --muted: var(--color-gray-50);
   --muted-foreground: var(--color-gray-500);
+
   --accent: var(--color-gray-100);
   --accent-foreground: var(--color-gray-800);
+
   --destructive: var(--color-red-500);
-  --destructive-foreground: var(--color-white);
+  --destructive-foreground: var(--color-gray-900);
 
   --success: var(--color-success);
   --warning: var(--color-warning);
@@ -82,7 +87,7 @@ Everytime we update values here we need to update the documentation in /tailwind
   --chart-3: var(--color-chart-indigo);
   --chart-4: var(--color-chart-yellow);
   --chart-5: var(--color-chart-amber);
-  --sidebar: var(--color-gray-50);
+  --sidebar: var(--color-gray-200);
   --sidebar-foreground: var(--color-gray-900);
   --sidebar-primary: var(--color-gray-800);
   --sidebar-primary-foreground: var(--color-gray-50);
@@ -96,19 +101,24 @@ Everytime we update values here we need to update the documentation in /tailwind
 
 /* Dark theme semantic variables */
 .dark {
-  --background: var(--color-black);
+  --background: var(--color-gray-800);
   --foreground: var(--color-gray-50);
 
   --default: var(--color-gray-50);
   --default-foreground: var(--color-gray-900);
+
   --primary: var(--color-brand-green-for-bright);
   --primary-foreground: var(--color-gray-800);
+
   --secondary: var(--color-gray-700);
   --secondary-foreground: var(--color-gray-50);
+
   --muted: var(--color-gray-800);
   --muted-foreground: var(--color-gray-400);
+
   --accent: var(--color-gray-700);
   --accent-foreground: var(--color-gray-50);
+
   --destructive: var(--color-red-500);
   --destructive-foreground: var(--color-gray-900);
 
@@ -119,7 +129,7 @@ Everytime we update values here we need to update the documentation in /tailwind
   --input: var(--color-gray-600);
   --ring: var(--color-gray-50);
 
-  --card: var(--color-gray-900);
+  --card: var(--color-gray-700);
   --card-foreground: var(--color-gray-100);
   --popover: var(--color-gray-900);
   --popover-foreground: var(--color-gray-50);
@@ -129,7 +139,7 @@ Everytime we update values here we need to update the documentation in /tailwind
   --chart-3: var(--color-chart-amber);
   --chart-4: var(--color-chart-violet);
   --chart-5: var(--color-chart-orange);
-  --sidebar: var(--color-gray-800);
+  --sidebar: var(--color-black);
   --sidebar-foreground: var(--color-gray-50);
   --sidebar-primary: var(--color-gray-700);
   --sidebar-primary-foreground: var(--color-gray-50);
