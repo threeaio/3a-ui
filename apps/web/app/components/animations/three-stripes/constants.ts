@@ -1,9 +1,9 @@
 import { sine } from '@threeaio/utils/animation'
 
 export const DEFAULT_STRIPE_CONFIG = {
-  stripeCount: 4,
+  stripeCount: 20,
   vanishingPointX: 0.5,
-  stripeWidth: 120,
+  stripeWidth: 20,
   gapWidth: 20,
   verticalDistance: 260,
   debug: false,
@@ -11,12 +11,12 @@ export const DEFAULT_STRIPE_CONFIG = {
   offsetFromBottom: 0,
   primaryOscillator: {
     bpm: 7.5 / 1.2,
-    amplitude: 280,
+    amplitude: 160,
     waveform: sine,
   },
   secondaryOscillator: {
     bpm: 7.5 / 4,
-    amplitude: 60,
+    amplitude: 100,
     waveform: sine,
   },
   bias: {
