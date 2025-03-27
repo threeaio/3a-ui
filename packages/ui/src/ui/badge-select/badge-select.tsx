@@ -87,6 +87,7 @@ export function BadgeSelect({
       aria-hidden="true"
       tabIndex={-1}
       className={cn(
+        'border-none shadow-none',
         badgeVariants({ variant }),
         'select-none cursor-pointer pr-1.5 pl-3',
         'absolute opacity-0 bg-white pointer-events-none',
@@ -113,7 +114,7 @@ export function BadgeSelect({
             badgeVariants({ variant }),
             'select-none cursor-pointer pr-1.5 pl-3 min-h-0 py-1.5',
             disabled && 'opacity-50 cursor-not-allowed',
-            'border-none shadow-none',
+            
             className,
           )}
           style={{
