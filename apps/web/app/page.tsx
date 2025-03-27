@@ -7,7 +7,7 @@ import { TestimonialsSection } from './components/sections/testimonials-section'
 import { PricingSection } from './components/sections/pricing-section'
 import { ContactSection } from './components/sections/contact-section'
 import { FooterSection } from './components/sections/footer-section'
-import { ThreeStripes } from './components/animations/three-stripes'
+import { ThreeStripes } from './components/animations/three-stripes/three-stripes'
 import { WordListSection } from './components/sections/word-list-section'
 
 export default function Page() {
@@ -21,7 +21,7 @@ export default function Page() {
         <ScrollToTop />
         <HeroSection />
         <WordListSection />
-        <FeaturesSection />
+        {/* <FeaturesSection /> */}
         {/* <BenefitsSection /> */}
         {/* <TestimonialsSection /> */}
         {/* <PricingSection /> */}

@@ -14,7 +14,7 @@ const words = [
 
 export function WordListSection() {
   return (
-    <section className="container mx-auto px-5 md:px-10 py-80">
+    <section className="container mx-auto px-5 md:px-10 py-160">
       <div className="flex flex-wrap justify-center gap-4 md:gap-20">
         {words.map((word, index) => (
           <Badge

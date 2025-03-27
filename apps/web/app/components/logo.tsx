@@ -16,8 +16,8 @@ export const Logo: React.FC<LogoProps> = ({ href = '/', className = '' }) => {
         <path d="M4.13265 31.0323L21.4127 1.69895L38.6928 31.0323H4.13265Z" stroke="currentColor"></path>
         <path d="M10.7715 20.1357L32.0875 20.1357" stroke="currentColor"></path>
       </svg> */}
-
-      {/* <svg xmlns="http://www.w3.org/2000/svg" className="h-full" fill="none" viewBox="4.42 1.04 32.28 28.89">
+      {/* 
+      <svg xmlns="http://www.w3.org/2000/svg" className="h-12" fill="none" viewBox="4.42 1.04 32.28 28.89">
         <g opacity="1">
           <path
             d="M8.97709 23.8573L16.7113 23.8573L33.1022 23.8573M25.6162 1.73564C24.0144 0.810832 21.9662 1.35965 21.0413 2.96147L12.8442 17.1593L8.97712 23.8573L16.7114 23.8573L33.1023 23.8573C34.9519 23.8573 36.4513 22.3579 36.4513 20.5083C36.4513 18.6587 34.9519 17.1593 33.1023 17.1593L20.5785 17.1593L26.842 6.3105C27.7668 4.70868 27.218 2.66045 25.6162 1.73564Z"
@@ -42,6 +42,7 @@ export const Logo: React.FC<LogoProps> = ({ href = '/', className = '' }) => {
         ></path>
       </svg> */}
 
+      {/* Logo */}
       <svg
         width="905"
         height="260"

@@ -12,9 +12,9 @@ export function HeroSection() {
         <h1 className="text-2xl xl:text-2xl max-w-lg mb-5 font-mono font-extralight">
           Crafting solutions for the next wave of digitalization.
         </h1>
-        <p className="text-muted-foreground max-w-2xl mb-10">
-          Tailored solutions that perfectly fit your business needs, delivered on time and within budget, with a focus
-          on elegant, intuitive user experiences.
+        <p className=" max-w-2xl mb-10 font-extralight opacity-80">
+          Tailored solutions that perfectly fit your business needs, delivered on time and within budget. With a focus
+          on elegant, intuitive and human-centered user experiences.
         </p>
         {/* <div className="flex flex-col sm:flex-row gap-5">
           <Button size="lg" variant="primary">
