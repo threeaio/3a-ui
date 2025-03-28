@@ -17,7 +17,6 @@ const TeamMembersPanel: React.FC = () => {
   }
 
   return (
-    <div className="p-5">
       <Card className="w-full">
         <CardHeader className="pb-2">
           <CardTitle>Team Members</CardTitle>
@@ -101,7 +100,6 @@ const TeamMembersPanel: React.FC = () => {
           </div>
         </CardContent>
       </Card>
-    </div>
   )
 }
 

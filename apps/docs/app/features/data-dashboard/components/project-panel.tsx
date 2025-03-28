@@ -34,45 +34,44 @@ const ProjectPanel: React.FC<ProjectPanelProps> = ({ project }) => {
   }
 
   return (
-    <div className="p-5">
-      <Card className="w-full">
-        <CardHeader className="pb-2">
-          <div className="flex justify-between items-center">
-            <CardTitle>Project Overview</CardTitle>
-            <div className="flex gap-2">
-              <Badge className={`${getStatusBadgeColor(project.status)}`}>
-                {project.status.charAt(0).toUpperCase() + project.status.slice(1).replace('-', ' ')}
-              </Badge>
-              <Badge className={`${getPriorityBadgeColor(project.priority)}`}>
-                {project.priority.charAt(0).toUpperCase() + project.priority.slice(1)}
-              </Badge>
-            </div>
+    <Card className="w-full">
+      <CardHeader className="pb-2">
+        <div className="flex justify-between items-center">
+          <CardTitle>Project Overview</CardTitle>
+          <div className="flex gap-2">
+            <Badge className={`${getStatusBadgeColor(project.status)}`}>
+              {project.status.charAt(0).toUpperCase() + project.status.slice(1).replace('-', ' ')}
+            </Badge>
+            <Badge className={`${getPriorityBadgeColor(project.priority)}`}>
+              {project.priority.charAt(0).toUpperCase() + project.priority.slice(1)}
+            </Badge>
           </div>
-        </CardHeader>
-        <CardContent className="pb-6">
-          <h2 className="font-semibold mb-2">{project.name}</h2>
-          <p className="text-muted-foreground mb-6">{project.description}</p>
+        </div>
+      </CardHeader>
+      <CardContent className="pb-6">
+        <h2 className="font-semibold mb-2">{project.name}</h2>
+        <p className="text-muted-foreground mb-6">{project.description}</p>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-            <div>
-              <p className="text-sm text-muted-foreground">Start Date</p>
-              <p className="">{formatDate(project.startDate)}</p>
-            </div>
-            <div>
-              <p className="text-sm text-muted-foreground">End Date</p>
-              <p className="">{formatDate(project.endDate)}</p>
-            </div>
-            <div>
-              <p className="text-sm text-muted-foreground">Days Remaining</p>
-              <p className="">{getDaysRemaining()} days</p>
-            </div>
-            <div>
-              <p className="text-sm text-muted-foreground">Team Size</p>
-              <p className="">{project.teamSize} members</p>
-            </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+          <div>
+            <p className="text-sm text-muted-foreground">Start Date</p>
+            <p className="">{formatDate(project.startDate)}</p>
           </div>
+          <div>
+            <p className="text-sm text-muted-foreground">End Date</p>
+            <p className="">{formatDate(project.endDate)}</p>
+          </div>
+          <div>
+            <p className="text-sm text-muted-foreground">Days Remaining</p>
+            <p className="">{getDaysRemaining()} days</p>
+          </div>
+          <div>
+            <p className="text-sm text-muted-foreground">Team Size</p>
+            <p className="">{project.teamSize} members</p>
+          </div>
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <div>
               <div className="flex justify-between mb-2">
                 <p className="text-sm text-muted-foreground">Progress</p>
@@ -90,21 +89,20 @@ const ProjectPanel: React.FC<ProjectPanelProps> = ({ project }) => {
               </div>
               <Progress value={(project.currentSpend / project.budget) * 100} className="h-2" />
             </div>
-          </div>
+          </div> */}
 
-          <div>
-            <p className="text-sm text-muted-foreground mb-2">Tags</p>
-            <div className="flex flex-wrap gap-2">
-              {project.tags.map((tag: string) => (
-                <Badge key={tag} variant="outline" className="text-xs">
-                  {tag}
-                </Badge>
-              ))}
-            </div>
+        <div>
+          <p className="text-sm text-muted-foreground mb-2">Tags</p>
+          <div className="flex flex-wrap gap-2">
+            {project.tags.map((tag: string) => (
+              <Badge key={tag} variant="outline" className="text-xs">
+                {tag}
+              </Badge>
+            ))}
           </div>
-        </CardContent>
-      </Card>
-    </div>
+        </div>
+      </CardContent>
+    </Card>
   )
 }
 

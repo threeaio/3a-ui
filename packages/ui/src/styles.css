@@ -33,15 +33,16 @@ Everytime we update values here we need to update the documentation in /tailwind
   --color-red-700: oklch(0.577 0.245 27.325);
 
   /* Chart colors */
-  --color-chart-amber: oklch(0.769 0.188 70.08);
-  --color-chart-orange: oklch(0.645 0.246 16.439);
-  --color-chart-yellow: oklch(0.828 0.189 84.429);
-  --color-chart-green: oklch(0.646 0.222 141.116);
-  --color-chart-teal: oklch(0.696 0.17 162.48);
-  --color-chart-blue: oklch(0.6 0.118 184.704);
-  --color-chart-indigo: oklch(0.398 0.07 227.392);
-  --color-chart-purple: oklch(0.488 0.243 264.376);
-  --color-chart-violet: oklch(0.627 0.265 303.9);
+  --color-chart-neutral: var(--color-gray-400);
+  --color-chart-amber: var(--color-amber-500);
+  --color-chart-orange: var(--color-orange-500);
+  --color-chart-yellow: var(--color-yellow-500);
+  --color-chart-green: var(--color-green-500);
+  --color-chart-teal: var(--color-teal-500);
+  --color-chart-blue: var(--color-blue-500);
+  --color-chart-indigo: var(--color-indigo-500);
+  --color-chart-purple: var(--color-purple-500);
+  --color-chart-violet: var(--color-violet-500);
 
   /* Radius */
   --radius: 0.625rem;
@@ -87,6 +88,7 @@ Everytime we update values here we need to update the documentation in /tailwind
   --chart-3: var(--color-chart-indigo);
   --chart-4: var(--color-chart-yellow);
   --chart-5: var(--color-chart-amber);
+
   --sidebar: var(--color-gray-200);
   --sidebar-foreground: var(--color-gray-900);
   --sidebar-primary: var(--color-gray-800);
@@ -139,6 +141,7 @@ Everytime we update values here we need to update the documentation in /tailwind
   --chart-3: var(--color-chart-amber);
   --chart-4: var(--color-chart-violet);
   --chart-5: var(--color-chart-orange);
+
   --sidebar: var(--color-black);
   --sidebar-foreground: var(--color-gray-50);
   --sidebar-primary: var(--color-gray-700);

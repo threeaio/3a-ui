@@ -32,6 +32,7 @@ import {
   HistoryIcon,
 } from 'lucide-react'
 import { useProjectData, useTasksData, useRisksData, useMilestonesData } from './data-context'
+import { Progress } from '@3a.solutions/ui/progress'
 
 export function AppSidebar() {
   const { state } = useSidebar()
@@ -147,9 +148,7 @@ export function AppSidebar() {
             <span className="text-sm">Project Progress</span>
           </div>
           <p className="text-xs text-muted-foreground mb-3">{project.progress}% Complete</p>
-          <div className="w-full bg-background rounded-full h-2.5">
-            <div className="bg-primary h-2.5 rounded-full" style={{ width: `${project.progress}%` }}></div>
-          </div>
+          <Progress value={project.progress} />
         </div>
       </SidebarFooter>
     </Sidebar>
