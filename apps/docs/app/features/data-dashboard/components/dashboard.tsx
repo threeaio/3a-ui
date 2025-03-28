@@ -1,56 +1,38 @@
 'use client'
 
-import React, { useState } from 'react'
-import Header from './header'
-import Sidebar from './___sidebar'
-import ProjectsPanel from './projects-panel'
-import TasksPanel from './tasks-panel'
+import React from 'react'
 import MetricsPanel from './metrics-panel'
-import { priorityLevels, projectStatuses, taskStatuses, timeRanges } from '../mock-data'
-
-export type DashboardFilters = {
-  timeRange: string
-  projectStatus: string
-  taskStatus: string
-  priority: string
-  search: string
-}
+import ProjectPanel from './project-panel'
+import TasksPanel from './tasks-panel'
+import TeamMembersPanel from './team-members-panel'
+import { useProjectData } from '../data-context'
 
 const Dashboard: React.FC = () => {
-  const [filters, setFilters] = useState<DashboardFilters>({
-    timeRange: 'month',
-    projectStatus: 'all',
-    taskStatus: 'all',
-    priority: 'all',
-    search: '',
-  })
-
-  const handleFilterChange = (filterName: keyof DashboardFilters, value: string) => {
-    setFilters((prev) => ({ ...prev, [filterName]: value }))
-  }
-
-  const handleSearchChange = (value: string) => {
-    setFilters((prev) => ({ ...prev, search: value }))
-  }
+  const { project } = useProjectData()
 
   return (
-    <div className="flex flex-col ">
-      <div className="flex-1 flex ">
+    <div className="flex flex-col">
+      <div className="flex-1 flex">
         {/* Main Content Area */}
         <div className="flex-1 bg-background">
           <div className="flex flex-col h-full">
-            {/* Metrics Panel - 25% height */}
-            <div className="mb-10">
+            {/* Metrics Panel */}
+            <div className="mb-5">
               <MetricsPanel />
             </div>
 
-            {/* Projects and Tasks - 75% height */}
-            <div className="grid grid-cols-2 gap-10">
-              {/* Projects Panel - 50% width */}
-              <ProjectsPanel filters={filters} />
+            {/* Project Panel - Full Width */}
+            <div className="mb-5">
+              <ProjectPanel project={project} />
+            </div>
 
-              {/* Tasks Panel - 50% width */}
-              <TasksPanel filters={filters} />
+            {/* Team Members and Tasks - Side by Side */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              {/* Team Members Panel */}
+              <TeamMembersPanel />
+
+              {/* Tasks Panel */}
+              <TasksPanel />
             </div>
           </div>
         </div>

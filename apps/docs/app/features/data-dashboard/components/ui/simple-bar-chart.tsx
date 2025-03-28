@@ -1,5 +1,5 @@
 import React from 'react'
-import { ChartData } from '../../mock-data'
+import { ChartData } from '../../types'
 
 interface SimpleBarChartProps {
   data: ChartData[]
