@@ -112,9 +112,9 @@ export function BadgeSelect({
           className={cn(
             'flex items-center gap-1.5 w-full text-xs text-left justify-start',
             badgeVariants({ variant }),
-            'select-none cursor-pointer pr-1.5 pl-3 min-h-0 py-1.5',
+            'select-none cursor-pointer pr-1.5 pl-3 min-h-0 py-1.5 h-6.5',
             disabled && 'opacity-50 cursor-not-allowed',
-            
+
             className,
           )}
           style={{

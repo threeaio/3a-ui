@@ -37,7 +37,7 @@ const Dashboard: React.FC = () => {
     <div className="flex flex-col ">
       <div className="flex-1 flex ">
         {/* Main Content Area */}
-        <div className="flex-1 bg-background min-h-0 overflow-hidden">
+        <div className="flex-1 bg-background">
           <div className="flex flex-col h-full">
             {/* Metrics Panel - 25% height */}
             <div className="mb-10">

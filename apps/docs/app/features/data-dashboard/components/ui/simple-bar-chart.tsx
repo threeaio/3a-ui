@@ -10,7 +10,7 @@ export const SimpleBarChart: React.FC<SimpleBarChartProps> = ({ data, colors = [
   const maxValue = Math.max(...data.map((item) => item.value))
 
   return (
-    <div className="w-full h-48">
+    <div className="w-full h-50">
       <div className="flex  h-40 gap-4 mt-5">
         {data.map((item, index) => {
           // Ensure height is at least 2% to make all bars visible

@@ -11,21 +11,13 @@ import { metrics, projectStatusChart, taskPriorityChart, taskStatusChart } from 
 const MetricsPanel: React.FC = () => {
   return (
     <div className="p-5">
-      <div className="flex items-center justify-between mb-5">
-        <h2 className="">Overview & Metrics</h2>
-        <Badge variant="outline" className="flex items-center gap-1">
-          <DotSquare className="size-3" />
-          Last updated: Just now
-        </Badge>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mb-2">
         {metrics.map((metric, index) => (
           <MetricCard key={index} {...metric} />
         ))}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
         <ChartContainer title="Project Status Distribution">
           <SimpleBarChart data={projectStatusChart} colors={['#8884d8', '#83a6ed', '#8dd1e1', '#82ca9d']} />
         </ChartContainer>
@@ -51,9 +43,9 @@ interface MetricCardProps {
 
 const MetricCard: React.FC<MetricCardProps> = ({ name, value, change, trend }) => {
   return (
-    <Card className="p-5">
+    <Card className="p-5 h-40 flex flex-col justify-between">
       <div className="flex justify-between items-start mb-2">
-        <span className="text-sm text-muted-foreground">{name}</span>
+        <span className="text-sm">{name}</span>
         {trend === 'up' ? (
           <TrendingUp className="size-4 text-green-500" />
         ) : trend === 'down' ? (

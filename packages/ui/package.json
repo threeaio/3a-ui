@@ -27,6 +27,8 @@
     "./sheet": "./src/ui/sheet/index.ts",
     "./sidebar": "./src/ui/sidebar/index.ts",
     "./skeleton": "./src/ui/skeleton/index.ts",
+    "./card": "./src/ui/card/index.ts",
+    "./chart": "./src/ui/chart/index.ts",
     "./code": "./src/ui/code/index.ts",
     "./lib/utils": "./src/lib/utils.ts"
   },
@@ -73,6 +75,7 @@
     "pnpm": "^10.7.0",
     "progress": "^2.0.3",
     "react-resizable-panels": "^2.1.7",
+    "recharts": "^2.15.1",
     "shadcn": "2.4.0-canary.18",
     "shiki": "^3.2.1",
     "tailwindcss-animate": "^1.0.7",
