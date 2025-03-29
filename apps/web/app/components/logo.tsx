@@ -43,7 +43,7 @@ export const Logo: React.FC<LogoProps> = ({ href = '/', className = '' }) => {
       </svg> */}
 
       {/* Logo */}
-      <svg
+      {/* <svg
         width="905"
         height="260"
         viewBox="0 0 905 260"
@@ -69,6 +69,112 @@ export const Logo: React.FC<LogoProps> = ({ href = '/', className = '' }) => {
           d="M645.477 141.006C645.163 137.323 645.002 133.596 645.002 129.832C645.002 58.1989 703.073 0.128418 774.706 0.128418C846.34 0.128418 904.41 58.1989 904.41 129.832C904.41 133.943 904.219 138.01 903.845 142.023L645.477 141.006ZM651.829 171.466L897.411 171.973C879.918 222.921 831.588 259.536 774.706 259.536C717.636 259.536 669.175 222.678 651.829 171.466Z"
           fill="currentColor"
         />
+      </svg> */}
+
+      {/* <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0.38 0.35 369.72 319.35"
+        className="size-12 max-w-[90%]"
+      >
+        <path d="M185.787 199.896L9.28609 312.383" stroke="currentColor" strokeWidth="4.58918"></path>
+        <path d="M185.787 199.896L361.202 310.791" stroke="currentColor" strokeWidth="4.58918"></path>
+        <path d="M185.787 199.896V11.9543" stroke="currentColor" strokeWidth="4.58918"></path>
+        <path d="M185.787 199.896L9.28609 312.383" stroke="currentColor" strokeWidth="4.58918"></path>
+        <path d="M185.787 199.896L361.202 310.791" stroke="currentColor" strokeWidth="4.58918"></path>
+        <path d="M185.787 199.896V11.9543" stroke="currentColor" strokeWidth="4.58918"></path>
+        <path
+          d="M56.2404 282.534L185.787 62.6248L315.334 282.534H56.2404Z"
+          stroke="currentColor"
+          strokeWidth="4.58918"
+        ></path>
+        <circle cx="185.996" cy="9.25195" r="8.90308" fill="currentColor"></circle>
+        <circle cx="361.202" cy="310.791" r="8.90308" fill="currentColor"></circle>
+        <circle cx="9.28613" cy="310.791" r="8.90308" fill="currentColor"></circle>
+      </svg> */}
+
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" className="w-12" viewBox="0.1 0.41 1185.93 1077.17">
+        <rect
+          x="0.0979004"
+          y="938.181"
+          width="1080.96"
+          height="280.268"
+          rx="140.134"
+          transform="rotate(-60.1734 0.0979004 938.181)"
+          fill="currentColor"
+        ></rect>
+        <rect
+          x="0.0979004"
+          y="938.181"
+          width="1080.96"
+          height="280.268"
+          rx="140.134"
+          transform="rotate(-60.1734 0.0979004 938.181)"
+          fill="currentColor"
+        ></rect>
+        <rect
+          x="0.0979004"
+          y="938.181"
+          width="1080.96"
+          height="280.268"
+          rx="140.134"
+          transform="rotate(-60.1734 0.0979004 938.181)"
+          fill="currentColor"
+        ></rect>
+        <rect
+          x="409.789"
+          y="938.181"
+          width="672.315"
+          height="280.268"
+          rx="140.134"
+          transform="rotate(-60.1734 409.789 938.181)"
+          fill="currentColor"
+        ></rect>
+        <rect
+          x="409.789"
+          y="938.181"
+          width="672.315"
+          height="280.268"
+          rx="140.134"
+          transform="rotate(-60.1734 409.789 938.181)"
+          fill="currentColor"
+        ></rect>
+        <rect
+          x="409.789"
+          y="938.181"
+          width="672.315"
+          height="280.268"
+          rx="140.134"
+          transform="rotate(-60.1734 409.789 938.181)"
+          fill="currentColor"
+        ></rect>
+        <rect
+          x="807.997"
+          y="938.181"
+          width="271.197"
+          height="280.268"
+          rx="135.599"
+          transform="rotate(-60.1734 807.997 938.181)"
+          fill="currentColor"
+        ></rect>
+        <rect
+          x="807.997"
+          y="938.181"
+          width="271.197"
+          height="280.268"
+          rx="135.599"
+          transform="rotate(-60.1734 807.997 938.181)"
+          fill="currentColor"
+        ></rect>
+        <rect
+          x="807.997"
+          y="938.181"
+          width="271.197"
+          height="280.268"
+          rx="135.599"
+          transform="rotate(-60.1734 807.997 938.181)"
+          fill="currentColor"
+        ></rect>
       </svg>
     </div>
   )

@@ -8,6 +8,7 @@ import { Project } from '../../../types'
 import { format } from 'date-fns'
 import { getStatusBadgeColor, getPriorityBadgeColor } from '../../../utils'
 import { epics } from '../../../data-context/mock-data'
+import { cn } from '@3a.solutions/ui/lib/utils'
 
 type ProjectPanelProps = {
   project: Project
@@ -102,34 +103,32 @@ const ProjectPanel: React.FC<ProjectPanelProps> = ({ project }) => {
               {epics.length}
             </Badge>
           </div>
-          <div className="space-y-5">
-            <ul className="list-none space-y-5">
-              {epics.map((epic) => (
-                <li key={epic.id} className="text-sm border rounded-md p-5 flex flex-col gap-5">
-                  <h4 className="font-medium">{epic.title}</h4>
-                  <div className="flex flex-wrap gap-2">
-                    <Badge>
-                      <span className="text-default-foreground/80">Tasks: </span>
-                      {epic.taskCount}
+          <ul className="list-none border rounded-lg mb-2">
+            {epics.map((epic) => (
+              <li key={epic.id} className={cn('p-5 flex flex-col gap-5', 'border-b last:border-b-0')}>
+                <h4 className="font-medium">{epic.title}</h4>
+                <div className="flex flex-wrap gap-2">
+                  <Badge>
+                    <span className="text-default-foreground/80">Tasks: </span>
+                    {epic.taskCount}
+                  </Badge>
+                  {epic.tags.map((tag) => (
+                    <Badge key={tag} variant="outline">
+                      {tag.charAt(0).toUpperCase() + tag.slice(1)}
                     </Badge>
-                    {epic.tags.map((tag) => (
-                      <Badge key={tag} variant="outline">
-                        {tag.charAt(0).toUpperCase() + tag.slice(1)}
-                      </Badge>
-                    ))}
+                  ))}
+                </div>
+                <p className="text-muted-foreground">{epic.description}</p>
+                <div className="">
+                  <div className="flex justify-between text-xs text-muted-foreground mb-1">
+                    <span>Progress</span>
+                    <span>{epic.progress}%</span>
                   </div>
-                  <p className="text-muted-foreground">{epic.description}</p>
-                  <div className="">
-                    <div className="flex justify-between text-xs text-muted-foreground mb-1">
-                      <span>Progress</span>
-                      <span>{epic.progress}%</span>
-                    </div>
-                    <Progress value={epic.progress} className="h-1" />
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
+                  <Progress value={epic.progress} className="h-1" />
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
       </CardContent>
     </Card>

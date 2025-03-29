@@ -42,7 +42,8 @@ export const Logo: React.FC<LogoProps> = ({ href = '/', className = '' }) => {
             strokeLinecap="round"
           ></path>
         </svg> */}
-        <svg
+        {/* The 3 circles */}
+        {/* <svg
           className="w-14 max-w-full"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -67,7 +68,90 @@ export const Logo: React.FC<LogoProps> = ({ href = '/', className = '' }) => {
             d="M645.477 141.006C645.163 137.323 645.002 133.596 645.002 129.832C645.002 58.1989 703.073 0.128418 774.706 0.128418C846.34 0.128418 904.41 58.1989 904.41 129.832C904.41 133.943 904.219 138.01 903.845 142.023L645.477 141.006ZM651.829 171.466L897.411 171.973C879.918 222.921 831.588 259.536 774.706 259.536C717.636 259.536 669.175 222.678 651.829 171.466Z"
             fill="currentColor"
           ></path>{' '}
+        </svg> */}
+
+        {/* <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0.38 0.35 369.72 319.35"
+          className="size-12 max-w-[90%]"
+        >
+          <path d="M185.787 199.896L9.28609 312.383" stroke="currentColor" strokeWidth="4.58918"></path>
+          <path d="M185.787 199.896L361.202 310.791" stroke="currentColor" strokeWidth="4.58918"></path>
+          <path d="M185.787 199.896V11.9543" stroke="currentColor" strokeWidth="4.58918"></path>
+          <path d="M185.787 199.896L9.28609 312.383" stroke="currentColor" strokeWidth="4.58918"></path>
+          <path d="M185.787 199.896L361.202 310.791" stroke="currentColor" strokeWidth="4.58918"></path>
+          <path d="M185.787 199.896V11.9543" stroke="currentColor" strokeWidth="4.58918"></path>
+          <path
+            d="M56.2404 282.534L185.787 62.6248L315.334 282.534H56.2404Z"
+            stroke="currentColor"
+            strokeWidth="4.58918"
+          ></path>
+          <circle cx="185.996" cy="9.25195" r="8.90308" fill="currentColor"></circle>
+          <circle cx="361.202" cy="310.791" r="8.90308" fill="currentColor"></circle>
+          <circle cx="9.28613" cy="310.791" r="8.90308" fill="currentColor"></circle>
+        </svg> */}
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          className="size-12 max-w-[90%]"
+          viewBox="0.1 0.41 1185.93 1077.17"
+        >
+          <rect
+            x="0.0979004"
+            y="938.181"
+            width="1080.96"
+            height="280.268"
+            rx="140.134"
+            transform="rotate(-60.1734 0.0979004 938.181)"
+            fill="currentColor"
+          ></rect>
+          <rect
+            x="409.789"
+            y="938.181"
+            width="672.315"
+            height="280.268"
+            rx="140.134"
+            transform="rotate(-60.1734 409.789 938.181)"
+            fill="currentColor"
+          ></rect>
+          <rect
+            x="807.997"
+            y="938.181"
+            width="271.197"
+            height="280.268"
+            rx="135.599"
+            transform="rotate(-60.1734 807.997 938.181)"
+            fill="currentColor"
+          ></rect>
         </svg>
+
+        {/* <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0.95 0.02 1217.33 1045.58"
+          className="size-12 max-w-[90%]"
+        >
+          <path
+            fillRule="evenodd"
+            clipRule="evenodd"
+            d="M702.744 69.667L756.863 162.776C782.035 206.083 782.151 259.539 757.167 302.955L370.197 975.425C345.214 1018.84 298.942 1045.6 248.853 1045.6H141.155C33.4722 1045.6 -33.8965 929.104 19.8118 835.771L460.362 70.1927C514.068 -23.1376 648.633 -23.4294 702.744 69.667Z"
+            fill="currentColor"
+          ></path>
+          <path
+            fillRule="evenodd"
+            clipRule="evenodd"
+            d="M964.331 483.103L1018.16 576.71C1043.02 619.933 1043.01 673.114 1018.14 716.33L869.048 975.425C844.066 1018.84 797.794 1045.6 747.705 1045.6H640.007C532.324 1045.6 464.955 929.105 518.664 835.772L721.625 483.069C775.475 389.49 910.507 389.509 964.331 483.103Z"
+            fill="currentColor"
+          ></path>
+          <path
+            fillRule="evenodd"
+            clipRule="evenodd"
+            d="M1099.61 1045.6C1008.47 1045.6 951.45 947.001 996.907 868.006C1042.67 788.472 1157.58 788.904 1202.75 868.78C1247.42 947.77 1190.35 1045.6 1099.61 1045.6Z"
+            fill="currentColor"
+          ></path>
+        </svg> */}
       </div>
       {/* <p className="text-xs font-mono">Design Systems</p> */}
     </Link>
