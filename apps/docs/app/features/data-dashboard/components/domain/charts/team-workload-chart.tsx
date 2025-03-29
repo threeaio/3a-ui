@@ -4,7 +4,7 @@ import React from 'react'
 import { TrendingUp } from 'lucide-react'
 import { ChartContainer, ChartTooltipContent, ChartTooltip } from '@3a.solutions/ui/chart'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, LabelList, LabelProps } from 'recharts'
-import { teamMemberTasksChart } from '../../data-context/mock-data'
+import { teamMemberTasksChart } from '../../../data-context/mock-data'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@3a.solutions/ui/card'
 
 interface TeamWorkloadChartProps {
@@ -16,7 +16,6 @@ export const TeamWorkloadChart: React.FC<TeamWorkloadChartProps> = ({ data = tea
     tasks: { label: 'Tasks', color: 'var(--chart-1)' },
     label: { color: 'hsl(var(--background))' },
     grid: { color: 'var(--border)' },
-    
   }
 
   const renderCustomLabel = (props: LabelProps) => {

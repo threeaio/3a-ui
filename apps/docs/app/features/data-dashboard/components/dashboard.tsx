@@ -2,10 +2,10 @@
 
 import React from 'react'
 import { Card } from '@3a.solutions/ui/card'
-import ProjectPanel from './project-panel'
-import TasksPanel from './tasks-panel'
-import TeamMembersPanel from './team-members-panel'
-import { useProjectData } from '../data-context'
+import ProjectPanel from './domain/panels/project-panel'
+import TasksPanel from './domain/panels/tasks-panel'
+import TeamMembersPanel from './domain/panels/team-members-panel'
+import { DataKey, useProjectData } from '../data-context'
 import { useMetricsData } from '../data-context'
 import {
   taskStatusChart,
@@ -25,30 +25,29 @@ import {
   BurndownChart,
   BudgetChart,
   DomainRadarChart,
-} from './charts'
-import { MetricCard } from './metric-card'
-import UnassignedTasksAlert from './unassigned-tasks-alert'
-import ProjectHealthAlert from './project-health-alert'
+} from './domain/charts'
+import { MetricCard } from './domain/panels/metric-card'
+import UnassignedTasksAlert from './domain/alerts/unassigned-tasks-alert'
+import ProjectHealthAlert from './domain/alerts/project-health-alert'
 
 const Dashboard: React.FC = () => {
   const { project } = useProjectData()
   const { metrics } = useMetricsData()
 
-  const taskDataKeys = [
-    { key: 'tasks', name: 'Total Tasks' },
-    { key: 'completed', name: 'Completed' },
-    { key: 'inProgress', name: 'In Progress' },
-    { key: 'todo', name: 'To Do' },
+  const taskDataKeys: DataKey[] = [
+    { key: 'tasks', name: 'Total Tasks', color: 'var(--color-chart-blue)' },
+    { key: 'completed', name: 'Completed', color: 'var(--color-chart-green)' },
+    { key: 'inProgress', name: 'In Progress', color: 'var(--color-chart-violet)' },
   ]
 
-  const hoursDataKeys = [
-    { key: 'estimatedHours', name: 'Estimated Hours' },
-    { key: 'actualHours', name: 'Actual Hours' },
+  const hoursDataKeys: DataKey[] = [
+    { key: 'estimatedHours', name: 'Estimated Hours', color: 'var(--color-chart-blue)' },
+    { key: 'actualHours', name: 'Actual Hours', color: 'var(--color-chart-violet)' },
   ]
 
-  const budgetDataKeys = [
-    { key: 'budget', name: 'Budget' },
-    { key: 'spent', name: 'Spent' },
+  const budgetDataKeys: DataKey[] = [
+    { key: 'budget', name: 'Budget', color: 'var(--color-chart-blue)' },
+    { key: 'spent', name: 'Spent', color: 'var(--color-chart-violet)' },
   ]
 
   return (
@@ -58,10 +57,10 @@ const Dashboard: React.FC = () => {
         <div className="flex-1 bg-background">
           <div className="flex flex-col h-full p-5">
             {/* Project Health Alerts */}
-            <div className="space-y-2">
+            {/* <div className="space-y-5 mb-5">
               <ProjectHealthAlert project={project} tasks={tasks} risks={risks} />
               <UnassignedTasksAlert tasks={tasks} />
-            </div>
+            </div> */}
 
             {/* Metrics Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-4 gap-2 mb-5">
@@ -77,17 +76,17 @@ const Dashboard: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-5">
               <Card className="p-4">
                 <h3 className="text-sm font-medium mb-2">Task Distribution by Domain</h3>
-                <DomainRadarChart data={domainTaskDistribution} dataKeys={taskDataKeys} useDomainColors />
+                <DomainRadarChart data={domainTaskDistribution} dataKeys={taskDataKeys} />
               </Card>
 
               <Card className="p-4">
                 <h3 className="text-sm font-medium mb-2">Hours Distribution by Domain</h3>
-                <DomainRadarChart data={domainTaskDistribution} dataKeys={hoursDataKeys} useDomainColors />
+                <DomainRadarChart data={domainTaskDistribution} dataKeys={hoursDataKeys} />
               </Card>
 
               <Card className="p-4">
                 <h3 className="text-sm font-medium mb-2">Budget Distribution by Domain</h3>
-                <DomainRadarChart data={domainBudgetDistribution} dataKeys={budgetDataKeys} useDomainColors />
+                <DomainRadarChart data={domainBudgetDistribution} dataKeys={budgetDataKeys} />
               </Card>
             </div>
 

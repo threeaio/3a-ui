@@ -4,11 +4,10 @@ import React, { useState } from 'react'
 import { Button } from '@3a.solutions/ui/button'
 import { BadgeSelect } from '@3a.solutions/ui/badge-select'
 import { Plus, FilterX, AlertTriangle, User, Calendar, Tag, Link as LinkIcon, ChevronRight } from 'lucide-react'
-import { taskStatusOptions, priorityLevels } from '../data-context/mock-data'
-import { useTasksData, useFilterControls } from '../data-context'
-import { TagList } from './ui/tag-list'
-import { TooltipWrapper } from './ui/tooltip-wrapper'
-import { TaskStatus, TaskPriority } from '../types'
+import { useTasksData, useFilterControls, taskStatusOptions, priorityLevels } from '../../../data-context'
+import { TagList } from '../../ui/tag-list'
+import { Tooltip } from '@3a.solutions/ui/tooltip'
+import { TaskStatus, TaskPriority } from '../../../types'
 
 const TasksPanel: React.FC = () => {
   const { tasks, updateTaskStatus, updateTaskPriority } = useTasksData()
@@ -67,11 +66,12 @@ const TasksPanel: React.FC = () => {
                       <div className="flex items-center gap-2">
                         <h3 className="">{task.title}</h3>
                         {isOverdue && (
-                          <TooltipWrapper content="This task is overdue">
+                          <Tooltip>
+                            This task is overdue
                             <span>
                               <AlertTriangle className="size-4 text-destructive" />
                             </span>
-                          </TooltipWrapper>
+                          </Tooltip>
                         )}
                       </div>
                       <p className="text-muted-foreground text-xs">{task.description}</p>
@@ -105,12 +105,7 @@ const TasksPanel: React.FC = () => {
                       }
                     />
 
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={() => toggleTaskSelection(task.id)}
-                      className=""
-                    >
+                    <Button variant="ghost" size="icon" onClick={() => toggleTaskSelection(task.id)} className="">
                       <ChevronRight
                         className={`size-5 transition-transform ${selectedTask === task.id ? 'rotate-90' : ''}`}
                       />
@@ -135,7 +130,7 @@ const TasksPanel: React.FC = () => {
                           <div>
                             <p className="text-sm ">Due Date</p>
                             <p className={`text-sm ${isOverdue ? 'text-destructive' : 'text-muted-foreground'}`}>
-                              {new Date(task.dueDate).toLocaleDateString()}
+                              {new Date(task.dueDate).toLocaleDateString('de-DE')}
                               {isOverdue && ' (Overdue)'}
                             </p>
                           </div>

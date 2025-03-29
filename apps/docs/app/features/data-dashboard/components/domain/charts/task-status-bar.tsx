@@ -1,9 +1,9 @@
 'use client'
 
 import React from 'react'
-import { ChartData } from '../../types'
+import { ChartData } from '../../../types'
 import { ChartContainer, ChartTooltipContent, ChartTooltip } from '@3a.solutions/ui/chart'
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts'
+import { BarChart, Bar, XAxis, YAxis } from 'recharts'
 
 const CHART_CONFIG = {
   borderRadius: 9,

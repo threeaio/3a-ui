@@ -4,10 +4,9 @@ import React from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@3a.solutions/ui/card'
 import { Badge } from '@3a.solutions/ui/badge'
 import { Progress } from '@3a.solutions/ui/progress'
-import { Project } from '../types'
+import { Project } from '../../../types'
 import { format } from 'date-fns'
-import { getStatusBadgeColor, getPriorityBadgeColor } from '../utils'
-import { domainTaskDistribution } from '../data-context/mock-data'
+import { getStatusBadgeColor, getPriorityBadgeColor } from '../../../utils'
 
 type ProjectPanelProps = {
   project: Project

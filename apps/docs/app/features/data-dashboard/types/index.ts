@@ -29,6 +29,11 @@ export type Project = {
 // Extract literal types for reuse
 export type TaskStatus = 'todo' | 'in-progress' | 'review' | 'done'
 export type TaskPriority = 'low' | 'medium' | 'high' | 'critical'
+export type DataKey = {
+  key: string
+  name: string
+  color: string
+}
 
 export type Task = {
   id: string

@@ -3,7 +3,7 @@
 import React from 'react'
 import { ChartContainer, ChartTooltipContent } from '@3a.solutions/ui/chart'
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ReferenceLine } from 'recharts'
-import { burndownData } from '../../data-context/mock-data'
+import { burndownData } from '../../../data-context'
 import { format, parseISO } from 'date-fns'
 
 interface BurndownChartProps {

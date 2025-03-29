@@ -3,7 +3,7 @@
 import React from 'react'
 import { ChartContainer, ChartTooltipContent, ChartTooltip } from '@3a.solutions/ui/chart'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, ReferenceLine } from 'recharts'
-import { budgetData } from '../../data-context/mock-data'
+import { budgetData } from '../../../data-context'
 import { format, parseISO } from 'date-fns'
 
 interface BudgetChartProps {

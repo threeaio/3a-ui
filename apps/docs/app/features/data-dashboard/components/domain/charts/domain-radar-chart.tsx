@@ -4,15 +4,6 @@ import React from 'react'
 import { ChartContainer, ChartTooltipContent, ChartTooltip } from '@3a.solutions/ui/chart'
 import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Legend } from 'recharts'
 
-const DOMAIN_COLORS = {
-  Frontend: 'var(--color-chart-blue)',
-  'UX/Design': 'var(--color-chart-purple)',
-  Backend: 'var(--color-chart-green)',
-  'Dev-Ops': 'var(--color-chart-neutral)',
-  QA: 'var(--color-chart-orange)',
-  Management: 'var(--color-chart-red)',
-} as const
-
 interface DomainRadarChartProps {
   data: Array<{
     domain: string
@@ -23,45 +14,45 @@ interface DomainRadarChartProps {
     name: string
     color?: string
   }>
-  useDomainColors?: boolean
 }
 
-export const DomainRadarChart: React.FC<DomainRadarChartProps> = ({ data, dataKeys, useDomainColors = false }) => {
+export const DomainRadarChart: React.FC<DomainRadarChartProps> = ({ data, dataKeys }) => {
   const chartConfig = {
-    label: { color: 'var(--muted-foreground)' },
+    label: { color: 'var(--foreground)' },
+    tick: { color: 'var(--muted-foreground)' },
     grid: { color: 'var(--border)' },
-  }
-
-  const getDomainColor = (domain: string | undefined) => {
-    if (!domain) return 'var(--muted-foreground)'
-    return DOMAIN_COLORS[domain as keyof typeof DOMAIN_COLORS] || 'var(--muted-foreground)'
   }
 
   return (
     <ChartContainer config={chartConfig} className="h-[300px] w-full">
       <RadarChart data={data} margin={{ top: 5, right: 30, left: 30, bottom: 5 }}>
-        <PolarGrid stroke={chartConfig.grid.color} strokeDasharray="3 3" />
+        <PolarGrid stroke={chartConfig.grid.color} />
         <PolarAngleAxis
           dataKey="domain"
-          tick={{ fill: 'var(--muted-foreground)', fontSize: 11 }}
+          tickLine={false}
+          axisLine={false}
+          tick={{ fill: chartConfig.label.color, fontSize: 10 }}
           stroke={chartConfig.grid.color}
         />
         <PolarRadiusAxis
           angle={30}
           stroke={chartConfig.grid.color}
-          tick={{ fill: 'var(--muted-foreground)', fontSize: 10 }}
+          tickLine={false}
+          axisLine={false}
+          tick={{ fill: chartConfig.tick.color, fontSize: 10 }}
         />
         <ChartTooltip content={<ChartTooltipContent />} />
-        {dataKeys.map((dataKey, index) => (
+        {dataKeys.map((dataKey) => (
           <Radar
             key={dataKey.key}
             name={dataKey.name}
             dataKey={dataKey.key}
-            stroke={useDomainColors ? getDomainColor(data[index]?.domain) : dataKey.color}
-            fill="none"
-            strokeWidth={1.5}
+            stroke={dataKey.color}
+            fill={dataKey.color}
+            fillOpacity={0.3}
+            strokeWidth={0.5}
             dot={{
-              fill: useDomainColors ? getDomainColor(data[index]?.domain) : dataKey.color,
+              fill: dataKey.color,
               radius: 2,
             }}
           />

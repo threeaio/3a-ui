@@ -499,10 +499,10 @@ export const timeRanges = [
 ]
 
 export const domainTaskDistribution = [
-  { domain: 'Frontend', tasks: 3, completed: 1, inProgress: 1, todo: 1, estimatedHours: 80, actualHours: 25 },
-  { domain: 'UX/Design', tasks: 1, completed: 1, inProgress: 0, todo: 0, estimatedHours: 24, actualHours: 28 },
-  { domain: 'Backend', tasks: 1, completed: 0, inProgress: 1, todo: 0, estimatedHours: 32, actualHours: 20 },
-  { domain: 'Dev-Ops', tasks: 1, completed: 0, inProgress: 1, todo: 0, estimatedHours: 16, actualHours: 10 },
+  { domain: 'Frontend', tasks: 4, completed: 0, inProgress: 1, estimatedHours: 80, actualHours: 25 },
+  { domain: 'UX/Design', tasks: 3, completed: 1, inProgress: 0, estimatedHours: 24, actualHours: 28 },
+  { domain: 'Backend', tasks: 5, completed: 2, inProgress: 1, estimatedHours: 32, actualHours: 20 },
+  { domain: 'Dev-Ops', tasks: 2, completed: 0, inProgress: 1, estimatedHours: 16, actualHours: 10 },
 ]
 
 export const domainBudgetDistribution = [
