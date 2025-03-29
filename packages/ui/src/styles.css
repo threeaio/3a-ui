@@ -12,15 +12,15 @@ Everytime we update values here we need to update the documentation in /tailwind
   --color-white: oklch(1 0 0);
   --color-gray-50: oklch(0.985 0 0);
   --color-gray-100: oklch(0.97 0 0);
-  --color-gray-200: oklch(0.922 0 0);
+  --color-gray-200: oklch(0.942 0 0);
   --color-gray-300: oklch(0.87 0 0);
   --color-gray-400: oklch(0.708 0 0);
-  --color-gray-500: oklch(0.456 0 0);
-  --color-gray-600: oklch(0.289 0 0);
-  --color-gray-700: oklch(0.229 0 0);
-  --color-gray-800: oklch(0.195 0 0);
-  --color-gray-900: oklch(0.165 0 0);
-  --color-black: oklch(0.145 0 0);
+  --color-gray-500: oklch(0.556 0 0);
+  --color-gray-600: oklch(0.429 0 0);
+  --color-gray-700: oklch(0.289 0 0);
+  --color-gray-800: oklch(0.245 0 0);
+  --color-gray-900: oklch(0.215 0 0);
+  --color-black: oklch(0 0 0);
 
   /* Brand */
 
@@ -62,7 +62,7 @@ Everytime we update values here we need to update the documentation in /tailwind
   --secondary: var(--color-gray-100);
   --secondary-foreground: var(--color-gray-800);
 
-  --muted: var(--color-gray-50);
+  --muted: var(--color-gray-200);
   --muted-foreground: var(--color-gray-500);
 
   --accent: var(--color-gray-100);
@@ -112,13 +112,13 @@ Everytime we update values here we need to update the documentation in /tailwind
   --primary: var(--color-brand-green-for-bright);
   --primary-foreground: var(--color-gray-800);
 
-  --secondary: var(--color-gray-700);
+  --secondary: var(--color-gray-600);
   --secondary-foreground: var(--color-gray-50);
 
   --muted: var(--color-gray-800);
   --muted-foreground: var(--color-gray-400);
 
-  --accent: var(--color-gray-700);
+  --accent: var(--color-gray-600);
   --accent-foreground: var(--color-gray-50);
 
   --destructive: var(--color-red-500);

@@ -7,6 +7,7 @@ import { Progress } from '@3a.solutions/ui/progress'
 import { Project } from '../../../types'
 import { format } from 'date-fns'
 import { getStatusBadgeColor, getPriorityBadgeColor } from '../../../utils'
+import { epics } from '../../../data-context/mock-data'
 
 type ProjectPanelProps = {
   project: Project
@@ -25,14 +26,6 @@ const ProjectPanel: React.FC<ProjectPanelProps> = ({ project }) => {
     return diffDays > 0 ? diffDays : 0
   }
 
-  const formatBudget = (amount: number) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      maximumFractionDigits: 0,
-    }).format(amount)
-  }
-
   return (
     <Card className="w-full">
       <CardHeader className="pb-2">
@@ -48,7 +41,7 @@ const ProjectPanel: React.FC<ProjectPanelProps> = ({ project }) => {
           </div>
         </div>
       </CardHeader>
-      <CardContent className="pb-6">
+      <CardContent className="">
         <h2 className="font-semibold mb-2">{project.name}</h2>
         <p className="text-muted-foreground mb-6">{project.description}</p>
 
@@ -102,68 +95,39 @@ const ProjectPanel: React.FC<ProjectPanelProps> = ({ project }) => {
           </div>
         </div>
 
-        <div className="mt-6">
-          <div className="flex items-center gap-2 mb-3">
-            <h3 className="font-medium">Epics</h3>
+        <div className="mt-10">
+          <div className="flex items-center gap-2 mb-5">
+            <h3 className="font-semibold text-sm">Epics</h3>
             <Badge variant="secondary" className="text-xs">
-              {3}
+              {epics.length}
             </Badge>
           </div>
-          <div className="space-y-4">
-            <ul className="list-none space-y-4">
-              <li className="text-sm border-l-2 border-primary pl-4">
-                <div className="flex flex-wrap gap-2 mb-2">
-                  <Badge variant="outline" className="text-xs">
-                    Frontend
-                  </Badge>
-                  <Badge variant="outline" className="text-xs">
-                    Backend
-                  </Badge>
-                </div>
-                <h4 className="font-medium mb-1">Data Visualization Integration</h4>
-                Integration of real-time data visualization components with backend services, ensuring optimal
-                performance with large datasets
-                <div className="mt-2">
-                  <div className="flex justify-between text-xs text-muted-foreground mb-1">
-                    <span>Progress</span>
-                    <span>45%</span>
+          <div className="space-y-5">
+            <ul className="list-none space-y-5">
+              {epics.map((epic) => (
+                <li key={epic.id} className="text-sm border rounded-md p-5 flex flex-col gap-5">
+                  <h4 className="font-medium">{epic.title}</h4>
+                  <div className="flex flex-wrap gap-2">
+                    <Badge>
+                      <span className="text-default-foreground/80">Tasks: </span>
+                      {epic.taskCount}
+                    </Badge>
+                    {epic.tags.map((tag) => (
+                      <Badge key={tag} variant="outline">
+                        {tag.charAt(0).toUpperCase() + tag.slice(1)}
+                      </Badge>
+                    ))}
                   </div>
-                  <Progress value={45} className="h-1" />
-                </div>
-              </li>
-              <li className="text-sm border-l-2 border-primary pl-4">
-                <div className="flex flex-wrap gap-2 mb-2">
-                  <Badge variant="outline" className="text-xs">
-                    Dev-Ops
-                  </Badge>
-                </div>
-                <h4 className="font-medium mb-1">CI/CD Pipeline</h4>
-                Setting up robust CI/CD pipeline for automated testing and deployment, with focus on maintaining
-                consistent performance
-                <div className="mt-2">
-                  <div className="flex justify-between text-xs text-muted-foreground mb-1">
-                    <span>Progress</span>
-                    <span>62%</span>
+                  <p className="text-muted-foreground">{epic.description}</p>
+                  <div className="">
+                    <div className="flex justify-between text-xs text-muted-foreground mb-1">
+                      <span>Progress</span>
+                      <span>{epic.progress}%</span>
+                    </div>
+                    <Progress value={epic.progress} className="h-1" />
                   </div>
-                  <Progress value={62} className="h-1" />
-                </div>
-              </li>
-              <li className="text-sm border-l-2 border-primary pl-4">
-                <div className="flex flex-wrap gap-2 mb-2">
-                  <Badge variant="outline" className="text-xs">
-                    Frontend
-                  </Badge>
-                </div>
-                <h4 className="font-medium mb-1">Search & Filter System</h4>
-                Implementation of responsive filtering and search functionality across all dashboard components
-                <div className="mt-2">
-                  <div className="flex justify-between text-xs text-muted-foreground mb-1">
-                    <span>Progress</span>
-                    <span>31%</span>
-                  </div>
-                  <Progress value={31} className="h-1" />
-                </div>
-              </li>
+                </li>
+              ))}
             </ul>
           </div>
         </div>

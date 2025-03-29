@@ -8,7 +8,8 @@ import {
   ProjectMetric,
   TimelineEvent,
   ChartData,
-  TimeSeriesData
+  TimeSeriesData,
+  Epic
 } from "../types"
 
 export const users: User[] = [
@@ -80,7 +81,8 @@ export const users: User[] = [
 export const currentProject: Project = {
   id: 'p3',
   name: 'Analytics Dashboard',
-  description: 'Building an internal analytics dashboard for data visualization with interactive charts and filters',
+  // TODO: add more details
+  description: 'Building an internal analytics dashboard for data visualization with interactive charts and filters. It is a dashboard for the team to visualize relevant data and get insights on KPIs. It is personalizable and can be used by different teams and different roles in the company.', 
   status: 'in-progress',
   priority: 'high',
   progress: 62,
@@ -239,6 +241,39 @@ export const tasks: Task[] = [
     estimatedHours: 16,
     actualHours: 4,
   },
+]
+
+export const epics: Epic[] = [
+  {
+    id: 'e1',
+    title: 'Data Visualization Integration',
+    description: 'Integration of real-time data visualization components with backend services, ensuring optimal performance with large datasets',
+    status: 'in-progress',
+    progress: 45,
+    taskCount: 5,
+    tags: ['frontend', 'backend'],
+    projectId: 'p3'
+  },
+  {
+    id: 'e2',
+    title: 'CI/CD Pipeline',
+    description: 'Setting up robust CI/CD pipeline for automated testing and deployment, with focus on maintaining consistent performance',
+    status: 'in-progress',
+    progress: 62,
+    taskCount: 3,
+    tags: ['dev-ops'],
+    projectId: 'p3'
+  },
+  {
+    id: 'e3',
+    title: 'Search & Filter System',
+    description: 'Implementation of responsive filtering and search functionality across all dashboard components',
+    status: 'in-progress',
+    progress: 31,
+    taskCount: 4,
+    tags: ['frontend'],
+    projectId: 'p3'
+  }
 ]
 
 export const risks: Risk[] = [

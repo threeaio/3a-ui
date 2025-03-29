@@ -6,7 +6,7 @@ import { BadgeSelect } from '@3a.solutions/ui/badge-select'
 import { Plus, FilterX, AlertTriangle, User, Calendar, Tag, Link as LinkIcon, ChevronRight } from 'lucide-react'
 import { useTasksData, useFilterControls, taskStatusOptions, priorityLevels } from '../../../data-context'
 import { TagList } from '../../ui/tag-list'
-import { Tooltip } from '@3a.solutions/ui/tooltip'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@3a.solutions/ui/tooltip'
 import { TaskStatus, TaskPriority } from '../../../types'
 
 const TasksPanel: React.FC = () => {
@@ -66,12 +66,16 @@ const TasksPanel: React.FC = () => {
                       <div className="flex items-center gap-2">
                         <h3 className="">{task.title}</h3>
                         {isOverdue && (
-                          <Tooltip>
-                            This task is overdue
-                            <span>
-                              <AlertTriangle className="size-4 text-destructive" />
-                            </span>
-                          </Tooltip>
+                          <TooltipProvider>
+                            <Tooltip>
+                              <TooltipTrigger asChild>
+                                <AlertTriangle className="size-4 text-destructive" />
+                              </TooltipTrigger>
+                              <TooltipContent>
+                                <p>This task is overdue</p>
+                              </TooltipContent>
+                            </Tooltip>
+                          </TooltipProvider>
                         )}
                       </div>
                       <p className="text-muted-foreground text-xs">{task.description}</p>

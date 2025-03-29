@@ -17,8 +17,8 @@ interface TaskStatusBarProps {
 export const TaskStatusBar: React.FC<TaskStatusBarProps> = ({
   data,
   colors = [
-    'var(--color-chart-neutral)',
     'var(--color-chart-blue)',
+    'var(--color-chart-teal)',
     'var(--color-chart-purple)',
     'var(--color-chart-green)',
   ],

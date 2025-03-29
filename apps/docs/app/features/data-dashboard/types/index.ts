@@ -50,7 +50,16 @@ export type Task = {
   actualHours?: number
 }
 
-
+export type Epic = {
+  id: string
+  title: string
+  description: string
+  status: TaskStatus
+  progress: number
+  taskCount: number
+  tags: string[]
+  projectId: string
+}
 
 export type Risk = {
   id: string
