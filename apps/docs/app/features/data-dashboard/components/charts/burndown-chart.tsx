@@ -47,23 +47,23 @@ export const BurndownChart: React.FC<BurndownChartProps> = ({ data = burndownDat
         <CartesianGrid strokeDasharray="3 3" vertical={false} />
         <XAxis
           dataKey="date"
-          axisLine={false}
+          axisLine={{ stroke: '#e2e8f0' }}
           tickLine={false}
           tickFormatter={(value: string) => format(parseISO(value), 'MMM dd')}
           tick={{ fontSize: 12 }}
         />
-        <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12 }} />
+        <YAxis axisLine={{ stroke: '#e2e8f0' }} tickLine={false} tick={{ fontSize: 12 }} />
         <Tooltip
           content={<ChartTooltipContent labelFormatter={(value: string) => format(parseISO(value), 'MMMM d, yyyy')} />}
         />
         <ReferenceLine
           x={closestDate}
-          stroke="#ef4444"
+          stroke="#64748b"
           strokeDasharray="5 5"
           label={{
             value: 'Today',
             position: 'top',
-            fill: '#ef4444',
+            fill: '#64748b',
             fontSize: 12,
           }}
         />
@@ -71,9 +71,11 @@ export const BurndownChart: React.FC<BurndownChartProps> = ({ data = burndownDat
           type="monotone"
           dataKey="value"
           stroke="var(--default)"
-          fillOpacity={1}
-          fill="url(#colorValue)"
+          strokeWidth={2}
+          fill="none"
           name="Remaining Tasks"
+          dot={{ r: 2 }}
+          activeDot={{ r: 6 }}
         />
       </AreaChart>
     </ChartContainer>

@@ -67,7 +67,7 @@ export function DataProvider({ children }: { children: ReactNode }) {
     }
 
     if (filters.assignee && filters.assignee.length > 0) {
-      result = result.filter((task) => filters.assignee?.includes(task.assignee))
+      result = result.filter((task) => filters.assignee?.includes(task.assignee ?? ''))
     }
 
     if (filters.priority && filters.priority.length > 0) {

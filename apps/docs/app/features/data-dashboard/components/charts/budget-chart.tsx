@@ -13,7 +13,7 @@ interface BudgetChartProps {
 
 export const BudgetChart: React.FC<BudgetChartProps> = ({ data = budgetData, totalBudget = 85000 }) => {
   const chartConfig = {
-    value: { label: 'Spend', color: '#10b981' },
+    value: { label: 'Spend', color: 'var(--default)' },
   }
 
   // Find closest date in data for reference line
@@ -38,17 +38,17 @@ export const BudgetChart: React.FC<BudgetChartProps> = ({ data = budgetData, tot
 
   return (
     <ChartContainer config={chartConfig} className="aspect-square md:aspect-video h-80 w-full">
-      <LineChart data={data} margin={{ top: 20, right: 30, left: 10, bottom: 10 }}>
+      <LineChart data={data} margin={{ top: 20, right: 100, left: 10, bottom: 10 }}>
         <CartesianGrid strokeDasharray="3 3" vertical={false} />
         <XAxis
           dataKey="date"
-          axisLine={false}
+          axisLine={{ stroke: '#e2e8f0' }}
           tickLine={false}
           tickFormatter={(value: string) => format(parseISO(value), 'MMM dd')}
           tick={{ fontSize: 12 }}
         />
         <YAxis
-          axisLine={false}
+          axisLine={{ stroke: '#e2e8f0' }}
           tickLine={false}
           tick={{ fontSize: 12 }}
           tickFormatter={(value: number) => `$${value / 1000}k`}
@@ -58,12 +58,12 @@ export const BudgetChart: React.FC<BudgetChartProps> = ({ data = budgetData, tot
         />
         <ReferenceLine
           y={totalBudget}
-          stroke="#ef4444"
+          stroke="#64748b"
           strokeDasharray="5 5"
           label={{
             value: 'Budget Limit',
             position: 'right',
-            fill: '#ef4444',
+            fill: '#64748b',
             fontSize: 12,
           }}
         />
@@ -81,7 +81,7 @@ export const BudgetChart: React.FC<BudgetChartProps> = ({ data = budgetData, tot
         <Line
           type="monotone"
           dataKey="value"
-          stroke="#10b981"
+          stroke="var(--default)"
           strokeWidth={2}
           dot={{ r: 2 }}
           activeDot={{ r: 6 }}

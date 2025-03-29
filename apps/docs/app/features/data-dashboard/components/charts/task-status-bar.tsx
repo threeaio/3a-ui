@@ -5,6 +5,10 @@ import { ChartData } from '../../types'
 import { ChartContainer, ChartTooltipContent, ChartTooltip } from '@3a.solutions/ui/chart'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts'
 
+const CHART_CONFIG = {
+  borderRadius: 9,
+} as const
+
 interface TaskStatusBarProps {
   data: ChartData[]
   colors?: string[]
@@ -39,7 +43,7 @@ export const TaskStatusBar: React.FC<TaskStatusBarProps> = ({
 
   return (
     <ChartContainer config={chartConfig} className="h-24 w-full">
-      <BarChart data={chartData} layout="vertical" margin={{ top: 5, right: 0, left: 0, bottom: 5 }} barSize={20}>
+      <BarChart data={chartData} layout="vertical" margin={{ top: 5, right: 0, left: 0, bottom: 5 }} barSize={40}>
         {/* <CartesianGrid horizontal={false} stroke={chartConfig.grid.color} /> */}
         <XAxis
           type="number"
@@ -50,7 +54,19 @@ export const TaskStatusBar: React.FC<TaskStatusBarProps> = ({
         <YAxis type="category" dataKey="name" hide />
         <ChartTooltip content={<ChartTooltipContent />} />
         {data.map((item, index) => (
-          <Bar key={item.name} dataKey={item.name} stackId="stack" fill={colors[index % colors.length]} />
+          <Bar
+            key={item.name}
+            dataKey={item.name}
+            stackId="stack"
+            fill={colors[index % colors.length]}
+            radius={
+              index === 0
+                ? [CHART_CONFIG.borderRadius, 0, 0, CHART_CONFIG.borderRadius] // First segment gets both left corners rounded
+                : index === data.length - 1
+                  ? [0, CHART_CONFIG.borderRadius, CHART_CONFIG.borderRadius, 0] // Last segment gets both right corners rounded
+                  : 0 // Middle segments have no rounding
+            }
+          />
         ))}
       </BarChart>
     </ChartContainer>

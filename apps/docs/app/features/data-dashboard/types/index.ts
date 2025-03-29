@@ -36,7 +36,7 @@ export type Task = {
   description: string
   status: TaskStatus
   priority: TaskPriority
-  assignee: string
+  assignee: string | null
   dueDate: string
   completedDate?: string
   projectId: string
@@ -44,6 +44,8 @@ export type Task = {
   estimatedHours: number
   actualHours?: number
 }
+
+
 
 export type Risk = {
   id: string

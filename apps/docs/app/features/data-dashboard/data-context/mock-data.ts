@@ -128,7 +128,7 @@ export const tasks: Task[] = [
     description: 'Develop reusable chart and graph components for dashboard',
     status: 'in-progress',
     priority: 'high',
-    assignee: 'u3',
+    assignee: null,
     dueDate: '2025-03-20',
     projectId: 'p3',
     tags: ['frontend', 'data', 'components'],
@@ -225,6 +225,19 @@ export const tasks: Task[] = [
     tags: ['testing', 'uat'],
     estimatedHours: 24,
     actualHours: 0,
+  },
+  {
+    id: 't11',
+    title: 'Implement dark mode support',
+    description: 'Add dark mode theme support to all dashboard components',
+    status: 'in-progress',
+    priority: 'medium',
+    assignee: null,
+    dueDate: '2025-04-15',
+    projectId: 'p3',
+    tags: ['frontend', 'ui', 'theme'],
+    estimatedHours: 16,
+    actualHours: 4,
   },
 ]
 
@@ -483,6 +496,22 @@ export const timeRanges = [
   { value: 'month', label: 'This Month' },
   { value: 'quarter', label: 'This Quarter' },
   { value: 'project', label: 'Entire Project' },
+]
+
+export const domainTaskDistribution = [
+  { domain: 'Frontend', tasks: 3, completed: 1, inProgress: 1, todo: 1, estimatedHours: 80, actualHours: 25 },
+  { domain: 'UX/Design', tasks: 1, completed: 1, inProgress: 0, todo: 0, estimatedHours: 24, actualHours: 28 },
+  { domain: 'Backend', tasks: 1, completed: 0, inProgress: 1, todo: 0, estimatedHours: 32, actualHours: 20 },
+  { domain: 'Dev-Ops', tasks: 1, completed: 0, inProgress: 1, todo: 0, estimatedHours: 16, actualHours: 10 },
+]
+
+export const domainBudgetDistribution = [
+  { domain: 'Frontend', budget: 25000, spent: 15800 },
+  { domain: 'UX/Design', budget: 15000, spent: 12000 },
+  { domain: 'Backend', budget: 20000, spent: 12400 },
+  { domain: 'Dev-Ops', budget: 10000, spent: 6000 },
+  { domain: 'QA', budget: 8000, spent: 4000 },
+  { domain: 'Management', budget: 7000, spent: 2500 },
 ]
 
 // Helper functions
