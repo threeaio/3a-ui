@@ -42,34 +42,38 @@ export const TaskStatusBar: React.FC<TaskStatusBarProps> = ({
   }
 
   return (
-    <ChartContainer config={chartConfig} className="h-24 w-full">
-      <BarChart data={chartData} layout="vertical" margin={{ top: 5, right: 0, left: 0, bottom: 5 }} barSize={40}>
-        {/* <CartesianGrid horizontal={false} stroke={chartConfig.grid.color} /> */}
-        <XAxis
-          type="number"
-          stroke={chartConfig.XAxis.color}
-          style={{ fontSize: chartConfig.XAxis.fontSize }}
-          domain={[0, maxValue]}
-        />
-        <YAxis type="category" dataKey="name" hide />
-        <ChartTooltip content={<ChartTooltipContent />} />
-        {data.map((item, index) => (
-          <Bar
-            key={item.name}
-            dataKey={item.name}
-            stackId="stack"
-            fill={colors[index % colors.length]}
-            radius={
-              index === 0
-                ? [CHART_CONFIG.borderRadius, 0, 0, CHART_CONFIG.borderRadius] // First segment gets both left corners rounded
-                : index === data.length - 1
-                  ? [0, CHART_CONFIG.borderRadius, CHART_CONFIG.borderRadius, 0] // Last segment gets both right corners rounded
-                  : 0 // Middle segments have no rounding
-            }
+    <div className="w-full py-10">
+      <h2 className="text-sm">Task Status</h2>
+      <ChartContainer config={chartConfig} className="h-20 w-full">
+        <BarChart data={chartData} layout="vertical" margin={{ top: 0, right: 0, left: 0, bottom: 0 }} barSize={20}>
+          {/* <CartesianGrid horizontal={false} stroke={chartConfig.grid.color} /> */}
+          <XAxis
+            type="number"
+            stroke={chartConfig.XAxis.color}
+            style={{ fontSize: chartConfig.XAxis.fontSize }}
+            domain={[0, maxValue]}
+            hide
           />
-        ))}
-      </BarChart>
-    </ChartContainer>
+          <YAxis type="category" dataKey="name" hide />
+          <ChartTooltip content={<ChartTooltipContent />} />
+          {data.map((item, index) => (
+            <Bar
+              key={item.name}
+              dataKey={item.name}
+              stackId="stack"
+              fill={colors[index % colors.length]}
+              radius={
+                index === 0
+                  ? [CHART_CONFIG.borderRadius, 0, 0, CHART_CONFIG.borderRadius] // First segment gets both left corners rounded
+                  : index === data.length - 1
+                    ? [0, CHART_CONFIG.borderRadius, CHART_CONFIG.borderRadius, 0] // Last segment gets both right corners rounded
+                    : 0 // Middle segments have no rounding
+              }
+            />
+          ))}
+        </BarChart>
+      </ChartContainer>
+    </div>
     // <div className="w-full">
     //   <ChartContainer config={chartConfig} className="h-24 w-full">
     //     <BarChart data={chartData} layout="vertical" margin={{ top: 5, right: 20, left: 20, bottom: 5 }} barSize={50}>

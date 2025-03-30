@@ -167,7 +167,7 @@ export const tasks: Task[] = [
     id: 't6',
     title: 'Setup automated testing',
     description: 'Implement unit and integration tests for dashboard components',
-    status: 'todo',
+    status: 'review',
     priority: 'medium',
     assignee: 'u6',
     dueDate: '2025-04-10',
@@ -377,7 +377,7 @@ export const projectMetrics: ProjectMetric[] = [
 export const taskStatusChart: ChartData[] = [
   { name: 'To Do', value: 4 },
   { name: 'In Progress', value: 3 },
-  { name: 'Review', value: 0 },
+  { name: 'Review', value: 1 },
   { name: 'Done', value: 3 },
 ]
 

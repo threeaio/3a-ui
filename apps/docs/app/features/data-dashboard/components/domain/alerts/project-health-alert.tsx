@@ -124,8 +124,8 @@ export const ProjectHealthAlert: React.FC<ProjectHealthAlertProps> = ({ project,
           ))}
         </ul>
 
-        <p className="text-xs text-muted-foreground mt-4">
-          These issues may impact project delivery. Consider reviewing with the team during the next sprint planning.
+        <p className="text-xs text-destructive-foreground mt-4">
+          These issues may impact project delivery. Consider reviewing with the team during the next retrospective.
         </p>
       </div>
     </Card>
