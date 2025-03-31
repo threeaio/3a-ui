@@ -1,3 +1,4 @@
+import { ExpertiseDomain } from "@/features/data-dashboard/types/domain/expertise-domain"
 import { ProjectStatus, MilestoneStatus } from "./status"
 
 export type MilestoneType = 'ProjectStart' | 'ProjectEnd' // TODO: add more types
@@ -6,6 +7,7 @@ export type EmployeeInProject = {
     employeeId: string
     projectId: string
     role: string
+    expertiseDomainInProject: ExpertiseDomain[]
     startDate: string
     endDate: string
   }

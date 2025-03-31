@@ -77,6 +77,7 @@ export const mockEmployeesInProject: EmployeeInProject[] = [
     employeeId: 'emp-1',
     projectId: 'proj-1',
     role: 'UI Designer',
+    expertiseDomainInProject: ['design'],
     startDate: '2025-01-10T00:00:00.000Z',
     endDate: '2025-06-30T00:00:00.000Z'
   },
@@ -84,6 +85,15 @@ export const mockEmployeesInProject: EmployeeInProject[] = [
     employeeId: 'emp-4',
     projectId: 'proj-1',
     role: 'Frontend Developer',
+    expertiseDomainInProject: ['frontend'],
+    startDate: '2025-01-15T00:00:00.000Z',
+    endDate: '2025-06-30T00:00:00.000Z'
+  },
+  {
+    employeeId: 'emp-6',
+    projectId: 'proj-1',
+    role: 'Backend Developer',
+    expertiseDomainInProject: ['backend', 'devops'],
     startDate: '2025-01-15T00:00:00.000Z',
     endDate: '2025-06-30T00:00:00.000Z'
   },
@@ -91,6 +101,7 @@ export const mockEmployeesInProject: EmployeeInProject[] = [
     employeeId: 'emp-5',
     projectId: 'proj-1',
     role: 'UX Designer',
+    expertiseDomainInProject: ['design'],
     startDate: '2025-01-05T00:00:00.000Z',
     endDate: '2025-06-30T00:00:00.000Z'
   },
@@ -98,6 +109,7 @@ export const mockEmployeesInProject: EmployeeInProject[] = [
     employeeId: 'emp-7',
     projectId: 'proj-1',
     role: 'Product Owner',
+    expertiseDomainInProject: ['pm'],
     startDate: '2025-01-01T00:00:00.000Z',
     endDate: '2025-07-15T00:00:00.000Z'
   }
@@ -429,6 +441,41 @@ export const mockTaskWorkloads: TaskWorkload[] = [
   {
     taskId: 'task-15',
     workload: 5,
+    userId: 'emp-6'
+  },
+  {
+    taskId: 'task-2',
+    workload: 16,
+    userId: 'emp-6'
+  },
+  {
+    taskId: 'task-4',
+    workload: 12,
+    userId: 'emp-6'
+  },
+  {
+    taskId: 'task-5',
+    workload: 8,
+    userId: 'emp-6'
+  },
+  {
+    taskId: 'task-8',
+    workload: 14,
+    userId: 'emp-6'
+  },
+  {
+    taskId: 'task-10',
+    workload: 10,
+    userId: 'emp-6'
+  },
+  {
+    taskId: 'task-12',
+    workload: 8,
+    userId: 'emp-6'
+  },
+  {
+    taskId: 'task-14',
+    workload: 10,
     userId: 'emp-6'
   }
 ]
