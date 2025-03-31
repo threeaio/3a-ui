@@ -30,6 +30,7 @@ import {
 import { MetricCard } from './domain/panels/metric-card'
 import UnassignedTasksAlert from './domain/alerts/unassigned-tasks-alert'
 import ProjectHealthAlert from './domain/alerts/project-health-alert'
+import { EpicCostCard } from '@/features/data-dashboard-sketch/components/domain/panels/epic-cost-card'
 
 const Dashboard: React.FC = () => {
   const { project } = useProjectData()
@@ -63,8 +64,8 @@ const Dashboard: React.FC = () => {
               {/* <UnassignedTasksAlert tasks={tasks} /> */}
             </div>
 
-            {/* Metrics Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-4 gap-2 mb-5">
+            {/* Metrics Cards & Epic Cost */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-4 gap-2 mb-2">
               {metrics.map((metric, index) => {
                 let metricType: 'progress' | 'tasks' | 'budget' | 'timeRemaining' | undefined
 
@@ -81,6 +82,10 @@ const Dashboard: React.FC = () => {
 
                 return <MetricCard key={index} {...metric} metricType={metricType} />
               })}
+            </div>
+
+            <div className="mb-10">
+              <EpicCostCard />
             </div>
 
             {/* Task Status Distribution */}

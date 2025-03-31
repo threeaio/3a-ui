@@ -10,17 +10,17 @@ Everytime we update values here we need to update the documentation in /tailwind
 :root {
   /* Grayscale */
   --color-white: oklch(1 0 0);
-  --color-gray-50: oklch(0.985 0 0);
-  --color-gray-100: oklch(0.97 0 0);
-  --color-gray-200: oklch(0.942 0 0);
-  --color-gray-300: oklch(0.87 0 0);
-  --color-gray-400: oklch(0.708 0 0);
-  --color-gray-500: oklch(0.556 0 0);
-  --color-gray-600: oklch(0.429 0 0);
-  --color-gray-700: oklch(0.289 0 0);
-  --color-gray-800: oklch(0.245 0 0);
-  --color-gray-900: oklch(0.215 0 0);
-  --color-black: oklch(0 0 0);
+  --color-gray-50: oklch(0.985 0.005 195);
+  --color-gray-100: oklch(0.97 0.005 195);
+  --color-gray-200: oklch(0.942 0.005 195);
+  --color-gray-300: oklch(0.87 0.01 195);
+  --color-gray-400: oklch(0.708 0.01 196);
+  --color-gray-500: oklch(0.556 0.01 195);
+  --color-gray-600: oklch(0.429 0.01 197);
+  --color-gray-700: oklch(0.289 0.01 197);
+  --color-gray-800: oklch(0.245 0.02 220);
+  --color-gray-900: oklch(0.215 0.02 220);
+  --color-black: oklch(0.15 0.1 200);
 
   /* Brand */
 
@@ -103,7 +103,7 @@ Everytime we update values here we need to update the documentation in /tailwind
 
 /* Dark theme semantic variables */
 .dark {
-  --background: var(--color-gray-800);
+  --background: var(--color-gray-900);
   --foreground: var(--color-gray-50);
 
   --default: var(--color-gray-50);
@@ -127,12 +127,12 @@ Everytime we update values here we need to update the documentation in /tailwind
   --success: var(--color-success);
   --warning: var(--color-warning);
 
-  --border: var(--color-gray-600);
+  --border: var(--color-gray-700);
   --input: var(--color-gray-500);
   --ring: var(--color-gray-50);
 
-  --card: var(--color-gray-700);
-  --card-foreground: var(--color-gray-100);
+  --card: var(--color-gray-800);
+  --card-foreground: var(--color-gray-50);
   --popover: var(--color-gray-900);
   --popover-foreground: var(--color-gray-50);
 

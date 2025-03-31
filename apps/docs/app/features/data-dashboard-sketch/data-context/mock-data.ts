@@ -12,6 +12,9 @@ import {
   Epic
 } from "../types"
 
+// Added default hourly rate
+export const DEFAULT_HOURLY_RATE = 90
+
 export const users: User[] = [
   {
     id: 'u1',
@@ -21,6 +24,7 @@ export const users: User[] = [
     status: 'active',
     lastActive: '2025-03-21T09:30:00',
     avatar: 'https://randomuser.me/api/portraits/men/1.jpg',
+    hourlyRate: 110, // Added
   },
   {
     id: 'u2',
@@ -30,6 +34,7 @@ export const users: User[] = [
     status: 'active',
     lastActive: '2025-03-23T14:45:00',
     avatar: 'https://randomuser.me/api/portraits/women/2.jpg',
+    hourlyRate: 100, // Added
   },
   {
     id: 'u3',
@@ -39,6 +44,7 @@ export const users: User[] = [
     status: 'active',
     lastActive: '2025-03-22T11:20:00',
     avatar: 'https://randomuser.me/api/portraits/men/3.jpg',
+    hourlyRate: 95, // Added
   },
   {
     id: 'u4',
@@ -48,6 +54,7 @@ export const users: User[] = [
     status: 'active',
     lastActive: '2025-03-22T16:15:00',
     avatar: 'https://randomuser.me/api/portraits/women/4.jpg',
+    hourlyRate: 85, // Added
   },
   {
     id: 'u5',
@@ -57,6 +64,7 @@ export const users: User[] = [
     status: 'active',
     lastActive: '2025-03-20T13:10:00',
     avatar: 'https://randomuser.me/api/portraits/men/5.jpg',
+    hourlyRate: 80, // Added
   },
   {
     id: 'u6',
@@ -66,6 +74,7 @@ export const users: User[] = [
     status: 'active',
     lastActive: '2025-03-23T10:45:00',
     avatar: 'https://randomuser.me/api/portraits/women/6.jpg',
+    hourlyRate: 75, // Added
   },
   {
     id: 'u7',
@@ -75,6 +84,7 @@ export const users: User[] = [
     status: 'active',
     lastActive: '2025-03-21T15:30:00',
     avatar: 'https://randomuser.me/api/portraits/men/7.jpg',
+    hourlyRate: 90, // Added
   },
 ]
 
@@ -106,7 +116,7 @@ export const tasks: Task[] = [
     dueDate: '2025-02-20',
     completedDate: '2025-02-18',
     projectId: 'p3',
-    tags: ['planning', 'requirements'],
+    tags: ['Planning', 'requirements', 'epic:Foundation'], // Standardized domain, added epic
     estimatedHours: 16,
     actualHours: 14,
   },
@@ -120,7 +130,7 @@ export const tasks: Task[] = [
     dueDate: '2025-03-01',
     completedDate: '2025-03-02',
     projectId: 'p3',
-    tags: ['design', 'ui'],
+    tags: ['Design', 'ui', 'epic:Foundation'], // Standardized domain, added epic
     estimatedHours: 24,
     actualHours: 28,
   },
@@ -130,10 +140,10 @@ export const tasks: Task[] = [
     description: 'Develop reusable chart and graph components for dashboard',
     status: 'in-progress',
     priority: 'high',
-    assignee: null,
+    assignee: null, // Unassigned
     dueDate: '2025-03-20',
     projectId: 'p3',
-    tags: ['frontend', 'data', 'components'],
+    tags: ['Frontend', 'data', 'components', 'epic:Visualization'], // Standardized domain, added epic
     estimatedHours: 40,
     actualHours: 25,
   },
@@ -146,7 +156,7 @@ export const tasks: Task[] = [
     assignee: 'u5',
     dueDate: '2025-03-25',
     projectId: 'p3',
-    tags: ['backend', 'api', 'data'],
+    tags: ['Backend', 'api', 'data', 'epic:Core'], // Standardized domain, added epic
     estimatedHours: 32,
     actualHours: 20,
   },
@@ -159,7 +169,7 @@ export const tasks: Task[] = [
     assignee: 'u3',
     dueDate: '2025-04-05',
     projectId: 'p3',
-    tags: ['frontend', 'filters', 'search'],
+    tags: ['Frontend', 'filters', 'search', 'epic:Features'], // Standardized domain, added epic
     estimatedHours: 24,
     actualHours: 0,
   },
@@ -172,9 +182,9 @@ export const tasks: Task[] = [
     assignee: 'u6',
     dueDate: '2025-04-10',
     projectId: 'p3',
-    tags: ['testing', 'automation'],
+    tags: ['Testing', 'automation', 'epic:Core'], // Standardized domain, added epic
     estimatedHours: 24,
-    actualHours: 0,
+    actualHours: 0, // Assuming not started yet for cost calculation
   },
   {
     id: 't7',
@@ -185,7 +195,7 @@ export const tasks: Task[] = [
     assignee: 'u5',
     dueDate: '2025-04-20',
     projectId: 'p3',
-    tags: ['performance', 'optimization'],
+    tags: ['Backend', 'performance', 'optimization', 'epic:Core'], // Standardized domain, added epic
     estimatedHours: 20,
     actualHours: 0,
   },
@@ -198,7 +208,7 @@ export const tasks: Task[] = [
     assignee: 'u3',
     dueDate: '2025-04-25',
     projectId: 'p3',
-    tags: ['export', 'feature'],
+    tags: ['Frontend', 'export', 'feature', 'epic:Features'], // Standardized domain, added epic
     estimatedHours: 16,
     actualHours: 0,
   },
@@ -211,7 +221,7 @@ export const tasks: Task[] = [
     assignee: 'u7',
     dueDate: '2025-03-30',
     projectId: 'p3',
-    tags: ['devops', 'deployment', 'automation'],
+    tags: ['DevOps', 'deployment', 'automation', 'epic:Core'], // Standardized domain, added epic
     estimatedHours: 16,
     actualHours: 10,
   },
@@ -224,7 +234,7 @@ export const tasks: Task[] = [
     assignee: 'u2',
     dueDate: '2025-05-05',
     projectId: 'p3',
-    tags: ['testing', 'uat'],
+    tags: ['Testing', 'uat', 'epic:Finalization'], // Standardized domain, added epic
     estimatedHours: 24,
     actualHours: 0,
   },
@@ -234,10 +244,10 @@ export const tasks: Task[] = [
     description: 'Add dark mode theme support to all dashboard components',
     status: 'in-progress',
     priority: 'medium',
-    assignee: null,
+    assignee: null, // Unassigned
     dueDate: '2025-04-15',
     projectId: 'p3',
-    tags: ['frontend', 'ui', 'theme'],
+    tags: ['Frontend', 'ui', 'theme', 'epic:Features'], // Standardized domain, added epic
     estimatedHours: 16,
     actualHours: 4,
   },

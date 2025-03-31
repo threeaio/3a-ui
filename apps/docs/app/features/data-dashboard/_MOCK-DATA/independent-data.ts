@@ -1,0 +1,244 @@
+import { 
+  Employee, 
+  EmployeeSkill, 
+  ExpertiseDomain 
+} from '../types/domain'
+
+// Mock ExpertiseDomains
+export const mockExpertiseDomains: ExpertiseDomain[] = [
+  'frontend', 
+  'backend', 
+  'design', 
+  'ux', 
+  'devops', 
+  'qa', 
+  'pm', 
+  'other'
+]
+
+// Mock EmployeeSkills
+export const mockEmployeeSkills: EmployeeSkill[] = [
+  {
+    id: 'skill-1',
+    name: 'React',
+    description: 'Frontend development with React framework',
+    relatedExpertiseDomains: ['frontend'],
+    level: 5
+  },
+  {
+    id: 'skill-2',
+    name: 'Node.js',
+    description: 'Backend development with Node.js',
+    relatedExpertiseDomains: ['backend'],
+    level: 4
+  },
+  {
+    id: 'skill-3',
+    name: 'UI Design',
+    description: 'Creating user interfaces',
+    relatedExpertiseDomains: ['design', 'ux'],
+    level: 3
+  },
+  {
+    id: 'skill-4',
+    name: 'Docker',
+    description: 'Containerization and deployment',
+    relatedExpertiseDomains: ['devops'],
+    level: 4
+  },
+  {
+    id: 'skill-5',
+    name: 'Jest',
+    description: 'Frontend and backend testing',
+    relatedExpertiseDomains: ['qa', 'frontend', 'backend'],
+    level: 3
+  },
+  {
+    id: 'skill-6',
+    name: 'Project Management',
+    description: 'Managing projects and teams',
+    relatedExpertiseDomains: ['pm'],
+    level: 5
+  },
+  {
+    id: 'skill-7',
+    name: 'TypeScript',
+    description: 'Type-safe JavaScript development',
+    relatedExpertiseDomains: ['frontend', 'backend'],
+    level: 4
+  },
+  {
+    id: 'skill-8',
+    name: 'NextJS',
+    description: 'React framework for production applications',
+    relatedExpertiseDomains: ['frontend'],
+    level: 5
+  },
+  {
+    id: 'skill-9',
+    name: 'GraphQL',
+    description: 'Query language for APIs',
+    relatedExpertiseDomains: ['backend', 'frontend'],
+    level: 3
+  },
+  {
+    id: 'skill-10',
+    name: 'AWS',
+    description: 'Cloud infrastructure and services',
+    relatedExpertiseDomains: ['devops', 'backend'],
+    level: 4
+  },
+  {
+    id: 'skill-11',
+    name: 'CI/CD',
+    description: 'Continuous integration and deployment',
+    relatedExpertiseDomains: ['devops'],
+    level: 4
+  },
+  {
+    id: 'skill-12',
+    name: 'Figma',
+    description: 'Design and prototyping tool',
+    relatedExpertiseDomains: ['design', 'ux'],
+    level: 5
+  },
+  {
+    id: 'skill-13',
+    name: 'User Research',
+    description: 'Gathering user insights and requirements',
+    relatedExpertiseDomains: ['ux'],
+    level: 3
+  },
+  {
+    id: 'skill-14',
+    name: 'PostgreSQL',
+    description: 'Relational database management',
+    relatedExpertiseDomains: ['backend'],
+    level: 4
+  },
+  {
+    id: 'skill-15',
+    name: 'Agile Methodologies',
+    description: 'Scrum, Kanban, and other agile frameworks',
+    relatedExpertiseDomains: ['pm'],
+    level: 5
+  }
+]
+
+// Mock Employees
+export const mockEmployees: Employee[] = [
+  {
+    id: 'emp-1',
+    name: 'Sophie Martinez',
+    email: 'sophie.martinez@example.com',
+    status: 'active',
+    lastActive: '2025-03-29T18:25:43.511Z',
+    avatar: 'https://randomuser.me/api/portraits/women/1.jpg',
+    hourlyRate: 75,
+    skills: [
+      mockEmployeeSkills[0]!, // React
+      mockEmployeeSkills[2]!, // UI Design
+      mockEmployeeSkills[4]!, // Jest
+      mockEmployeeSkills[7]!, // NextJS
+      mockEmployeeSkills[11]! // Figma
+    ]
+  },
+  {
+    id: 'emp-2',
+    name: 'James Wilson',
+    email: 'james.wilson@example.com',
+    status: 'active',
+    lastActive: '2025-03-28T10:15:30.123Z',
+    avatar: 'https://randomuser.me/api/portraits/men/2.jpg',
+    hourlyRate: 85,
+    skills: [
+      mockEmployeeSkills[1]!, // Node.js
+      mockEmployeeSkills[3]!, // Docker
+      mockEmployeeSkills[6]!, // TypeScript
+      mockEmployeeSkills[9]!, // AWS
+      mockEmployeeSkills[13]! // PostgreSQL
+    ]
+  },
+  {
+    id: 'emp-3',
+    name: 'Emma Davis',
+    email: 'emma.davis@example.com',
+    status: 'inactive',
+    lastActive: '2025-02-15T14:30:00.000Z',
+    skills: [
+      mockEmployeeSkills[5]!, // Project Management
+      mockEmployeeSkills[2]!, // UI Design
+      mockEmployeeSkills[14]! // Agile Methodologies
+    ]
+  },
+  {
+    id: 'emp-4',
+    name: 'Michael Chen',
+    email: 'michael.chen@example.com',
+    status: 'pending',
+    lastActive: '2025-03-15T09:45:22.711Z',
+    avatar: 'https://randomuser.me/api/portraits/men/5.jpg',
+    hourlyRate: 65,
+    skills: [
+      mockEmployeeSkills[0]!, // React
+      mockEmployeeSkills[1]!, // Node.js
+      mockEmployeeSkills[4]!, // Jest
+      mockEmployeeSkills[6]!, // TypeScript
+      mockEmployeeSkills[8]! // GraphQL
+    ]
+  },
+  {
+    id: 'emp-5',
+    name: 'Laura Kim',
+    email: 'laura.kim@example.com',
+    status: 'active',
+    lastActive: '2025-03-30T09:12:34.567Z',
+    avatar: 'https://randomuser.me/api/portraits/women/8.jpg',
+    hourlyRate: 90,
+    skills: [
+      mockEmployeeSkills[2]!, // UI Design
+      mockEmployeeSkills[11]!, // Figma
+      mockEmployeeSkills[12]!, // User Research
+      mockEmployeeSkills[6]!, // TypeScript
+      mockEmployeeSkills[7]! // NextJS
+    ]
+  },
+  {
+    id: 'emp-6',
+    name: 'David Rodriguez',
+    email: 'david.rodriguez@example.com',
+    status: 'active',
+    lastActive: '2025-03-27T14:42:18.325Z',
+    avatar: 'https://randomuser.me/api/portraits/men/10.jpg',
+    hourlyRate: 80,
+    skills: [
+      mockEmployeeSkills[3]!, // Docker
+      mockEmployeeSkills[9]!, // AWS
+      mockEmployeeSkills[10]!, // CI/CD
+      mockEmployeeSkills[1]!, // Node.js
+      mockEmployeeSkills[13]! // PostgreSQL
+    ]
+  },
+  {
+    id: 'emp-7',
+    name: 'Patricia Hughes',
+    email: 'patricia.hughes@example.com',
+    status: 'active',
+    lastActive: '2025-03-28T11:33:44.123Z',
+    avatar: 'https://randomuser.me/api/portraits/women/12.jpg',
+    hourlyRate: 85,
+    skills: [
+      mockEmployeeSkills[5]!, // Project Management
+      mockEmployeeSkills[14]!, // Agile Methodologies
+      mockEmployeeSkills[12]!, // User Research
+      mockEmployeeSkills[2]! // UI Design
+    ]
+  }
+]
+
+// Export all independent mock data as a single object for convenience
+export const mockIndependentData = {
+  expertiseDomains: mockExpertiseDomains,
+  employeeSkills: mockEmployeeSkills,
+  employees: mockEmployees
+} 

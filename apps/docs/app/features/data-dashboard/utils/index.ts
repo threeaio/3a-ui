@@ -1,1 +1,1 @@
-export * from './badge-colors' 
+export * from './domain-colors' 

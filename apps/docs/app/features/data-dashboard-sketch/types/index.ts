@@ -8,6 +8,7 @@ export type User = {
   status: 'active' | 'inactive' | 'pending'
   lastActive: string
   avatar?: string
+  hourlyRate?: number
 }
 
 export type Project = {
@@ -25,6 +26,17 @@ export type Project = {
   tags: string[]
   teamMembers: string[] // user IDs
 }
+
+export interface EpicDetail {
+  name: string
+  totalActualHours: number
+  totalEstimatedHours: number
+  totalCost: number
+  estimatedCost: number
+  isCompleted: boolean
+  lastDueDate: Date | null
+}
+
 
 // Extract literal types for reuse
 export type TaskStatus = 'todo' | 'in-progress' | 'review' | 'done'

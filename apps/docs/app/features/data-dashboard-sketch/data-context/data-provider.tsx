@@ -1,7 +1,18 @@
 'use client'
 
 import React, { createContext, useContext, useState, useMemo, ReactNode } from 'react'
-import { User, Project, Task, Risk, Milestone, ProjectMetric, TimelineEvent, TaskStatus, TaskPriority } from '../types'
+import {
+  User,
+  Project,
+  Task,
+  Risk,
+  Milestone,
+  ProjectMetric,
+  TimelineEvent,
+  TaskStatus,
+  TaskPriority,
+  EpicDetail,
+} from '../types'
 import {
   currentProject,
   tasks,
@@ -10,7 +21,11 @@ import {
   projectMetrics,
   timelineEvents,
   getActiveTeamMembers,
+  users,
+  DEFAULT_HOURLY_RATE,
 } from './mock-data'
+
+// --- Types ---
 
 type FilterOptions = {
   timeRange: string
@@ -30,6 +45,12 @@ type DataContextType = {
   filteredTimeline: TimelineEvent[]
   metrics: ProjectMetric[]
   teamMembers: User[]
+
+  // Added calculated data
+  projectProgress: number
+  epicDetails: EpicDetail[]
+  totalEstimatedHours: number
+  completedEstimatedHours: number
 
   // Filter state
   filters: FilterOptions
@@ -57,6 +78,17 @@ const DataContext = createContext<DataContextType | undefined>(undefined)
 export function DataProvider({ children }: { children: ReactNode }) {
   const [filters, setFiltersState] = useState<FilterOptions>(defaultFilters)
   const [tasksList, setTasksList] = useState<Task[]>(tasks)
+
+  // Create a user rate map for efficient lookup
+  const userRateMap = useMemo(() => {
+    const map: Record<string, number> = {}
+    users.forEach((user) => {
+      if (user.hourlyRate !== undefined) {
+        map[user.id] = user.hourlyRate
+      }
+    })
+    return map
+  }, [])
 
   // Memoized filtered data
   const filteredTasks = useMemo(() => {
@@ -159,6 +191,97 @@ export function DataProvider({ children }: { children: ReactNode }) {
     return getActiveTeamMembers()
   }, [])
 
+  // --- Combined Calculations (Progress, Epics with Costs) ---
+  const { totalEstimatedHours, completedEstimatedHours, epicDetails, projectProgress } = useMemo(() => {
+    let totalProjectEstimatedHours = 0
+    let totalProjectCompletedHours = 0
+    // Extended epicsMap to hold cost and estimated hours
+    const epicsMap: Record<
+      string,
+      {
+        tasks: Task[]
+        totalActualHours: number
+        totalEstimatedHours: number
+        totalCost: number
+        estimatedCost: number
+        lastDueDate: Date | null
+      }
+    > = {}
+
+    tasksList.forEach((task) => {
+      const estimated = task.estimatedHours || 0
+      totalProjectEstimatedHours += estimated
+      if (task.status === 'done') {
+        totalProjectCompletedHours += estimated
+      }
+
+      const epicTag = task.tags.find((tag) => tag.startsWith('epic:'))
+      if (epicTag) {
+        const epicName = epicTag.split(':')[1]
+        if (epicName) {
+          if (!epicsMap[epicName]) {
+            epicsMap[epicName] = {
+              tasks: [],
+              totalActualHours: 0,
+              totalEstimatedHours: 0,
+              totalCost: 0,
+              estimatedCost: 0,
+              lastDueDate: null,
+            }
+          }
+          const currentEpic = epicsMap[epicName]!
+          currentEpic.tasks.push(task)
+
+          // Calculate costs based on assignee rate
+          const rate = task.assignee ? (userRateMap[task.assignee] ?? DEFAULT_HOURLY_RATE) : DEFAULT_HOURLY_RATE
+          const actualHours = task.actualHours || 0
+          const estimatedHours = task.estimatedHours || 0
+
+          currentEpic.totalActualHours += actualHours
+          currentEpic.totalEstimatedHours += estimatedHours // Accumulate estimated hours per epic
+          currentEpic.totalCost += actualHours * rate
+          currentEpic.estimatedCost += estimatedHours * rate
+
+          const taskDueDate = task.dueDate ? new Date(task.dueDate) : null
+          if (taskDueDate && (!currentEpic.lastDueDate || taskDueDate > currentEpic.lastDueDate)) {
+            currentEpic.lastDueDate = taskDueDate
+          }
+        }
+      }
+    })
+
+    // Map to EpicDetail including new cost fields
+    const calculatedEpicDetails: EpicDetail[] = Object.entries(epicsMap).map(([name, data]) => {
+      const isCompleted = data.tasks.every((t) => t.status === 'done')
+      return {
+        name,
+        totalActualHours: data.totalActualHours,
+        totalEstimatedHours: data.totalEstimatedHours, // Added
+        totalCost: data.totalCost, // Added
+        estimatedCost: data.estimatedCost, // Added
+        isCompleted,
+        lastDueDate: data.lastDueDate,
+      }
+    })
+
+    // Sort by last due date descending
+    calculatedEpicDetails.sort((a, b) => {
+      if (!a.lastDueDate) return 1
+      if (!b.lastDueDate) return -1
+      return b.lastDueDate.getTime() - a.lastDueDate.getTime()
+    })
+
+    const progress =
+      totalProjectEstimatedHours > 0 ? Math.round((totalProjectCompletedHours / totalProjectEstimatedHours) * 100) : 0
+
+    return {
+      totalEstimatedHours: totalProjectEstimatedHours,
+      completedEstimatedHours: totalProjectCompletedHours,
+      epicDetails: calculatedEpicDetails,
+      projectProgress: progress,
+    }
+  }, [tasksList, userRateMap])
+
   // Update functions
   const updateTaskStatus = (taskId: string, status: TaskStatus) => {
     setTasksList((prevTasks) => prevTasks.map((task) => (task.id === taskId ? { ...task, status } : task)))
@@ -190,7 +313,8 @@ export function DataProvider({ children }: { children: ReactNode }) {
     setFiltersState(defaultFilters)
   }
 
-  const value = {
+  // --- Provide all data through the main context ---
+  const value: DataContextType = {
     project: currentProject,
     filteredTasks,
     filteredRisks,
@@ -205,6 +329,10 @@ export function DataProvider({ children }: { children: ReactNode }) {
     updateTaskPriority,
     updateRiskStatus,
     updateMilestoneStatus,
+    projectProgress,
+    epicDetails,
+    totalEstimatedHours,
+    completedEstimatedHours,
   }
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>
@@ -244,11 +372,16 @@ export function useTeamData() {
 }
 
 export function useMetricsData() {
-  const { metrics } = useProjectData()
-  return { metrics }
+  const { metrics, projectProgress } = useProjectData()
+  return { metrics, projectProgress }
 }
 
 export function useFilterControls() {
   const { filters, setFilters, resetFilters } = useProjectData()
   return { filters, setFilters, resetFilters }
+}
+
+export function useEpicDetails() {
+  const { epicDetails } = useProjectData()
+  return epicDetails
 }
