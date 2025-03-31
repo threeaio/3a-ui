@@ -1,0 +1,17 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+Data-Providers:
+
+Always check [base-data-provider.tsx](mdc:apps/docs/app/features/data-dashboard/data-context/base-data-provider.tsx) , [employee-provider.tsx](mdc:apps/docs/app/features/data-dashboard/data-context/employee-provider.tsx) and [project-data-provider.tsx](mdc:apps/docs/app/features/data-dashboard/data-context/project-data-provider.tsx) to grasp the logic of how data is provided.
+
+The Goal is to keept domain specific logic and calculations inside the providers. If needed create util-functions in [utils.ts](mdc:apps/docs/app/features/data-dashboard/data-context/utils.ts) (for pure functions only) that help make the data-providers more readable.
+
+Types are also important:
+Check [employee.ts](mdc:apps/docs/app/features/data-dashboard/types/domain/employee.ts) [epic.ts](mdc:apps/docs/app/features/data-dashboard/types/domain/epic.ts) [expertise-domain.ts](mdc:apps/docs/app/features/data-dashboard/types/domain/expertise-domain.ts) [project.ts](mdc:apps/docs/app/features/data-dashboard/types/domain/project.ts) [status.ts](mdc:apps/docs/app/features/data-dashboard/types/domain/status.ts) and [task.ts](mdc:apps/docs/app/features/data-dashboard/types/domain/task.ts) to get the idea of how models work together
+
+
+
+
