@@ -30,6 +30,7 @@
     "./card": "./src/ui/card/index.ts",
     "./chart": "./src/ui/chart/index.ts",
     "./code": "./src/ui/code/index.ts",
+    "./accordion": "./src/ui/accordion/index.ts",
     "./lib/utils": "./src/lib/utils.ts"
   },
   "license": "MIT",
@@ -55,6 +56,7 @@
     "typescript": "5.7.3"
   },
   "dependencies": {
+    "@radix-ui/react-accordion": "^1.2.3",
     "@radix-ui/react-checkbox": "^1.1.4",
     "@radix-ui/react-dialog": "^1.1.6",
     "@radix-ui/react-label": "^2.1.2",
