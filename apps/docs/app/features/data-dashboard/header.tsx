@@ -36,7 +36,7 @@ export const Header: React.FC<HeaderProps> = ({ onSearchChange }) => {
           <div className="flex items-center gap-5">
             <div className="flex flex-row gap-10 items-center">
               <div className="flex flex-col gap-0.5">
-                <h1 className="">{project.name}</h1>
+                <h1 className="font-semibold">{project.name}</h1>
 
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <span className="flex items-center gap-1">
@@ -46,14 +46,14 @@ export const Header: React.FC<HeaderProps> = ({ onSearchChange }) => {
                 </div>
               </div>
 
-              <div className="flex items-center gap-2">
+              {/* <div className="flex items-center gap-2">
                 <Badge className={getStatusBadgeColor(project.status)}>
                   {project.status.charAt(0).toUpperCase() + project.status.slice(1).replace('-', ' ')}
                 </Badge>
                 <Badge className={getPriorityBadgeColor(priority)}>
                   {priority.charAt(0).toUpperCase() + priority.slice(1)}
                 </Badge>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
