@@ -13,7 +13,12 @@ import {
 } from '../types/domain'
 import { useEmployeeContext } from './employee-provider'
 import { mockExpertiseDomains } from '../_MOCK-DATA/independent-data'
-import { getDomainTaskCountsByStatus, getDomainWorkloadAnalysis, getDomainCostAnalysis } from './domain-utils'
+import {
+  getDomainTaskCountsByStatus,
+  getDomainWorkloadAnalysis,
+  getDomainCostAnalysis,
+  calculateTaskCost,
+} from './domain-utils'
 
 // Define the shape of our context
 interface ProjectDataContextType {
@@ -34,6 +39,7 @@ interface ProjectDataContextType {
   // Task-based selectors
   getWorkloadsByTask: (taskId: string) => { workload: TaskWorkload; employee: Employee }[]
   getTotalWorkloadForTask: (taskId: string) => number
+  getTaskCost: (taskId: string) => number
 
   // Status-based selectors
   getTasksByStatus: (status: string) => Task[]
@@ -104,6 +110,8 @@ export function ProjectDataProvider({
     const getTotalWorkloadForTask = (taskId: string) =>
       taskWorkloads.filter((wl) => wl.taskId === taskId).reduce((total, wl) => total + wl.workload, 0)
 
+    const getTaskCost = (taskId: string) => calculateTaskCost(taskId, taskWorkloads, getEmployeeById)
+
     // Status-based selectors
     const getTasksByStatus = (status: string) => tasks.filter((task) => task.status === status)
 
@@ -160,6 +168,7 @@ export function ProjectDataProvider({
       getTasksByEpic,
       getWorkloadsByTask,
       getTotalWorkloadForTask,
+      getTaskCost,
       getTasksByStatus,
       getTasksByExpertiseDomain,
       getProjectEndDate,

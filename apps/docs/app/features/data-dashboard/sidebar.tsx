@@ -27,13 +27,16 @@ import {
 } from 'lucide-react'
 import { Progress } from '@3a.solutions/ui/progress'
 import { useProjectDataContext } from './data-context/project-data-provider'
-
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 export function AppSidebar() {
   const { state } = useSidebar()
   const { project, tasks, employeesInProject } = useProjectDataContext()
   const team = employeesInProject
   const todoTasks = tasks.filter((task) => task.status === 'planned').length
   const inProgressTasks = tasks.filter((task) => task.status === 'in-progress').length
+
+  const pathname = usePathname()
 
   return (
     <Sidebar collapsible="icon">
@@ -49,17 +52,21 @@ export function AppSidebar() {
           </SidebarGroupLabel>
           <SidebarMenu>
             <SidebarMenuItem>
-              <SidebarMenuButton tooltip="Overview" isActive>
-                <LayoutDashboardIcon />
-                <span>Overview</span>
+              <SidebarMenuButton tooltip="Overview" asChild isActive={pathname === '/features/data-dashboard'}>
+                <Link href="/features/data-dashboard">
+                  <LayoutDashboardIcon />
+                  <span>Overview</span>
+                </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
 
             <SidebarMenuItem>
-              <SidebarMenuButton tooltip="Tasks">
-                <CheckSquareIcon />
-                <span>Tasks</span>
-                <SidebarMenuBadge className="ml-2">{todoTasks + inProgressTasks}</SidebarMenuBadge>
+              <SidebarMenuButton asChild tooltip="Tasks" isActive={pathname === '/features/data-dashboard/tasks'}>
+                <Link href="/features/data-dashboard/tasks">
+                  <CheckSquareIcon />
+                  <span>Tasks</span>
+                  <SidebarMenuBadge className="ml-2">{todoTasks + inProgressTasks}</SidebarMenuBadge>
+                </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
 

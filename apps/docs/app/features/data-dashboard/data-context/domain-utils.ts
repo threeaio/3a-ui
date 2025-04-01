@@ -28,6 +28,31 @@ export interface DomainCost {
   cost: number
 }
 
+/**
+ * Calculates the total cost of a task based on workloads and employee hourly rates
+ */
+export function calculateTaskCost(
+  taskId: string,
+  taskWorkloads: TaskWorkload[],
+  getEmployeeById: (id: string) => Employee | undefined,
+): number {
+  let totalCost = 0
+
+  // Find all workloads for this task
+  const workloads = taskWorkloads.filter(wl => wl.taskId === taskId)
+  
+  // Calculate cost for each workload entry
+  workloads.forEach(workload => {
+    const employee = getEmployeeById(workload.userId)
+    // Only add cost if employee has an hourly rate
+    if (employee?.hourlyRate) {
+      totalCost += workload.workload * employee.hourlyRate
+    }
+  })
+
+  return totalCost
+}
+
 export function getDomainTaskCountsByStatus(
   tasks: Task[],
   expertiseDomains: ExpertiseDomain[],

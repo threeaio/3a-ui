@@ -78,7 +78,7 @@ export const DomainTaskStatusStacked: React.FC = () => {
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig} className="h-[400px] w-full">
-          <BarChart data={processedData} margin={{ top: 20, right: 0, left: 0, bottom: 0 }}>
+          <BarChart maxBarSize={20} data={processedData} margin={{ top: 20, right: 0, left: 0, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke={chartConfig.grid.color} />
             <XAxis
               dataKey="domain"
