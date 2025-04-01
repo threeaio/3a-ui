@@ -64,10 +64,7 @@ export function ResizableShowcase() {
       </StyleguideRender>
 
       <StyleguideRender>
-        <ResizablePanelGroup
-          direction="horizontal"
-          className="min-h-[600px] max-w-full rounded-xl border border-border"
-        >
+        <ResizablePanelGroup direction="horizontal" className="min-h-[600px] max-w-full rounded-xl">
           {/* File Explorer Panel */}
           <ResizablePanel defaultSize={25} className="@container bg-background rounded-l-lg">
             <div className="flex h-full flex-col">
@@ -91,7 +88,7 @@ export function ResizableShowcase() {
             </div>
           </ResizablePanel>
 
-          <ResizableHandle withHandle className="w-px text-muted" />
+          <ResizableHandle withHandle className="w-px text-muted-foreground" />
 
           {/* Content Preview Panel */}
           <ResizablePanel defaultSize={75} className="@container bg-background rounded-r-lg">

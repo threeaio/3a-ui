@@ -1,0 +1,131 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Chart Components Implementation Guide
+
+This guide outlines standards and patterns for implementing chart components in our application.
+
+## Tech Stack & Dependencies
+
+- Primary charting library: `recharts`
+- UI Components: `@3a.solutions/ui`
+- Client-side components: Use `'use client'` directive
+- React + TypeScript
+
+## Color Standards
+
+### Color Variables
+
+Always use CSS custom properties for chart colors:
+
+```typescript
+const STATUS_COLORS = {
+  planned: 'var(--color-chart-purple)',
+  'in-progress': 'var(--color-chart-blue)',
+  completed: 'var(--color-chart-green)',
+  cancelled: 'var(--color-chart-orange)'
+}
+```
+
+### Chart Configuration Pattern
+
+Define a consistent chart configuration object:
+
+```typescript
+const chartConfig = {
+  label: { color: 'var(--foreground)' },
+  tick: { color: 'var(--muted-foreground)' },
+  grid: { color: 'var(--border)' },
+  // Status-specific colors
+  [status]: { 
+    label: string,
+    color: 'var(--color-chart-*)'
+  }
+}
+```
+
+## Component Structure
+
+1. Chart components should be wrapped in a `Card` component from `@3a.solutions/ui`:
+```typescript
+<Card>
+  <CardHeader>
+    <CardTitle>Chart Title</CardTitle>
+  </CardHeader>
+  <CardContent>
+    <ChartContainer>
+      {/* Chart content */}
+    </ChartContainer>
+  </CardContent>
+</Card>
+```
+
+2. Use `ChartContainer` for consistent sizing:
+```typescript
+<ChartContainer config={chartConfig} className="h-[400px] w-full">
+```
+
+## Accessibility
+
+1. Include proper ARIA labels and roles
+2. Use tooltips for data point information
+3. Provide legends for color interpretation
+4. Ensure text contrast meets accessibility standards
+
+## Styling Guidelines
+
+1. Use Tailwind classes for layout and spacing
+2. Implement responsive designs using Tailwind breakpoints
+3. Use `cn()` utility for class name composition
+4. Maintain consistent spacing patterns:
+   - Card padding
+   - Chart margins
+   - Legend spacing
+
+## Best Practices
+
+1. Data Processing:
+   - Process data in useMemo hooks when derived from props/context
+   - Include type definitions for data structures
+   - Handle empty/zero states gracefully
+
+2. Component Organization:
+   - Keep chart-specific configurations close to usage
+   - Extract reusable chart elements into separate components
+   - Use consistent naming patterns for chart components
+
+3. Chart Customization:
+   - Use `ChartTooltip` and `ChartLegend` from our UI library
+   - Implement custom shapes using SVG paths when needed
+   - Maintain consistent grid and axis styling
+
+## Example Implementation
+
+```typescript
+'use client'
+
+import { ChartContainer, ChartTooltip, ChartLegend } from '@3a.solutions/ui/chart'
+import { Card, CardContent, CardHeader, CardTitle } from '@3a.solutions/ui/card'
+
+export const ChartComponent: React.FC = () => {
+  const chartConfig = {
+    // ... color and style configuration
+  }
+
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Chart Title</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <ChartContainer config={chartConfig} className="h-[400px] w-full">
+          {/* Chart implementation */}
+          <ChartTooltip />
+          <ChartLegend />
+        </ChartContainer>
+      </CardContent>
+    </Card>
+  )
+} 

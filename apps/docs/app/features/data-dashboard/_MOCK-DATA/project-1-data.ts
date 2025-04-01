@@ -77,7 +77,7 @@ export const mockEmployeesInProject: EmployeeInProject[] = [
     employeeId: 'emp-1',
     projectId: 'proj-1',
     role: 'UI Designer',
-    expertiseDomainInProject: ['design'],
+    expertiseDomainInProject: ['design', 'ux'],
     startDate: '2025-01-10T00:00:00.000Z',
     endDate: '2025-06-30T00:00:00.000Z'
   },
@@ -101,7 +101,7 @@ export const mockEmployeesInProject: EmployeeInProject[] = [
     employeeId: 'emp-5',
     projectId: 'proj-1',
     role: 'UX Designer',
-    expertiseDomainInProject: ['design'],
+    expertiseDomainInProject: ['ux'],
     startDate: '2025-01-05T00:00:00.000Z',
     endDate: '2025-06-30T00:00:00.000Z'
   },
@@ -123,7 +123,7 @@ export const mockTasks: Task[] = [
     epicId: 'epic-1',
     name: 'Design Product Cards',
     description: 'Create modern, responsive product card components',
-    relatedExpertiseDomains: ['frontend', 'design'],
+    relatedExpertiseDomains: ['frontend', 'design', 'qa'],
     tags: ['ui', 'responsive', 'components'],
     status: 'in-progress',
     lastActive: '2025-03-28T10:15:22.000Z',
@@ -136,7 +136,7 @@ export const mockTasks: Task[] = [
     epicId: 'epic-2',
     name: 'Implement Authentication',
     description: 'Add secure user authentication and authorization',
-    relatedExpertiseDomains: ['backend', 'frontend'],
+    relatedExpertiseDomains: ['backend', 'frontend', 'qa'],
     tags: ['security', 'auth', 'user-management'],
     status: 'planned',
     lastActive: '2025-03-24T16:30:45.000Z',
@@ -162,7 +162,7 @@ export const mockTasks: Task[] = [
     epicId: 'epic-2',
     name: 'Add Payment Gateway Integration',
     description: 'Integrate multiple payment providers into checkout flow',
-    relatedExpertiseDomains: ['backend', 'frontend'],
+    relatedExpertiseDomains: ['backend', 'frontend', 'qa'],
     tags: ['payments', 'integration', 'feature'],
     status: 'planned',
     lastActive: '2025-03-22T11:45:30.000Z',
@@ -175,7 +175,7 @@ export const mockTasks: Task[] = [
     epicId: 'epic-3',
     name: 'Implement Product Filtering',
     description: 'Add advanced filtering options for product listings',
-    relatedExpertiseDomains: ['frontend', 'backend'],
+    relatedExpertiseDomains: ['frontend', 'backend', 'qa'],
     tags: ['feature', 'search', 'ui'],
     status: 'in-progress',
     lastActive: '2025-03-27T15:10:22.000Z',
@@ -188,7 +188,7 @@ export const mockTasks: Task[] = [
     epicId: 'epic-1',
     name: 'Optimize Image Loading',
     description: 'Implement lazy loading and optimize image assets',
-    relatedExpertiseDomains: ['frontend'],
+    relatedExpertiseDomains: ['frontend', 'qa'],
     tags: ['performance', 'optimization', 'images'],
     status: 'planned',
     lastActive: '2025-03-25T09:30:15.000Z',
@@ -201,7 +201,7 @@ export const mockTasks: Task[] = [
     epicId: 'epic-2',
     name: 'Create User Profile Page',
     description: 'Design and implement user profile settings screen',
-    relatedExpertiseDomains: ['frontend', 'design', 'ux'],
+    relatedExpertiseDomains: ['frontend', 'design', 'ux', 'qa'],
     tags: ['user-management', 'ui', 'feature'],
     status: 'planned',
     lastActive: '2025-03-23T14:20:30.000Z',
@@ -214,7 +214,7 @@ export const mockTasks: Task[] = [
     epicId: 'epic-3',
     name: 'Implement Order Tracking',
     description: 'Create order history and tracking functionality',
-    relatedExpertiseDomains: ['frontend', 'backend'],
+    relatedExpertiseDomains: ['frontend', 'backend', 'qa'],
     tags: ['orders', 'tracking', 'feature'],
     status: 'planned',
     lastActive: '2025-03-24T11:45:22.000Z',
@@ -227,7 +227,7 @@ export const mockTasks: Task[] = [
     epicId: 'epic-1',
     name: 'Fix Mobile Navigation Menu',
     description: 'Repair issues with the mobile hamburger menu',
-    relatedExpertiseDomains: ['frontend'],
+    relatedExpertiseDomains: ['frontend', 'qa'],
     tags: ['bugfix', 'mobile', 'navigation'],
     status: 'in-progress',
     lastActive: '2025-03-28T16:15:00.000Z',
@@ -240,7 +240,7 @@ export const mockTasks: Task[] = [
     epicId: 'epic-3',
     name: 'Implement Cart Persistence',
     description: 'Save shopping cart items across sessions',
-    relatedExpertiseDomains: ['frontend', 'backend'],
+    relatedExpertiseDomains: ['frontend', 'backend', 'qa'],
     tags: ['cart', 'persistence', 'feature'],
     status: 'completed',
     lastActive: '2025-03-20T11:30:45.000Z',
@@ -253,7 +253,7 @@ export const mockTasks: Task[] = [
     epicId: 'epic-3',
     name: 'Create Checkout Summary Component',
     description: 'Design and implement the checkout summary sidebar',
-    relatedExpertiseDomains: ['frontend', 'design'],
+    relatedExpertiseDomains: ['frontend', 'design', 'qa'],
     tags: ['checkout', 'ui', 'component'],
     status: 'in-progress',
     lastActive: '2025-03-29T10:15:00.000Z',
@@ -266,7 +266,7 @@ export const mockTasks: Task[] = [
     epicId: 'epic-3',
     name: 'Add Address Validation',
     description: 'Integrate address validation service for shipping info',
-    relatedExpertiseDomains: ['backend', 'frontend'],
+    relatedExpertiseDomains: ['backend', 'frontend', 'qa'],
     tags: ['validation', 'checkout', 'shipping'],
     status: 'planned',
     lastActive: '2025-03-26T09:25:30.000Z',
@@ -278,7 +278,7 @@ export const mockTasks: Task[] = [
     projectId: 'proj-1',
     name: 'Fix CSS in IE11',
     description: 'Address layout issues in legacy browsers',
-    relatedExpertiseDomains: ['frontend'],
+    relatedExpertiseDomains: ['frontend', 'qa'],
     tags: ['bugfix', 'compatibility', 'css'],
     status: 'planned',
     lastActive: '2025-03-24T13:40:10.000Z',
@@ -290,7 +290,7 @@ export const mockTasks: Task[] = [
     projectId: 'proj-1',
     name: 'Performance Audit',
     description: 'Conduct comprehensive performance review',
-    relatedExpertiseDomains: ['frontend', 'backend'],
+    relatedExpertiseDomains: ['frontend', 'backend', 'qa'],
     tags: ['performance', 'audit', 'optimization'],
     status: 'planned',
     lastActive: '2025-03-26T16:10:05.000Z',
@@ -302,10 +302,22 @@ export const mockTasks: Task[] = [
     projectId: 'proj-1',
     name: 'Update Dependencies',
     description: 'Update NPM packages to latest versions',
-    relatedExpertiseDomains: ['frontend', 'backend', 'devops'],
+    relatedExpertiseDomains: ['frontend', 'backend', 'devops', 'qa'],
     tags: ['maintenance', 'dependencies', 'security'],
     status: 'planned',
     lastActive: '2025-03-25T11:32:45.000Z',
+    type: 'maintenance',
+    priority: 'medium'
+  },
+  {
+    id: 'task-16',
+    projectId: 'proj-1',
+    name: 'Project Management Activities',
+    description: 'Track time spent on project management activities including meetings, planning, and coordination',
+    relatedExpertiseDomains: ['pm'],
+    tags: ['management', 'coordination', 'planning'],
+    status: 'in-progress',
+    lastActive: '2025-03-29T14:30:00.000Z',
     type: 'maintenance',
     priority: 'medium'
   }
@@ -319,29 +331,44 @@ export const mockTaskWorkloads: TaskWorkload[] = [
     userId: 'emp-1'
   },
   {
+    taskId: 'task-1',
+    workload: 4,
+    userId: 'emp-8'
+  },
+  {
     taskId: 'task-2',
     workload: 8,
     userId: 'emp-4'
   },
   {
+    taskId: 'task-2',
+    workload: 6,
+    userId: 'emp-8'
+  },
+  {
+    taskId: 'task-2',
+    workload: 16,
+    userId: 'emp-6'
+  },
+  {
     taskId: 'task-3',
-    workload: 4, 
-    userId: 'emp-4'
-  },
-  {
-    taskId: 'task-1',
-    workload: 10,
-    userId: 'emp-5'
-  },
-  {
-    taskId: 'task-1',
     workload: 4,
-    userId: 'emp-7'
+    userId: 'emp-4'
   },
   {
     taskId: 'task-4',
     workload: 14,
     userId: 'emp-4'
+  },
+  {
+    taskId: 'task-4',
+    workload: 8,
+    userId: 'emp-8'
+  },
+  {
+    taskId: 'task-4',
+    workload: 12,
+    userId: 'emp-6'
   },
   {
     taskId: 'task-5',
@@ -350,8 +377,13 @@ export const mockTaskWorkloads: TaskWorkload[] = [
   },
   {
     taskId: 'task-5',
-    workload: 5,
-    userId: 'emp-1'
+    workload: 10,
+    userId: 'emp-8'
+  },
+  {
+    taskId: 'task-5',
+    workload: 8,
+    userId: 'emp-6'
   },
   {
     taskId: 'task-6',
@@ -359,9 +391,19 @@ export const mockTaskWorkloads: TaskWorkload[] = [
     userId: 'emp-1'
   },
   {
+    taskId: 'task-6',
+    workload: 4,
+    userId: 'emp-8'
+  },
+  {
     taskId: 'task-7',
     workload: 12,
     userId: 'emp-5'
+  },
+  {
+    taskId: 'task-7',
+    workload: 6,
+    userId: 'emp-8'
   },
   {
     taskId: 'task-7',
@@ -374,9 +416,24 @@ export const mockTaskWorkloads: TaskWorkload[] = [
     userId: 'emp-4'
   },
   {
+    taskId: 'task-8',
+    workload: 12,
+    userId: 'emp-8'
+  },
+  {
+    taskId: 'task-8',
+    workload: 14,
+    userId: 'emp-6'
+  },
+  {
     taskId: 'task-9',
     workload: 6,
     userId: 'emp-1'
+  },
+  {
+    taskId: 'task-9',
+    workload: 3,
+    userId: 'emp-8'
   },
   {
     taskId: 'task-10',
@@ -384,9 +441,24 @@ export const mockTaskWorkloads: TaskWorkload[] = [
     userId: 'emp-4'
   },
   {
+    taskId: 'task-10',
+    workload: 8,
+    userId: 'emp-8'
+  },
+  {
+    taskId: 'task-10',
+    workload: 10,
+    userId: 'emp-6'
+  },
+  {
     taskId: 'task-11',
     workload: 14,
     userId: 'emp-1'
+  },
+  {
+    taskId: 'task-11',
+    workload: 6,
+    userId: 'emp-8'
   },
   {
     taskId: 'task-11',
@@ -399,19 +471,14 @@ export const mockTaskWorkloads: TaskWorkload[] = [
     userId: 'emp-4'
   },
   {
-    taskId: 'task-5',
-    workload: 4,
-    userId: 'emp-7'
+    taskId: 'task-12',
+    workload: 8,
+    userId: 'emp-8'
   },
   {
-    taskId: 'task-8',
-    workload: 6,
-    userId: 'emp-7'
-  },
-  {
-    taskId: 'task-10',
-    workload: 4,
-    userId: 'emp-7'
+    taskId: 'task-12',
+    workload: 8,
+    userId: 'emp-6'
   },
   {
     taskId: 'task-13',
@@ -421,7 +488,7 @@ export const mockTaskWorkloads: TaskWorkload[] = [
   {
     taskId: 'task-13',
     workload: 2,
-    userId: 'emp-1'
+    userId: 'emp-8'
   },
   {
     taskId: 'task-14',
@@ -431,7 +498,12 @@ export const mockTaskWorkloads: TaskWorkload[] = [
   {
     taskId: 'task-14',
     workload: 6,
-    userId: 'emp-2'
+    userId: 'emp-8'
+  },
+  {
+    taskId: 'task-14',
+    workload: 10,
+    userId: 'emp-6'
   },
   {
     taskId: 'task-15',
@@ -440,43 +512,18 @@ export const mockTaskWorkloads: TaskWorkload[] = [
   },
   {
     taskId: 'task-15',
+    workload: 3,
+    userId: 'emp-8'
+  },
+  {
+    taskId: 'task-15',
     workload: 5,
     userId: 'emp-6'
   },
   {
-    taskId: 'task-2',
-    workload: 16,
-    userId: 'emp-6'
-  },
-  {
-    taskId: 'task-4',
+    taskId: 'task-16',
     workload: 12,
-    userId: 'emp-6'
-  },
-  {
-    taskId: 'task-5',
-    workload: 8,
-    userId: 'emp-6'
-  },
-  {
-    taskId: 'task-8',
-    workload: 14,
-    userId: 'emp-6'
-  },
-  {
-    taskId: 'task-10',
-    workload: 10,
-    userId: 'emp-6'
-  },
-  {
-    taskId: 'task-12',
-    workload: 8,
-    userId: 'emp-6'
-  },
-  {
-    taskId: 'task-14',
-    workload: 10,
-    userId: 'emp-6'
+    userId: 'emp-7'
   }
 ]
 

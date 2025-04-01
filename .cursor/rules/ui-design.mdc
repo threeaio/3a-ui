@@ -1,0 +1,94 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+
+# UI Design Essentials
+
+## Color System
+
+Use semantic color classes only:
+
+| Purpose      | Background    | Text                        |
+|-------------|---------------|----------------------------|
+| Primary     | bg-primary    | text-primary-foreground    |
+| Default     | bg-default    | text-default-foreground    |
+| Background  | bg-background | text-foreground            |
+| Muted       | bg-muted      | text-muted-foreground      |
+| Destructive | bg-destructive| text-destructive-foreground|
+
+## Typography
+
+### Font Sizes
+- `text-xs`: Labels, metadata
+- `text-sm`: Secondary text, errors
+- `text-base`: Default body text
+- `text-lg`: Page titles (content-heavy only)
+
+### Font Weights
+- `font-normal`: Default text
+- `font-semibold`: Headings, important labels
+
+### Heading Patterns
+```jsx
+// Main Page (H1)
+<div className="h-80 pt-10 flex flex-col px-10">
+  <h1 className="font-semibold mb-5">Title</h1>
+</div>
+
+// Section (H2, H3)
+<div className="px-10 h-40 flex flex-col justify-center">
+  <h2 className="font-semibold">{title}</h2>
+</div>
+```
+
+## Spacing
+
+Prefer multiples of 5 here (so no h-4 or w-9, instead h-5 or h-10)
+
+### Key Classes
+- Tight: `p-2`, `gap-2`
+- Standard: `p-5`, `gap-5`
+- Large: `p-10`, `gap-10`
+
+### Heights
+- `h-20`: Standard row
+- `h-40`: Double height
+- `h-80`: Quadruple height (page headers)
+
+## Component Patterns
+
+### Buttons
+```jsx
+<Button variant="default">Default</Button>
+<Button variant="primary">Primary Action</Button>
+<Button variant="outline" size="icon">
+  <Icon className="size-4" />
+</Button>
+```
+
+### Forms
+```jsx
+<div className="space-y-2">
+  <Label>Label</Label>
+  <Input placeholder="Input" />
+</div>
+```
+
+### Cards
+```jsx
+<div className="bg-card text-card-foreground p-5 rounded-lg border">
+  <h3 className="font-semibold">Title</h3>
+  <p className="text-muted-foreground">Content</p>
+</div>
+```
+
+## Best Practices
+
+1. Use semantic colors only
+2. Maintain consistent spacing
+3. Follow row system for fixed-height sections
+4. Test in both light/dark modes
+5. Use appropriate text sizes
+6. Keep headings in fixed-height containers 

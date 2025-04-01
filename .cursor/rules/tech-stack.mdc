@@ -1,0 +1,97 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+# Tech Stack Guide
+
+## Core Technologies
+
+| Technology   | Version | Purpose                                          |
+| ------------ | ------- | ------------------------------------------------ |
+| React        | 19.0.0  | UI library                                       |
+| Next.js      | 15.1.6  | React framework for server-rendered applications |
+| TypeScript   | 5.7.3   | Type-safe JavaScript                             |
+| Tailwind CSS | 4.0.9   | Utility-first CSS framework                      |
+| Turborepo    | Latest  | Monorepo build system                            |
+| shadcn/ui    | Latest  | Component library foundation                     |
+
+## Key Dependencies
+
+| Dependency            | Version | Purpose               |
+| --------------------- | ------- | --------------------- |
+| @tanstack/react-table | 8.21.2  | Data table management |
+| lucide-react          | 0.476.0 | Icon library          |
+| motion                | 12.4.9  | Animation library     |
+
+## Font System
+
+The project uses Google Fonts:
+- **Geist** - Primary sans-serif font
+- **Geist Mono** - Monospace font for code and technical content
+
+## Tailwind Usage Rules
+
+1. **Color Usage**:
+   ```tsx
+   // Correct usage
+   <button className="bg-primary text-primary-foreground">
+     Primary Button
+   </button>
+   
+   // Incorrect usage
+   <button className="bg-primary text-white">
+     Primary Button
+   </button>
+   ```
+
+   - Never use default Tailwind color modifiers
+   - Only use semantic color classes from theme
+   - Always pair background colors with corresponding foreground colors
+
+2. **Spacing System**:
+   - Use predefined spacing values
+   - Follow the Row System for vertical rhythm
+
+3. **Typography**:
+   - Use provided font families: `font-sans` and `font-mono`
+   - Follow text size and weight guidelines
+
+## Font Configuration
+
+```tsx
+const geist = Geist({
+  subsets: ['latin'],
+  variable: '--font-sans',
+})
+
+const geistMono = Geist_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono',
+})
+
+// Apply in layout
+<body className={`${geist.variable} ${geistMono.variable} font-sans`}>
+  {children}
+</body>
+```
+
+## Development Setup
+
+```bash
+# Install dependencies
+npm install
+
+# Start docs app development server
+npm run dev --filter=docs
+
+# Build all packages and apps
+npm run build
+
+# Build specific app
+npm run build --filter=docs
+
+# Run linting
+npm run lint
+``` 

@@ -38,7 +38,7 @@ export const DomainMetricsBar: React.FC = () => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Domain Metrics</CardTitle>
+        <CardTitle>Cost and Workload per Domain</CardTitle>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig} className="h-[400px] w-full">

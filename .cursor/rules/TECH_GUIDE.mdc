@@ -1,7 +1,0 @@
----
-description: TECH AND STRUCTURE GUIDE
-globs: 
-alwaysApply: true
----
-
-You can look up Technical Information (like used libarries and coding standards) and Project-Structure in  [TECH_GUIDE.md](mdc:.cursor/rules/TECH_GUIDE.md)

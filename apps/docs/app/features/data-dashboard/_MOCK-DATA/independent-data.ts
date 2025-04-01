@@ -233,6 +233,21 @@ export const mockEmployees: Employee[] = [
       mockEmployeeSkills[12]!, // User Research
       mockEmployeeSkills[2]! // UI Design
     ]
+  },
+  {
+    id: 'emp-8',
+    name: 'Alex Thompson',
+    email: 'alex.thompson@example.com',
+    status: 'active',
+    lastActive: '2025-03-29T15:20:33.123Z',
+    avatar: 'https://randomuser.me/api/portraits/men/15.jpg',
+    hourlyRate: 70,
+    skills: [
+      mockEmployeeSkills[4]!, // Jest
+      mockEmployeeSkills[0]!, // React
+      mockEmployeeSkills[1]!, // Node.js
+      mockEmployeeSkills[6]! // TypeScript
+    ]
   }
 ]
 

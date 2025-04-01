@@ -1,19 +1,18 @@
 'use client'
 
 import React from 'react'
-import { ChartData } from '../../../types'
 import { cn } from '@3a.solutions/ui/lib/utils'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@3a.solutions/ui/tooltip'
 import { useProjectDataContext } from '../../../data-context/project-data-provider'
-import { BaseStatus } from '../../../types/domain/status'
+import { TaskStatus } from '../../../types/domain'
+import { ChartData } from '../../../types/ui'
 
-// Default colors matching the original component's defaults
-const DEFAULT_COLORS = [
-  'var(--color-chart-purple)',
-  'var(--color-chart-blue)',
-  'var(--color-chart-green)',
-  'var(--color-chart-orange)',
-]
+const STATUS_COLORS: Record<TaskStatus, string> = {
+  planned: 'var(--color-chart-purple)',
+  'in-progress': 'var(--color-chart-blue)',
+  completed: 'var(--color-chart-green)',
+  cancelled: 'var(--color-chart-orange)',
+}
 
 interface TaskStatusWidgetProps {
   className?: string
@@ -27,7 +26,7 @@ export const TaskStatusWidget: React.FC<TaskStatusWidgetProps> = ({
   const { getTasksByStatus } = useProjectDataContext()
 
   const data: ChartData[] = React.useMemo(() => {
-    const statuses: BaseStatus[] = ['planned', 'in-progress', 'completed', 'cancelled']
+    const statuses: TaskStatus[] = ['planned', 'in-progress', 'completed', 'cancelled']
     return statuses.map((status) => ({
       name: status,
       value: getTasksByStatus(status).length,
@@ -66,7 +65,7 @@ export const TaskStatusWidget: React.FC<TaskStatusWidgetProps> = ({
             const percentage = (item.value / totalValue) * 100
             const style = {
               width: `${percentage}%`,
-              backgroundColor: DEFAULT_COLORS[index % DEFAULT_COLORS.length],
+              backgroundColor: STATUS_COLORS[item.name as TaskStatus],
             }
             const labelText = `${item.name}: ${item.value}`
 
@@ -96,7 +95,7 @@ export const TaskStatusWidget: React.FC<TaskStatusWidgetProps> = ({
           <div key={index} className="flex items-center">
             <div
               className="w-3 h-3 rounded-sm mr-2 flex-shrink-0"
-              style={{ backgroundColor: DEFAULT_COLORS[index % DEFAULT_COLORS.length] }}
+              style={{ backgroundColor: STATUS_COLORS[item.name as TaskStatus] }}
             />
             <span className="text-xs">
               {item.name}: {item.value}

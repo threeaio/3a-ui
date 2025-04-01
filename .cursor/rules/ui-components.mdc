@@ -1,0 +1,189 @@
+---
+description: Documentation of all available UI components in the library
+globs: packages/ui/src/ui/**/*
+alwaysApply: false
+---
+# UI Components Library
+
+This document provides a comprehensive overview of all available UI components in the library.
+
+## Basic Components
+
+### Button
+Location: `@3a.solutions/ui/button`
+```tsx
+import { Button, ButtonGroup } from '@3a.solutions/ui/button'
+```
+- Variants: primary, default, destructive, outline, secondary, ghost, link
+- Sizes: default, sm, lg, icon
+- Sub-components: ButtonGroup
+
+### Badge
+Location: `@3a.solutions/ui/badge`
+```tsx
+import { Badge } from '@3a.solutions/ui/badge'
+```
+- Variants: default, primary, secondary, destructive, outline
+
+### BadgeSelect
+Location: `@3a.solutions/ui/badge-select`
+```tsx
+import { BadgeSelect } from '@3a.solutions/ui/badge-select'
+```
+- Combines Badge with Select functionality
+- Supports all Badge variants
+- Includes placeholder and disabled states
+
+## Layout Components
+
+### Card
+Location: `@3a.solutions/ui/card`
+```tsx
+import { Card, CardHeader, CardFooter, CardTitle, CardAction, CardDescription, CardContent } from '@3a.solutions/ui/card'
+```
+- Sub-components: CardHeader, CardFooter, CardTitle, CardAction, CardDescription, CardContent
+
+### Sidebar
+Location: `@3a.solutions/ui/sidebar`
+```tsx
+import { Sidebar, SidebarContent, SidebarHeader, SidebarFooter, SidebarMenu } from '@3a.solutions/ui/sidebar'
+```
+- Sub-components: SidebarContent, SidebarHeader, SidebarFooter, SidebarMenu, SidebarGroup, SidebarInput, SidebarTrigger
+- Supports collapsible state
+- Includes mobile responsiveness
+
+### Skeleton
+Location: `@3a.solutions/ui/skeleton`
+```tsx
+import { Skeleton } from '@3a.solutions/ui/skeleton'
+```
+- Loading state component
+
+## Form Components
+
+### Forms
+Location: `@3a.solutions/ui/forms`
+```tsx
+import { Select, Checkbox, Label } from '@3a.solutions/ui/forms'
+```
+- Select: Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue
+- Checkbox: Checkbox
+- Label: Label
+
+## Overlay Components
+
+### Dialog
+Location: `@3a.solutions/ui/dialog`
+```tsx
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@3a.solutions/ui/dialog'
+```
+- Sub-components: DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter, DialogDescription
+
+### Drawer
+Location: `@3a.solutions/ui/drawer`
+```tsx
+import { Drawer, DrawerContent, DrawerHeader, DrawerTitle } from '@3a.solutions/ui/drawer'
+```
+- Sub-components: DrawerContent, DrawerHeader, DrawerTitle, DrawerFooter, DrawerDescription
+
+### Sheet
+Location: `@3a.solutions/ui/sheet`
+```tsx
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@3a.solutions/ui/sheet'
+```
+- Sub-components: SheetContent, SheetHeader, SheetTitle, SheetFooter, SheetDescription
+
+### Popover
+Location: `@3a.solutions/ui/popover`
+```tsx
+import { Popover, PopoverContent, PopoverTrigger } from '@3a.solutions/ui/popover'
+```
+- Sub-components: PopoverContent, PopoverTrigger
+
+### Tooltip
+Location: `@3a.solutions/ui/tooltip`
+```tsx
+import { Tooltip, TooltipContent, TooltipTrigger } from '@3a.solutions/ui/tooltip'
+```
+- Sub-components: TooltipContent, TooltipTrigger
+
+## Interactive Components
+
+### Command
+Location: `@3a.solutions/ui/command`
+```tsx
+import { Command, CommandInput, CommandList, CommandItem } from '@3a.solutions/ui/command'
+```
+- Sub-components: CommandInput, CommandList, CommandItem, CommandGroup, CommandEmpty, CommandShortcut
+
+### Switch
+Location: `@3a.solutions/ui/switch`
+```tsx
+import { Switch } from '@3a.solutions/ui/switch'
+```
+
+### Slider
+Location: `@3a.solutions/ui/slider`
+```tsx
+import { Slider, RangeSlider } from '@3a.solutions/ui/slider'
+```
+- Components:
+  - `Slider`: Single value slider
+  - `RangeSlider`: Multi-value range slider
+  - `SliderTicks`: Optional ticks display (internal)
+- Features:
+  - Horizontal and vertical orientation
+  - Customizable min/max/step values
+  - Optional ticks with custom labels
+  - Accessible through keyboard navigation
+  - Touch-friendly
+
+### Resizable
+Location: `@3a.solutions/ui/resizable`
+```tsx
+import { Resizable } from '@3a.solutions/ui/resizable'
+```
+
+## Code Display
+
+### Code
+Location: `@3a.solutions/ui/code`
+```tsx
+import { Code } from '@3a.solutions/ui/code'
+```
+- Features: Syntax highlighting, line numbers, themes
+- Supports multiple languages and themes
+- Optional title display
+
+### Chart
+Location: `@3a.solutions/ui/chart`
+```tsx
+import { 
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+  ChartLegend,
+  ChartLegendContent
+} from '@3a.solutions/ui/chart'
+```
+- Components:
+  - `ChartContainer`: Main wrapper component
+  - `ChartTooltip`: Tooltip component
+  - `ChartTooltipContent`: Customizable tooltip content
+  - `ChartLegend`: Legend component
+  - `ChartLegendContent`: Customizable legend content
+- Features:
+  - Built on Recharts
+  - Responsive container
+  - Theme-aware styling
+  - Customizable tooltips and legends
+  - Support for various chart types (line, bar, area, etc.)
+
+
+## Best Practices
+
+1. Always import components from their specific paths
+2. Use semantic color variants when available
+3. Follow the component hierarchy for complex components
+4. Utilize sub-components for better composition
+5. Consider mobile responsiveness when using overlay components 

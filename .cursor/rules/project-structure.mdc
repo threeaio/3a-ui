@@ -1,0 +1,98 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+# Project Structure Guide
+
+## Monorepo Structure
+
+The project follows a monorepo structure using Turborepo:
+
+```
+Root
+├── packages/
+│   ├── eslint-config/       # Shared ESLint configuration
+│   ├── typescript-config/   # Shared TypeScript configuration
+│   └── ui/                  # Core UI library (Tailwind 4 + shadcn/ui based)
+│       ├── src/
+│       │   ├── ui/          # Individual UI components (non exhaustive lsit)
+│       │   │   ├── badge/   # Badge components
+│       │   │   ├── button/  # Button components
+│       │   │   ├── forms/   # Form components
+│       │   │   ├── slider/  # Slider components
+│       │   │   └── tooltip/ # Tooltip components
+│       │   ├── lib/         # Utility functions
+│       │   ├── hooks/       # Custom React hooks
+│       │   ├── components/  # Higher-level components
+│       │   └── styles.css   # Theme definition and global styles
+│       └── package.json     # UI package dependencies
+└── apps/
+    ├── docs/                # UI documentation and styleguide app
+    │   ├── app/             # Next.js app directory
+    │   │   ├── (main)/components/  # UI-Component showcase pages
+    │   │   ├── features/  # Full Feature showcase pages
+    │   │   ├── ui/          # Documentation-specific UI components
+    │   │   ├── layout.tsx   # Root layout
+    │   │   ├── nav.tsx      # Navigation sidebar
+    │   │   ├── page.tsx     # Root page
+    │   │   └── styles.css   # App-specific styles
+    │   └── package.json     # App dependencies
+    └── web/                 # Landing page
+```
+
+## Component Organization
+
+### UI Library Structure
+
+1. **UI Components** (`packages/ui/src/ui/`):
+   - Each component has its own directory
+   - Contains main component file, variants, and index
+   - Example: `button/button.tsx`, `button/button-group.tsx`, `button/index.ts`
+
+2. **Utilities** (`packages/ui/src/lib/`):
+   - Common utility functions
+   - Component registry
+
+3. **Hooks** (`packages/ui/src/hooks/`):
+   - Custom React hooks
+   - Reusable logic
+
+4. **Components** (`packages/ui/src/components/`):
+   - Higher-level composite components
+
+### File Naming Conventions
+
+- Use kebab-case for file names
+- Component files named after their export
+- Group related components in directories
+
+### Import Patterns
+
+```tsx
+// Component imports
+import { Button, ButtonGroup } from '@3a.solutions/ui/button'
+import { Input, InputGroup } from '@3a.solutions/ui/forms'
+
+// Utility imports
+import { cn } from '@3a.solutions/ui/lib/utils'
+
+// Hook imports
+import { useMetaColor } from '@3a.solutions/uihooks/use-meta-color'
+```
+
+### Import Order
+
+1. React imports
+2. External libraries
+3. Internal packages
+4. Local imports
+
+```tsx
+import React from 'react'
+import { useRouter } from 'next/router'
+import { motion } from 'motion'
+import { Button } from '@3a.solutions//ui/button'
+import { useAppData } from './hooks/use-app-data'
+``` 

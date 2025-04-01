@@ -60,8 +60,8 @@ const Dashboard: React.FC = () => {
           <div className="flex flex-col h-full p-5">
             {/* Project Health Alerts */}
             <div className="space-y-5 mb-5">
-              {/* <ProjectHealthAlert project={project} tasks={tasks} risks={risks} /> */}
-              {/* <UnassignedTasksAlert tasks={tasks} /> */}
+              <ProjectHealthAlert project={project} tasks={tasks} risks={risks} />
+              <UnassignedTasksAlert tasks={tasks} />
             </div>
 
             {/* Metrics Cards & Epic Cost */}

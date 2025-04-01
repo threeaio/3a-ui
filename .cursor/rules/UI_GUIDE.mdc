@@ -1,6 +1,0 @@
----
-description: UI GUIDE
-globs: 
-alwaysApply: true
----
-You can look up Rules for implementing existing UI-Components in [UI_GUIDE.md](mdc:.cursor/rules/UI_GUIDE.md)

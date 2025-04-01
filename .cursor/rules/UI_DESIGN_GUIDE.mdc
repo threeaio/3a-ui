@@ -1,7 +1,0 @@
----
-description: UI-DESIGN
-globs: 
-alwaysApply: false
----
-
-You can look up Rules for creating new UI in [UI_DESIGN_GUIDE.md](mdc:.cursor/rules/UI_DESIGN_GUIDE.md)
