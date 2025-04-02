@@ -2,8 +2,9 @@
 
 import { useProjectDataContext } from '@/features/data-dashboard/data-context/project-data-provider'
 import { EpicTaskGroup } from './epic-task-group'
-import { TaskCard } from './task-card'
-
+import { TaskItem } from '@/features/data-dashboard/(pages)/tasks/task'
+import { Accordion } from '@3a-ui/ui/accordion'
+import { Card, CardContent, CardHeader, CardTitle } from '@3a-ui/ui/card'
 export default function TasksPage() {
   const { epics, getTasksByEpic, tasks } = useProjectDataContext()
 
@@ -12,7 +13,7 @@ export default function TasksPage() {
 
   return (
     <main className="flex-1 bg-background">
-      <div className="flex flex-col h-full px-5 pt-10 gap-10">
+      <div className="flex flex-col h-full px-5 pt-10 gap-5 pb-5">
         {/* Epic groups */}
         {epics.map((epic) => (
           <EpicTaskGroup key={epic.id} epic={epic} tasks={getTasksByEpic(epic.id)} />
@@ -20,14 +21,18 @@ export default function TasksPage() {
 
         {/* Orphaned tasks */}
         {orphanedTasks.length > 0 && (
-          <div className="space-y-5">
-            <h2 className="font-semibold">Other Tasks</h2>
-            <div className="space-y-5">
-              {orphanedTasks.map((task) => (
-                <TaskCard key={task.id} task={task} />
-              ))}
-            </div>
-          </div>
+          <Card>
+            <CardHeader className="border-b">
+              <CardTitle className="font-normal my-5">Other Tasks</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Accordion type="single" collapsible>
+                {orphanedTasks.map((task) => (
+                  <TaskItem key={task.id} task={task} />
+                ))}
+              </Accordion>
+            </CardContent>
+          </Card>
         )}
       </div>
     </main>

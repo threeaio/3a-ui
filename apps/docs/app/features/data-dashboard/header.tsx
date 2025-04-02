@@ -70,31 +70,31 @@ export const Header: React.FC<HeaderProps> = ({ onSearchChange }) => {
 
           <ButtonGroup variant="outline">
             <Button>
-              <Plus className="size-4 mr-2" />
+              <Plus strokeWidth={1} className="size-4 mr-2" />
               Add Task
             </Button>
             <Button>
-              <Download className="size-4 mr-2" />
+              <Download strokeWidth={1} className="size-4 mr-2" />
               Export
             </Button>
             <Button>
-              <Share2 className="size-4 mr-2" />
+              <Share2 strokeWidth={1} className="size-4 mr-2" />
               Share
             </Button>
           </ButtonGroup>
 
           <div className="flex items-center">
             <Button variant="ghost" size="icon">
-              <Bell className="size-5" />
+              <Bell strokeWidth={1.5} className="size-5" />
             </Button>
             <Button variant="ghost" size="icon">
-              <HelpCircle className="size-5" />
+              <HelpCircle strokeWidth={1.5} className="size-5" />
             </Button>
             <Button variant="ghost" size="icon">
-              <Settings className="size-5" />
+              <Settings strokeWidth={1.5} className="size-5" />
             </Button>
             <Button variant="ghost" size="icon">
-              <UserCircle2 className="size-5" />
+              <UserCircle2 strokeWidth={1.5} className="size-5" />
             </Button>
           </div>
         </div>

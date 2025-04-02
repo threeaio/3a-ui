@@ -2,31 +2,37 @@
 
 import { Epic, Task } from '@/features/data-dashboard/types/domain'
 import { Badge } from '@3a.solutions/ui/badge'
-import { TaskCard } from './task-card'
+import { Card, CardContent, CardHeader } from '@3a.solutions/ui/card'
+import { Accordion } from '@3a.solutions/ui/accordion'
+import { TaskItem } from './task'
+import { getStatusBadgeColor } from '@/features/data-dashboard/utils'
 
 export function EpicTaskGroup({ epic, tasks }: { epic: Epic; tasks: Task[] }) {
   return (
-    <div className="space-y-5">
-      <div className="flex items-baseline justify-between">
-        <div className="space-y-1 py-10">
-          <h2 className="font-semibold ">{epic.name}</h2>
-          {epic.description && <p className="text-sm text-muted-foreground">{epic.description}</p>}
+    <Card>
+      <CardHeader className="border-b">
+        <div className="flex items-baseline justify-between py-5">
+          <div className="flex flex-col gap-1">
+            <h2 className="">{epic.name}</h2>
+            {epic.description && <p className="text-sm text-muted-foreground">{epic.description}</p>}
+          </div>
+          <div className="flex items-center gap-10">
+            {epic.budget && (
+              <div className="">
+                Budget: <span className="">${epic.budget.toLocaleString('de-DE')}</span>
+              </div>
+            )}
+            <Badge className={getStatusBadgeColor(epic.status)}>{epic.status}</Badge>
+          </div>
         </div>
-        <div className="flex items-center gap-2">
-          {epic.budget && (
-            <div className="text-sm">
-              Budget: <span className="font-medium">${epic.budget.toLocaleString('de-DE')}</span>
-            </div>
-          )}
-          <Badge variant={epic.status === 'in-progress' ? 'primary' : 'default'}>{epic.status}</Badge>
-        </div>
-      </div>
-
-      <div className="flex flex-col gap-5">
-        {tasks.map((task) => (
-          <TaskCard key={task.id} task={task} />
-        ))}
-      </div>
-    </div>
+      </CardHeader>
+      <CardContent>
+        <Accordion type="single" collapsible>
+          {tasks.map((task) => (
+            <TaskItem key={task.id} task={task} />
+          ))}
+        </Accordion>
+      </CardContent>
+    </Card>
   )
 }

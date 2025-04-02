@@ -43,7 +43,7 @@ export const TaskStatusWidget: React.FC<TaskStatusWidgetProps> = ({
         <h2 id={titleId} className="text-sm mb-2">
           Task Status
         </h2>
-        <div className={cn('w-full bg-muted rounded-full', barHeight)} role="progressbar" aria-labelledby={titleId}>
+        <div className={cn('w-full bg-muted rounded-lg', barHeight)} role="progressbar" aria-labelledby={titleId}>
           <span className="text-xs text-muted-foreground pl-2">No data</span>
         </div>
       </div>
@@ -57,7 +57,7 @@ export const TaskStatusWidget: React.FC<TaskStatusWidgetProps> = ({
       </h2>
       <TooltipProvider>
         <div
-          className={cn('flex w-full overflow-hidden rounded-full', barHeight)}
+          className={cn('flex w-full overflow-hidden rounded-lg', barHeight)}
           role="progressbar"
           aria-labelledby={titleId}
         >
@@ -94,7 +94,7 @@ export const TaskStatusWidget: React.FC<TaskStatusWidgetProps> = ({
         {data.map((item, index) => (
           <div key={index} className="flex items-center">
             <div
-              className="w-3 h-3 rounded-sm mr-2 flex-shrink-0"
+              className="size-2 rounded-[2px] mr-2 flex-shrink-0"
               style={{ backgroundColor: STATUS_COLORS[item.name as TaskStatus] }}
             />
             <span className="text-xs">
