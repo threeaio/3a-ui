@@ -13,8 +13,8 @@ Everytime we update values here we need to update the documentation in /tailwind
   --color-gray-50: oklch(0.985 0.005 195);
   --color-gray-100: oklch(0.97 0.005 195);
   --color-gray-200: oklch(0.942 0.005 195);
-  --color-gray-300: oklch(0.87 0.01 195);
-  --color-gray-400: oklch(0.708 0.01 196);
+  --color-gray-300: oklch(0.87 0.006 195);
+  --color-gray-400: oklch(0.708 0.008 196);
   --color-gray-500: oklch(0.556 0.01 195);
   --color-gray-600: oklch(0.429 0.01 197);
   --color-gray-700: oklch(0.289 0.01 197);
@@ -59,7 +59,7 @@ Everytime we update values here we need to update the documentation in /tailwind
   --primary: var(--color-brand-green-for-bright);
   --primary-foreground: var(--color-gray-900);
 
-  --secondary: var(--color-gray-100);
+  --secondary: var(--color-gray-300);
   --secondary-foreground: var(--color-gray-800);
 
   --muted: var(--color-gray-200);
