@@ -15,7 +15,7 @@ function AccordionItem({ className, ...props }: React.ComponentProps<typeof Acco
     <AccordionPrimitive.Item
       data-slot="accordion-item"
       className={cn(
-        'data-[state=open]:bg-background -mx-3 px-3 rounded-md',
+        'data-[state=open]:bg-background -mx-2.5 px-2.5 rounded-md',
         'border-t first:border-t-0 data-[state=open]:border-t-0 [&[data-state=open]_+_&]:border-t-0',
         className,
       )}
