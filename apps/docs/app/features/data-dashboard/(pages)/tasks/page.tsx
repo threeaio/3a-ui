@@ -1,20 +1,17 @@
 'use client'
 
-import { useProjectDataContext } from '@/features/data-dashboard/data-context/project-data-provider'
-import { EpicTaskGroup } from './epic-task-group'
-import { TaskItem } from '@/features/data-dashboard/(pages)/tasks/task'
-import { Accordion } from '@3a-ui/ui/accordion'
 import { Card, CardContent, CardHeader, CardTitle } from '@3a-ui/ui/card'
-import { ActiveTaskProvider } from '@/features/data-dashboard/data-context/active-task-context'
+import { Accordion } from '@3a-ui/ui/accordion'
+import { EpicTaskGroup } from './epic-task-group'
+import { TaskItem } from './task'
+import { ActiveEpicProvider } from './data-context/active-epic-context'
+import { TasksDataProvider, useTasksData } from './data-context/tasks-data-provider'
 
-export default function TasksPage() {
-  const { epics, getTasksByEpic, tasks } = useProjectDataContext()
-
-  // Group orphaned tasks (tasks without an epic)
-  const orphanedTasks = tasks.filter((task) => !task.epicId)
+function TasksPageContent() {
+  const { epics, getTasksByEpic, orphanedTasks } = useTasksData()
 
   return (
-    <ActiveTaskProvider>
+    <ActiveEpicProvider>
       <main className="flex-1 bg-background">
         <div className="flex flex-col h-full px-5 pt-10 gap-5 pb-5">
           {/* Epic groups */}
@@ -39,6 +36,14 @@ export default function TasksPage() {
           )}
         </div>
       </main>
-    </ActiveTaskProvider>
+    </ActiveEpicProvider>
+  )
+}
+
+export default function TasksPage() {
+  return (
+    <TasksDataProvider>
+      <TasksPageContent />
+    </TasksDataProvider>
   )
 }

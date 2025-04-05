@@ -9,7 +9,6 @@ import {
   CheckIcon,
   TimerIcon,
   BugIcon,
-  LightbulbIcon,
   WrenchIcon,
   ArrowUpIcon,
   BookmarkCheck,

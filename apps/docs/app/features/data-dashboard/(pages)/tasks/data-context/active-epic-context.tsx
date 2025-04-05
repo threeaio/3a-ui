@@ -2,14 +2,14 @@
 
 import { createContext, useContext, useState } from 'react'
 
-type ActiveTaskContextType = {
+type ActiveEpicContextType = {
   activeEpicIds: Set<string>
   setEpicActive: (epicId: string, isActive: boolean) => void
 }
 
-const ActiveTaskContext = createContext<ActiveTaskContextType | null>(null)
+const ActiveEpicContext = createContext<ActiveEpicContextType | null>(null)
 
-export function ActiveTaskProvider({ children }: { children: React.ReactNode }) {
+export function ActiveEpicProvider({ children }: { children: React.ReactNode }) {
   const [activeEpicIds, setActiveEpicIds] = useState<Set<string>>(new Set())
 
   const setEpicActive = (epicId: string, isActive: boolean) => {
@@ -25,21 +25,21 @@ export function ActiveTaskProvider({ children }: { children: React.ReactNode }) 
   }
 
   return (
-    <ActiveTaskContext.Provider
+    <ActiveEpicContext.Provider
       value={{
         activeEpicIds,
         setEpicActive,
       }}
     >
       {children}
-    </ActiveTaskContext.Provider>
+    </ActiveEpicContext.Provider>
   )
 }
 
-export function useActiveTask() {
-  const context = useContext(ActiveTaskContext)
+export function useActiveEpic() {
+  const context = useContext(ActiveEpicContext)
   if (!context) {
-    throw new Error('useActiveTask must be used within an ActiveTaskProvider')
+    throw new Error('useActiveEpic must be used within an ActiveEpicProvider')
   }
   return context
 }

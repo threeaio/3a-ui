@@ -3,18 +3,35 @@
 import { Epic, Task } from '@/features/data-dashboard/types/domain'
 import { Badge } from '@3a.solutions/ui/badge'
 import { Card, CardContent, CardHeader } from '@3a.solutions/ui/card'
-import { Accordion, AccordionContent } from '@3a.solutions/ui/accordion'
+import { Accordion } from '@3a.solutions/ui/accordion'
 import { TaskItem } from './task'
 import { getStatusBadgeColor } from '@/features/data-dashboard/utils'
-import { useActiveTask } from '@/features/data-dashboard/data-context/active-task-context'
+import { useActiveEpic } from '@/features/data-dashboard/(pages)/tasks/data-context/active-epic-context'
 import { cn } from '@3a.solutions/ui/lib/utils'
+import { EpicDetails } from './epic-details'
+import { useState } from 'react'
 
 export function EpicTaskGroup({ epic, tasks }: { epic: Epic; tasks: Task[] }) {
-  const { activeEpicIds, setEpicActive } = useActiveTask()
+  const { activeEpicIds, setEpicActive } = useActiveEpic()
   const isActive = activeEpicIds.has(epic.id)
+  const [isTasksOpen, setIsTasksOpen] = useState(false)
+  const [isDetailsOpen, setIsDetailsOpen] = useState(false)
 
-  const handleAccordionChange = (value: string | undefined) => {
-    setEpicActive(epic.id, !!value)
+  const handleTaskAccordionChange = (value: string | undefined) => {
+    const isOpen = !!value
+    setIsTasksOpen(isOpen)
+    if (isOpen) {
+      setIsDetailsOpen(false)
+    }
+    setEpicActive(epic.id, isOpen)
+  }
+
+  const handleDetailsChange = (isOpen: boolean) => {
+    setIsDetailsOpen(isOpen)
+    if (isOpen) {
+      setIsTasksOpen(false)
+    }
+    setEpicActive(epic.id, isOpen)
   }
 
   return (
@@ -37,8 +54,9 @@ export function EpicTaskGroup({ epic, tasks }: { epic: Epic; tasks: Task[] }) {
           </div>
         </div>
       </CardHeader>
-      <CardContent>
-        <Accordion type="single" collapsible onValueChange={handleAccordionChange}>
+      <CardContent className="space-y-4">
+        <EpicDetails epic={epic} onExpandChange={handleDetailsChange} />
+        <Accordion type="single" collapsible onValueChange={handleTaskAccordionChange}>
           {tasks.map((task) => (
             <TaskItem key={task.id} task={task} />
           ))}
