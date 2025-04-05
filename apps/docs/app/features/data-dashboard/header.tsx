@@ -59,14 +59,14 @@ export const Header: React.FC<HeaderProps> = ({ onSearchChange }) => {
         </div>
 
         <div className="flex items-center gap-5">
-          <div className="w-64">
+          {/* <div className="w-64">
             <Input
               placeholder="Search tasks, milestones..."
               icon={<Search className="size-4" />}
               clearable
               onChange={(e) => onSearchChange?.(e.target.value)}
             />
-          </div>
+          </div> */}
 
           <ButtonGroup variant="outline">
             <Button>

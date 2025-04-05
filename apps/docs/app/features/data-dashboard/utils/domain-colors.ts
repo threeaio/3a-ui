@@ -3,17 +3,17 @@ import { ProjectStatus, TaskStatus, EpicStatus, MilestoneStatus, TaskPriority } 
 export const getStatusBadgeColor = (status: ProjectStatus | TaskStatus | EpicStatus | MilestoneStatus): string => {
   switch (status) {
     case 'planned':
-      return 'bg-purple-500 text-white'
+      return 'bg-purple-500 border-purple-500 text-white'
     case 'in-progress':
-      return 'bg-blue-500 text-white'
+      return 'bg-blue-500 border-blue-500 text-white'
     case 'completed':
-      return 'bg-green-500 text-white'
+      return 'bg-green-500 border-green-500 text-white'
     case 'cancelled':
-      return 'bg-gray-500 text-white'
+      return 'bg-gray-500 border-gray-500 text-white'
     case 'upcoming':
-      return 'bg-purple-500 text-white'
+      return 'bg-purple-500 border-purple-500 text-white'
     case 'overdue':
-      return 'bg-destructive text-destructive-foreground'
+      return 'bg-destructive border-destructive text-destructive-foreground'
     default:
       return 'bg-gray-500 text-white'
   }

@@ -1,12 +1,12 @@
 'use client'
 
-import { Task, TaskType } from '@/features/data-dashboard/types/domain'
+import { Task } from '@/features/data-dashboard/types/domain'
 import { Badge } from '@3a.solutions/ui/badge'
-import { useProjectDataContext } from '@/features/data-dashboard/data-context/project-data-provider'
+import { useTasksData } from './data-context/tasks-data-provider'
 import { Timer, CreditCard } from 'lucide-react'
 
 export function TaskCard({ task }: { task: Task }) {
-  const { getWorkloadsByTask, getTotalWorkloadForTask, getTaskCost } = useProjectDataContext()
+  const { getWorkloadsByTask, getTotalWorkloadForTask, getTaskCost } = useTasksData()
 
   // Get workload information for the task
   const workloadEntries = getWorkloadsByTask(task.id)

@@ -107,7 +107,7 @@ export function BadgeSelect({
   return (
     <div className="relative">
       {measureSpan}
-      <Select value={value} defaultValue={defaultValue} onValueChange={handleValueChange} disabled={disabled}>
+      <Select  value={value} defaultValue={defaultValue} onValueChange={handleValueChange} disabled={disabled}>
         <SelectPrimitive.Trigger
           className={cn(
             'flex items-center gap-1.5 w-full text-xs text-left justify-start',
@@ -124,8 +124,8 @@ export function BadgeSelect({
         >
           <div className="flex items-center gap-1.5 w-full text-xs text-left">
             <div className="flex-1 min-w-0">
-              <span className="text-inherit opacity-50 mr-1 overflow-hidden">{label}:</span>
-              <SelectValue placeholder={placeholder} className="inline" />
+              <span className="text-inherit font-semibold mr-1 overflow-hidden">{label}:</span>
+              <SelectValue placeholder={placeholder} className="inline-block pr-5" />
             </div>
             <ChevronDownIcon className="size-3 shrink-0 ml-auto" />
           </div>

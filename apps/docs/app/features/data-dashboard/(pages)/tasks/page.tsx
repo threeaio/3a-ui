@@ -6,6 +6,7 @@ import { EpicTaskGroup } from './epic-task-group'
 import { TaskItem } from './task'
 import { ActiveEpicProvider } from './data-context/active-epic-context'
 import { TasksDataProvider, useTasksData } from './data-context/tasks-data-provider'
+import { TasksHeader } from './tasks-header'
 
 function TasksPageContent() {
   const { epics, getTasksByEpic, orphanedTasks } = useTasksData()
@@ -14,6 +15,9 @@ function TasksPageContent() {
     <ActiveEpicProvider>
       <main className="flex-1 bg-background">
         <div className="flex flex-col h-full px-5 pt-10 gap-5 pb-5">
+          {/* Filters and sorting */}
+          <TasksHeader />
+
           {/* Epic groups */}
           {epics.map((epic) => (
             <EpicTaskGroup key={epic.id} epic={epic} tasks={getTasksByEpic(epic.id)} />
