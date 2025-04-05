@@ -20,22 +20,18 @@ export function EpicTaskGroup({ epic, tasks }: { epic: Epic; tasks: Task[] }) {
   const handleTaskAccordionChange = (value: string | undefined) => {
     const isOpen = !!value
     setIsTasksOpen(isOpen)
-    if (isOpen) {
-      setIsDetailsOpen(false)
-    }
-    setEpicActive(epic.id, isOpen)
+    const isAnythingOpen = isOpen || isDetailsOpen
+    setEpicActive(epic.id, isAnythingOpen)
   }
 
   const handleDetailsChange = (isOpen: boolean) => {
     setIsDetailsOpen(isOpen)
-    if (isOpen) {
-      setIsTasksOpen(false)
-    }
-    setEpicActive(epic.id, isOpen)
+    const isAnythingOpen = isTasksOpen || isOpen
+    setEpicActive(epic.id, isAnythingOpen)
   }
 
   return (
-    <Card className={cn(isActive && 'border-4 border-dashed border-input')}>
+    <Card className={cn(isActive && 'border-4 border-dashed border-input dark:border-primary')}>
       <CardHeader className="border-b">
         <div className="flex items-baseline justify-between py-5">
           <div className="flex flex-col gap-1">
