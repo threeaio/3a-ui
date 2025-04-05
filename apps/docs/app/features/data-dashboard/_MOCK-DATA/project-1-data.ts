@@ -328,202 +328,242 @@ export const mockTaskWorkloads: TaskWorkload[] = [
   {
     taskId: 'task-1',
     workload: 12,
-    userId: 'emp-1'
+    userId: 'emp-1',
+    date: new Date('2025-03-28')
   },
   {
     taskId: 'task-1',
     workload: 4,
-    userId: 'emp-8'
+    userId: 'emp-8',
+    date: new Date('2025-03-28')
   },
   {
     taskId: 'task-2',
     workload: 8,
-    userId: 'emp-4'
+    userId: 'emp-4',
+    date: new Date('2025-04-10')
   },
   {
     taskId: 'task-2',
     workload: 6,
-    userId: 'emp-8'
+    userId: 'emp-8',
+    date: new Date('2025-04-10')
   },
   {
     taskId: 'task-2',
     workload: 16,
-    userId: 'emp-6'
+    userId: 'emp-6',
+    date: new Date('2025-04-11')
   },
   {
     taskId: 'task-3',
     workload: 4,
-    userId: 'emp-4'
+    userId: 'emp-4',
+    date: new Date('2025-03-26')
   },
   {
     taskId: 'task-4',
     workload: 14,
-    userId: 'emp-4'
+    userId: 'emp-4',
+    date: new Date('2025-04-15')
   },
   {
     taskId: 'task-4',
     workload: 8,
-    userId: 'emp-8'
+    userId: 'emp-8',
+    date: new Date('2025-04-15')
   },
   {
     taskId: 'task-4',
     workload: 12,
-    userId: 'emp-6'
+    userId: 'emp-6',
+    date: new Date('2025-04-16')
   },
   {
     taskId: 'task-5',
     workload: 18,
-    userId: 'emp-4'
+    userId: 'emp-4',
+    date: new Date('2025-03-27')
   },
   {
     taskId: 'task-5',
     workload: 10,
-    userId: 'emp-8'
+    userId: 'emp-8',
+    date: new Date('2025-03-27')
   },
   {
     taskId: 'task-5',
     workload: 8,
-    userId: 'emp-6'
+    userId: 'emp-6',
+    date: new Date('2025-03-28')
   },
   {
     taskId: 'task-6',
     workload: 10,
-    userId: 'emp-1'
+    userId: 'emp-1',
+    date: new Date('2025-04-20')
   },
   {
     taskId: 'task-6',
     workload: 4,
-    userId: 'emp-8'
+    userId: 'emp-8',
+    date: new Date('2025-04-20')
   },
   {
     taskId: 'task-7',
     workload: 12,
-    userId: 'emp-5'
+    userId: 'emp-5',
+    date: new Date('2025-04-25')
   },
   {
     taskId: 'task-7',
     workload: 6,
-    userId: 'emp-8'
+    userId: 'emp-8',
+    date: new Date('2025-04-25')
   },
   {
     taskId: 'task-7',
     workload: 8,
-    userId: 'emp-1'
+    userId: 'emp-1',
+    date: new Date('2025-04-26')
   },
   {
     taskId: 'task-8',
     workload: 20,
-    userId: 'emp-4'
+    userId: 'emp-4',
+    date: new Date('2025-05-02')
   },
   {
     taskId: 'task-8',
     workload: 12,
-    userId: 'emp-8'
+    userId: 'emp-8',
+    date: new Date('2025-05-02')
   },
   {
     taskId: 'task-8',
     workload: 14,
-    userId: 'emp-6'
+    userId: 'emp-6',
+    date: new Date('2025-05-03')
   },
   {
     taskId: 'task-9',
     workload: 6,
-    userId: 'emp-1'
+    userId: 'emp-1',
+    date: new Date('2025-03-28')
   },
   {
     taskId: 'task-9',
     workload: 3,
-    userId: 'emp-8'
+    userId: 'emp-8',
+    date: new Date('2025-03-28')
   },
   {
     taskId: 'task-10',
     workload: 16,
-    userId: 'emp-4'
+    userId: 'emp-4',
+    date: new Date('2025-03-20')
   },
   {
     taskId: 'task-10',
     workload: 8,
-    userId: 'emp-8'
+    userId: 'emp-8',
+    date: new Date('2025-03-20')
   },
   {
     taskId: 'task-10',
     workload: 10,
-    userId: 'emp-6'
+    userId: 'emp-6',
+    date: new Date('2025-03-20')
   },
   {
     taskId: 'task-11',
     workload: 14,
-    userId: 'emp-1'
+    userId: 'emp-1',
+    date: new Date('2025-03-29')
   },
   {
     taskId: 'task-11',
     workload: 6,
-    userId: 'emp-8'
+    userId: 'emp-8',
+    date: new Date('2025-03-29')
   },
   {
     taskId: 'task-11',
     workload: 10,
-    userId: 'emp-5'
+    userId: 'emp-5',
+    date: new Date('2025-03-29')
   },
   {
     taskId: 'task-12',
     workload: 12,
-    userId: 'emp-4'
+    userId: 'emp-4',
+    date: new Date('2025-05-10')
   },
   {
     taskId: 'task-12',
     workload: 8,
-    userId: 'emp-8'
+    userId: 'emp-8',
+    date: new Date('2025-05-10')
   },
   {
     taskId: 'task-12',
     workload: 8,
-    userId: 'emp-6'
+    userId: 'emp-6',
+    date: new Date('2025-05-11')
   },
   {
     taskId: 'task-13',
     workload: 3,
-    userId: 'emp-4'
+    userId: 'emp-4',
+    date: new Date('2025-05-15')
   },
   {
     taskId: 'task-13',
     workload: 2,
-    userId: 'emp-8'
+    userId: 'emp-8',
+    date: new Date('2025-05-15')
   },
   {
     taskId: 'task-14',
     workload: 8,
-    userId: 'emp-4'
+    userId: 'emp-4',
+    date: new Date('2025-05-20')
   },
   {
     taskId: 'task-14',
     workload: 6,
-    userId: 'emp-8'
+    userId: 'emp-8',
+    date: new Date('2025-05-20')
   },
   {
     taskId: 'task-14',
     workload: 10,
-    userId: 'emp-6'
+    userId: 'emp-6',
+    date: new Date('2025-05-21')
   },
   {
     taskId: 'task-15',
     workload: 4,
-    userId: 'emp-4'
+    userId: 'emp-4',
+    date: new Date('2025-06-01')
   },
   {
     taskId: 'task-15',
     workload: 3,
-    userId: 'emp-8'
+    userId: 'emp-8',
+    date: new Date('2025-06-01')
   },
   {
     taskId: 'task-15',
     workload: 5,
-    userId: 'emp-6'
+    userId: 'emp-6',
+    date: new Date('2025-06-02')
   },
   {
     taskId: 'task-16',
     workload: 12,
-    userId: 'emp-7'
+    userId: 'emp-7',
+    date: new Date('2025-03-29')
   }
 ]
 

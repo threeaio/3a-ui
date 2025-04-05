@@ -32,7 +32,7 @@ export const DEFAULT_STRIPE_CONFIG = {
 
 export const CANVAS_STYLES = {
   stroke: '#44485b',
-  lineWidth: 1,
+  lineWidth: 2,
   debugStroke: 'rgba(255, 0, 0, 0.5)',
   debugFill: 'red',
   debugControlPointFill: 'blue',

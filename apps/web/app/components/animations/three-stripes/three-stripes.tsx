@@ -162,8 +162,8 @@ export function ThreeStripes({
   return (
     <div className="absolute inset-0 w-full h-full">
       <canvas ref={canvasRef} className="w-full h-full" />
-      <div className="absolute inset-x-0 top-0 h-[20vh] bg-gradient-to-b from-black to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 h-[30vh] bg-gradient-to-t from-black to-transparent" />
+      <div className="absolute inset-x-0 top-0 h-[20vh] bg-gradient-to-b from-background to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-[30vh] bg-gradient-to-t from-background to-transparent" />
     </div>
   )
 }

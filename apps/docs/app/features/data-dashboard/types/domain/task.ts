@@ -23,4 +23,5 @@ export type TaskWorkload = {
     taskId: string
     workload: number // in hours
     userId: string
+    date: Date
 }

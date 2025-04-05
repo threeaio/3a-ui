@@ -55,12 +55,13 @@ export function TaskItem({ task }: { task: Task }) {
   const PriorityArrows = task.priority && getPriorityArrows(task.priority)
 
   return (
-    <AccordionItem value={task.id}>
+    <AccordionItem value={task.id} className="group">
       <div className="flex grow items-center gap-2 justify-between py-3">
         <div className="w-2/3 flex">
           <AccordionTrigger>
-            <h3 className="flex items-center gap-5">
-              <span>{task.name}</span> <span className="text-muted-foreground">[SPT-{task.id}]</span>
+            <h3 className="flex items-center gap-5 ">
+              <span className={'transition-all duration-200 [.group[data-state=open]_&]:font-bold'}>{task.name}</span>{' '}
+              <span className="text-muted-foreground">[SPT-{task.id}]</span>
             </h3>
           </AccordionTrigger>
         </div>

@@ -59,7 +59,7 @@ Everytime we update values here we need to update the documentation in /tailwind
   --primary: var(--color-brand-green-for-bright);
   --primary-foreground: var(--color-gray-900);
 
-  --secondary: var(--color-gray-300);
+  --secondary: var(--color-gray-200);
   --secondary-foreground: var(--color-gray-800);
 
   --muted: var(--color-gray-200);
