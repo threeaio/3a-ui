@@ -6,13 +6,8 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@3a.so
 import { useProjectDataContext } from '../../../data-context/project-data-provider'
 import { TaskStatus } from '../../../types/domain'
 import { ChartData } from '../../../types/ui'
+import { STATUS_COLORS } from '@/features/data-dashboard/utils/domain-to-ui'
 
-const STATUS_COLORS: Record<TaskStatus, string> = {
-  planned: 'var(--color-chart-purple)',
-  'in-progress': 'var(--color-chart-blue)',
-  completed: 'var(--color-chart-green)',
-  cancelled: 'var(--color-chart-orange)',
-}
 
 interface TaskStatusWidgetProps {
   className?: string
@@ -65,7 +60,6 @@ export const TaskStatusWidget: React.FC<TaskStatusWidgetProps> = ({
             const percentage = (item.value / totalValue) * 100
             const style = {
               width: `${percentage}%`,
-              backgroundColor: STATUS_COLORS[item.name as TaskStatus],
             }
             const labelText = `${item.name}: ${item.value}`
 
@@ -74,7 +68,10 @@ export const TaskStatusWidget: React.FC<TaskStatusWidgetProps> = ({
                 <TooltipTrigger asChild>
                   <div
                     style={style}
-                    className="h-full transition-all duration-300 ease-in-out flex items-center justify-start overflow-hidden cursor-default"
+                    className={cn(
+                      'h-full transition-all duration-300 ease-in-out flex items-center justify-start overflow-hidden cursor-default',
+                      STATUS_COLORS[item.name as TaskStatus],
+                    )}
                     aria-label={labelText}
                   >
                     {percentage > 5 && (
@@ -94,8 +91,10 @@ export const TaskStatusWidget: React.FC<TaskStatusWidgetProps> = ({
         {data.map((item, index) => (
           <div key={index} className="flex items-center">
             <div
-              className="size-2 rounded-[2px] mr-2 flex-shrink-0"
-              style={{ backgroundColor: STATUS_COLORS[item.name as TaskStatus] }}
+              className={cn(
+                'size-2 rounded-[2px] mr-2 flex-shrink-0',
+                STATUS_COLORS[item.name as TaskStatus],
+              )}
             />
             <span className="text-xs">
               {item.name}: {item.value}

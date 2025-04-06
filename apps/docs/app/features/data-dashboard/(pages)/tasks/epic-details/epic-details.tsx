@@ -1,7 +1,6 @@
 import { useMemo } from 'react'
 import { Epic, ProjectMilestone } from '@/features/data-dashboard/types/domain'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@3a.solutions/ui/accordion'
-import { Button } from '@3a.solutions/ui/button'
 import { ActivityMatrix } from '@/features/data-dashboard/components/widgets/activity-matrix'
 import { useTasksData } from '../data-context/tasks-data-provider'
 import { useEmployeeContext } from '@/features/data-dashboard/data-context/employee-provider'
@@ -13,10 +12,11 @@ import { EpicTaskDistribution } from './epic-task-distribution'
 
 interface EpicDetailsProps {
   epic: Epic
-  onExpandChange: (isExpanded: boolean) => void
+  isOpen: boolean
+  onOpenChange: (isOpen: boolean) => void
 }
 
-export function EpicDetails({ epic, onExpandChange }: EpicDetailsProps) {
+export function EpicDetails({ epic, isOpen, onOpenChange }: EpicDetailsProps) {
   const { getTasksByEpic, getWorkloadsByTask } = useTasksData()
   const { employees } = useEmployeeContext()
   const { milestones, getTaskCost, getTotalWorkloadForTask } = useProjectDataContext()
@@ -43,18 +43,19 @@ export function EpicDetails({ epic, onExpandChange }: EpicDetailsProps) {
   }, [epicTasks, getWorkloadsByTask])
 
   return (
-    <Accordion type="single" collapsible onValueChange={(value) => onExpandChange(!!value)}>
-      <AccordionItem value="details">
-        <div className="flex py-5">
-          <AccordionTrigger>Epic Details</AccordionTrigger>
-        </div>
+    <Accordion
+      type="single"
+      value={isOpen ? 'details' : ''}
+      onValueChange={(value) => onOpenChange(value === 'details')}
+    >
+      <AccordionItem value="details" className="border-none mt-5">
         <AccordionContent>
-          <div className="pb-5">
+          <div className="pt-5 pb-5">
             <div className="grid grid-cols-4 gap-5 mt-5 mb-20">
-              <div className="col-span-1">
+              <div className="col-span-1 border-r">
                 <EpicRuntimeMetrics tasks={epicTasks} getWorkloadsByTask={getWorkloadsByTask} />
               </div>
-              <div className="col-span-2 ">
+              <div className="col-span-2 border-r pr-5">
                 <EpicDomainMetrics tasks={epicTasks} getWorkloadsByTask={getWorkloadsByTask} employees={employees} />
               </div>
               <div className="col-span-1">

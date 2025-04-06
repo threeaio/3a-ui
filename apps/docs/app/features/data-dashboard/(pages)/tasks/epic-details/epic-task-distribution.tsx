@@ -99,8 +99,8 @@ export function EpicTaskDistribution({ tasks }: EpicTaskDistributionProps) {
   )
 
   return (
-    <div className="grid grid-cols-2 divide-x">
-      <div className="px-5">
+    <div className="grid grid-cols-2 h-full">
+      <div className="border-r">
         <h4 className="text-sm font-semibold mb-3">Task Types</h4>
         <div className="relative">
           <div className="absolute left-3 top-0 bottom-0 w-0.5 bg-border" />

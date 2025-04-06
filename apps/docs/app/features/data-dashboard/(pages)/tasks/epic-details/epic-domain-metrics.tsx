@@ -56,7 +56,7 @@ export function EpicDomainMetrics({ tasks, getWorkloadsByTask, employees }: Epic
 
   return (
     <div className="relative min-h-[200px]">
-      <div className="absolute inset-0 opacity-50 pointer-events-none overflow-hidden">
+      <div className="absolute inset-0 opacity-30 pointer-events-none overflow-hidden">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={chartData}>
             <Line

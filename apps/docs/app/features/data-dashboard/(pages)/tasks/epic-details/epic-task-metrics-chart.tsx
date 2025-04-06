@@ -37,7 +37,7 @@ export function EpicTaskMetricsChart({ tasks, getTaskCost }: EpicTaskMetricsChar
   return (
     <div className="space-y-5 ">
       <h4 className="font-semibold">Task Costs</h4>
-      <ChartContainer config={chartConfig} className="w-full" style={{ height: Math.max(100, tasks.length * 70) }}>
+      <ChartContainer config={chartConfig} className="w-full" style={{ height: Math.max(100, tasks.length * 60) }}>
         <ResponsiveContainer width="100%">
           <BarChart
             data={chartData}
@@ -71,7 +71,7 @@ export function EpicTaskMetricsChart({ tasks, getTaskCost }: EpicTaskMetricsChar
               tickLine={{ stroke: chartConfig.tick.color }}
             />
             <ChartTooltip content={<ChartTooltipContent formatter={(value) => value + ' €'} />} />
-            <Bar dataKey="cost" maxBarSize={2} name="Cost" fill={chartConfig.bar.color} radius={[0, 4, 4, 0]} />
+            <Bar dataKey="cost" maxBarSize={10} name="Cost" fill={chartConfig.bar.color} radius={[0, 4, 4, 0]} />
           </BarChart>
         </ResponsiveContainer>
       </ChartContainer>
