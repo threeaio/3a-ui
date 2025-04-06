@@ -53,7 +53,7 @@ export function EpicTaskGroup({ epic, tasks }: { epic: Epic; tasks: Task[] }) {
       ref={epicRef}
       className={cn(
         'border-2 gap-5 border-dashed border-transparent transition-all',
-        isActive && 'border-input dark:border-primary',
+        isActive && 'border-input dark:border-transparent',
       )}
     >
       <CardHeader className="border-b sticky left-0 right-0 top-24 bg-card z-10">

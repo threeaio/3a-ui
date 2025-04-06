@@ -53,12 +53,14 @@ export function EpicTaskMetricsChart({ tasks, getTaskCost }: EpicTaskMetricsChar
             <XAxis
               type="number"
               tick={{ fill: chartConfig.tick.color }}
+              tickFormatter={(value) => value.toFixed(2) + ' €'}
               tickLine={{ stroke: chartConfig.tick.color }}
               label={{
                 value: 'Cost',
                 position: 'insideBottom',
                 offset: -5,
                 style: { fill: chartConfig.label.color },
+                unit: '€',
               }}
             />
             <YAxis
@@ -68,8 +70,8 @@ export function EpicTaskMetricsChart({ tasks, getTaskCost }: EpicTaskMetricsChar
               tick={{ fill: chartConfig.tick.color }}
               tickLine={{ stroke: chartConfig.tick.color }}
             />
-            <ChartTooltip content={<ChartTooltipContent />} />
-            <Bar dataKey="cost" maxBarSize={10} name="Cost" fill={chartConfig.bar.color} radius={[0, 4, 4, 0]} />
+            <ChartTooltip content={<ChartTooltipContent formatter={(value) => value + ' €'} />} />
+            <Bar dataKey="cost" maxBarSize={2} name="Cost" fill={chartConfig.bar.color} radius={[0, 4, 4, 0]} />
           </BarChart>
         </ResponsiveContainer>
       </ChartContainer>

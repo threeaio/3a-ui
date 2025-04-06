@@ -50,7 +50,7 @@ export function EpicDetails({ epic, onExpandChange }: EpicDetailsProps) {
         </div>
         <AccordionContent>
           <div className="pb-5">
-            <div className="grid grid-cols-4 gap-5 mt-10 mb-30">
+            <div className="grid grid-cols-4 gap-5 mt-5 mb-20">
               <div className="col-span-1">
                 <EpicRuntimeMetrics tasks={epicTasks} getWorkloadsByTask={getWorkloadsByTask} />
               </div>
