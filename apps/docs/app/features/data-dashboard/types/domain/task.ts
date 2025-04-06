@@ -12,6 +12,7 @@ export type Task = {
     name: string
     description: string
     relatedExpertiseDomains: ExpertiseDomain[]
+    assignedEmployeeIds: string[]
     tags: string[]
     status: TaskStatus
     lastActive: string

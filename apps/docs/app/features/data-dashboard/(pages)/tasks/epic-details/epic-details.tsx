@@ -51,14 +51,14 @@ export function EpicDetails({ epic, isOpen, onOpenChange }: EpicDetailsProps) {
       <AccordionItem value="details" className="border-none mt-5">
         <AccordionContent>
           <div className="pt-5 pb-5">
-            <div className="grid grid-cols-4 gap-5 mt-5 mb-20">
-              <div className="col-span-1 border-r">
+            <div className="grid grid-cols-12 gap-5 mt-5 mb-20">
+              <div className="col-span-2">
                 <EpicRuntimeMetrics tasks={epicTasks} getWorkloadsByTask={getWorkloadsByTask} />
               </div>
-              <div className="col-span-2 border-r pr-5">
+              <div className="col-span-5 col-start-4 border-x">
                 <EpicDomainMetrics tasks={epicTasks} getWorkloadsByTask={getWorkloadsByTask} employees={employees} />
               </div>
-              <div className="col-span-1">
+              <div className="col-span-3 col-start-10">
                 <EpicTaskDistribution tasks={epicTasks} />
               </div>
             </div>

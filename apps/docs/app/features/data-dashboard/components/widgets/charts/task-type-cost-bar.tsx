@@ -67,7 +67,7 @@ export const TaskTypeCostBar: React.FC<TaskTypeCostBarProps> = ({ className }) =
             <XAxis
               dataKey="type"
               stroke={chartConfig.grid.color}
-              tick={{ fill: chartConfig.tick.color, fontSize: 10 }}
+              tick={{ fill: chartConfig.tick.color, fontSize: 11 }}
               angle={-45}
               textAnchor="end"
             />

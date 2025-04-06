@@ -1,5 +1,4 @@
 // Import from independent-data.ts
-import { mockTaskWorkloads } from '@/features/data-dashboard/_MOCK-DATA/project-1-workloads'
 import { 
   mockExpertiseDomains,
   mockEmployeeSkills,
@@ -14,7 +13,8 @@ import {
   mockEmployeesInProject,
   mockTasks,
   mockEpics,
-  mockProjectData
+  mockProjectData,
+  mockTaskWorkloads
 } from './project-1-data'
 
 // Re-export everything

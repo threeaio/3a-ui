@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { Task, TaskWorkload, Employee, ExpertiseDomain } from '@/features/data-dashboard/types/domain'
-import { LineChart, Line, ResponsiveContainer } from 'recharts'
+import { LineChart, Line, ResponsiveContainer, Area } from 'recharts'
 
 interface EpicDomainMetricsProps {
   tasks: Task[]
@@ -58,13 +58,13 @@ export function EpicDomainMetrics({ tasks, getWorkloadsByTask, employees }: Epic
     <div className="relative min-h-[200px]">
       <div className="absolute inset-0 opacity-30 pointer-events-none overflow-hidden">
         <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={chartData}>
+          <LineChart data={chartData} margin={{ top: 0, right: 20, bottom: 0, left: 20 }}>
             <Line
               type="linear"
               dataKey="value"
               stroke="var(--default)"
               strokeWidth={1}
-              dot={true}
+              dot={false}
               isAnimationActive={false}
             />
           </LineChart>

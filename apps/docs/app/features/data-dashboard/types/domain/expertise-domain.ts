@@ -1,3 +1,3 @@
 
 
-export type ExpertiseDomain = 'frontend' | 'backend' | 'design' | 'ux' | 'devops' | 'qa' | 'pm' | 'other'
+export type ExpertiseDomain = 'frontend' | 'mobile' | 'backend' | 'design' | 'ux' | 'devops' | 'qa' | 'pm' | 'other'

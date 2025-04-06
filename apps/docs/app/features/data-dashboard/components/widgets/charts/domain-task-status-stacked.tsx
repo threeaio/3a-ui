@@ -90,7 +90,7 @@ export const DomainTaskStatusStacked: React.FC<DomainTaskStatusStackedProps> = (
             <XAxis
               dataKey="domain"
               stroke={chartConfig.grid.color}
-              tick={{ fill: chartConfig.tick.color, fontSize: 10 }}
+              tick={{ fill: chartConfig.tick.color, fontSize: 11 }}
               angle={-45}
               textAnchor="end"
             />

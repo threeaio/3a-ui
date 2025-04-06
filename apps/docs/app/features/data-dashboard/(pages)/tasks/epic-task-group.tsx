@@ -90,11 +90,11 @@ export function EpicTaskGroup({ epic, tasks }: { epic: Epic; tasks: Task[] }) {
                     percentage > 80 && percentage <= 100 && 'text-warning',
                   )}
                 >
-                  <Badge className=" font-mono tabular-nums font-light" variant="outline">
-                    <span className="text-muted-foreground ">{currentCost.toLocaleString('de-DE')} € | </span>
+                  <Badge className=" font-mono tabular-nums font-light" variant={percentage > 100 ? 'destructive' : 'outline'}>
+                    <span className="opacity-70">{currentCost.toLocaleString('de-DE')} € | </span>
                     {epic.budget.toLocaleString('de-DE')} €
                   </Badge>
-                  <Badge className=" font-mono tabular-nums font-light" variant="secondary">
+                  <Badge className=" font-mono tabular-nums font-light" variant={percentage > 100 ? 'destructive' : 'secondary'}>
                     {percentage}%
                   </Badge>
                 </span>
@@ -106,7 +106,12 @@ export function EpicTaskGroup({ epic, tasks }: { epic: Epic; tasks: Task[] }) {
       </CardHeader>
       <CardContent className="relative z-5">
         <EpicDetails epic={epic} isOpen={isDetailsOpen} onOpenChange={handleDetailsChange} />
-        <Accordion type="single" collapsible onValueChange={handleTaskAccordionChange}>
+        <Accordion
+          className={isDetailsOpen ? 'mt-2' : ''}
+          type="single"
+          collapsible
+          onValueChange={handleTaskAccordionChange}
+        >
           {tasks.map((task) => (
             <TaskItem key={task.id} task={task} />
           ))}
