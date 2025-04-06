@@ -1,1 +1,1 @@
-export * from './domain-colors' 
+export * from './domain-to-ui' 

@@ -2,7 +2,7 @@
 
 import { Task } from '@/features/data-dashboard/types/domain'
 import { Badge } from '@3a.solutions/ui/badge'
-import { useTasksData } from './data-context/tasks-data-provider'
+import { useTasksData } from '../data-context/tasks-data-provider'
 import { Timer, CreditCard } from 'lucide-react'
 
 export function TaskCard({ task }: { task: Task }) {
@@ -12,6 +12,17 @@ export function TaskCard({ task }: { task: Task }) {
   const workloadEntries = getWorkloadsByTask(task.id)
   const totalWorkload = getTotalWorkloadForTask(task.id)
   const taskCost = getTaskCost(task.id)
+
+  // Aggregate workload by employee
+  const aggregatedWorkloads = workloadEntries.reduce(
+    (acc, { workload, employee }) => {
+      const employeeId = employee.id
+      acc[employeeId] = acc[employeeId] || { employee, totalWorkload: 0 }
+      acc[employeeId].totalWorkload += workload.workload
+      return acc
+    },
+    {} as Record<string, { employee: (typeof workloadEntries)[0]['employee']; totalWorkload: number }>,
+  )
 
   // Format cost as currency
   const formatCurrency = (amount: number) => {
@@ -34,7 +45,7 @@ export function TaskCard({ task }: { task: Task }) {
   }
 
   return (
-    <div className="flex flex-col gap-10 pb-1">
+    <div className="flex flex-col gap-10 p-5">
       {task.description && <p className="text-muted-foreground text-sm">{task.description}</p>}
 
       <div className="grid grid-cols-3 gap-5 border-t ">
@@ -92,18 +103,18 @@ export function TaskCard({ task }: { task: Task }) {
               <p className="text-xs text-muted-foreground">Assignees:</p>
             </div>
             <div className="space-y-5">
-              {workloadEntries.map(({ workload, employee }) => (
+              {Object.values(aggregatedWorkloads).map(({ employee, totalWorkload }) => (
                 <div key={`${task.id}-${employee.id}`} className="flex justify-between items-center pr-2">
                   <div className="flex items-center gap-2 ">
                     {employee.avatar && (
                       <div className="size-10 overflow-hidden rounded-full">
-                        <img src={employee.avatar} alt={employee.name} className="w-full h-full object-cover" />
+                        <img src={employee.avatar} alt={employee.name} className="size-full object-cover" />
                       </div>
                     )}
                     <span className="text-sm">{employee.name}</span>
                   </div>
                   <div className="flex flex-col items-end">
-                    <span className="text-sm text-muted-foreground">{workload.workload}h</span>
+                    <span className="text-sm text-muted-foreground">{totalWorkload}h</span>
                   </div>
                 </div>
               ))}

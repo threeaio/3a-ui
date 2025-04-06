@@ -41,7 +41,7 @@ export default function FeaturesLayout({ children }: { children: ReactNode }) {
                     {children}
                   </div>
                 </SidebarInset>
-                <div className="fixed bottom-4 right-4 hidden md:block">
+                <div className="fixed bottom-4 right-4 hidden md:block z-100">
                   <ThemeSwitcher />
                 </div>
               </div>

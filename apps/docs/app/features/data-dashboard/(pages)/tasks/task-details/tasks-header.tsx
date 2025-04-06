@@ -1,9 +1,8 @@
-import { InputGroup } from '@3a-ui/ui/forms'
 import { BadgeSelect } from '@3a-ui/ui/badge-select'
 import { BaseStatus, EpicStatus, TaskStatus } from '@/features/data-dashboard/types/domain'
-import { useTasksData } from './data-context/tasks-data-provider'
-import type { EpicSortBy } from './data-context/tasks-data-provider'
-import { getStatusBadgeColor } from '../../utils/domain-colors'
+import { useTasksData } from '../data-context/tasks-data-provider'
+import type { EpicSortBy } from '../data-context/tasks-data-provider'
+import { getStatusBadgeColor } from '../../../utils/domain-to-ui'
 
 const statusOptions: BaseStatus[] = ['planned', 'in-progress', 'completed', 'cancelled']
 

@@ -11,6 +11,7 @@ import {
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts'
 import { useProjectDataContext } from '../../../data-context/project-data-provider'
 import { Card, CardContent, CardHeader, CardTitle } from '@3a.solutions/ui/card'
+import { cn } from '@3a.solutions/ui/lib/utils'
 
 type CustomBarData = {
   domain: string
@@ -22,7 +23,11 @@ type CustomBarData = {
   completedRounded: boolean
 }
 
-export const DomainTaskStatusStacked: React.FC = () => {
+interface DomainTaskStatusStackedProps {
+  className?: string
+}
+
+export const DomainTaskStatusStacked: React.FC<DomainTaskStatusStackedProps> = ({ className }) => {
   const { getDomainTaskCountsByStatus } = useProjectDataContext()
 
   const data = getDomainTaskCountsByStatus()
@@ -37,13 +42,15 @@ export const DomainTaskStatusStacked: React.FC = () => {
   }
 
   // Process data to determine which segments should have rounded corners
-  const processedData = data.map((item) => ({
-    ...item,
-    // Add flags to determine which segment should be rounded
-    plannedRounded: item.inProgress === 0 && item.completed === 0,
-    inProgressRounded: item.inProgress > 0 && item.completed === 0,
-    completedRounded: item.completed > 0,
-  }))
+  const processedData = data
+    .map((item) => ({
+      ...item,
+      // Add flags to determine which segment should be rounded
+      plannedRounded: item.inProgress === 0 && item.completed === 0,
+      inProgressRounded: item.inProgress > 0 && item.completed === 0,
+      completedRounded: item.completed > 0,
+    }))
+    .sort((a, b) => a.planned + a.inProgress + a.completed - (b.planned + b.inProgress + b.completed))
 
   const RenderBar = (color: string, roundedKey: keyof CustomBarData) => (props: any) => {
     const { x, y, width, height } = props
@@ -72,13 +79,13 @@ export const DomainTaskStatusStacked: React.FC = () => {
   }
 
   return (
-    <Card>
+    <Card className="h-full flex flex-col">
       <CardHeader>
         <CardTitle>Tasks by Status per Domain</CardTitle>
       </CardHeader>
-      <CardContent>
-        <ChartContainer config={chartConfig} className="h-[400px] w-full">
-          <BarChart maxBarSize={20} data={processedData} margin={{ top: 20, right: 0, left: 0, bottom: 0 }}>
+      <CardContent className="flex-1 min-h-0">
+        <ChartContainer config={chartConfig} className="h-full w-full">
+          <BarChart maxBarSize={10} data={processedData} margin={{ top: 20, right: 0, left: 0, bottom: -30 }}>
             <CartesianGrid strokeDasharray="3 3" stroke={chartConfig.grid.color} />
             <XAxis
               dataKey="domain"

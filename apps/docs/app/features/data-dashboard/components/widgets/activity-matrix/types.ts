@@ -17,5 +17,6 @@ export type WeekWorkload = {
 export type ActivityMatrixProps = {
   workloads: TaskWorkload[]
   employees: Employee[]
+  startDate: Date
   onDayClick?: (dayWorkload: DayWorkload) => void
 } 

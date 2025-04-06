@@ -5,48 +5,8 @@ import { AccordionItem, AccordionTrigger, AccordionContent } from '@3a.solutions
 import { TaskCard } from './task-card'
 import { cn } from '@3a.solutions/ui/lib/utils'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@3a.solutions/ui/tooltip'
-import {
-  CheckIcon,
-  TimerIcon,
-  BugIcon,
-  WrenchIcon,
-  ArrowUpIcon,
-  BookmarkCheck,
-  ArrowUpRightIcon,
-} from 'lucide-react'
-
-const getTaskStatusIcon = (status: Task['status']) => {
-  switch (status) {
-    case 'completed':
-      return { icon: CheckIcon, label: 'Completed', className: '' }
-    case 'in-progress':
-      return { icon: ArrowUpRightIcon, label: 'In Progress', className: '' }
-    default:
-      return { icon: TimerIcon, label: 'Pending' }
-  }
-}
-
-const getTaskTypeIcon = (type: Task['type']) => {
-  switch (type) {
-    case 'bugfix':
-      return { icon: BugIcon, label: 'Bug Fix', className: 'text-destructive' }
-    case 'feature':
-      return { icon: BookmarkCheck, label: 'Feature', className: '' }
-    default:
-      return { icon: WrenchIcon, label: 'Maintenance', className: '' }
-  }
-}
-
-const getPriorityArrows = (priority: Task['priority']) => {
-  switch (priority) {
-    case 'high':
-      return { count: 3, label: 'High Priority' }
-    case 'medium':
-      return { count: 2, label: 'Medium Priority' }
-    default:
-      return { count: 1, label: 'Low Priority' }
-  }
-}
+import { ArrowUpIcon } from 'lucide-react'
+import { getTaskStatusIcon, getTaskTypeIcon, getPriorityArrows } from '@/features/data-dashboard/utils'
 
 export function TaskItem({ task }: { task: Task }) {
   const StatusIcon = getTaskStatusIcon(task.status)

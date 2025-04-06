@@ -10,7 +10,8 @@ export function getWeekStart(date: Date): Date {
 
 export function transformWorkloads(
   workloads: TaskWorkload[],
-  employees: Employee[]
+  employees: Employee[],
+  startDate: Date
 ): WeekWorkload[] {
   // Group workloads by date first
   const workloadsByDate = new Map<string, DayWorkload>()
@@ -19,7 +20,6 @@ export function transformWorkloads(
     if (!workload.date) return
     
     const date = new Date(workload.date)
-    // We know dateStr will be a string since we've validated workload.date
     const dateStr = date.toISOString().split('T')[0] as string
     const employee = employees.find(e => e.id === workload.userId)
     if (!employee) return
@@ -46,36 +46,32 @@ export function transformWorkloads(
     }
   })
 
-  // Group by weeks
-  const workloadsByWeek = new Map<string, WeekWorkload>()
-  
-  Array.from(workloadsByDate.values()).forEach((dayWorkload) => {
-    const weekStart = getWeekStart(dayWorkload.date)
-    const weekKey = weekStart.toISOString()
+  // Generate all weeks from start date to now
+  const now = new Date('2025-06-01')
+  const weeks: WeekWorkload[] = []
+  const currentWeekStart = getWeekStart(startDate)
 
-    if (!workloadsByWeek.has(weekKey)) {
-      workloadsByWeek.set(weekKey, {
-        weekStart,
-        days: Array(7).fill(null).map((_, i) => {
-          const date = new Date(weekStart)
-          date.setDate(date.getDate() + i)
-          return {
-            date,
-            totalHours: 0,
-            details: []
-          }
-        })
+  while (currentWeekStart <= now) {
+    const week: WeekWorkload = {
+      weekStart: new Date(currentWeekStart),
+      days: Array(7).fill(null).map((_, i) => {
+        const date = new Date(currentWeekStart)
+        date.setDate(date.getDate() + i)
+        const dateStr = date.toISOString().split('T')[0] as string
+        return workloadsByDate.get(dateStr) || {
+          date,
+          totalHours: 0,
+          details: []
+        }
       })
     }
+    weeks.push(week)
 
-    const weekWorkload = workloadsByWeek.get(weekKey)!
-    const dayIndex = Math.floor((dayWorkload.date.getTime() - weekStart.getTime()) / (1000 * 60 * 60 * 24))
-    weekWorkload.days[dayIndex] = dayWorkload
-  })
+    // Move to next week
+    currentWeekStart.setDate(currentWeekStart.getDate() + 7)
+  }
 
-  return Array.from(workloadsByWeek.values()).sort((a, b) => 
-    a.weekStart.getTime() - b.weekStart.getTime()
-  )
+  return weeks
 }
 
 export function getMaxWorkload(weeks: WeekWorkload[]): number {

@@ -109,7 +109,7 @@ const SpacingShowcase: React.FC = () => {
       <StyleguideRender label="Padding with Double Row (Size 3)">
         <RowVisualizer rows={2} className="w-full">
           <PaddingIndicator paddingSize={3} paddingType="horizontal" showLabels={true}>
-            <div className={`border rounded-xl bg-background flex flex-col justify-center ${heightClasses[2]}`}>
+            <div className={`rounded-xl bg-background flex flex-col justify-center ${heightClasses[2]}`}>
               <div className={`${paddingClasses.horizontal[3]}`}>
                 <div className="flex flex-col gap-2.5 max-w-2xl">
                   <h2 className="font-semibold">Content Section</h2>
@@ -125,7 +125,7 @@ const SpacingShowcase: React.FC = () => {
       </StyleguideRender>
       <StyleguideRender label="Only Padding">
         <PaddingIndicator paddingSize={3} paddingType="full" showLabels={true}>
-          <div className={`border rounded-xl bg-background w-full`}>
+          <div className={`rounded-xl bg-background w-full`}>
             <div className={`${paddingClasses.full[3]}`}>
               <div className="flex flex-col gap-2.5 max-w-2xl">
                 <h2 className="font-semibold ">Content Section</h2>

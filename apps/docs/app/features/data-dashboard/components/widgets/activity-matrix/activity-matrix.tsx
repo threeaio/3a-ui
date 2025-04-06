@@ -8,8 +8,8 @@ import { getMaxWorkload, getWorkloadIntensity, transformWorkloads } from './util
 // Reversed order of days as requested
 const DAYS = ['Sun', 'Sat', 'Fri', 'Thu', 'Wed', 'Tue', 'Mon']
 
-export function ActivityMatrix({ workloads, employees, onDayClick }: ActivityMatrixProps) {
-  const weeks = useMemo(() => transformWorkloads(workloads, employees), [workloads, employees])
+export function ActivityMatrix({ workloads, employees, startDate, onDayClick }: ActivityMatrixProps) {
+  const weeks = useMemo(() => transformWorkloads(workloads, employees, startDate), [workloads, employees, startDate])
   const maxWorkload = useMemo(() => getMaxWorkload(weeks), [weeks])
 
   if (weeks.length === 0) {
@@ -53,9 +53,7 @@ export function ActivityMatrix({ workloads, employees, onDayClick }: ActivityMat
                         <button
                           className={cn(
                             'size-6 rounded transition-colors',
-                            intensity === 0
-                              ? cn('bg-muted', (dayIndex === 0 || dayIndex === 1) && 'bg-opacity-75')
-                              : 'bg-green-500',
+                            intensity === 0 ? cn('bg-muted') : 'bg-green-500',
                           )}
                           style={{
                             opacity: intensity > 0 ? intensity : undefined,
@@ -90,7 +88,7 @@ export function ActivityMatrix({ workloads, employees, onDayClick }: ActivityMat
           <div className="flex gap-1 mt-2">
             {weeks.map((week) => (
               <div key={week.weekStart.toISOString()} className="w-6 text-center">
-                <div className="text-xs text-muted-foreground">{format(week.weekStart, 'MMM d')}</div>
+                <div className="text-xs text-muted-foreground">{format(week.weekStart, 'w')}</div>
               </div>
             ))}
           </div>
@@ -100,11 +98,11 @@ export function ActivityMatrix({ workloads, employees, onDayClick }: ActivityMat
       {/* Workload legend */}
       <div className="flex items-center gap-5 pt-2">
         <div className="text-xs text-muted-foreground">Workload:</div>
-        <div className="flex items-center gap-10">
+        <div className="flex items-center gap-5">
           {[0, 0.25, 0.5, 0.75, 1].map((intensity) => (
             <div key={intensity} className="flex items-center gap-1">
               <div
-                className={cn('w-4 h-4 rounded-sm', intensity === 0 ? 'bg-muted' : 'bg-green-500')}
+                className={cn('size-3 rounded-[3px]', intensity === 0 ? 'bg-muted' : 'bg-green-500')}
                 style={{
                   opacity: intensity,
                 }}

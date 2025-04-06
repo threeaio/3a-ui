@@ -3,10 +3,10 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@3a-ui/ui/card'
 import { Accordion } from '@3a-ui/ui/accordion'
 import { EpicTaskGroup } from './epic-task-group'
-import { TaskItem } from './task'
+import { TaskItem } from './task-details/task'
 import { ActiveEpicProvider } from './data-context/active-epic-context'
 import { TasksDataProvider, useTasksData } from './data-context/tasks-data-provider'
-import { TasksHeader } from './tasks-header'
+import { TasksHeader } from './task-details/tasks-header'
 
 function TasksPageContent() {
   const { epics, getTasksByEpic, orphanedTasks } = useTasksData()

@@ -29,7 +29,7 @@ export const Header: React.FC<HeaderProps> = ({ onSearchChange }) => {
   const priority = project.budget > 100000 ? 'high' : 'medium'
 
   return (
-    <div className="sticky top-0 bg-sidebar pt-4 z-10">
+    <div className="sticky top-0 bg-sidebar pt-4 z-20">
       <div className="flex z-50 w-full h-20 pr-5 pl-2 border-b border-border items-center justify-between bg-background rounded-t-xl">
         <div className={cn('flex items-center gap-10 justify-center transition-all')}>
           <SidebarTrigger />
