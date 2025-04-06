@@ -55,64 +55,6 @@ export const epic2Tasks: Task[] = [
   }
 ]
 
-const generateEpic2Workloads = (): TaskWorkload[] => {
-  const workloads: TaskWorkload[] = []
 
-  // Task 2 (Implement Authentication)
-  const task2Dates = generateDatesBetween(new Date('2025-04-10'), new Date('2025-04-17'))
-  task2Dates.forEach(date => {
-    const feWorkload = generateDailyWorkload(3, 5)
-    const beWorkload = generateDailyWorkload(3, 5)
-    const qaWorkload = generateDailyWorkload(1, 2)
-    const [morning, afternoon] = generateDayParts(date)
 
-    workloads.push(
-      { taskId: 'task-2', workload: feWorkload[0], userId: 'emp-4', date: morning },
-      { taskId: 'task-2', workload: feWorkload[1], userId: 'emp-4', date: afternoon },
-      { taskId: 'task-2', workload: beWorkload[0], userId: 'emp-6', date: morning },
-      { taskId: 'task-2', workload: beWorkload[1], userId: 'emp-6', date: afternoon },
-      { taskId: 'task-2', workload: qaWorkload[0], userId: 'emp-8', date: morning },
-      { taskId: 'task-2', workload: qaWorkload[1], userId: 'emp-8', date: afternoon }
-    )
-  })
-
-  // Task 4 (Add Payment Gateway Integration)
-  const task4Dates = generateDatesBetween(new Date('2025-04-15'), new Date('2025-04-22'))
-  task4Dates.forEach(date => {
-    const feWorkload = generateDailyWorkload(3, 5)
-    const beWorkload = generateDailyWorkload(3, 5)
-    const qaWorkload = generateDailyWorkload(1, 2)
-    const [morning, afternoon] = generateDayParts(date)
-
-    workloads.push(
-      { taskId: 'task-4', workload: feWorkload[0], userId: 'emp-4', date: morning },
-      { taskId: 'task-4', workload: feWorkload[1], userId: 'emp-4', date: afternoon },
-      { taskId: 'task-4', workload: beWorkload[0], userId: 'emp-6', date: morning },
-      { taskId: 'task-4', workload: beWorkload[1], userId: 'emp-6', date: afternoon },
-      { taskId: 'task-4', workload: qaWorkload[0], userId: 'emp-8', date: morning },
-      { taskId: 'task-4', workload: qaWorkload[1], userId: 'emp-8', date: afternoon }
-    )
-  })
-
-  // Task 7 (Create User Profile Page)
-  const task7Dates = generateDatesBetween(new Date('2025-04-25'), new Date('2025-05-02'))
-  task7Dates.forEach(date => {
-    const uiWorkload = generateDailyWorkload(2, 4)
-    const uxWorkload = generateDailyWorkload(2, 4)
-    const qaWorkload = generateDailyWorkload(1, 2)
-    const [morning, afternoon] = generateDayParts(date)
-
-    workloads.push(
-      { taskId: 'task-7', workload: uiWorkload[0], userId: 'emp-1', date: morning },
-      { taskId: 'task-7', workload: uiWorkload[1], userId: 'emp-1', date: afternoon },
-      { taskId: 'task-7', workload: uxWorkload[0], userId: 'emp-5', date: morning },
-      { taskId: 'task-7', workload: uxWorkload[1], userId: 'emp-5', date: afternoon },
-      { taskId: 'task-7', workload: qaWorkload[0], userId: 'emp-8', date: morning },
-      { taskId: 'task-7', workload: qaWorkload[1], userId: 'emp-8', date: afternoon }
-    )
-  })
-
-  return workloads
-}
-
-export const epic2Workloads = generateEpic2Workloads() 
+export const epic2Workloads = [] 
