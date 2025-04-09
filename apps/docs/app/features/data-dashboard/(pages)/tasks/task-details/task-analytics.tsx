@@ -2,9 +2,7 @@ import { useMemo } from 'react'
 import { Task } from '@/features/data-dashboard/types/domain'
 import { Alert, AlertDescription, AlertTitle } from '@3a.solutions/ui/alert'
 import { AlertCircle } from 'lucide-react'
-import { analyzeTask } from '../analytics/task-analytics'
-import { TaskInsight } from '../analytics/types/insights'
-import { renderTaskContextMessage } from '../shared-components/analytics-message-renderer'
+import { analyzeTask, TaskInsight, renderTaskContextMessage } from '@/features/data-dashboard/analytics'
 
 export function TaskAnalytics({ task }: { task: Task }) {
   const insights = useMemo(() => {

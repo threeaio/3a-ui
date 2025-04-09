@@ -2,12 +2,17 @@ import { useMemo } from 'react'
 import { Epic } from '@/features/data-dashboard/types/domain'
 import { Alert, AlertDescription, AlertTitle } from '@3a.solutions/ui/alert'
 import { AlertCircle } from 'lucide-react'
-import { analyzeEpic } from '../analytics/epic-analytics'
+
 import { useProjectDataContext } from '@/features/data-dashboard/data-context/project-data-provider'
 import { useTasksData } from '@/features/data-dashboard/(pages)/tasks/data-context/tasks-data-provider'
-import { renderEpicMessage } from '../shared-components/analytics-message-renderer'
-import { EpicBudgetInsight, EpicTaskIssuesInsight } from '../analytics/types/insights'
-import { analyzeTask } from '../analytics/task-analytics'
+
+import {
+  EpicBudgetInsight,
+  EpicTaskIssuesInsight,
+  analyzeEpic,
+  analyzeTask,
+  renderEpicMessage,
+} from '@/features/data-dashboard/analytics'
 
 function isBudgetInsight(insight: EpicBudgetInsight | EpicTaskIssuesInsight): insight is EpicBudgetInsight {
   return insight.type === 'EpicBudgetInsight'

@@ -1,6 +1,6 @@
 import { Task } from '@/features/data-dashboard/types/domain'
 import { ReactNode } from 'react'
-import { TaskInsight, EpicBudgetInsight, EpicTaskIssuesInsight } from '../analytics/types/insights'
+import { TaskInsight, EpicBudgetInsight, EpicTaskIssuesInsight } from '@/features/data-dashboard/analytics'
 import { Badge } from '@3a.solutions/ui/badge'
 
 // Helper function to format task list
