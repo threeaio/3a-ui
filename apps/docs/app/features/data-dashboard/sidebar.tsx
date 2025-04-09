@@ -71,10 +71,12 @@ export function AppSidebar() {
             </SidebarMenuItem>
 
             <SidebarMenuItem>
-              <SidebarMenuButton tooltip="Team">
-                <UsersIcon />
-                <span>Team</span>
-                <SidebarMenuBadge className="ml-2">{team.length}</SidebarMenuBadge>
+              <SidebarMenuButton asChild tooltip="Team" isActive={pathname === '/features/data-dashboard/team'}>
+                <Link href="/features/data-dashboard/team">
+                  <UsersIcon />
+                  <span>Team</span>
+                  <SidebarMenuBadge className="ml-2">{team.length}</SidebarMenuBadge>
+                </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
 

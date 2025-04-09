@@ -4,6 +4,7 @@ import { Task } from '@/features/data-dashboard/types/domain'
 import { Badge } from '@3a.solutions/ui/badge'
 import { useTasksData } from '../data-context/tasks-data-provider'
 import { Timer, CreditCard } from 'lucide-react'
+import { TaskAnalytics } from './task-analytics'
 
 export function TaskCard({ task }: { task: Task }) {
   const { getWorkloadsByTask, getTotalWorkloadForTask, getTaskCost } = useTasksData()
@@ -46,6 +47,8 @@ export function TaskCard({ task }: { task: Task }) {
 
   return (
     <div className="flex flex-col gap-10 p-5">
+      <TaskAnalytics task={task} />
+
       {task.description && <p className="text-muted-foreground text-sm">{task.description}</p>}
 
       <div className="grid grid-cols-3 gap-5 border-t ">
@@ -100,7 +103,7 @@ export function TaskCard({ task }: { task: Task }) {
         {workloadEntries.length > 0 ? (
           <div className="space-y-5  pt-5">
             <div className="flex justify-between items-center">
-              <p className="text-xs text-muted-foreground">Assignees:</p>
+              <p className="text-xs text-muted-foreground">Workloads:</p>
             </div>
             <div className="space-y-5">
               {Object.values(aggregatedWorkloads).map(({ employee, totalWorkload }) => (
@@ -121,7 +124,7 @@ export function TaskCard({ task }: { task: Task }) {
             </div>
           </div>
         ) : (
-          <div className="text-sm text-muted-foreground ">No assignees</div>
+          <div className="text-sm text-muted-foreground p-5">No assignees</div>
         )}
 
         {/* Last active date */}

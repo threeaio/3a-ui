@@ -31,6 +31,7 @@
     "./chart": "./src/ui/chart/index.ts",
     "./code": "./src/ui/code/index.ts",
     "./accordion": "./src/ui/accordion/index.ts",
+    "./alert": "./src/ui/alert/index.ts",
     "./lib/utils": "./src/lib/utils.ts"
   },
   "license": "MIT",

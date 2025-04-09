@@ -5,14 +5,44 @@ import { Badge } from '@3a.solutions/ui/badge'
 import { Card, CardContent, CardHeader } from '@3a.solutions/ui/card'
 import { Accordion } from '@3a.solutions/ui/accordion'
 import { Button } from '@3a.solutions/ui/button'
+import { Tooltip, TooltipContent, TooltipTrigger } from '@3a.solutions/ui/tooltip'
 import { TaskItem } from './task-details/task'
 import { getStatusBadgeColor } from '@/features/data-dashboard/utils'
 import { useActiveEpic } from '@/features/data-dashboard/(pages)/tasks/data-context/active-epic-context'
 import { useTasksData } from './data-context/tasks-data-provider'
 import { cn } from '@3a.solutions/ui/lib/utils'
-import { EpicDetails } from './epic-details/epic-details'
+import { EpicDetailsInProgress } from './epic-details/epic-details-in-progress'
+import { EpicDetailsPlanned } from './epic-details/epic-details-planned'
 import { useState, useRef, useEffect } from 'react'
 import { ChevronDown, ChevronUp, ExternalLinkIcon } from 'lucide-react'
+
+function EpicAssignees({ epicId }: { epicId: string }) {
+  const { getEpicAssignees } = useActiveEpic()
+  const assignees = getEpicAssignees(epicId)
+
+  if (!assignees.length) return null
+
+  return (
+    <div className="flex -space-x-2">
+      {assignees.map((employee) => (
+        <Tooltip key={employee.id}>
+          <TooltipTrigger>
+            <div className="size-8 rounded-full overflow-hidden border-2 border-background">
+              {employee.avatar ? (
+                <img src={employee.avatar} alt={employee.name} className="size-full object-cover" />
+              ) : (
+                <div className="size-full bg-muted flex items-center justify-center text-xs">
+                  {employee.name.charAt(0)}
+                </div>
+              )}
+            </div>
+          </TooltipTrigger>
+          <TooltipContent>{employee.name}</TooltipContent>
+        </Tooltip>
+      ))}
+    </div>
+  )
+}
 
 export function EpicTaskGroup({ epic, tasks }: { epic: Epic; tasks: Task[] }) {
   const epicRef = useRef<HTMLDivElement>(null)
@@ -51,16 +81,18 @@ export function EpicTaskGroup({ epic, tasks }: { epic: Epic; tasks: Task[] }) {
     setEpicActive(epic.id, isAnythingOpen)
   }
 
+  const EpicDetails = epic.status === 'planned' ? EpicDetailsPlanned : EpicDetailsInProgress
+
   return (
     <Card
       ref={epicRef}
       className={cn(
         'border-2 gap-0 border-dashed border-transparent transition-all',
-        isActive && 'border-input dark:border-transparent',
+        isActive && 'border-input dark:border-primary',
       )}
     >
-      <CardHeader className="border-b sticky left-0 right-0 top-24 bg-card/80 backdrop-blur-sm z-10">
-        <div className="flex flex-1 items-baseline justify-between pt-5 ">
+      <CardHeader className="group/epic-header  border-b sticky left-0 right-0 top-24 bg-card/80 backdrop-blur-sm z-10">
+        <div className="flex flex-1 items-center justify-between pt-5 ">
           <div className="flex flex-1 flex-col gap-1 mr-10">
             <div className="flex items-center gap-2 justify-start">
               <h2
@@ -72,15 +104,18 @@ export function EpicTaskGroup({ epic, tasks }: { epic: Epic; tasks: Task[] }) {
                 <Button variant="ghost" size="sm" className="gap-2" onClick={handleDetailsChange}>
                   Metrics {isDetailsOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
                 </Button>
-                <Button variant="ghost" size="sm" className="gap-2">
+                <Button
+                  variant="link"
+                  size="sm"
+                  className="no-underline  group-hover/epic-header:opacity-100 opacity-0 transition-opacity duration-200"
+                >
                   <ExternalLinkIcon className="size-4" /> Open in Jira
                 </Button>
               </div>
             </div>
-
-            {/* {epic.description && <p className="text-sm text-muted-foreground">{epic.description}</p>} */}
           </div>
           <div className="flex items-center gap-4">
+            <EpicAssignees epicId={epic.id} />
             {epic.budget && (
               <div className={cn('flex items-center gap-2 transition-all duration-200', isActive && 'text-lg')}>
                 <span
@@ -90,11 +125,17 @@ export function EpicTaskGroup({ epic, tasks }: { epic: Epic; tasks: Task[] }) {
                     percentage > 80 && percentage <= 100 && 'text-warning',
                   )}
                 >
-                  <Badge className=" font-mono tabular-nums font-light" variant={percentage > 100 ? 'destructive' : 'outline'}>
+                  <Badge
+                    className=" font-mono tabular-nums font-light"
+                    variant={percentage > 100 ? 'destructive' : 'outline'}
+                  >
                     <span className="opacity-70">{currentCost.toLocaleString('de-DE')} € | </span>
                     {epic.budget.toLocaleString('de-DE')} €
                   </Badge>
-                  <Badge className=" font-mono tabular-nums font-light" variant={percentage > 100 ? 'destructive' : 'secondary'}>
+                  <Badge
+                    className=" font-mono tabular-nums font-light"
+                    variant={percentage > 100 ? 'destructive' : 'secondary'}
+                  >
                     {percentage}%
                   </Badge>
                 </span>
