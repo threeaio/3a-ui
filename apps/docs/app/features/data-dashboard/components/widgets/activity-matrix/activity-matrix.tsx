@@ -5,7 +5,6 @@ import { cn } from '@3a.solutions/ui/lib/utils'
 import { ActivityMatrixProps } from './types'
 import { getMaxWorkload, getWorkloadIntensity, transformWorkloads } from './utils'
 
-// Reversed order of days as requested
 const DAYS = ['Sun', 'Sat', 'Fri', 'Thu', 'Wed', 'Tue', 'Mon']
 
 export function ActivityMatrix({ workloads, employees, startDate, onDayClick }: ActivityMatrixProps) {
@@ -48,7 +47,7 @@ export function ActivityMatrix({ workloads, employees, startDate, onDayClick }: 
                   const intensity = getWorkloadIntensity(day.totalHours, maxWorkload)
 
                   return (
-                    <Popover key={day.date.toISOString()}>
+                    <Popover key={day.date.toISOString()} modal={false}>
                       <PopoverTrigger asChild>
                         <button
                           className={cn(
@@ -61,6 +60,7 @@ export function ActivityMatrix({ workloads, employees, startDate, onDayClick }: 
                           onClick={() => onDayClick?.(day)}
                         />
                       </PopoverTrigger>
+
                       <PopoverContent className="w-64">
                         <div className="space-y-2">
                           <div className="font-medium">{format(day.date, 'MMMM d, yyyy')}</div>

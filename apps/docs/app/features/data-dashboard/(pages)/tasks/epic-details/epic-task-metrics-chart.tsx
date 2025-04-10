@@ -13,8 +13,6 @@ interface EpicTaskMetricsChartProps {
 
 export function EpicTaskMetricsChart({ tasks, getTaskCost }: EpicTaskMetricsChartProps) {
   const chartData = useMemo(() => {
-    console.log(tasks)
-
     return tasks
       .map((task) => ({
         name: task.name,

@@ -3,7 +3,7 @@
 import { ReactNode, createContext, useContext, useState, useMemo, useCallback } from 'react'
 import { useProjectDataContext } from '@/features/data-dashboard/data-context/project-data-provider'
 import { Epic, Task, EpicStatus, TaskStatus, TaskWorkload, Employee } from '@/features/data-dashboard/types/domain'
-
+import { useEmployeeContext } from '@/features/data-dashboard/data-context/employee-provider'
 export type EpicSortBy = 'status' | 'budget'
 export type SortDirection = 'asc' | 'desc'
 
@@ -26,6 +26,7 @@ interface TasksDataContextValue {
   getTotalWorkloadForTask: (taskId: string) => number
   getTaskCost: (taskId: string) => number
   getEpicCost: (epicId: string) => number
+  getEpicAssignees: (epicId: string) => Employee[]
 
   // Filtering
   epicStatusFilter: EpicStatus | 'all'
@@ -58,14 +59,35 @@ export function TasksDataProvider({ children }: { children: ReactNode }) {
   const [epicSortBy, setEpicSortBy] = useState<EpicSortBy>('status')
   const [sortDirection, setSortDirection] = useState<SortDirection>('asc')
 
+  const { employees: allEmployees } = useEmployeeContext()
+
   // Get epic cost by summing up all task costs
-  const getEpicCost = useCallback(
+  const getEpicCost = useMemo(() =>
     (epicId: string) => {
       const epicTasks = getOriginalTasksByEpic(epicId)
       return epicTasks.reduce((total, task) => total + originalGetTaskCost(task.id), 0)
     },
     [getOriginalTasksByEpic, originalGetTaskCost],
   )
+
+  const getEpicAssignees = useMemo(() => {
+    return (epicId: string) => {
+      const epic = allEpics.find((epic) => epic.id === epicId)
+      if (!epic) return []
+
+      const tasks = getOriginalTasksByEpic(epicId)
+      const assignees = new Set<Employee>()
+
+      tasks.forEach((task) => {
+        task.assignedEmployeeIds.forEach((employeeId) => {
+          const employee = allEmployees.find((employee) => employee.id === employeeId)
+          if (employee) assignees.add(employee)
+        })
+      })
+
+      return Array.from(assignees)
+    }
+  }, [allEpics, allEmployees, getOriginalTasksByEpic])
 
   // Apply filters and sorting
   const epics = useMemo(() => {
@@ -124,6 +146,7 @@ export function TasksDataProvider({ children }: { children: ReactNode }) {
     getTotalWorkloadForTask: originalGetTotalWorkloadForTask,
     getTaskCost: originalGetTaskCost,
     getEpicCost,
+    getEpicAssignees,
     epicStatusFilter,
     setEpicStatusFilter,
     taskStatusFilter,

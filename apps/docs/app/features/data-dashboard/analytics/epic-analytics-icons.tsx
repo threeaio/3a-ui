@@ -29,38 +29,40 @@ export function EpicAnalyticsIcons({ epic, className, colorBySeverity = false }:
       {insights
         .filter((insight) => insight.type !== 'EpicBudgetInsight')
         .map((insight) => (
-          <Tooltip key={insight.id}>
-            <TooltipTrigger>
-              <Badge
-                variant="outline"
-                className={cn(
-                  insight.severity === 'critical' && 'border-destructive',
-                  insight.severity === 'warning' && 'border-warning',
-                )}
-              >
-                <AnalyticsIcon
-                  type={insight.type}
-                  severity={insight.severity}
-                  colorBySeverity={colorBySeverity}
-                  className="size-4"
-                />
-                {insight.type === 'EpicTaskIssuesInsight' && (
-                  <span className="text-xs">{insight.metadata.issueCount}</span>
-                )}
-              </Badge>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p className="text-sm">
-                {insight.severity === 'critical' && <span className="">Critical </span>}
-                {INSIGHT_LABELS[insight.type]}
-                {insight.type === 'EpicTaskIssuesInsight' && (
-                  <>
-                    : {insight.metadata.issueCount} issue{insight.metadata.issueCount !== 1 ? 's' : ''}
-                  </>
-                )}
-              </p>
-            </TooltipContent>
-          </Tooltip>
+          // <Tooltip key={insight.id}>
+          //   <TooltipTrigger>
+          <div key={insight.id}>
+            <Badge
+              variant="outline"
+              className={cn(
+                insight.severity === 'critical' && 'border-destructive',
+                insight.severity === 'warning' && 'border-warning',
+              )}
+            >
+              <AnalyticsIcon
+                type={insight.type}
+                severity={insight.severity}
+                colorBySeverity={colorBySeverity}
+                className="size-4"
+              />
+              {insight.type === 'EpicTaskIssuesInsight' && (
+                <span className="text-xs">{insight.metadata.issueCount}</span>
+              )}
+            </Badge>
+          </div>
+          // </TooltipTrigger>
+          // <TooltipContent>
+          //   <p className="text-sm">
+          //     {insight.severity === 'critical' && <span className="">Critical </span>}
+          //     {INSIGHT_LABELS[insight.type]}
+          //     {insight.type === 'EpicTaskIssuesInsight' && (
+          //       <>
+          //         : {insight.metadata.issueCount} issue{insight.metadata.issueCount !== 1 ? 's' : ''}
+          //       </>
+          //     )}
+          //   </p>
+          // </TooltipContent>
+          // </Tooltip>
         ))}
     </div>
   )

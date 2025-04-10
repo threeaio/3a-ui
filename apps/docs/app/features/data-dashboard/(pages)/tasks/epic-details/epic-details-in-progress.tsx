@@ -74,13 +74,13 @@ export function EpicDetailsInProgress({ epic, isOpen, onOpenChange }: EpicDetail
                   }}
                 />
               </div>
-              <div className="col-span-1">
-                <EpicTaskMetricsChart
-                  tasks={epicTasks}
-                  getTaskCost={getTaskCost}
-                  getTotalWorkloadForTask={getTotalWorkloadForTask}
-                />
-              </div>
+                <div className="col-span-1">
+                  <EpicTaskMetricsChart
+                    tasks={epicTasks}
+                    getTaskCost={getTaskCost}
+                    getTotalWorkloadForTask={getTotalWorkloadForTask}
+                  />
+                </div>
             </div>
           </div>
         </AccordionContent>

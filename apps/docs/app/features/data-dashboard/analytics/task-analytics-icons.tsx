@@ -34,8 +34,9 @@ export function TaskAnalyticsIcons({ task, className, colorBySeverity = false }:
   return (
     <div className={cn('flex gap-2', className)}>
       {insights.map((insight) => (
-        <Tooltip key={insight.id}>
-          <TooltipTrigger>
+        <div key={insight.id}>
+        {/* <Tooltip key={insight.id}>
+          <TooltipTrigger> */}
             <Badge
               variant="outline"
               className={cn(
@@ -51,11 +52,12 @@ export function TaskAnalyticsIcons({ task, className, colorBySeverity = false }:
               />
               {INSIGHT_LABELS[insight.type]}
             </Badge>
-          </TooltipTrigger>
+          {/* </TooltipTrigger>
           <TooltipContent>
             <p className="text-sm">{INSIGHT_LABELS_LONG[insight.type]}</p>
           </TooltipContent>
-        </Tooltip>
+          </Tooltip> */}
+        </div>
       ))}
     </div>
   )
