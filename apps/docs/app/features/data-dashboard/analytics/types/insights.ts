@@ -1,6 +1,18 @@
 // Analytics Types
 export type AnalyticsSeverity = 'info' | 'warning' | 'critical'
 
+// Task Insight Types
+export type TaskInsightType = 'NoAssigneeTaskInsight' | 'HighPriorityNoAssigneeTaskInsight' | 'StaleTaskInsight'
+
+// Epic Insight Types
+export type EpicInsightType = 'EpicBudgetInsight' | 'EpicTaskIssuesInsight'
+
+// Project Insight Types
+export type ProjectInsightType = 'TooManyEpicsInsight' | 'ProjectBudgetInsight' | 'EmployeeLoadInsight' | 'ProjectEpicIssuesInsight'
+
+// Combined Analytics Insight Types
+export type AnalyticsInsightType = TaskInsightType | EpicInsightType | ProjectInsightType
+
 interface BaseInsight {
   context: 'task' | 'epic' | 'project'
   type: unknown
@@ -12,7 +24,7 @@ interface BaseInsight {
 interface BaseTaskInsight extends BaseInsight {
   context: 'task'
   entityId: string
-  type: 'NoAssigneeTaskInsight' | 'HighPriorityNoAssigneeTaskInsight' | 'StaleTaskInsight'
+  type: TaskInsightType
   severity: AnalyticsSeverity
 }
 
@@ -43,7 +55,7 @@ export type TaskInsight = NoAssigneeTaskInsight | HighPriorityNoAssigneeTaskInsi
 interface BaseEpicInsight extends BaseInsight {
   context: 'epic'
   entityId: string
-  type: 'EpicBudgetInsight' | 'EpicTaskIssuesInsight'
+  type: EpicInsightType
   severity: AnalyticsSeverity
 }
 
@@ -74,7 +86,7 @@ export type EpicInsight = EpicBudgetInsight | EpicTaskIssuesInsight
 interface BaseProjectInsight extends BaseInsight {
   context: 'project'
   entityId: string
-  type: 'TooManyEpicsInsight' | 'ProjectBudgetInsight' | 'EmployeeLoadInsight' | 'ProjectEpicIssuesInsight'
+  type: ProjectInsightType
   severity: AnalyticsSeverity
 }
 
@@ -108,6 +120,7 @@ interface EmployeeLoadInsight extends BaseProjectInsight {
   type: 'EmployeeLoadInsight'
   metadata: {
     employeeId: string
+    employeeName: string
     taskCount: number
     threshold: number
   }
@@ -119,7 +132,7 @@ interface ProjectEpicIssuesInsight extends BaseProjectInsight {
   metadata: {
     epicIssues: EpicInsight[]
     issueCount: number
-    affectedEpics: EpicInsight[]
+    affectedEpics: Array<EpicInsight & { epicName: string }>
   }
 }
 

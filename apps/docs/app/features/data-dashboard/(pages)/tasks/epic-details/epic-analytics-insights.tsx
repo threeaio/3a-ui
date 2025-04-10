@@ -1,38 +1,20 @@
-import { useMemo } from 'react'
 import { Epic } from '@/features/data-dashboard/types/domain'
 import { Alert, AlertDescription, AlertTitle } from '@3a.solutions/ui/alert'
 import { AlertCircle } from 'lucide-react'
-
-import { useProjectDataContext } from '@/features/data-dashboard/data-context/project-data-provider'
 import { useTasksData } from '@/features/data-dashboard/data-context/tasks-data-provider'
+import { EpicBudgetInsight, renderEpicMessage } from '@/features/data-dashboard/analytics'
+import { useAnalyticsContext } from '@/features/data-dashboard/data-context/analytics-provider'
 
-import {
-  EpicBudgetInsight,
-  EpicTaskIssuesInsight,
-  analyzeEpic,
-  analyzeTask,
-  renderEpicMessage,
-} from '@/features/data-dashboard/analytics'
-
-function isBudgetInsight(insight: EpicBudgetInsight | EpicTaskIssuesInsight): insight is EpicBudgetInsight {
+function isBudgetInsight(insight: EpicBudgetInsight | any): insight is EpicBudgetInsight {
   return insight.type === 'EpicBudgetInsight'
 }
 
 export function EpicAnalyticsInsights({ epic }: { epic: Epic }) {
   const { getTasksByEpic } = useTasksData()
-  const { getTaskCost } = useProjectDataContext()
+  const { getEpicInsights } = useAnalyticsContext()
 
-  const tasks = useMemo(() => getTasksByEpic(epic.id), [epic.id, getTasksByEpic])
-  const totalCost = useMemo(() => tasks.reduce((sum, task) => sum + getTaskCost(task.id), 0), [tasks, getTaskCost])
-
-  // First analyze individual tasks to get task insights
-  const taskInsights = useMemo(() => {
-    return tasks.flatMap((task) => analyzeTask(task))
-  }, [tasks])
-
-  const insights = useMemo(() => {
-    return analyzeEpic(epic, tasks, totalCost, taskInsights)
-  }, [epic, tasks, totalCost, taskInsights])
+  const tasks = getTasksByEpic(epic.id)
+  const insights = getEpicInsights(epic.id)
 
   if (insights.length === 0) {
     return null

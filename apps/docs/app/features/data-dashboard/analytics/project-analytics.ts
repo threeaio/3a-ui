@@ -1,6 +1,7 @@
 import { Project, Epic, Task } from '@/features/data-dashboard/types/domain'
 import { ProjectInsight, EpicInsight } from './types/insights'
-import { ANALYTICS_CONFIG, generateProjectInsightId } from './utils/common'
+import { generateProjectInsightId } from './utils'
+import { ANALYTICS_CONFIG } from '@/features/data-dashboard/analytics/config'
 
 export function analyzeProject(
   project: Project, 
@@ -62,9 +63,9 @@ export function analyzeProject(
     })
   }
 
-  // Check employee task load
+  // Check employee task load (only in-progress tasks)
   const employeeTaskCount = new Map<string, number>()
-  tasks.forEach((task) => {
+  tasks.filter((task) => task.status === 'in-progress').forEach((task) => {
     if (task.assignedEmployeeIds) {
       task.assignedEmployeeIds.forEach((employeeId) => {
         employeeTaskCount.set(employeeId, (employeeTaskCount.get(employeeId) || 0) + 1)
@@ -82,6 +83,7 @@ export function analyzeProject(
         type: 'EmployeeLoadInsight',
         metadata: {
           employeeId,
+          employeeName: '', // This will be filled by the provider
           taskCount,
           threshold: ANALYTICS_CONFIG.TASKS_PER_EMPLOYEE_CRITICAL,
         },
@@ -95,6 +97,7 @@ export function analyzeProject(
         type: 'EmployeeLoadInsight',
         metadata: {
           employeeId,
+          employeeName: '', // This will be filled by the provider
           taskCount,
           threshold: ANALYTICS_CONFIG.TASKS_PER_EMPLOYEE_WARNING,
         },
@@ -103,8 +106,8 @@ export function analyzeProject(
   })
 
   // Process pre-calculated epic insights
-  const criticalIssues: EpicInsight[] = epicInsights.filter((issue) => issue.severity === 'critical')
-  const warningIssues: EpicInsight[] = epicInsights.filter((issue) => issue.severity === 'warning')
+  const criticalIssues = epicInsights.filter((issue) => issue.severity === 'critical')
+  const warningIssues = epicInsights.filter((issue) => issue.severity === 'warning')
 
   if (criticalIssues.length > 0) {
     insights.push({
@@ -116,7 +119,10 @@ export function analyzeProject(
       metadata: {
         epicIssues: criticalIssues,
         issueCount: criticalIssues.length,
-        affectedEpics: criticalIssues
+        affectedEpics: criticalIssues.map(epicInsight => ({
+          ...epicInsight,
+          epicName: '', // This will be filled by the provider
+        })),
       },
     })
   }
@@ -131,7 +137,10 @@ export function analyzeProject(
       metadata: {
         epicIssues: warningIssues,
         issueCount: warningIssues.length,
-        affectedEpics: warningIssues
+        affectedEpics: warningIssues.map(epicInsight => ({
+          ...epicInsight,
+          epicName: '', // This will be filled by the provider
+        })),
       },
     })
   }

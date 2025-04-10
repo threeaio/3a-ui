@@ -1,6 +1,7 @@
 import { Epic, Task } from '@/features/data-dashboard/types/domain'
 import { EpicInsight, TaskInsight } from './types/insights'
-import { ANALYTICS_CONFIG, generateEpicInsightId } from './utils/common'
+import { generateEpicInsightId } from './utils'
+import { ANALYTICS_CONFIG } from './config'
 
 export function analyzeEpic(
   epic: Epic, 

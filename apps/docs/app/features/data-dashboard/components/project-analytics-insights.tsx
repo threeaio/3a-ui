@@ -1,54 +1,63 @@
 'use client'
-import { useMemo } from 'react'
 import { Alert, AlertDescription, AlertTitle } from '@3a.solutions/ui/alert'
 import { AlertCircle } from 'lucide-react'
+import { ProjectInsight, renderProjectMessage } from '@/features/data-dashboard/analytics'
+import { useAnalyticsContext } from '@/features/data-dashboard/data-context/analytics-provider'
 
-import { useProjectDataContext } from '@/features/data-dashboard/data-context/project-data-provider'
-import { useTasksData } from '@/features/data-dashboard/data-context/tasks-data-provider'
-import { analyzeProject, renderProjectMessage, analyzeEpic } from '@/features/data-dashboard/analytics'
+function getInsightTitle(type: ProjectInsight['type'], severity: ProjectInsight['severity']): string {
+  switch (type) {
+    case 'TooManyEpicsInsight':
+      return 'Epic Workload Alert'
+    case 'ProjectBudgetInsight':
+      return 'Budget Status Alert'
+    case 'EmployeeLoadInsight':
+      return 'Resource Allocation Alert'
+    case 'ProjectEpicIssuesInsight':
+      return severity === 'critical' ? 'Critical Epic Issues' : 'Epic Warnings'
+    default:
+      return severity === 'critical' ? 'Critical Issue' : 'Warning'
+  }
+}
 
 export function ProjectAnalyticsInsights() {
-  const { project, epics, getTaskCost } = useProjectDataContext()
-  const { tasks } = useTasksData()
+  const { projectInsights } = useAnalyticsContext()
 
-  const totalCost = useMemo(() => tasks.reduce((sum, task) => sum + getTaskCost(task.id), 0), [tasks, getTaskCost])
-
-  // First analyze epics to get epic insights
-  const epicInsights = useMemo(() => {
-    return epics.flatMap((epic) => {
-      const epicTasks = tasks.filter((task) => task.epicId === epic.id)
-      const epicCost = epicTasks.reduce((sum, task) => sum + getTaskCost(task.id), 0)
-      return analyzeEpic(epic, epicTasks, epicCost, [])
-    })
-  }, [epics, tasks, getTaskCost])
-
-  // Then analyze project with all data
-  const insights = useMemo(() => {
-    return analyzeProject(project, epics, tasks, totalCost, epicInsights)
-  }, [project, epics, tasks, totalCost, epicInsights])
-
-  if (insights.length === 0) {
+  if (projectInsights.length === 0) {
     return null
   }
 
   return (
     <div className="space-y-3">
-      {insights.map((insight) => {
-        const data = {
-          activeEpicsCount: insight.type === 'TooManyEpicsInsight' ? insight.metadata.activeEpicsCount : undefined,
-          maxRecommended: insight.type === 'TooManyEpicsInsight' ? insight.metadata.maxRecommended : undefined,
-          projectName: insight.type === 'ProjectBudgetInsight' ? insight.metadata.projectName : undefined,
-          percentageUsed: insight.type === 'ProjectBudgetInsight' ? insight.metadata.percentageUsed : undefined,
-          employeeTaskCount: insight.type === 'EmployeeLoadInsight' ? insight.metadata.taskCount : undefined,
-          threshold: insight.type === 'EmployeeLoadInsight' ? insight.metadata.threshold : undefined,
+      {projectInsights.map((insight: ProjectInsight) => {
+        // Extract data based on insight type
+        let data = {}
+
+        if (insight.type === 'TooManyEpicsInsight') {
+          data = {
+            activeEpicsCount: insight.metadata.activeEpicsCount,
+            maxRecommended: insight.metadata.maxRecommended,
+          }
+        } else if (insight.type === 'ProjectBudgetInsight') {
+          data = {
+            projectName: insight.metadata.projectName,
+            percentageUsed: insight.metadata.percentageUsed,
+          }
+        } else if (insight.type === 'EmployeeLoadInsight') {
+          data = {
+            employeeTaskCount: insight.metadata.taskCount,
+            threshold: insight.metadata.threshold,
+            employeeName: insight.metadata.employeeName,
+          }
+        } else if (insight.type === 'ProjectEpicIssuesInsight') {
+          data = {
+            affectedEpics: insight.metadata.affectedEpics,
+          }
         }
 
         return (
           <Alert key={insight.id} variant={insight.severity === 'critical' ? 'destructive' : 'warning'}>
             <AlertCircle className="size-4" />
-            <AlertTitle className="capitalize">
-              {insight.severity === 'critical' ? 'Critical Issue' : 'Warning'}
-            </AlertTitle>
+            <AlertTitle className="capitalize">{getInsightTitle(insight.type, insight.severity)}</AlertTitle>
             <AlertDescription>{renderProjectMessage(insight.type, data)}</AlertDescription>
           </Alert>
         )

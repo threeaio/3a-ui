@@ -2,7 +2,7 @@
 
 import { useMemo } from 'react'
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@3a.solutions/ui/chart'
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from 'recharts'
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts'
 import { Task } from '@/features/data-dashboard/types/domain'
 
 interface EpicTaskMetricsChartProps {

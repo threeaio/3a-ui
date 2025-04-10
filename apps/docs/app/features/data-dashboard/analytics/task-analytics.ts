@@ -1,6 +1,7 @@
 import { Task } from '@/features/data-dashboard/types/domain'
 import { TaskInsight } from './types/insights'
-import { ANALYTICS_CONFIG, generateTaskInsightId } from './utils/common'
+import { generateTaskInsightId } from './utils'
+import { ANALYTICS_CONFIG } from '@/features/data-dashboard/analytics/config'
 
 export function analyzeTask(task: Task): TaskInsight[] {
   const insights: TaskInsight[] = []

@@ -1,13 +1,12 @@
-import { useMemo } from 'react'
 import { Task } from '@/features/data-dashboard/types/domain'
 import { Alert, AlertDescription, AlertTitle } from '@3a.solutions/ui/alert'
 import { AlertCircle } from 'lucide-react'
-import { analyzeTask, TaskInsight, renderTaskContextMessage } from '@/features/data-dashboard/analytics'
+import { renderTaskContextMessage } from '@/features/data-dashboard/analytics'
+import { useAnalyticsContext } from '@/features/data-dashboard/data-context/analytics-provider'
 
 export function TaskAnalytics({ task }: { task: Task }) {
-  const insights = useMemo(() => {
-    return analyzeTask(task)
-  }, [task])
+  const { getTaskInsights } = useAnalyticsContext()
+  const insights = getTaskInsights(task.id)
 
   if (insights.length === 0) {
     return null
@@ -15,7 +14,7 @@ export function TaskAnalytics({ task }: { task: Task }) {
 
   return (
     <div className="space-y-3 mb-5">
-      {insights.map((insight: TaskInsight) => {
+      {insights.map((insight) => {
         const data = {
           priority: task.priority === 'high' || task.priority === 'critical' ? task.priority : undefined,
           daysSinceLastActive: insight.type === 'StaleTaskInsight' ? insight.metadata?.daysSinceLastActive : undefined,
