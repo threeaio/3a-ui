@@ -9,6 +9,7 @@ import { ArrowUpIcon, ExternalLinkIcon } from 'lucide-react'
 import { getTaskStatusIcon, getTaskTypeIcon, getPriorityArrows } from '@/features/data-dashboard/utils'
 import { useEmployeeContext } from '@/features/data-dashboard/data-context/employee-provider'
 import { Button } from '@3a.solutions/ui/button'
+import { TaskAnalyticsIcons } from '@/features/data-dashboard/analytics/task-analytics-icons'
 
 function TaskAssignees({ assignedEmployeeIds }: { assignedEmployeeIds: string[] }) {
   if (!assignedEmployeeIds || !assignedEmployeeIds.length) return null
@@ -65,7 +66,10 @@ export function TaskItem({ task }: { task: Task }) {
         </div>
         <div className={cn('flex-1')}>
           <div className={cn('grid grid-cols-5 grow')}>
-            <div className="flex items-center justify-end col-span-2">
+            <div>
+              <TaskAnalyticsIcons task={task} colorBySeverity={true} className="justify-end" />
+            </div>
+            <div className="flex items-center justify-end col-span-1 gap-2">
               <TaskAssignees assignedEmployeeIds={task.assignedEmployeeIds} />
             </div>
             <Tooltip>

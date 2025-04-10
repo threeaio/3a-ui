@@ -39,6 +39,8 @@ export function AnalyticsProvider({ children }: { children: ReactNode }) {
   const taskInsightsMap = useMemo(() => {
     const insightsMap = new Map<string, TaskInsight[]>()
 
+    console.log('analyse tasks')
+
     // Analyze all tasks and store their insights
     tasks.forEach((task) => {
       const insights = analyzeTask(task)

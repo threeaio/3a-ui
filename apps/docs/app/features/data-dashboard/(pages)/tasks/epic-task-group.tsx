@@ -13,8 +13,10 @@ import { useTasksData } from '../../data-context/tasks-data-provider'
 import { cn } from '@3a.solutions/ui/lib/utils'
 import { EpicDetailsInProgress } from './epic-details/epic-details-in-progress'
 import { EpicDetailsPlanned } from './epic-details/epic-details-planned'
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, Profiler } from 'react'
 import { ChevronDown, ChevronUp, ExternalLinkIcon } from 'lucide-react'
+import { EpicAnalyticsIcons } from '@/features/data-dashboard/analytics/epic-analytics-icons'
+import { onRender } from '@/features/data-dashboard/utils/dev'
 
 function EpicAssignees({ epicId }: { epicId: string }) {
   const { getEpicAssignees } = useActiveEpic()
@@ -91,72 +93,89 @@ export function EpicTaskGroup({ epic, tasks }: { epic: Epic; tasks: Task[] }) {
         isActive && 'border-input dark:border-primary',
       )}
     >
-      <CardHeader className="group/epic-header  border-b sticky left-0 right-0 top-24 bg-card/80 backdrop-blur-sm z-10">
-        <div className="flex flex-1 items-center justify-between pt-5 ">
-          <div className="flex flex-1 flex-col gap-1 mr-10">
-            <div className="flex items-center gap-2 justify-start">
-              <h2
-                className={cn('text-md transition-all duration-200 border-r pr-5', isActive && 'text-xl leading-loose')}
-              >
-                {epic.name}
-              </h2>
-              <div className="flex items-center gap-2">
-                <Button variant="ghost" size="sm" className="gap-2" onClick={handleDetailsChange}>
-                  Metrics {isDetailsOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
-                </Button>
-                <Button
-                  variant="link"
-                  size="sm"
-                  className="no-underline  group-hover/epic-header:opacity-100 opacity-0 transition-opacity duration-200"
-                >
-                  <ExternalLinkIcon className="size-4" /> Open in Jira
-                </Button>
-              </div>
-            </div>
-          </div>
-          <div className="flex items-center gap-4">
-            <EpicAssignees epicId={epic.id} />
-            {epic.budget && (
-              <div className={cn('flex items-center gap-2 transition-all duration-200', isActive && 'text-lg')}>
-                <span
+      <Profiler id="Epic-Header" onRender={onRender}>
+        <CardHeader className="group/epic-header  border-b sticky left-0 right-0 top-24 bg-card/80 backdrop-blur-sm z-10">
+          <div className="flex flex-1 items-center justify-between pt-5 ">
+            <div className="flex flex-1 flex-col gap-1 mr-10">
+              <div className="flex items-center gap-2 justify-start">
+                <h2
                   className={cn(
-                    'flex items-center gap-3',
-                    percentage > 100 && 'text-destructive',
-                    percentage > 80 && percentage <= 100 && 'text-warning',
+                    'text-md transition-all duration-200 border-r pr-5',
+                    isActive && 'text-xl leading-loose',
                   )}
                 >
-                  <Badge
-                    className=" font-mono tabular-nums font-light"
-                    variant={percentage > 100 ? 'destructive' : 'outline'}
+                  {epic.name}
+                </h2>
+                <div className="flex items-center gap-2">
+                  <Button variant="ghost" size="sm" className="gap-2" onClick={handleDetailsChange}>
+                    Metrics {isDetailsOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+                  </Button>
+                  <div>
+                    <EpicAnalyticsIcons epic={epic} colorBySeverity={false} />
+                  </div>
+                  <Button
+                    variant="link"
+                    size="sm"
+                    className="no-underline group-hover/epic-header:opacity-100 opacity-0 transition-opacity  duration-200"
                   >
-                    <span className="opacity-70">{currentCost.toLocaleString('de-DE')} € | </span>
-                    {epic.budget.toLocaleString('de-DE')} €
-                  </Badge>
-                  <Badge
-                    className=" font-mono tabular-nums font-light"
-                    variant={percentage > 100 ? 'destructive' : 'secondary'}
-                  >
-                    {percentage}%
-                  </Badge>
-                </span>
+                    <ExternalLinkIcon className="size-4" /> Open in Jira
+                  </Button>
+                </div>
               </div>
-            )}
-            <Badge className={getStatusBadgeColor(epic.status)}>{epic.status}</Badge>
+            </div>
+            <div className="flex items-center gap-4">
+              <EpicAssignees epicId={epic.id} />
+              {epic.budget && (
+                <div className={cn('flex items-center gap-2 transition-all duration-200', isActive && 'text-lg')}>
+                  <span
+                    className={cn(
+                      'flex items-center gap-3',
+                      percentage > 100 && 'text-destructive',
+                      percentage > 80 && percentage <= 100 && 'text-warning',
+                    )}
+                  >
+                    <Badge
+                      className={cn(
+                        'font-mono tabular-nums font-light border-default',
+                        percentage > 100 && 'border-destructive',
+                        percentage > 80 && percentage <= 100 && 'border-warning',
+                      )}
+                      variant="outline"
+                      ///variant={percentage > 100 ? 'destructive' : 'outline'}
+                    >
+                      <span className={cn('opacity-70 border-r pr-2 border-default')}>
+                        {currentCost.toLocaleString('de-DE')} €
+                      </span>
+                      <span className={cn('opacity border-r pr-2 border-default/70')}>
+                        {epic.budget.toLocaleString('de-DE')} €
+                      </span>
+                      <span className="opacity-70">{percentage}%</span>
+                    </Badge>
+                  </span>
+                </div>
+              )}
+              <Badge className={getStatusBadgeColor(epic.status)}>{epic.status}</Badge>
+            </div>
           </div>
-        </div>
-      </CardHeader>
+        </CardHeader>
+      </Profiler>
+
       <CardContent className="relative z-5">
-        <EpicDetails epic={epic} isOpen={isDetailsOpen} onOpenChange={handleDetailsChange} />
-        <Accordion
-          className={isDetailsOpen ? 'mt-2' : ''}
-          type="single"
-          collapsible
-          onValueChange={handleTaskAccordionChange}
-        >
-          {tasks.map((task) => (
-            <TaskItem key={task.id} task={task} />
-          ))}
-        </Accordion>
+        <Profiler id="Epic-Details" onRender={onRender}>
+          <EpicDetails epic={epic} isOpen={isDetailsOpen} onOpenChange={handleDetailsChange} />
+        </Profiler>
+        <Profiler id="Epic-Tasks" onRender={onRender}>
+          <Accordion
+            className={isDetailsOpen ? 'mt-2' : ''}
+            type="single"
+            collapsible
+            onValueChange={handleTaskAccordionChange}
+          >
+            {tasks.map((task) => (
+              <TaskItem key={task.id} task={task} />
+            ))}
+          </Accordion>
+        </Profiler>
       </CardContent>
     </Card>
   )
