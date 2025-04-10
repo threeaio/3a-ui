@@ -1,3 +1,5 @@
+'use client'
+
 import { ReactNode, createContext, useContext, useState, useMemo, useCallback } from 'react'
 import { useProjectDataContext } from '@/features/data-dashboard/data-context/project-data-provider'
 import { Epic, Task, EpicStatus, TaskStatus, TaskWorkload, Employee } from '@/features/data-dashboard/types/domain'

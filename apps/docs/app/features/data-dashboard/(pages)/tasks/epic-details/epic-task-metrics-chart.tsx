@@ -13,6 +13,8 @@ interface EpicTaskMetricsChartProps {
 
 export function EpicTaskMetricsChart({ tasks, getTaskCost }: EpicTaskMetricsChartProps) {
   const chartData = useMemo(() => {
+    console.log(tasks)
+
     return tasks
       .map((task) => ({
         name: task.name,
@@ -37,43 +39,41 @@ export function EpicTaskMetricsChart({ tasks, getTaskCost }: EpicTaskMetricsChar
   return (
     <div className="space-y-5 ">
       <h4 className="font-semibold">Task Costs</h4>
-      <ChartContainer config={chartConfig} className="w-full" style={{ height: Math.max(100, tasks.length * 40) }}>
-        <ResponsiveContainer width="100%">
-          <BarChart
-            data={chartData}
-            margin={{
-              top: 20,
-              right: 20,
-              left: 20,
-              bottom: 20,
+      <ChartContainer config={chartConfig} className="w-full" style={{ height: Math.max(100, tasks.length * 50) }}>
+        <BarChart
+          data={chartData}
+          margin={{
+            top: 20,
+            right: 20,
+            left: 20,
+            bottom: 20,
+          }}
+          layout="vertical"
+        >
+          <CartesianGrid strokeDasharray="3 3" stroke={chartConfig.grid.color} />
+          <XAxis
+            type="number"
+            tick={{ fill: chartConfig.tick.color }}
+            tickFormatter={(value) => value.toFixed(2) + ' €'}
+            tickLine={{ stroke: chartConfig.tick.color }}
+            label={{
+              value: 'Cost',
+              position: 'insideBottom',
+              offset: -5,
+              style: { fill: chartConfig.label.color },
+              unit: '€',
             }}
-            layout="vertical"
-          >
-            <CartesianGrid strokeDasharray="3 3" stroke={chartConfig.grid.color} />
-            <XAxis
-              type="number"
-              tick={{ fill: chartConfig.tick.color }}
-              tickFormatter={(value) => value.toFixed(2) + ' €'}
-              tickLine={{ stroke: chartConfig.tick.color }}
-              label={{
-                value: 'Cost',
-                position: 'insideBottom',
-                offset: -5,
-                style: { fill: chartConfig.label.color },
-                unit: '€',
-              }}
-            />
-            <YAxis
-              type="category"
-              dataKey="name"
-              width={210}
-              tick={{ fill: chartConfig.tick.color }}
-              tickLine={{ stroke: chartConfig.tick.color }}
-            />
-            <ChartTooltip content={<ChartTooltipContent formatter={(value) => value + ' €'} />} />
-            <Bar dataKey="cost" maxBarSize={5} name="Cost" fill={chartConfig.bar.color} radius={[0, 4, 4, 0]} />
-          </BarChart>
-        </ResponsiveContainer>
+          />
+          <YAxis
+            type="category"
+            dataKey="name"
+            width={210}
+            tick={{ fill: chartConfig.tick.color }}
+            tickLine={{ stroke: chartConfig.tick.color }}
+          />
+          <ChartTooltip content={<ChartTooltipContent formatter={(value) => value + ' €'} />} />
+          <Bar dataKey="cost" maxBarSize={5} name="Cost" fill={chartConfig.bar.color} radius={[0, 4, 4, 0]} />
+        </BarChart>
       </ChartContainer>
     </div>
   )

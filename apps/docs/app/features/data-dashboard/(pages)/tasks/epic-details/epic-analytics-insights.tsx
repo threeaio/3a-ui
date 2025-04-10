@@ -4,7 +4,7 @@ import { Alert, AlertDescription, AlertTitle } from '@3a.solutions/ui/alert'
 import { AlertCircle } from 'lucide-react'
 
 import { useProjectDataContext } from '@/features/data-dashboard/data-context/project-data-provider'
-import { useTasksData } from '@/features/data-dashboard/(pages)/tasks/data-context/tasks-data-provider'
+import { useTasksData } from '@/features/data-dashboard/data-context/tasks-data-provider'
 
 import {
   EpicBudgetInsight,

@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { Epic } from '@/features/data-dashboard/types/domain'
 import { Accordion, AccordionContent, AccordionItem } from '@3a.solutions/ui/accordion'
-import { useTasksData } from '../data-context/tasks-data-provider'
+import { useTasksData } from '../../../data-context/tasks-data-provider'
 import { useEmployeeContext } from '@/features/data-dashboard/data-context/employee-provider'
 import { EpicTaskDistribution } from './epic-task-distribution'
 import { EpicDetailsProps } from './epic-details'

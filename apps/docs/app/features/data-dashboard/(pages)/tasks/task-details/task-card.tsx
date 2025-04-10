@@ -2,7 +2,7 @@
 
 import { Task } from '@/features/data-dashboard/types/domain'
 import { Badge } from '@3a.solutions/ui/badge'
-import { useTasksData } from '../data-context/tasks-data-provider'
+import { useTasksData } from '../../../data-context/tasks-data-provider'
 import { Timer, CreditCard } from 'lucide-react'
 import { TaskAnalytics } from './task-analytics'
 

@@ -5,7 +5,7 @@ import { Accordion } from '@3a-ui/ui/accordion'
 import { EpicTaskGroup } from './epic-task-group'
 import { TaskItem } from './task-details/task'
 import { ActiveEpicProvider } from './data-context/active-epic-context'
-import { TasksDataProvider, useTasksData } from './data-context/tasks-data-provider'
+import { TasksDataProvider, useTasksData } from '../../data-context/tasks-data-provider'
 import { EpicsTasksHeader } from './epic-tasks-header'
 
 function TasksPageContent() {

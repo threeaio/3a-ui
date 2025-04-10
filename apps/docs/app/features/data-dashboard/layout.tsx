@@ -18,6 +18,7 @@ import {
   mockEmployeeSkills,
   mockExpertiseDomains,
 } from './_MOCK-DATA'
+import { TasksDataProvider } from '@/features/data-dashboard/data-context/tasks-data-provider'
 
 export default function FeaturesLayout({ children }: { children: ReactNode }) {
   return (
@@ -32,20 +33,22 @@ export default function FeaturesLayout({ children }: { children: ReactNode }) {
             employeesInProject={mockEmployeesInProject}
             taskWorkloads={mockTaskWorkloads}
           >
-            <SidebarProvider defaultOpen={false} className="flex flex-col bg-sidebar">
-              <div className="flex flex-1">
-                <AppSidebar />
-                <SidebarInset className="flex flex-1 bg-sidebar">
-                  <div className="relative overflow-clip rounded-xl mr-4 mb-4">
-                    <Header />
-                    {children}
+            <TasksDataProvider>
+              <SidebarProvider defaultOpen={false} className="flex flex-col bg-sidebar">
+                <div className="flex flex-1">
+                  <AppSidebar />
+                  <SidebarInset className="flex flex-1 bg-sidebar">
+                    <div className="relative overflow-clip rounded-xl mr-4 mb-4">
+                      <Header />
+                      {children}
+                    </div>
+                  </SidebarInset>
+                  <div className="fixed bottom-4 right-4 hidden md:block z-100">
+                    <ThemeSwitcher />
                   </div>
-                </SidebarInset>
-                <div className="fixed bottom-4 right-4 hidden md:block z-100">
-                  <ThemeSwitcher />
                 </div>
-              </div>
-            </SidebarProvider>
+              </SidebarProvider>
+            </TasksDataProvider>
           </ProjectDataProvider>
         </EmployeeProvider>
       </BaseDataProvider>

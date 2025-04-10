@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useState } from 'react'
 import { useEmployeeContext } from '@/features/data-dashboard/data-context/employee-provider'
-import { useTasksData } from './tasks-data-provider'
+import { useTasksData } from '../../../data-context/tasks-data-provider'
 import { Task } from '@/features/data-dashboard/types/domain/task'
 
 type ActiveEpicContextType = {

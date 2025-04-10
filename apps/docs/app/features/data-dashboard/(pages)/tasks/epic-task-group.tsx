@@ -9,7 +9,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from '@3a.solutions/ui/toolti
 import { TaskItem } from './task-details/task'
 import { getStatusBadgeColor } from '@/features/data-dashboard/utils'
 import { useActiveEpic } from '@/features/data-dashboard/(pages)/tasks/data-context/active-epic-context'
-import { useTasksData } from './data-context/tasks-data-provider'
+import { useTasksData } from '../../data-context/tasks-data-provider'
 import { cn } from '@3a.solutions/ui/lib/utils'
 import { EpicDetailsInProgress } from './epic-details/epic-details-in-progress'
 import { EpicDetailsPlanned } from './epic-details/epic-details-planned'
