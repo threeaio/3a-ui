@@ -34,7 +34,7 @@ export const epic1Tasks: Task[] = [
     description: 'Implement lazy loading and optimize image assets',
     relatedExpertiseDomains: ['frontend', 'qa'],
     tags: ['performance', 'optimization', 'images'],
-    status: 'planned',
+    status: 'completed',
     lastActive: '2025-03-25T09:30:15.000Z',
     type: 'refactoring',
     priority: 'medium',
@@ -60,7 +60,7 @@ const generateEpic1Workloads = (): TaskWorkload[] => {
   const workloads: TaskWorkload[] = []
 
   // Task 1 (Design Product Cards)
-  const task1Dates = generateDatesBetween(new Date('2025-03-28'), new Date('2025-04-20'))
+  const task1Dates = generateDatesBetween(new Date('2025-04-28'), new Date('2025-05-12'))
   task1Dates.forEach(date => {
     const uiWorkload = generateDailyWorkload(3, 5)
     const uxWorkload = generateDailyWorkload(2, 4)
@@ -96,9 +96,9 @@ const generateEpic1Workloads = (): TaskWorkload[] => {
   })
 
   // Task 9 (Fix Mobile Navigation Menu)
-  const task9Dates = generateDatesBetween(new Date('2025-03-28'), new Date('2025-04-02'))
+  const task9Dates = generateDatesBetween(new Date('2025-03-28'), new Date('2025-05-12'))
   task9Dates.forEach(date => {
-    const uiWorkload = generateDailyWorkload(2, 4)
+    const uiWorkload = generateDailyWorkload(1, 3)
     const feWorkload = generateDailyWorkload(2, 4)
     const qaWorkload = generateDailyWorkload(1, 2)
     const [morning, afternoon] = generateDayParts(date)

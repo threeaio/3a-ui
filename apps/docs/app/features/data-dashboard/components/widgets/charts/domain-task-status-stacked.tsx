@@ -94,7 +94,7 @@ export const DomainTaskStatusStacked: React.FC<DomainTaskStatusStackedProps> = (
               angle={-45}
               textAnchor="end"
             />
-            <YAxis stroke={chartConfig.grid.color} tick={{ fill: chartConfig.tick.color }} />
+            <YAxis className="font-mono" stroke={chartConfig.grid.color} tick={{ fill: chartConfig.tick.color }} />
             <ChartTooltip content={<ChartTooltipContent />} />
 
             <Bar

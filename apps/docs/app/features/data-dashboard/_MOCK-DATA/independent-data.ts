@@ -122,6 +122,20 @@ export const mockEmployeeSkills: EmployeeSkill[] = [
     description: 'Scrum, Kanban, and other agile frameworks',
     relatedExpertiseDomains: ['pm'],
     level: 5
+  },
+  {
+    id: 'skill-16',
+    name: 'iOS',
+    description: 'Mobile development for iOS',
+    relatedExpertiseDomains: ['mobile'],
+    level: 4
+  },
+  {
+    id: 'skill-17',
+    name: 'Android',
+    description: 'Mobile development for Android',
+    relatedExpertiseDomains: ['mobile'],
+    level: 4
   }
 ]
 
@@ -246,7 +260,9 @@ export const mockEmployees: Employee[] = [
       mockEmployeeSkills[4]!, // Jest
       mockEmployeeSkills[0]!, // React
       mockEmployeeSkills[1]!, // Node.js
-      mockEmployeeSkills[6]! // TypeScript
+      mockEmployeeSkills[6]!, // TypeScript
+      mockEmployeeSkills[16]!, // iOS
+      mockEmployeeSkills[17]! // Android
     ]
   }
 ]

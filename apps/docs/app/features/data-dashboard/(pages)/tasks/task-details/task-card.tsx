@@ -47,7 +47,7 @@ export function TaskCard({ task }: { task: Task }) {
   }
 
   return (
-    <div className="flex flex-col gap-10 p-5">
+    <div className="flex flex-col gap-5 p-5">
       {task.description && <p className="text-muted-foreground text-sm">{task.description}</p>}
 
       {/* <TaskAnalytics task={task} /> */}

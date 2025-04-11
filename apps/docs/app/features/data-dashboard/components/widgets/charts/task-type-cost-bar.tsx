@@ -71,7 +71,7 @@ export const TaskTypeCostBar: React.FC<TaskTypeCostBarProps> = ({ className }) =
               angle={-45}
               textAnchor="end"
             />
-            <YAxis stroke={chartConfig.grid.color} tick={{ fill: chartConfig.tick.color }} />
+            <YAxis className="font-mono" stroke={chartConfig.grid.color} tick={{ fill: chartConfig.tick.color }} />
             <ChartTooltip content={<ChartTooltipContent />} />
             <Bar dataKey="cost" name="Cost" radius={[4, 4, 0, 0]}>
               {data.map((entry, index) => (

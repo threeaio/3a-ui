@@ -59,8 +59,8 @@ export function EpicDetailsInProgress({ epic, isOpen, onOpenChange }: EpicDetail
                 <EpicTaskDistribution tasks={epicTasks} />
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-5 px-5">
-              <div className="col-span-1 h-[300px]">
+            <div className="grid grid-cols-2 gap-20 px-5">
+              <div className="col-span-1 h-full">
                 <h4 className="mb-5 font-semibold">Workload by type</h4>
                 {/* <ActivityMatrix
                   workloads={workloads}
@@ -72,7 +72,8 @@ export function EpicDetailsInProgress({ epic, isOpen, onOpenChange }: EpicDetail
                 /> */}
                 <EpicWorkloadByType epicId={epic.id} />
               </div>
-              <div className="col-span-1 h-full">
+              <div className="col-span-1">
+                <h4 className="mb-5 font-semibold">Cost by task</h4>
                 <EpicTaskMetricsChart
                   tasks={epicTasks}
                   getTaskCost={getTaskCost}

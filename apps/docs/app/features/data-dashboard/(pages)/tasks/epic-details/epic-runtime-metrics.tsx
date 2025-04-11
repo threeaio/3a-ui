@@ -38,12 +38,12 @@ export function EpicRuntimeMetrics({ tasks, getWorkloadsByTask }: EpicRuntimeMet
         <h4 className="text-sm font-semibold mb-2">Runtime</h4>
         <div className="flex-1 flex flex-col justify-between pt-1 pb-4">
           <div>
-            <span className="text-3xl font-semibold text-default mb-2">{runtimeDays} </span>
-            <span>days</span>
+            <span className="text-4xl font-extralight font-mono tabular-nums mb-2 mr-0.5">{runtimeDays}</span>
+            <span> days</span>
           </div>
           <div>
-            <span className="text-3xl font-semibold text-default mb-2">{totalHours} h</span>
-            <span>&nbsp;spend</span>
+            <span className="text-4xl font-extralight font-mono tabular-nums mb-2 mr-0.5">{totalHours}h</span>
+            <span> spend</span>
           </div>
         </div>
       </div>

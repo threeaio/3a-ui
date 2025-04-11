@@ -1,8 +1,8 @@
 'use client'
 
-import { useMemo } from 'react'
+import { SyntheticEvent, useMemo, useState } from 'react'
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@3a.solutions/ui/chart'
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts'
+import { BarChart, Bar, XAxis, YAxis, LabelProps, ResponsiveContainer } from 'recharts'
 import { Task } from '@/features/data-dashboard/types/domain'
 
 interface EpicTaskMetricsChartProps {
@@ -12,12 +12,15 @@ interface EpicTaskMetricsChartProps {
 }
 
 export function EpicTaskMetricsChart({ tasks, getTaskCost }: EpicTaskMetricsChartProps) {
+  const [chartWidth, setChartWidth] = useState(0)
+
   const chartData = useMemo(() => {
     return tasks
       .map((task) => ({
         name: task.name,
         cost: getTaskCost(task.id),
       }))
+      .filter((task) => task.cost > 0)
       .sort((a, b) => b.cost - a.cost)
   }, [tasks, getTaskCost])
 
@@ -34,48 +37,81 @@ export function EpicTaskMetricsChart({ tasks, getTaskCost }: EpicTaskMetricsChar
     return <div className="text-sm text-muted-foreground">No tasks available</div>
   }
 
-  return (
-    <div className="space-y-5 ">
-      <h4 className="font-semibold">Task Costs</h4>
-      <ChartContainer
-        config={chartConfig}
-        className="w-full h-full"
-        style={{ height: Math.max(100, tasks.length * 60) }}
-      >
-        <BarChart
-          data={chartData}
-          margin={{
-            top: 20,
-            right: 20,
-            left: 20,
-            bottom: 20,
-          }}
-          layout="vertical"
+  const CustomLabel = (props: LabelProps) => {
+    const { x, y, width, value, index } = props
+    if (!value || width === undefined) return null
+
+    const numericWidth = typeof width === 'string' ? parseFloat(width) : width
+
+    return (
+      <g>
+        <text x={(x as number) + 5} y={y} dy={-10} textAnchor="start" fill={chartConfig.label.color}>
+          {chartData[index!]!.name}
+        </text>
+        <text
+          className="tabular-nums font-mono"
+          x={chartWidth - 25}
+          y={y}
+          dy={-10}
+          textAnchor="end"
+          fill={chartConfig.tick.color}
         >
-          {/* <CartesianGrid strokeDasharray="3 3" stroke={chartConfig.grid.color} /> */}
-          <XAxis
-            type="number"
-            tick={{ fill: chartConfig.tick.color }}
-            tickFormatter={(value) => value.toFixed(2) + ' €'}
-            tickLine={{ stroke: chartConfig.tick.color }}
-            label={{
-              value: 'Cost',
-              position: 'insideBottom',
-              offset: -5,
-              style: { fill: chartConfig.label.color },
-              unit: '€',
+          {chartData[index!]!.cost.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })}
+        </text>
+      </g>
+    )
+  }
+
+  return (
+    <div className="h-auto">
+      <ChartContainer config={chartConfig}>
+        <ResponsiveContainer
+          width="100%"
+          onResize={(width) => {
+            setChartWidth(width)
+          }}
+        >
+          <BarChart
+            barCategoryGap={20}
+            data={chartData}
+            margin={{
+              top: 20,
+              right: 20,
+              left: 20,
+              bottom: 20,
             }}
-          />
-          <YAxis
-            type="category"
-            dataKey="name"
-            width={210}
-            tick={{ fill: chartConfig.tick.color }}
-            tickLine={{ stroke: chartConfig.tick.color }}
-          />
-          <ChartTooltip content={<ChartTooltipContent formatter={(value) => value + ' €'} />} />
-          <Bar dataKey="cost" maxBarSize={5} name="Cost" fill={chartConfig.bar.color} radius={[0, 4, 4, 0]} />
-        </BarChart>
+            layout="vertical"
+          >
+            <ChartTooltip
+              cursor={true}
+              content={
+                <ChartTooltipContent
+                  formatter={(value) => value.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })}
+                />
+              }
+            />
+            <XAxis
+              type="number"
+              tick={{ fill: chartConfig.tick.color }}
+              fontSize={11}
+              className="tabular-nums font-mono"
+              tickFormatter={(value) => value.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })}
+              tickLine={{ stroke: chartConfig.tick.color }}
+              axisLine={true}
+            />
+            <YAxis type="category" dataKey="name" tick={false} width={1} />
+            <Bar
+              dataKey="cost"
+              maxBarSize={5}
+              name="Cost"
+              fill={chartConfig.bar.color}
+              radius={[0, 4, 4, 0]}
+              label={({ x, y, width, value, index }) => (
+                <CustomLabel x={x} y={y} width={width} value={value} index={index} />
+              )}
+            />
+          </BarChart>
+        </ResponsiveContainer>
       </ChartContainer>
     </div>
   )

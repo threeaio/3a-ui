@@ -50,7 +50,7 @@ export const DomainMetricsBar: React.FC<DomainMetricsBarProps> = ({ className })
               angle={-45}
               textAnchor="end"
             />
-            <YAxis stroke={chartConfig.grid.color} tick={{ fill: chartConfig.tick.color }} />
+            <YAxis className="font-mono" stroke={chartConfig.grid.color} tick={{ fill: chartConfig.tick.color }} />
             <ChartTooltip content={<ChartTooltipContent />} />
             <Bar dataKey="cost" name="Cost" fill={chartConfig.cost.color} radius={[4, 4, 0, 0]} />
             {/* <ChartLegend content={<ChartLegendContent />} verticalAlign="bottom" className="h-20 pt-5" /> */}

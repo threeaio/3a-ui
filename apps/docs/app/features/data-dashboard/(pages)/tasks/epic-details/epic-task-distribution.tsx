@@ -122,8 +122,8 @@ export function EpicTaskDistribution({ tasks }: EpicTaskDistributionProps) {
                     <span
                       className={cn(
                         item.count === 0
-                          ? 'text-base font-medium text-muted-foreground'
-                          : 'text-2xl font-semibold text-default',
+                          ? 'text-base font-light font-mono tabular-nums text-muted-foreground'
+                          : 'text-2xl font-light font-mono tabular-nums',
                       )}
                     >
                       {item.count}
@@ -168,8 +168,8 @@ export function EpicTaskDistribution({ tasks }: EpicTaskDistributionProps) {
                     <span
                       className={cn(
                         item.count === 0
-                          ? 'text-base font-medium text-muted-foreground'
-                          : 'text-2xl font-semibold text-default',
+                          ? 'text-base font-light font-mono tabular-nums text-muted-foreground'
+                          : 'text-2xl font-light font-mono tabular-nums',
                       )}
                     >
                       {item.count}

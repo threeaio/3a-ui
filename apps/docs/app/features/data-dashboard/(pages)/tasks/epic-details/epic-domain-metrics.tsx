@@ -79,7 +79,9 @@ export function EpicDomainMetrics({ tasks, getWorkloadsByTask, employees }: Epic
             <div className="flex-1">
               <h4 className="text-sm font-semibold mb-3 capitalize">{metric.domain}</h4>
               <div>
-                <p className="text-3xl font-semibold text-default">{metric.workloadPercentage.toFixed(0)}%</p>
+                <p className="text-4xl font-extralight font-mono tabular-nums">
+                  {metric.workloadPercentage.toFixed(0)}%
+                </p>
                 <p className="text-xs text-muted-foreground">of workload</p>
               </div>
             </div>

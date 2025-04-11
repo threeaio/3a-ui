@@ -216,7 +216,7 @@ const generateEpic3Workloads = (): TaskWorkload[] => {
   })
 
   // Task 12 (Add Address Validation)
-  const task12Dates = generateDatesBetween(new Date('2025-05-10'), new Date('2025-05-16'))
+  const task12Dates = generateDatesBetween(new Date('2025-05-01'), new Date('2025-05-07'))
   task12Dates.forEach(date => {
     const feWorkload = generateDailyWorkload(2, 4)
     const beWorkload = generateDailyWorkload(2, 4)

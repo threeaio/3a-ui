@@ -2,11 +2,11 @@ import { Task } from '@/features/data-dashboard/types/domain'
 import { TaskInsight } from './types/insights'
 import { generateTaskInsightId } from './utils'
 import { ANALYTICS_CONFIG } from '@/features/data-dashboard/analytics/config'
+import { NOW } from '@/features/data-dashboard/_MOCK-DATA/NOW_provider'
 
 export function analyzeTask(task: Task): TaskInsight[] {
   const insights: TaskInsight[] = []
 
-  const FAKE_NOW = new Date('2025-04-05T12:00:00.000Z')
 
   // Check for tasks with no assignee but in progress
   if (task.status === 'in-progress' && (!task.assignedEmployeeIds || task.assignedEmployeeIds.length === 0)) {
@@ -36,7 +36,7 @@ export function analyzeTask(task: Task): TaskInsight[] {
 
   // Check for long-running tasks without progress
   const lastActiveDate = new Date(task.lastActive)
-  const daysSinceLastActive = Math.floor((FAKE_NOW.getTime() - lastActiveDate.getTime()) / (1000 * 60 * 60 * 24))
+  const daysSinceLastActive = Math.floor((NOW().getTime() - lastActiveDate.getTime()) / (1000 * 60 * 60 * 24))
 
   if (task.status === 'in-progress' && daysSinceLastActive > ANALYTICS_CONFIG.TASK_STALE_DAYS) {
     insights.push({

@@ -6,6 +6,9 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { useTasksData } from '@/features/data-dashboard/data-context/tasks-data-provider'
 import { getTaskTypeIcon } from '@/features/data-dashboard/utils/domain-to-ui'
 import { Task } from '@/features/data-dashboard/types/domain'
+import { ChartContainer, ChartTooltipContent } from '@3a.solutions/ui/chart'
+import { ChartTooltip } from '@3a.solutions/ui/chart'
+import { NOW } from '@/features/data-dashboard/_MOCK-DATA/NOW_provider'
 
 interface WorkloadDataPoint {
   date: string
@@ -47,7 +50,7 @@ export function EpicWorkloadByType({ epicId }: Props) {
     if (allDates.length === 0) return []
 
     const startDate = allDates[0]
-    const endDate = allDates[allDates.length - 1]
+    const endDate = NOW()
 
     if (!startDate || !endDate) return []
 
@@ -76,7 +79,6 @@ export function EpicWorkloadByType({ epicId }: Props) {
 
         dataPoint[type] = accumulatedHours
       })
-
       return dataPoint
     })
   }, [epicId, getTasksByEpic, getWorkloadsByTask])
@@ -91,32 +93,37 @@ export function EpicWorkloadByType({ epicId }: Props) {
   }
 
   return (
-    <div className="h-full w-full">
-      <ResponsiveContainer width="100%" height="100%">
-        <AreaChart data={chartData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+    <ChartContainer config={{}}>
+      <ResponsiveContainer height={416}>
+        <AreaChart data={chartData} margin={{ top: 20, right: 20, left: 20, bottom: 20 }}>
           {/* <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" /> */}
           <XAxis
             dataKey="date"
             stroke="var(--muted-foreground)"
             tick={{ fill: 'var(--muted-foreground)' }}
+            className="font-mono"
             minTickGap={40}
             fontSize={11}
-            tickFormatter={(value) => new Date(value).toLocaleDateString('de-DE')}
+            tickFormatter={(value) => new Date(value).toLocaleDateString('de-DE', { month: '2-digit', day: '2-digit' })}
           />
           <YAxis
             stroke="var(--muted-foreground)"
             fontSize={11}
+            className="font-mono"
             tick={{ fill: 'var(--muted-foreground)' }}
             tickFormatter={(value) => `${value}h`}
             label={{ value: 'Hours', angle: -90, position: 'insideLeft', fill: 'var(--muted-foreground)' }}
           />
-          <Tooltip
-            contentStyle={{
-              backgroundColor: 'var(--background)',
-              border: '1px solid var(--border)',
-              borderRadius: '6px',
-            }}
-            labelStyle={{ color: 'var(--foreground)' }}
+          <ChartTooltip
+            cursor={true}
+            content={
+              <ChartTooltipContent
+                labelFormatter={(value) =>
+                  'Hours cumulated: ' +
+                  new Date(value).toLocaleDateString('de-DE', { weekday: 'long', month: 'short', day: 'numeric' })
+                }
+              />
+            }
           />
           {Object.entries(colors).map(([type, color]) => (
             <Area
@@ -132,6 +139,6 @@ export function EpicWorkloadByType({ epicId }: Props) {
           ))}
         </AreaChart>
       </ResponsiveContainer>
-    </div>
+    </ChartContainer>
   )
 }

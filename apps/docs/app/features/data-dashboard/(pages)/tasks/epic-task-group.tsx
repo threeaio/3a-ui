@@ -101,7 +101,7 @@ export function EpicTaskGroup({ epic, tasks }: { epic: Epic; tasks: Task[] }) {
                 >
                   <Badge
                     className={cn(
-                      'font-mono tabular-nums font-light border-default py-0',
+                      'font-mono tabular-nums  border-default py-0',
                       percentage > 100 && 'border-destructive',
                       percentage > 80 && percentage <= 100 && 'border-warning',
                     )}

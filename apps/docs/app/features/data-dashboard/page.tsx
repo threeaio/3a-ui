@@ -12,12 +12,12 @@ export default function DataDashboardPage() {
       <div className="flex flex-col h-full p-5 gap-5">
         <Metrics />
         <TaskStatusWidget className="h-40" />
-        <ProjectAnalyticsInsights />
         <div className="grid grid-cols-3 gap-5 min-h-0 flex-1">
           <DomainTaskStatusStacked />
           <DomainMetricsBar />
           <TaskTypeCostBar />
         </div>
+        <ProjectAnalyticsInsights />
       </div>
     </main>
   )
