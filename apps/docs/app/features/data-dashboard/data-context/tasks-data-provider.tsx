@@ -74,21 +74,11 @@ export function TasksDataProvider({ children }: { children: ReactNode }) {
   const getEpicAssignees = useMemo(() => {
     return (epicId: string) => {
       const epic = allEpics.find((epic) => epic.id === epicId)
-      if (!epic) return []
+      if (!epic) return [] as Employee[]
 
-      const tasks = getOriginalTasksByEpic(epicId)
-      const assignees = new Set<Employee>()
-
-      tasks.forEach((task) => {
-        task.assignedEmployeeIds.forEach((employeeId) => {
-          const employee = allEmployees.find((employee) => employee.id === employeeId)
-          if (employee) assignees.add(employee)
-        })
-      })
-
-      return Array.from(assignees)
+      return epic.assignedEmployeeIds.map((id) => allEmployees.find((employee) => employee.id === id)).filter((employee) => employee !== undefined) as Employee[]
     }
-  }, [allEpics, allEmployees, getOriginalTasksByEpic])
+  }, [allEpics, allEmployees])
 
   // Apply filters and sorting
   const epics = useMemo(() => {

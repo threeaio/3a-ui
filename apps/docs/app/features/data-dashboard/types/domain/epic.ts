@@ -6,4 +6,5 @@ export type Epic = {
     description: string
     status: EpicStatus
     budget: number
+    assignedEmployeeIds: string[]
 }

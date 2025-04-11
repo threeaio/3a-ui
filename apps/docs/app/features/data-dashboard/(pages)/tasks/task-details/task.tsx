@@ -7,39 +7,8 @@ import { cn } from '@3a.solutions/ui/lib/utils'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@3a.solutions/ui/tooltip'
 import { ArrowUpIcon, ExternalLinkIcon } from 'lucide-react'
 import { getTaskStatusIcon, getTaskTypeIcon, getPriorityArrows } from '@/features/data-dashboard/utils'
-import { useEmployeeContext } from '@/features/data-dashboard/data-context/employee-provider'
 import { Button } from '@3a.solutions/ui/button'
-import { TaskAnalyticsIcons } from '@/features/data-dashboard/analytics/task-analytics-icons'
-
-function TaskAssignees({ assignedEmployeeIds }: { assignedEmployeeIds: string[] }) {
-  if (!assignedEmployeeIds || !assignedEmployeeIds.length) return null
-
-  const { getEmployeesByIds } = useEmployeeContext()
-  const assignees = getEmployeesByIds(assignedEmployeeIds)
-
-  if (!assignees.length) return null
-
-  return (
-    <div className="flex -space-x-2">
-      {assignees.map((employee) => (
-        <Tooltip key={employee.id}>
-          <TooltipTrigger>
-            <div className="size-6 rounded-full overflow-hidden border-2 border-background">
-              {employee.avatar ? (
-                <img src={employee.avatar} alt={employee.name} className="size-full object-cover" />
-              ) : (
-                <div className="size-full bg-muted flex items-center justify-center text-xs">
-                  {employee.name.charAt(0)}
-                </div>
-              )}
-            </div>
-          </TooltipTrigger>
-          <TooltipContent>{employee.name}</TooltipContent>
-        </Tooltip>
-      ))}
-    </div>
-  )
-}
+import { TaskAnalyticsIcons } from '@/features/data-dashboard/(pages)/tasks/task-details/task-analytics-icons'
 
 export function TaskItem({ task }: { task: Task }) {
   const StatusIcon = getTaskStatusIcon(task.status)
@@ -48,29 +17,30 @@ export function TaskItem({ task }: { task: Task }) {
 
   return (
     <AccordionItem value={task.id}>
-      <div className="flex grow items-center gap-2 justify-between py-3 group/task-header">
-        <div className="w-2/3 flex items-center gap-2">
+      <div className="flex grow items-center gap-0 justify-start py-3 group/task-header">
+        <div className="w-1/2 flex items-center gap-2">
           <AccordionTrigger>
             <h3 className="flex items-center gap-5 ">
               <span className={'transition-all duration-200 [.group[data-state=open]_&]:font-bold'}>{task.name}</span>{' '}
               <span className="text-muted-foreground">[SPT-{task.id}]</span>
             </h3>
           </AccordionTrigger>
-          <div>
-            <TaskAnalyticsIcons task={task} colorBySeverity={true} className="justify-end" />
-          </div>
           <Button
             variant="link"
             size="sm"
-            className="opacity-0 no-underline  group-hover/task-header:opacity-100 transition-opacity duration-200"
+            className="opacity-100 no-underline  group-hover/task-header:opacity-100 transition-opacity duration-200"
           >
-            <ExternalLinkIcon className="size-4" /> Open in Jira
+            <ExternalLinkIcon className="size-4" />
+            <span className="sr-only">Open in Jira</span>
           </Button>
+        </div>
+        <div className="w-1/4">
+          <TaskAnalyticsIcons task={task} colorBySeverity={true} />
         </div>
         <div className={cn('flex-1')}>
           <div className={cn('grid grid-cols-4 grow')}>
             <div className="flex items-center justify-end col-span-1 gap-2">
-              <TaskAssignees assignedEmployeeIds={task.assignedEmployeeIds} />
+              {/* <TaskAssignees assignedEmployeeIds={task.assignedEmployeeIds} /> */}
             </div>
             <Tooltip>
               <TooltipTrigger>

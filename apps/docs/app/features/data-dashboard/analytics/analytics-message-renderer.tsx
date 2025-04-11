@@ -45,11 +45,15 @@ export function renderTaskContextMessage(
 ) {
   switch (type) {
     case 'NoAssigneeTaskInsight':
-      return <span className={ALERT_BASE_CLASS}>In progress but has no assignees</span>
+      return (
+        <span className={ALERT_BASE_CLASS}>
+          <span className="text-foreground">In progress</span> but has no assignees
+        </span>
+      )
     case 'HighPriorityNoAssigneeTaskInsight':
       return (
         <span className={ALERT_BASE_CLASS}>
-          <span className="text-foreground">{data.priority === 'critical' ? 'Critical' : 'High'}</span> priority but has
+          <span className="text-foreground">{data.priority === 'critical' ? 'Critical' : 'High'} priority</span> but has
           no assignees
         </span>
       )

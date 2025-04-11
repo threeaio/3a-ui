@@ -5,6 +5,7 @@ import { Badge } from '@3a.solutions/ui/badge'
 import { useTasksData } from '../../../data-context/tasks-data-provider'
 import { Timer, CreditCard } from 'lucide-react'
 import { TaskAnalytics } from './task-analytics'
+import { TaskAssignees } from '@/features/data-dashboard/(pages)/tasks/task-details/task-assignees'
 
 export function TaskCard({ task }: { task: Task }) {
   const { getWorkloadsByTask, getTotalWorkloadForTask, getTaskCost } = useTasksData()
@@ -47,9 +48,11 @@ export function TaskCard({ task }: { task: Task }) {
 
   return (
     <div className="flex flex-col gap-10 p-5">
-      <TaskAnalytics task={task} />
-
       {task.description && <p className="text-muted-foreground text-sm">{task.description}</p>}
+
+      {/* <TaskAnalytics task={task} /> */}
+
+      <TaskAssignees assignedEmployeeIds={task.assignedEmployeeIds} />
 
       <div className="grid grid-cols-3 gap-5 border-t ">
         <div className="grid grid-cols-2 col-span-2 gap-5 border-r pt-5">

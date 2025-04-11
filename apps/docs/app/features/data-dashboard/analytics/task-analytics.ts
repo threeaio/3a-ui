@@ -6,6 +6,8 @@ import { ANALYTICS_CONFIG } from '@/features/data-dashboard/analytics/config'
 export function analyzeTask(task: Task): TaskInsight[] {
   const insights: TaskInsight[] = []
 
+  const FAKE_NOW = new Date('2025-04-05T12:00:00.000Z')
+
   // Check for tasks with no assignee but in progress
   if (task.status === 'in-progress' && (!task.assignedEmployeeIds || task.assignedEmployeeIds.length === 0)) {
     insights.push({
@@ -34,7 +36,7 @@ export function analyzeTask(task: Task): TaskInsight[] {
 
   // Check for long-running tasks without progress
   const lastActiveDate = new Date(task.lastActive)
-  const daysSinceLastActive = Math.floor((Date.now() - lastActiveDate.getTime()) / (1000 * 60 * 60 * 24))
+  const daysSinceLastActive = Math.floor((FAKE_NOW.getTime() - lastActiveDate.getTime()) / (1000 * 60 * 60 * 24))
 
   if (task.status === 'in-progress' && daysSinceLastActive > ANALYTICS_CONFIG.TASK_STALE_DAYS) {
     insights.push({

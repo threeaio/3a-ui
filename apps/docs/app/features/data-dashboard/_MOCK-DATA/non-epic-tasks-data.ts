@@ -3,7 +3,7 @@ import { generateDayParts, generateDailyWorkload, generateDatesBetween } from '.
 
 export const nonEpicTasks: Task[] = [
   {
-    id: 'task-13',
+    id: 'task-non-epic-13',
     projectId: 'proj-1',
     name: 'Fix CSS in IE11',
     description: 'Address layout issues in legacy browsers',
@@ -11,11 +11,12 @@ export const nonEpicTasks: Task[] = [
     tags: ['bugfix', 'compatibility', 'css'],
     status: 'planned',
     lastActive: '2025-03-24T13:40:10.000Z',
+    assignedEmployeeIds: [],
     type: 'bugfix',
     priority: 'low'
   },
   {
-    id: 'task-14',
+    id: 'task-non-epic-14',
     projectId: 'proj-1',
     name: 'Performance Audit',
     description: 'Conduct comprehensive performance review',
@@ -23,11 +24,12 @@ export const nonEpicTasks: Task[] = [
     tags: ['performance', 'audit', 'optimization'],
     status: 'planned',
     lastActive: '2025-03-26T16:10:05.000Z',
+    assignedEmployeeIds: [],
     type: 'maintenance',
     priority: 'medium'
   },
   {
-    id: 'task-15',
+    id: 'task-non-epic-15',
     projectId: 'proj-1',
     name: 'Update Dependencies',
     description: 'Update NPM packages to latest versions',
@@ -35,11 +37,12 @@ export const nonEpicTasks: Task[] = [
     tags: ['maintenance', 'dependencies', 'security'],
     status: 'planned',
     lastActive: '2025-03-25T11:32:45.000Z',
+    assignedEmployeeIds: [],
     type: 'maintenance',
     priority: 'medium'
   },
   {
-    id: 'task-16',
+    id: 'task-non-epic-16',
     projectId: 'proj-1',
     name: 'Project Management Activities',
     description: 'Track time spent on project management activities including meetings, planning, and coordination',
@@ -47,6 +50,7 @@ export const nonEpicTasks: Task[] = [
     tags: ['management', 'coordination', 'planning'],
     status: 'in-progress',
     lastActive: '2025-03-29T14:30:00.000Z',
+    assignedEmployeeIds: ['emp-7'],
     type: 'maintenance',
     priority: 'medium'
   }
@@ -63,10 +67,10 @@ const generateNonEpicWorkloads = (): TaskWorkload[] => {
     const [morning, afternoon] = generateDayParts(date)
 
     workloads.push(
-      { taskId: 'task-13', workload: feWorkload[0], userId: 'emp-4', date: morning },
-      { taskId: 'task-13', workload: feWorkload[1], userId: 'emp-4', date: afternoon },
-      { taskId: 'task-13', workload: qaWorkload[0], userId: 'emp-8', date: morning },
-      { taskId: 'task-13', workload: qaWorkload[1], userId: 'emp-8', date: afternoon }
+      { taskId: 'task-non-epic-13', workload: feWorkload[0], userId: 'emp-4', date: morning },
+      { taskId: 'task-non-epic-13', workload: feWorkload[1], userId: 'emp-4', date: afternoon },
+      { taskId: 'task-non-epic-13', workload: qaWorkload[0], userId: 'emp-8', date: morning },
+      { taskId: 'task-non-epic-13', workload: qaWorkload[1], userId: 'emp-8', date: afternoon }
     )
   })
 
@@ -79,12 +83,12 @@ const generateNonEpicWorkloads = (): TaskWorkload[] => {
     const [morning, afternoon] = generateDayParts(date)
 
     workloads.push(
-      { taskId: 'task-14', workload: feWorkload[0], userId: 'emp-4', date: morning },
-      { taskId: 'task-14', workload: feWorkload[1], userId: 'emp-4', date: afternoon },
-      { taskId: 'task-14', workload: beWorkload[0], userId: 'emp-6', date: morning },
-      { taskId: 'task-14', workload: beWorkload[1], userId: 'emp-6', date: afternoon },
-      { taskId: 'task-14', workload: qaWorkload[0], userId: 'emp-8', date: morning },
-      { taskId: 'task-14', workload: qaWorkload[1], userId: 'emp-8', date: afternoon }
+      { taskId: 'task-non-epic-14', workload: feWorkload[0], userId: 'emp-4', date: morning },
+      { taskId: 'task-non-epic-14', workload: feWorkload[1], userId: 'emp-4', date: afternoon },
+      { taskId: 'task-non-epic-14', workload: beWorkload[0], userId: 'emp-6', date: morning },
+      { taskId: 'task-non-epic-14', workload: beWorkload[1], userId: 'emp-6', date: afternoon },
+      { taskId: 'task-non-epic-14', workload: qaWorkload[0], userId: 'emp-8', date: morning },
+      { taskId: 'task-non-epic-14', workload: qaWorkload[1], userId: 'emp-8', date: afternoon }
     )
   })
 
@@ -97,12 +101,12 @@ const generateNonEpicWorkloads = (): TaskWorkload[] => {
     const [morning, afternoon] = generateDayParts(date)
 
     workloads.push(
-      { taskId: 'task-15', workload: feWorkload[0], userId: 'emp-4', date: morning },
-      { taskId: 'task-15', workload: feWorkload[1], userId: 'emp-4', date: afternoon },
-      { taskId: 'task-15', workload: beWorkload[0], userId: 'emp-6', date: morning },
-      { taskId: 'task-15', workload: beWorkload[1], userId: 'emp-6', date: afternoon },
-      { taskId: 'task-15', workload: qaWorkload[0], userId: 'emp-8', date: morning },
-      { taskId: 'task-15', workload: qaWorkload[1], userId: 'emp-8', date: afternoon }
+      { taskId: 'task-non-epic-15', workload: feWorkload[0], userId: 'emp-4', date: morning },
+      { taskId: 'task-non-epic-15', workload: feWorkload[1], userId: 'emp-4', date: afternoon },
+      { taskId: 'task-non-epic-15', workload: beWorkload[0], userId: 'emp-6', date: morning },
+      { taskId: 'task-non-epic-15', workload: beWorkload[1], userId: 'emp-6', date: afternoon },
+      { taskId: 'task-non-epic-15', workload: qaWorkload[0], userId: 'emp-8', date: morning },
+      { taskId: 'task-non-epic-15', workload: qaWorkload[1], userId: 'emp-8', date: afternoon }
     )
   })
 
@@ -113,8 +117,8 @@ const generateNonEpicWorkloads = (): TaskWorkload[] => {
     const [morning, afternoon] = generateDayParts(date)
 
     workloads.push(
-      { taskId: 'task-16', workload: pmWorkload[0], userId: 'emp-7', date: morning },
-      { taskId: 'task-16', workload: pmWorkload[1], userId: 'emp-7', date: afternoon }
+      { taskId: 'task-non-epic-16', workload: pmWorkload[0], userId: 'emp-7', date: morning },
+      { taskId: 'task-non-epic-16', workload: pmWorkload[1], userId: 'emp-7', date: afternoon }
     )
   })
 

@@ -1,5 +1,5 @@
 import { cn } from '@3a.solutions/ui/lib/utils'
-import { Users, Clock, DollarSign, ListTodo, Layers, LucideIcon, ListX } from 'lucide-react'
+import { Users, Clock, DollarSign, ListTodo, Layers, LucideIcon, ListX, ArrowUp, ArrowUpRight } from 'lucide-react'
 import { AnalyticsInsightType, AnalyticsSeverity } from './types/insights'
 
 interface AnalyticsIconProps {
@@ -14,8 +14,9 @@ export function AnalyticsIcon({ type, severity = 'info', colorBySeverity = false
     switch (type) {
       // Task insights
       case 'NoAssigneeTaskInsight':
+        return ArrowUpRight
       case 'HighPriorityNoAssigneeTaskInsight':
-        return Users
+        return ArrowUp
       case 'StaleTaskInsight':
         return Clock
 

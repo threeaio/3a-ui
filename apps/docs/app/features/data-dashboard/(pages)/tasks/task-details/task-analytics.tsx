@@ -1,7 +1,7 @@
 import { Task } from '@/features/data-dashboard/types/domain'
 import { Alert, AlertDescription, AlertTitle } from '@3a.solutions/ui/alert'
 import { AlertCircle } from 'lucide-react'
-import { renderTaskContextMessage } from '@/features/data-dashboard/analytics'
+import { renderTaskContextMessage, TaskInsight } from '@/features/data-dashboard/analytics'
 import { useAnalyticsContext } from '@/features/data-dashboard/data-context/analytics-provider'
 
 export function TaskAnalytics({ task }: { task: Task }) {
@@ -13,7 +13,7 @@ export function TaskAnalytics({ task }: { task: Task }) {
   }
 
   return (
-    <div className="space-y-3 mb-5">
+    <div className="space-y-2.5">
       {insights.map((insight) => {
         const data = {
           priority: task.priority === 'high' || task.priority === 'critical' ? task.priority : undefined,
@@ -23,10 +23,8 @@ export function TaskAnalytics({ task }: { task: Task }) {
         return (
           <Alert key={insight.id} variant={insight.severity === 'critical' ? 'destructive' : 'warning'}>
             <AlertCircle className="size-4" />
-            <AlertTitle className="capitalize">
-              {insight.severity === 'critical' ? 'Critical Issue' : 'Warning'}
-            </AlertTitle>
-            <AlertDescription>{renderTaskContextMessage(insight.type, data)}</AlertDescription>
+            <AlertTitle>{renderTaskContextMessage(insight.type, data)}</AlertTitle>
+            {/* <AlertDescription></AlertDescription> */}
           </Alert>
         )
       })}

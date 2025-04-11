@@ -7,7 +7,8 @@ export const epic1: Epic = {
   name: 'Product Page Redesign',
   description: 'Redesign all aspects of the product display pages',
   status: 'in-progress',
-  budget: 45000
+  budget: 45000,
+  assignedEmployeeIds: ['emp-1']
 }
 
 export const epic1Tasks: Task[] = [
@@ -59,7 +60,7 @@ const generateEpic1Workloads = (): TaskWorkload[] => {
   const workloads: TaskWorkload[] = []
 
   // Task 1 (Design Product Cards)
-  const task1Dates = generateDatesBetween(new Date('2025-03-28'), new Date('2025-04-05'))
+  const task1Dates = generateDatesBetween(new Date('2025-03-28'), new Date('2025-04-20'))
   task1Dates.forEach(date => {
     const uiWorkload = generateDailyWorkload(3, 5)
     const uxWorkload = generateDailyWorkload(2, 4)

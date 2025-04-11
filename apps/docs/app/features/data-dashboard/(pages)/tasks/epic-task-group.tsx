@@ -5,44 +5,15 @@ import { Badge } from '@3a.solutions/ui/badge'
 import { Card, CardContent, CardHeader } from '@3a.solutions/ui/card'
 import { Accordion } from '@3a.solutions/ui/accordion'
 import { Button } from '@3a.solutions/ui/button'
-import { Tooltip, TooltipContent, TooltipTrigger } from '@3a.solutions/ui/tooltip'
 import { TaskItem } from './task-details/task'
 import { getStatusBadgeColor } from '@/features/data-dashboard/utils'
 import { useTasksData } from '../../data-context/tasks-data-provider'
 import { cn } from '@3a.solutions/ui/lib/utils'
-import { EpicDetailsInProgress } from './epic-details/epic-details-in-progress'
-import { EpicDetailsPlanned } from './epic-details/epic-details-planned'
-import { useState, useRef, useEffect, Profiler, useMemo } from 'react'
+import { useState, useRef, useEffect, useMemo } from 'react'
 import { ChevronDown, ChevronUp, ExternalLinkIcon } from 'lucide-react'
-import { EpicAnalyticsIcons } from '@/features/data-dashboard/analytics/epic-analytics-icons'
+import { EpicAnalyticsIcons } from '@/features/data-dashboard/(pages)/tasks/epic-details/epic-analytics-icons'
 import { EpicDetails } from '@/features/data-dashboard/(pages)/tasks/epic-details/epic-details'
-function EpicAssignees({ epicId }: { epicId: string }) {
-  const { getEpicAssignees } = useTasksData()
-  const assignees = getEpicAssignees(epicId)
-
-  if (!assignees.length) return null
-
-  return (
-    <div className="flex -space-x-2">
-      {assignees.map((employee) => (
-        <Tooltip key={employee.id}>
-          <TooltipTrigger>
-            <div className="size-8 rounded-full overflow-hidden border-2 border-background">
-              {employee.avatar ? (
-                <img src={employee.avatar} alt={employee.name} className="size-full object-cover" />
-              ) : (
-                <div className="size-full bg-muted flex items-center justify-center text-xs">
-                  {employee.name.charAt(0)}
-                </div>
-              )}
-            </div>
-          </TooltipTrigger>
-          <TooltipContent>{employee.name}</TooltipContent>
-        </Tooltip>
-      ))}
-    </div>
-  )
-}
+import { EpicAssignees } from '@/features/data-dashboard/(pages)/tasks/epic-details/epic-assignees'
 
 export function EpicTaskGroup({ epic, tasks }: { epic: Epic; tasks: Task[] }) {
   const epicRef = useRef<HTMLDivElement>(null)
@@ -91,8 +62,8 @@ export function EpicTaskGroup({ epic, tasks }: { epic: Epic; tasks: Task[] }) {
       )}
     >
       <CardHeader className="group/epic-header rounded-t-lg  border-b sticky left-0 right-0 top-40 bg-card/90 backdrop-blur-sm z-10 !pb-0 h-20">
-        <div className="flex flex-1 items-center justify-between pt-5 ">
-          <div className="flex flex-1 flex-col gap-1 mr-10">
+        <div className="flex flex-1 items-center justify-start pt-5 gap-0 ">
+          <div className="flex w-1/2 flex-col gap-1">
             <div className="flex items-center gap-2 justify-start">
               <h2
                 className={cn('text-md transition-all duration-200 border-r pr-5', isActive && 'text-xl leading-loose')}
@@ -103,20 +74,21 @@ export function EpicTaskGroup({ epic, tasks }: { epic: Epic; tasks: Task[] }) {
                 <Button variant="ghost" size="sm" className="gap-2" onClick={handleDetailsChange}>
                   Metrics {isDetailsOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
                 </Button>
-                <div>
-                  <EpicAnalyticsIcons epic={epic} colorBySeverity={false} />
-                </div>
                 <Button
                   variant="link"
                   size="sm"
-                  className="no-underline group-hover/epic-header:opacity-100 opacity-0 transition-opacity  duration-200"
+                  className="no-underline group-hover/epic-header:opacity-100 opacity100 transition-opacity  duration-200"
                 >
-                  <ExternalLinkIcon className="size-4" /> Open in Jira
+                  <ExternalLinkIcon className="size-4" />
+                  <span className="sr-only">Open in Jira</span>
                 </Button>
               </div>
             </div>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="w-1/4">
+            <EpicAnalyticsIcons epic={epic} colorBySeverity={false} />
+          </div>
+          <div className="flex flex-1 items-center gap-4 justify-end">
             <EpicAssignees epicId={epic.id} />
             {epic.budget && (
               <div className={cn('flex items-center gap-2 transition-all duration-200', isActive && 'text-lg')}>

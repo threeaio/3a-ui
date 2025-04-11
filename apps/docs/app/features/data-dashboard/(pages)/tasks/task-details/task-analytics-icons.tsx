@@ -2,11 +2,10 @@
 
 import { Task } from '@/features/data-dashboard/types/domain'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@3a.solutions/ui/tooltip'
-import { AnalyticsIcon } from './analytics-icon'
 import { cn } from '@3a.solutions/ui/lib/utils'
-import { useAnalyticsContext } from '../data-context/analytics-provider'
 import { Badge } from '@3a.solutions/ui/badge'
-
+import { TaskInsight, AnalyticsIcon } from '@/features/data-dashboard/analytics'
+import { useAnalyticsContext } from '@/features/data-dashboard/data-context/analytics-provider'
 interface TaskAnalyticsIconsProps {
   task: Task
   className?: string
@@ -27,7 +26,9 @@ const INSIGHT_LABELS_LONG = {
 
 export function TaskAnalyticsIcons({ task, className, colorBySeverity = false }: TaskAnalyticsIconsProps) {
   const { getTaskInsights } = useAnalyticsContext()
-  const insights = getTaskInsights(task.id)
+  const insights = getTaskInsights(task.id).filter(
+    (insight: TaskInsight) => insight.type !== 'HighPriorityNoAssigneeTaskInsight',
+  )
 
   if (!insights.length) return null
 
@@ -36,7 +37,7 @@ export function TaskAnalyticsIcons({ task, className, colorBySeverity = false }:
       {insights.map((insight) => (
         <div key={insight.id}>
           {/* <Tooltip key={insight.id}>
-          <TooltipTrigger> */}
+            <TooltipTrigger> */}
           <Badge
             variant="outline"
             className={cn(
@@ -53,9 +54,9 @@ export function TaskAnalyticsIcons({ task, className, colorBySeverity = false }:
             {INSIGHT_LABELS[insight.type]}
           </Badge>
           {/* </TooltipTrigger>
-          <TooltipContent>
-            <p className="text-sm">{INSIGHT_LABELS_LONG[insight.type]}</p>
-          </TooltipContent>
+            <TooltipContent>
+              <p className="text-sm">{INSIGHT_LABELS_LONG[insight.type]}</p>
+            </TooltipContent>
           </Tooltip> */}
         </div>
       ))}

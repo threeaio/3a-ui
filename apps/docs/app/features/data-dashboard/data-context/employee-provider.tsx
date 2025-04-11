@@ -29,13 +29,12 @@ export function EmployeeProvider({
   employees: Employee[]
   employeeSkills: EmployeeSkill[]
 }) {
-
   // Create memoized selectors
   const selectors = useMemo(() => {
     // Employee-based selectors
     const getEmployeeById = (id: string) => employees.find((emp) => emp.id === id)
 
-    const getEmployeesByIds = (ids: string[]) => employees.filter((emp) => ids.includes(emp.id))
+    const getEmployeesByIds = (ids: string[]) => employees.filter((emp) => ids && ids.includes(emp.id))
 
     const getEmployeesBySkill = (skillId: string) =>
       employees.filter((emp) => emp.skills.some((skill) => skill.id === skillId))

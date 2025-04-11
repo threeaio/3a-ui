@@ -1,10 +1,9 @@
 'use client'
 
 import { Epic } from '@/features/data-dashboard/types/domain'
-import { Tooltip, TooltipContent, TooltipTrigger } from '@3a.solutions/ui/tooltip'
-import { AnalyticsIcon } from './analytics-icon'
+import { AnalyticsIcon } from '@/features/data-dashboard/analytics'
 import { cn } from '@3a.solutions/ui/lib/utils'
-import { useAnalyticsContext } from '../data-context/analytics-provider'
+import { useAnalyticsContext } from '@/features/data-dashboard/data-context/analytics-provider'
 import { Badge } from '@3a.solutions/ui/badge'
 
 interface EpicAnalyticsIconsProps {

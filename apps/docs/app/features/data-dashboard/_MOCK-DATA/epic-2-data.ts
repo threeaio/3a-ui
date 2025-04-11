@@ -7,7 +7,8 @@ export const epic2: Epic = {
   name: 'User Management and Security',
   description: 'Features focused on user authentication and secure transactions',
   status: 'planned',
-  budget: 55000
+  budget: 55000,
+  assignedEmployeeIds: ['emp-4']
 }
 
 export const epic2Tasks: Task[] = [

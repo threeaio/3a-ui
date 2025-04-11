@@ -55,7 +55,7 @@ import { BugIcon, BookmarkCheck, WrenchIcon, PencilRulerIcon, RefreshCwIcon, Fil
 export const getTaskTypeIcon = (type: Task['type']) => {
   switch (type) {
     case 'bugfix':
-      return { icon: BugIcon, label: 'Bug Fix', className: 'text-destructive' }
+      return { icon: BugIcon, label: 'Bug Fix', className: '' }
     case 'feature':
       return { icon: BookmarkCheck, label: 'Feature', className: '' }
     case 'design':
@@ -74,7 +74,7 @@ export const getTaskStatusIcon = (status: Task['status']) => {
     case 'completed':
       return { icon: CheckIcon, label: 'Completed', className: '' }
     case 'in-progress':
-      return { icon: ArrowUpRightIcon, label: 'In Progress', className: 'text-primary' }
+      return { icon: ArrowUpRightIcon, label: 'In Progress', className: '' }
     default:
       return { icon: TimerIcon, label: 'Pending' }
   }

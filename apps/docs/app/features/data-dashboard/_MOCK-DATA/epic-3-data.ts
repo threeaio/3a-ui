@@ -7,7 +7,8 @@ export const epic3: Epic = {
   name: 'Checkout Experience',
   description: 'Streamline and enhance the complete checkout process',
   status: 'in-progress',
-  budget: 65000
+  budget: 65000,
+  assignedEmployeeIds: ['emp-6']
 }
 
 export const epic3Tasks: Task[] = [

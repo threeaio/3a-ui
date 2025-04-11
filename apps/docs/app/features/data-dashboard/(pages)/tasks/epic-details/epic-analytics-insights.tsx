@@ -49,7 +49,7 @@ export function EpicAnalyticsInsights({ epic }: { epic: Epic }) {
         return (
           <Alert key={insight.id} variant={insight.severity === 'critical' ? 'destructive' : 'warning'}>
             <AlertCircle className="size-4" />
-            <AlertTitle className="capitalize">
+            <AlertTitle>
               {insight.severity === 'critical' ? 'Critical Issue' : 'Warning'}
             </AlertTitle>
             <AlertDescription>{renderEpicMessage(insight.type, data)}</AlertDescription>
