@@ -15,7 +15,7 @@ import { EpicDetailsPlanned } from './epic-details/epic-details-planned'
 import { useState, useRef, useEffect, Profiler, useMemo } from 'react'
 import { ChevronDown, ChevronUp, ExternalLinkIcon } from 'lucide-react'
 import { EpicAnalyticsIcons } from '@/features/data-dashboard/analytics/epic-analytics-icons'
-import { onRender } from '@/features/data-dashboard/utils/dev'
+import { EpicDetails } from '@/features/data-dashboard/(pages)/tasks/epic-details/epic-details'
 function EpicAssignees({ epicId }: { epicId: string }) {
   const { getEpicAssignees } = useTasksData()
   const assignees = getEpicAssignees(epicId)
@@ -52,7 +52,6 @@ export function EpicTaskGroup({ epic, tasks }: { epic: Epic; tasks: Task[] }) {
   const [isDetailsOpen, setIsDetailsOpen] = useState(false)
 
   const isActive = useMemo(() => {
-    //return false
     return isTasksOpen || isDetailsOpen
   }, [isTasksOpen, isDetailsOpen])
 
@@ -81,7 +80,7 @@ export function EpicTaskGroup({ epic, tasks }: { epic: Epic; tasks: Task[] }) {
     setIsDetailsOpen(newIsOpen)
   }
 
-  const EpicDetails = epic.status === 'planned' ? EpicDetailsPlanned : EpicDetailsInProgress
+  // const EpicDetails = epic.status === 'planned' ? EpicDetailsPlanned : EpicDetailsInProgress
 
   return (
     <Card

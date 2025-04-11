@@ -17,8 +17,9 @@ const STATUS_ORDER: Record<EpicStatus, number> = {
 
 interface TasksDataContextValue {
   epics: Epic[]
-  tasks: Task[]
-  getTasksByEpic: (epicId: string) => Task[]
+  allTasks: Task[]
+  filteredTasks: Task[]
+  getTasksByEpic: (epicId: string, ignoreStatusFilter?: boolean) => Task[]
   orphanedTasks: Task[]
 
   // Workload and cost selectors
@@ -62,8 +63,8 @@ export function TasksDataProvider({ children }: { children: ReactNode }) {
   const { employees: allEmployees } = useEmployeeContext()
 
   // Get epic cost by summing up all task costs
-  const getEpicCost = useMemo(() =>
-    (epicId: string) => {
+  const getEpicCost = useMemo(
+    () => (epicId: string) => {
       const epicTasks = getOriginalTasksByEpic(epicId)
       return epicTasks.reduce((total, task) => total + originalGetTaskCost(task.id), 0)
     },
@@ -112,7 +113,7 @@ export function TasksDataProvider({ children }: { children: ReactNode }) {
   }, [allEpics, epicStatusFilter, epicSortBy, sortDirection])
 
   // Filter tasks
-  const tasks = useMemo(() => {
+  const filteredTasks = useMemo(() => {
     if (taskStatusFilter === 'all') {
       return allTasks
     }
@@ -120,9 +121,9 @@ export function TasksDataProvider({ children }: { children: ReactNode }) {
   }, [allTasks, taskStatusFilter])
 
   // Get tasks by epic with filters applied
-  const getTasksByEpic = (epicId: string) => {
+  const getTasksByEpic = (epicId: string, ignoreStatusFilter = false) => {
     const epicTasks = getOriginalTasksByEpic(epicId)
-    if (taskStatusFilter === 'all') {
+    if (ignoreStatusFilter || taskStatusFilter === 'all') {
       return epicTasks
     }
     return epicTasks.filter((task) => task.status === taskStatusFilter)
@@ -130,16 +131,17 @@ export function TasksDataProvider({ children }: { children: ReactNode }) {
 
   // Get orphaned tasks with filters applied
   const orphanedTasks = useMemo(() => {
-    const orphaned = tasks.filter((task) => !task.epicId)
+    const orphaned = filteredTasks.filter((task) => !task.epicId)
     if (taskStatusFilter === 'all') {
       return orphaned
     }
     return orphaned.filter((task) => task.status === taskStatusFilter)
-  }, [tasks, taskStatusFilter])
+  }, [filteredTasks, taskStatusFilter])
 
   const value: TasksDataContextValue = {
     epics,
-    tasks,
+    allTasks,
+    filteredTasks,
     getTasksByEpic,
     orphanedTasks,
     getWorkloadsByTask: originalGetWorkloadsByTask,

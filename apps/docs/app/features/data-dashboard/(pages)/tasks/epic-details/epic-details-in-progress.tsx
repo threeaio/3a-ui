@@ -46,10 +46,6 @@ export function EpicDetailsInProgress({ epic, isOpen, onOpenChange }: EpicDetail
     >
       <AccordionItem value="details" className="border-none mt-5">
         <AccordionContent>
-          <div className="pt-5 px-2.5">
-            <EpicAnalyticsInsights epic={epic} />
-          </div>
-
           <div className="pt-5 pb-5">
             <div className="grid grid-cols-12 gap-5 mt-5 mb-20">
               <div className="col-span-2">
@@ -74,13 +70,13 @@ export function EpicDetailsInProgress({ epic, isOpen, onOpenChange }: EpicDetail
                   }}
                 />
               </div>
-                <div className="col-span-1">
-                  <EpicTaskMetricsChart
-                    tasks={epicTasks}
-                    getTaskCost={getTaskCost}
-                    getTotalWorkloadForTask={getTotalWorkloadForTask}
-                  />
-                </div>
+              <div className="col-span-1">
+                <EpicTaskMetricsChart
+                  tasks={epicTasks}
+                  getTaskCost={getTaskCost}
+                  getTotalWorkloadForTask={getTotalWorkloadForTask}
+                />
+              </div>
             </div>
           </div>
         </AccordionContent>

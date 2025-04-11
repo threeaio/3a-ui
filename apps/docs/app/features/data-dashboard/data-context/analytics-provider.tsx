@@ -1,7 +1,6 @@
 'use client'
 
 import { createContext, useContext, useMemo, ReactNode } from 'react'
-import { useBaseDataContext } from './base-data-provider'
 import { useEmployeeContext } from './employee-provider'
 import { useProjectDataContext } from './project-data-provider'
 import { useTasksData } from './tasks-data-provider'
@@ -30,19 +29,16 @@ const AnalyticsContext = createContext<AnalyticsContextType | undefined>(undefin
 // Provider component
 export function AnalyticsProvider({ children }: { children: ReactNode }) {
   // Access all required contexts
-  const baseData = useBaseDataContext()
   const { getEmployeeById } = useEmployeeContext()
   const { project, epics: allEpics, getTaskCost } = useProjectDataContext()
-  const { tasks, epics, getTasksByEpic } = useTasksData()
+  const { allTasks, epics, getTasksByEpic } = useTasksData()
 
   // Memoize task insights
   const taskInsightsMap = useMemo(() => {
     const insightsMap = new Map<string, TaskInsight[]>()
 
-    console.log('analyse tasks')
-
     // Analyze all tasks and store their insights
-    tasks.forEach((task) => {
+    allTasks.forEach((task) => {
       const insights = analyzeTask(task)
       if (insights.length > 0) {
         insightsMap.set(task.id, insights)
@@ -50,7 +46,7 @@ export function AnalyticsProvider({ children }: { children: ReactNode }) {
     })
 
     return insightsMap
-  }, [tasks])
+  }, [allTasks])
 
   // Memoize epic insights, using the already computed task insights
   const epicInsightsMap = useMemo(() => {
@@ -58,7 +54,7 @@ export function AnalyticsProvider({ children }: { children: ReactNode }) {
 
     // Analyze each epic
     epics.forEach((epic) => {
-      const epicTasks = getTasksByEpic(epic.id)
+      const epicTasks = getTasksByEpic(epic.id, true)
       const totalCost = epicTasks.reduce((sum, task) => sum + getTaskCost(task.id), 0)
 
       // Get task insights for all tasks in this epic
@@ -76,13 +72,13 @@ export function AnalyticsProvider({ children }: { children: ReactNode }) {
 
   // Memoize project insights, using the already computed epic insights
   const projectInsights = useMemo(() => {
-    const totalCost = tasks.reduce((sum, task) => sum + getTaskCost(task.id), 0)
+    const totalCost = allTasks.reduce((sum, task) => sum + getTaskCost(task.id), 0)
 
     // Collect all epic insights
     const allEpicInsights = Array.from(epicInsightsMap.values()).flat()
 
     // Analyze project and enhance the insights with resolved names
-    const insights = analyzeProject(project, allEpics, tasks, totalCost, allEpicInsights)
+    const insights = analyzeProject(project, allEpics, allTasks, totalCost, allEpicInsights)
 
     // Enhance insights with resolved names
     return insights.map((insight) => {
@@ -113,7 +109,7 @@ export function AnalyticsProvider({ children }: { children: ReactNode }) {
       }
       return insight
     })
-  }, [project, allEpics, tasks, getTaskCost, epicInsightsMap, getEmployeeById])
+  }, [project, allEpics, allTasks, getTaskCost, epicInsightsMap, getEmployeeById])
 
   // Create memoized analytics data and methods
   const contextValue = useMemo(

@@ -10,10 +10,9 @@ function isBudgetInsight(insight: EpicBudgetInsight | any): insight is EpicBudge
 }
 
 export function EpicAnalyticsInsights({ epic }: { epic: Epic }) {
-  const { getTasksByEpic } = useTasksData()
+  const { allTasks } = useTasksData()
   const { getEpicInsights } = useAnalyticsContext()
 
-  const tasks = getTasksByEpic(epic.id)
   const insights = getEpicInsights(epic.id)
 
   if (insights.length === 0) {
@@ -21,7 +20,7 @@ export function EpicAnalyticsInsights({ epic }: { epic: Epic }) {
   }
 
   return (
-    <div className="space-y-3 mb-5">
+    <div className="space-y-3 mb-5 -mx-1.5 py-5">
       {insights.map((insight) => {
         const data = isBudgetInsight(insight)
           ? {
@@ -29,18 +28,18 @@ export function EpicAnalyticsInsights({ epic }: { epic: Epic }) {
               remainingBudget: insight.metadata.remaining,
             }
           : {
-              unassignedInProgress: tasks.filter((t) =>
+              unassignedInProgress: allTasks.filter((t) =>
                 insight.metadata.affectedTasks.some(
                   (taskInsight) => taskInsight.entityId === t.id && taskInsight.type === 'NoAssigneeTaskInsight',
                 ),
               ),
-              highPriorityUnassigned: tasks.filter((t) =>
+              highPriorityUnassigned: allTasks.filter((t) =>
                 insight.metadata.affectedTasks.some(
                   (taskInsight) =>
                     taskInsight.entityId === t.id && taskInsight.type === 'HighPriorityNoAssigneeTaskInsight',
                 ),
               ),
-              staleTasks: tasks.filter((t) =>
+              staleTasks: allTasks.filter((t) =>
                 insight.metadata.affectedTasks.some(
                   (taskInsight) => taskInsight.entityId === t.id && taskInsight.type === 'StaleTaskInsight',
                 ),

@@ -45,7 +45,7 @@ export function EpicDetailsPlanned({ epic, isOpen, onOpenChange }: EpicDetailsPr
     >
       <AccordionItem value="details" className="border-none mt-5">
         <AccordionContent>
-          <div className="pt-5 pb-5">
+          <div className="py-7.5 px-5">
             <div className="grid grid-cols-12 gap-5">
               {/* Budget Overview */}
               <div className="col-span-4 pr-10 border-r">
