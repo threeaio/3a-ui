@@ -37,7 +37,11 @@ export function EpicTaskMetricsChart({ tasks, getTaskCost }: EpicTaskMetricsChar
   return (
     <div className="space-y-5 ">
       <h4 className="font-semibold">Task Costs</h4>
-      <ChartContainer config={chartConfig} className="w-full" style={{ height: Math.max(100, tasks.length * 50) }}>
+      <ChartContainer
+        config={chartConfig}
+        className="w-full h-full"
+        style={{ height: Math.max(100, tasks.length * 60) }}
+      >
         <BarChart
           data={chartData}
           margin={{
@@ -48,7 +52,7 @@ export function EpicTaskMetricsChart({ tasks, getTaskCost }: EpicTaskMetricsChar
           }}
           layout="vertical"
         >
-          <CartesianGrid strokeDasharray="3 3" stroke={chartConfig.grid.color} />
+          {/* <CartesianGrid strokeDasharray="3 3" stroke={chartConfig.grid.color} /> */}
           <XAxis
             type="number"
             tick={{ fill: chartConfig.tick.color }}

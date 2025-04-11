@@ -35,7 +35,7 @@ export function TaskItem({ task }: { task: Task }) {
           </Button>
         </div>
         <div className="w-1/4">
-          <TaskAnalyticsIcons task={task} colorBySeverity={true} />
+          <TaskAnalyticsIcons task={task} colorBySeverity={true} className="justify-end" />
         </div>
         <div className={cn('flex-1')}>
           <div className={cn('grid grid-cols-4 grow')}>

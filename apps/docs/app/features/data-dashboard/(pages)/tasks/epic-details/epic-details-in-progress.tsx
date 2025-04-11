@@ -11,6 +11,7 @@ import { EpicDomainMetrics } from './epic-domain-metrics'
 import { EpicTaskDistribution } from './epic-task-distribution'
 import { EpicDetailsProps } from './epic-details'
 import { EpicAnalyticsInsights } from '@/features/data-dashboard/(pages)/tasks/epic-details/epic-analytics-insights'
+import { EpicWorkloadByType } from '@/features/data-dashboard/(pages)/tasks/epic-details/epic-workload-by-type'
 
 export function EpicDetailsInProgress({ epic, isOpen, onOpenChange }: EpicDetailsProps) {
   const { getTasksByEpic, getWorkloadsByTask } = useTasksData()
@@ -59,18 +60,19 @@ export function EpicDetailsInProgress({ epic, isOpen, onOpenChange }: EpicDetail
               </div>
             </div>
             <div className="grid grid-cols-2 gap-5 px-5">
-              <div className="col-span-1">
-                <h4 className="mb-5 font-semibold">Activity</h4>
-                <ActivityMatrix
+              <div className="col-span-1 h-[300px]">
+                <h4 className="mb-5 font-semibold">Workload by type</h4>
+                {/* <ActivityMatrix
                   workloads={workloads}
                   employees={employees}
                   startDate={projectStartDate}
                   onDayClick={(day) => {
                     console.log('Day clicked:', day)
                   }}
-                />
+                /> */}
+                <EpicWorkloadByType epicId={epic.id} />
               </div>
-              <div className="col-span-1">
+              <div className="col-span-1 h-full">
                 <EpicTaskMetricsChart
                   tasks={epicTasks}
                   getTaskCost={getTaskCost}

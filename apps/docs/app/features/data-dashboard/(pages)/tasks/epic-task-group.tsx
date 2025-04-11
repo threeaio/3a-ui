@@ -86,7 +86,7 @@ export function EpicTaskGroup({ epic, tasks }: { epic: Epic; tasks: Task[] }) {
             </div>
           </div>
           <div className="w-1/4">
-            <EpicAnalyticsIcons epic={epic} colorBySeverity={false} />
+            <EpicAnalyticsIcons epic={epic} colorBySeverity={false} className="justify-end" />
           </div>
           <div className="flex flex-1 items-center gap-4 justify-end">
             <EpicAssignees epicId={epic.id} />
