@@ -58,11 +58,11 @@ export function EpicTaskGroup({ epic, tasks }: { epic: Epic; tasks: Task[] }) {
 
   useEffect(() => {
     if (isActive && epicRef.current) {
-      const headerHeight = 80 // h-20 = 80px
+      const headerHeight = 96 // h-20 = 80px + p-4 = 96px
+      const filterHeight = 66.5 // it is what it is
       const epicTop = epicRef!.current!.getBoundingClientRect().top + window.scrollY
-      const taskHeaderHeight = 36 // h-24 = 36px ??? TODO: Check why (ehader is h-20 + p-4 top)
       window.scrollTo({
-        top: Math.max(0, epicTop - headerHeight - taskHeaderHeight),
+        top: Math.max(0, epicTop - headerHeight - filterHeight),
         behavior: 'smooth',
       })
     }
@@ -87,11 +87,11 @@ export function EpicTaskGroup({ epic, tasks }: { epic: Epic; tasks: Task[] }) {
     <Card
       ref={epicRef}
       className={cn(
-        'border-2 gap-0 border-dashed border-transparent transition-all',
-        isActive && 'border-input dark:border-primary',
+        'border-2 gap-0 border-dashed border-transparent transition-all pt-0',
+        isActive && 'border-transparent',
       )}
     >
-      <CardHeader className="group/epic-header  border-b sticky left-0 right-0 top-24 bg-card/80 backdrop-blur-sm z-10">
+      <CardHeader className="group/epic-header rounded-t-lg  border-b sticky left-0 right-0 top-40 bg-card/90 backdrop-blur-sm z-10 !pb-0 h-20">
         <div className="flex flex-1 items-center justify-between pt-5 ">
           <div className="flex flex-1 flex-col gap-1 mr-10">
             <div className="flex items-center gap-2 justify-start">
@@ -130,20 +130,20 @@ export function EpicTaskGroup({ epic, tasks }: { epic: Epic; tasks: Task[] }) {
                 >
                   <Badge
                     className={cn(
-                      'font-mono tabular-nums font-light border-default',
+                      'font-mono tabular-nums font-light border-default py-0',
                       percentage > 100 && 'border-destructive',
                       percentage > 80 && percentage <= 100 && 'border-warning',
                     )}
                     variant="outline"
                     ///variant={percentage > 100 ? 'destructive' : 'outline'}
                   >
-                    <span className={cn('opacity-70 border-r pr-2 border-default')}>
+                    <span className={cn('opacity-70 border-r pr-2 border-default py-1')}>
                       {currentCost.toLocaleString('de-DE')} €
                     </span>
-                    <span className={cn('opacity border-r pr-2 border-default/70')}>
+                    <span className={cn('opacity border-r pr-2 border-default/70 py-1')}>
                       {epic.budget.toLocaleString('de-DE')} €
                     </span>
-                    <span className="opacity-70">{percentage}%</span>
+                    <span className="opacity-70 py-1">{percentage}%</span>
                   </Badge>
                 </span>
               </div>

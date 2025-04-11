@@ -49,13 +49,16 @@ export function TaskItem({ task }: { task: Task }) {
   return (
     <AccordionItem value={task.id}>
       <div className="flex grow items-center gap-2 justify-between py-3 group/task-header">
-        <div className="w-1/2 flex items-center gap-2">
+        <div className="w-2/3 flex items-center gap-2">
           <AccordionTrigger>
             <h3 className="flex items-center gap-5 ">
               <span className={'transition-all duration-200 [.group[data-state=open]_&]:font-bold'}>{task.name}</span>{' '}
               <span className="text-muted-foreground">[SPT-{task.id}]</span>
             </h3>
           </AccordionTrigger>
+          <div>
+            <TaskAnalyticsIcons task={task} colorBySeverity={true} className="justify-end" />
+          </div>
           <Button
             variant="link"
             size="sm"
@@ -65,10 +68,7 @@ export function TaskItem({ task }: { task: Task }) {
           </Button>
         </div>
         <div className={cn('flex-1')}>
-          <div className={cn('grid grid-cols-5 grow')}>
-            <div>
-              <TaskAnalyticsIcons task={task} colorBySeverity={true} className="justify-end" />
-            </div>
+          <div className={cn('grid grid-cols-4 grow')}>
             <div className="flex items-center justify-end col-span-1 gap-2">
               <TaskAssignees assignedEmployeeIds={task.assignedEmployeeIds} />
             </div>

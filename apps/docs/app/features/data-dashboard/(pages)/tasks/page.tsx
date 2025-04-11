@@ -12,7 +12,7 @@ function TasksPageContent() {
 
   return (
     <main className="flex-1 bg-background">
-      <div className="flex flex-col h-full px-5 pt-10 gap-5 pb-5">
+      <div className="flex flex-col h-full px-5 pt-5 gap-5 pb-5">
         {/* Filters and sorting */}
         <EpicsTasksHeader />
 

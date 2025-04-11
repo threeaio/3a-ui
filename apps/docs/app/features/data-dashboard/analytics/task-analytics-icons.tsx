@@ -14,7 +14,7 @@ interface TaskAnalyticsIconsProps {
 }
 
 const INSIGHT_LABELS = {
-  NoAssigneeTaskInsight: 'Task in progress',
+  NoAssigneeTaskInsight: 'No assignee',
   HighPriorityNoAssigneeTaskInsight: 'High priority',
   StaleTaskInsight: 'No activity in 7+ days',
 } as const
@@ -35,23 +35,23 @@ export function TaskAnalyticsIcons({ task, className, colorBySeverity = false }:
     <div className={cn('flex gap-2', className)}>
       {insights.map((insight) => (
         <div key={insight.id}>
-        {/* <Tooltip key={insight.id}>
+          {/* <Tooltip key={insight.id}>
           <TooltipTrigger> */}
-            <Badge
-              variant="outline"
-              className={cn(
-                insight.severity === 'critical' && 'border-destructive',
-                insight.severity === 'warning' && 'border-warning',
-              )}
-            >
-              <AnalyticsIcon
-                type={insight.type}
-                severity={insight.severity}
-                colorBySeverity={colorBySeverity}
-                className="size-4"
-              />
-              {INSIGHT_LABELS[insight.type]}
-            </Badge>
+          <Badge
+            variant="outline"
+            className={cn(
+              insight.severity === 'critical' && 'border-destructive',
+              insight.severity === 'warning' && 'border-warning',
+            )}
+          >
+            <AnalyticsIcon
+              type={insight.type}
+              severity={insight.severity}
+              colorBySeverity={colorBySeverity}
+              className="size-4"
+            />
+            {INSIGHT_LABELS[insight.type]}
+          </Badge>
           {/* </TooltipTrigger>
           <TooltipContent>
             <p className="text-sm">{INSIGHT_LABELS_LONG[insight.type]}</p>

@@ -70,15 +70,15 @@ export const Header: React.FC<HeaderProps> = ({ onSearchChange }) => {
 
           <ButtonGroup variant="outline">
             <Button>
-              <Plus strokeWidth={1} className="size-4 mr-2" />
+              <Plus strokeWidth={1} className="size-4" />
               Add Task
             </Button>
             <Button>
-              <Download strokeWidth={1} className="size-4 mr-2" />
+              <Download strokeWidth={1} className="size-4" />
               Export
             </Button>
             <Button>
-              <Share2 strokeWidth={1} className="size-4 mr-2" />
+              <Share2 strokeWidth={1} className="size-4" />
               Share
             </Button>
           </ButtonGroup>
