@@ -52,7 +52,7 @@ export function EpicsTasksHeader() {
   return (
     <form
       onSubmit={(e) => e.preventDefault()}
-      className="flex sticky top-24 py-5 z-30 bg-background items-center gap-2"
+      className="flex sticky top-24 py-5 z-30 bg-background items-center gap-2 px-5 border-b "
     >
       <BadgeSelect
         variant="outline"

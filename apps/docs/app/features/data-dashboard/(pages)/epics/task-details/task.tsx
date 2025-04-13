@@ -8,7 +8,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from '@3a.solutions/ui/toolti
 import { ArrowUpIcon, ExternalLinkIcon } from 'lucide-react'
 import { getTaskStatusIcon, getTaskTypeIcon, getPriorityArrows } from '@/features/data-dashboard/utils'
 import { Button } from '@3a.solutions/ui/button'
-import { TaskAnalyticsIcons } from '@/features/data-dashboard/(pages)/tasks/task-details/task-analytics-icons'
+import { TaskAnalyticsIcons } from '@/features/data-dashboard/(pages)/epics/task-details/task-analytics-icons'
 
 export function TaskItem({ task }: { task: Task }) {
   const StatusIcon = getTaskStatusIcon(task.status)
@@ -16,8 +16,8 @@ export function TaskItem({ task }: { task: Task }) {
   const PriorityArrows = task.priority && getPriorityArrows(task.priority)
 
   return (
-    <AccordionItem value={task.id}>
-      <div className="flex grow items-center gap-0 justify-start py-3 group/task-header">
+    <AccordionItem value={task.id} className="px-5">
+      <div className="flex grow items-center gap-0 justify-start py-2.5 group/task-header">
         <div className="w-1/2 flex items-center gap-2">
           <AccordionTrigger>
             <h3 className="flex items-center gap-5 ">
@@ -34,14 +34,12 @@ export function TaskItem({ task }: { task: Task }) {
             <span className="sr-only">Open in Jira</span>
           </Button>
         </div>
-        <div className="w-1/4">
+        <div className="w-1/6">
           <TaskAnalyticsIcons task={task} colorBySeverity={true} className="justify-end" />
         </div>
         <div className={cn('flex-1')}>
           <div className={cn('grid grid-cols-4 grow')}>
-            <div className="flex items-center justify-end col-span-1 gap-2">
-              {/* <TaskAssignees assignedEmployeeIds={task.assignedEmployeeIds} /> */}
-            </div>
+            <div className="flex items-center justify-end col-span-1 gap-2"></div>
             <Tooltip>
               <TooltipTrigger>
                 <div className={cn('flex items-center justify-center', StatusIcon.className)}>

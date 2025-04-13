@@ -86,11 +86,11 @@ Everytime we update values here we need to update the documentation in /tailwind
   --popover: var(--color-white);
   --popover-foreground: var(--color-gray-900);
 
-  --chart-1: var(--color-chart-green);
-  --chart-2: var(--color-chart-blue);
-  --chart-3: var(--color-chart-indigo);
-  --chart-4: var(--color-chart-yellow);
-  --chart-5: var(--color-chart-amber);
+  --chart-1: var(--color-chart-purple);
+  --chart-2: var(--color-chart-teal);
+  --chart-3: var(--color-chart-amber);
+  --chart-4: var(--color-chart-violet);
+  --chart-5: var(--color-chart-orange);
 
   --sidebar: var(--color-gray-200);
   --sidebar-foreground: var(--color-gray-900);
@@ -134,7 +134,7 @@ Everytime we update values here we need to update the documentation in /tailwind
   --input: var(--color-gray-500);
   --ring: var(--color-gray-50);
 
-  --card: var(--color-gray-800);
+  --card: var(--color-gray-700);
   --card-foreground: var(--color-gray-50);
   --popover: var(--color-gray-900);
   --popover-foreground: var(--color-gray-50);
@@ -189,11 +189,13 @@ Everytime we update values here we need to update the documentation in /tailwind
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -236,5 +238,21 @@ Everytime we update values here we need to update the documentation in /tailwind
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+.animate-gradient-x {
+  animation: gradient-x 3s ease infinite;
+}
+
+@keyframes gradient-x {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }

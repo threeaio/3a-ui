@@ -2,20 +2,15 @@
 
 import React from 'react'
 import { Button, ButtonGroup } from '@3a.solutions/ui/button'
-import { Input } from '@3a.solutions/ui/forms'
-import { Badge } from '@3a.solutions/ui/badge'
-import { Search, Bell, Settings, UserCircle2, HelpCircle, Plus, Download, Share2, Calendar } from 'lucide-react'
 import { SidebarTrigger } from '@3a.solutions/ui/sidebar'
 import { cn } from '@3a.solutions/ui/lib/utils'
 import { format } from 'date-fns'
-import { getStatusBadgeColor, getPriorityBadgeColor } from './utils'
 import { useProjectDataContext } from './data-context/project-data-provider'
+import { Calendar, Plus, Share2, Download, Bell, HelpCircle, Settings, UserCircle2 } from 'lucide-react'
 
-interface HeaderProps {
-  onSearchChange?: (value: string) => void
-}
+interface HeaderProps {}
 
-export const Header: React.FC<HeaderProps> = ({ onSearchChange }) => {
+export const Header: React.FC<HeaderProps> = ({}) => {
   const { project } = useProjectDataContext()
   const dataContext = useProjectDataContext()
 
@@ -45,29 +40,11 @@ export const Header: React.FC<HeaderProps> = ({ onSearchChange }) => {
                   </span>
                 </div>
               </div>
-
-              {/* <div className="flex items-center gap-2">
-                <Badge className={getStatusBadgeColor(project.status)}>
-                  {project.status.charAt(0).toUpperCase() + project.status.slice(1).replace('-', ' ')}
-                </Badge>
-                <Badge className={getPriorityBadgeColor(priority)}>
-                  {priority.charAt(0).toUpperCase() + priority.slice(1)}
-                </Badge>
-              </div> */}
             </div>
           </div>
         </div>
 
         <div className="flex items-center gap-5">
-          {/* <div className="w-64">
-            <Input
-              placeholder="Search tasks, milestones..."
-              icon={<Search className="size-4" />}
-              clearable
-              onChange={(e) => onSearchChange?.(e.target.value)}
-            />
-          </div> */}
-
           <ButtonGroup variant="outline">
             <Button>
               <Plus strokeWidth={1} className="size-4" />

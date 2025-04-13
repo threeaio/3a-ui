@@ -35,6 +35,7 @@ interface ProjectDataContextType {
 
   // Epic-based selectors
   getTasksByEpic: (epicId: string) => Task[]
+  getTasksByStatusForEpic: (epicId: string, status: string) => Task[]
 
   // Task-based selectors
   getWorkloadsByTask: (taskId: string) => { workload: TaskWorkload; employee: Employee }[]
@@ -95,6 +96,8 @@ export function ProjectDataProvider({
 
     // Epic-based selectors
     const getTasksByEpic = (epicId: string) => tasks.filter((task) => task.epicId === epicId)
+    const getTasksByStatusForEpic = (epicId: string, status: string) =>
+      tasks.filter((task) => task.epicId === epicId && task.status === status)
 
     // Task-based selectors
     const getWorkloadsByTask = (taskId: string) => {
@@ -166,6 +169,7 @@ export function ProjectDataProvider({
     return {
       projectEmployees,
       getTasksByEpic,
+      getTasksByStatusForEpic,
       getWorkloadsByTask,
       getTotalWorkloadForTask,
       getTaskCost,

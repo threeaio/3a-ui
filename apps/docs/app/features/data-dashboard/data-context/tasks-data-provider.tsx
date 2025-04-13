@@ -28,6 +28,7 @@ interface TasksDataContextValue {
   getTaskCost: (taskId: string) => number
   getEpicCost: (epicId: string) => number
   getEpicAssignees: (epicId: string) => Employee[]
+  getTaskTagsByEpic: (epicId: string) => Array<{ tag: string; count: number }>
 
   // Filtering
   epicStatusFilter: EpicStatus | 'all'
@@ -76,7 +77,9 @@ export function TasksDataProvider({ children }: { children: ReactNode }) {
       const epic = allEpics.find((epic) => epic.id === epicId)
       if (!epic) return [] as Employee[]
 
-      return epic.assignedEmployeeIds.map((id) => allEmployees.find((employee) => employee.id === id)).filter((employee) => employee !== undefined) as Employee[]
+      return epic.assignedEmployeeIds
+        .map((id) => allEmployees.find((employee) => employee.id === id))
+        .filter((employee) => employee !== undefined) as Employee[]
     }
   }, [allEpics, allEmployees])
 
@@ -128,6 +131,22 @@ export function TasksDataProvider({ children }: { children: ReactNode }) {
     return orphaned.filter((task) => task.status === taskStatusFilter)
   }, [filteredTasks, taskStatusFilter])
 
+  const getTaskTagsByEpic = useCallback(
+    (epicId: string) => {
+      const epicTasks = getOriginalTasksByEpic(epicId)
+      const tags = new Map<string, number>()
+      epicTasks.forEach((task) => {
+        task.tags.forEach((tag) => {
+          tags.set(tag, (tags.get(tag) || 0) + 1)
+        })
+      })
+      return Array.from(tags.entries())
+        .sort((a, b) => b[1] - a[1])
+        .map(([tag, count]) => ({ tag, count }))
+    },
+    [getOriginalTasksByEpic],
+  )
+
   const value: TasksDataContextValue = {
     epics,
     allTasks,
@@ -139,6 +158,7 @@ export function TasksDataProvider({ children }: { children: ReactNode }) {
     getTaskCost: originalGetTaskCost,
     getEpicCost,
     getEpicAssignees,
+    getTaskTagsByEpic,
     epicStatusFilter,
     setEpicStatusFilter,
     taskStatusFilter,

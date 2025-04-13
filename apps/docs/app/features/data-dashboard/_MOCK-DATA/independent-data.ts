@@ -35,7 +35,7 @@ export const mockEmployeeSkills: EmployeeSkill[] = [
   {
     id: 'skill-3',
     name: 'UI Design',
-    description: 'Creating user interfaces',
+    description: 'Creating user interfaces and design systems',
     relatedExpertiseDomains: ['design', 'ux'],
     level: 3
   },
@@ -69,7 +69,7 @@ export const mockEmployeeSkills: EmployeeSkill[] = [
   },
   {
     id: 'skill-8',
-    name: 'NextJS',
+    name: 'Next.js',
     description: 'React framework for production applications',
     relatedExpertiseDomains: ['frontend'],
     level: 5
@@ -125,16 +125,72 @@ export const mockEmployeeSkills: EmployeeSkill[] = [
   },
   {
     id: 'skill-16',
-    name: 'iOS',
-    description: 'Mobile development for iOS',
+    name: 'iOS Development',
+    description: 'Mobile development for iOS using Swift/SwiftUI',
     relatedExpertiseDomains: ['mobile'],
     level: 4
   },
   {
     id: 'skill-17',
-    name: 'Android',
-    description: 'Mobile development for Android',
+    name: 'Android Development',
+    description: 'Mobile development for Android using Kotlin',
     relatedExpertiseDomains: ['mobile'],
+    level: 4
+  },
+  {
+    id: 'skill-18',
+    name: 'Tailwind CSS',
+    description: 'Utility-first CSS framework',
+    relatedExpertiseDomains: ['frontend', 'design'],
+    level: 5
+  },
+  {
+    id: 'skill-19',
+    name: 'Redux',
+    description: 'State management for React applications',
+    relatedExpertiseDomains: ['frontend'],
+    level: 4
+  },
+  {
+    id: 'skill-20',
+    name: 'Kubernetes',
+    description: 'Container orchestration',
+    relatedExpertiseDomains: ['devops'],
+    level: 4
+  },
+  {
+    id: 'skill-21',
+    name: 'MongoDB',
+    description: 'NoSQL database management',
+    relatedExpertiseDomains: ['backend'],
+    level: 4
+  },
+  {
+    id: 'skill-22',
+    name: 'React Native',
+    description: 'Cross-platform mobile development',
+    relatedExpertiseDomains: ['mobile', 'frontend'],
+    level: 4
+  },
+  {
+    id: 'skill-23',
+    name: 'Accessibility',
+    description: 'Web accessibility (WCAG) implementation',
+    relatedExpertiseDomains: ['frontend', 'ux'],
+    level: 4
+  },
+  {
+    id: 'skill-24',
+    name: 'Performance Optimization',
+    description: 'Web performance and optimization techniques',
+    relatedExpertiseDomains: ['frontend', 'backend'],
+    level: 5
+  },
+  {
+    id: 'skill-25',
+    name: 'Security',
+    description: 'Application security and best practices',
+    relatedExpertiseDomains: ['backend', 'devops'],
     level: 4
   }
 ]

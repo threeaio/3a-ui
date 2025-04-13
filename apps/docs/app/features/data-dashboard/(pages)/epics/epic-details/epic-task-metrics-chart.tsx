@@ -50,7 +50,7 @@ export function EpicTaskMetricsChart({ tasks, getTaskCost }: EpicTaskMetricsChar
         </text>
         <text
           className="tabular-nums font-mono"
-          x={chartWidth - 25}
+          x={chartWidth - 50}
           y={y}
           dy={-10}
           textAnchor="end"
@@ -76,7 +76,7 @@ export function EpicTaskMetricsChart({ tasks, getTaskCost }: EpicTaskMetricsChar
             data={chartData}
             margin={{
               top: 20,
-              right: 20,
+              right: 40,
               left: 20,
               bottom: 20,
             }}

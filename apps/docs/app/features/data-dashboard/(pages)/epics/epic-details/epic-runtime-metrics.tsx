@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
 import { Task, TaskWorkload, Employee } from '@/features/data-dashboard/types/domain'
+import { MetricValue } from '@/ui/core-layout/metric-value'
 
 interface EpicRuntimeMetricsProps {
   tasks: Task[]
@@ -38,19 +39,17 @@ export function EpicRuntimeMetrics({ tasks, getWorkloadsByTask }: EpicRuntimeMet
         <h4 className="text-sm font-semibold mb-2">Runtime</h4>
         <div className="flex-1 flex flex-col justify-between pt-1 pb-4">
           <div>
-            <span className="text-4xl font-extralight font-mono tabular-nums mb-2 mr-0.5">{runtimeDays}</span>
-            <span> days</span>
+            <MetricValue value={runtimeDays.toString()} unit="days" />
           </div>
           <div>
-            <span className="text-4xl font-extralight font-mono tabular-nums mb-2 mr-0.5">{totalHours}h</span>
-            <span> spend</span>
+            <MetricValue value={totalHours.toString()} unit="h" />
           </div>
         </div>
       </div>
       <div className="text-xs text-muted-foreground mt-auto">
         <p>
-          First: {firstActivity ? firstActivity.toLocaleDateString() : '-'} | Last:{' '}
-          {lastActivity ? lastActivity.toLocaleDateString() : '-'}
+          First: {firstActivity ? firstActivity.toLocaleDateString('de-DE') : '-'} | Last:{' '}
+          {lastActivity ? lastActivity.toLocaleDateString('de-DE') : '-'}
         </p>
       </div>
     </div>

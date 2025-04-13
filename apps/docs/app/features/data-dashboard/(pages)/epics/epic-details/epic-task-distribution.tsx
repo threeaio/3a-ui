@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import { Task, TaskType, TaskStatus } from '@/features/data-dashboard/types/domain'
 import { STATUS_COLORS, STATUS_ORDER, getTaskTypeIcon } from '@/features/data-dashboard/utils'
 import { cn } from '@3a.solutions/ui/lib/utils'
+import { MetricValue } from '@/ui/core-layout/metric-value'
 
 const TASK_TYPES: TaskType[] = ['feature', 'bugfix', 'refactoring', 'maintenance', 'design', 'change-request']
 const ALL_STATUSES = Object.keys(STATUS_ORDER) as TaskStatus[]
@@ -119,15 +120,11 @@ export function EpicTaskDistribution({ tasks }: EpicTaskDistributionProps) {
                     <TypeIcon.icon className="size-4" strokeWidth={1.5} />
                   </div>
                   <div className="flex items-baseline gap-2">
-                    <span
-                      className={cn(
-                        item.count === 0
-                          ? 'text-base font-light font-mono tabular-nums text-muted-foreground'
-                          : 'text-2xl font-light font-mono tabular-nums',
-                      )}
-                    >
-                      {item.count}
-                    </span>
+                    <MetricValue
+                      value={item.count.toString()}
+                      variant="small"
+                      className={item.count === 0 ? 'text-muted-foreground' : undefined}
+                    />
                     <span className="text-sm text-muted-foreground capitalize">{TypeIcon.label}</span>
                   </div>
                   <p className="text-xs text-muted-foreground">{item.percentage.toFixed(0)}% of tasks</p>
@@ -165,15 +162,11 @@ export function EpicTaskDistribution({ tasks }: EpicTaskDistributionProps) {
                     )}
                   />
                   <div className="flex items-baseline gap-2">
-                    <span
-                      className={cn(
-                        item.count === 0
-                          ? 'text-base font-light font-mono tabular-nums text-muted-foreground'
-                          : 'text-2xl font-light font-mono tabular-nums',
-                      )}
-                    >
-                      {item.count}
-                    </span>
+                    <MetricValue
+                      value={item.count.toString()}
+                      variant="small"
+                      className={item.count === 0 ? 'text-muted-foreground' : undefined}
+                    />
                     <span className="text-sm text-muted-foreground capitalize">{item.status}</span>
                   </div>
                   <p className="text-xs text-muted-foreground">{item.percentage.toFixed(0)}% of tasks</p>

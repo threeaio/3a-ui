@@ -6,26 +6,35 @@ import { EpicTaskGroup } from './epic-task-group'
 import { TaskItem } from './task-details/task'
 import { useTasksData } from '../../data-context/tasks-data-provider'
 import { EpicsTasksHeader } from './epic-tasks-header'
+import { EpicTaskGroupCards } from '@/features/data-dashboard/(pages)/epics/epic-task-group-cards'
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 
 function TasksPageContent() {
   const { epics, getTasksByEpic, orphanedTasks } = useTasksData()
+  const [parent] = useAutoAnimate(/* optional config */)
 
   return (
     <main className="flex-1 bg-background">
-      <div className="flex flex-col h-full px-5 pt-5 gap-5 pb-5">
+      <EpicsTasksHeader />
+      <div className="flex flex-col h-full gap-5 p-5">
         {/* Filters and sorting */}
-        <EpicsTasksHeader />
+
+        {/* <div className="h-20 flex items-center justify-between">
+          <h2 className=" font-semibold leading-none">Epics</h2>
+        </div> */}
 
         {/* Epic groups */}
-        {epics.map((epic) => (
-          <EpicTaskGroup key={epic.id} epic={epic} tasks={getTasksByEpic(epic.id)} />
-        ))}
+        <div ref={parent} className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 auto-rows-fr">
+          {epics.map((epic) => (
+            <EpicTaskGroupCards className="h-120" key={epic.id} epic={epic} tasks={getTasksByEpic(epic.id)} />
+          ))}
+        </div>
 
         {/* Orphaned tasks */}
         {orphanedTasks.length > 0 && (
           <Card>
-            <CardHeader className="border-b">
-              <CardTitle className="font-normal my-5">Other Tasks</CardTitle>
+            <CardHeader className="border-b !pb-2.5">
+              <CardTitle className="font-normal my-2.5">Other Tasks</CardTitle>
             </CardHeader>
             <CardContent>
               <Accordion type="single" collapsible>

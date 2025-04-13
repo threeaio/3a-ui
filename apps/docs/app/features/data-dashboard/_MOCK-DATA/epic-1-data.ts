@@ -1,5 +1,6 @@
 import { Epic, Task, TaskWorkload } from '../types/domain'
 import { generateDayParts, generateDailyWorkload, generateDatesBetween } from './workload-utils'
+import { getDomainsFromTags } from './tag-to-domain-mapping'
 
 export const epic1: Epic = {
   id: 'epic-1',
@@ -11,49 +12,52 @@ export const epic1: Epic = {
   assignedEmployeeIds: ['emp-1']
 }
 
+// Helper function to create a task with mapped domains
+const createTaskWithMappedDomains = (task: Omit<Task, 'relatedExpertiseDomains'> & { tags: string[] }): Task => ({
+  ...task,
+  relatedExpertiseDomains: getDomainsFromTags(task.tags)
+})
+
 export const epic1Tasks: Task[] = [
-  {
+  createTaskWithMappedDomains({
     id: 'task-1',
     projectId: 'proj-1',
     epicId: 'epic-1',
     name: 'Design Product Cards',
     description: 'Create modern, responsive product card components',
-    relatedExpertiseDomains: ['frontend', 'design', 'qa'],
-    tags: ['ui', 'responsive', 'components'],
+    tags: ['ui-component', 'responsive-design', 'design-system', 'shadcn-ui', 'tailwind'],
     status: 'in-progress',
     lastActive: '2025-03-28T10:15:22.000Z',
     type: 'feature',
     priority: 'high',
     assignedEmployeeIds: ['emp-1', 'emp-5', 'emp-8']
-  },
-  {
+  }),
+  createTaskWithMappedDomains({
     id: 'task-6',
     projectId: 'proj-1',
     epicId: 'epic-1',
     name: 'Optimize Image Loading',
     description: 'Implement lazy loading and optimize image assets',
-    relatedExpertiseDomains: ['frontend', 'qa'],
-    tags: ['performance', 'optimization', 'images'],
+    tags: ['performance', 'image-optimization', 'lazy-loading', 'next-image', 'web-vitals'],
     status: 'completed',
     lastActive: '2025-03-25T09:30:15.000Z',
     type: 'refactoring',
     priority: 'medium',
     assignedEmployeeIds: ['emp-1', 'emp-4', 'emp-8']
-  },
-  {
+  }),
+  createTaskWithMappedDomains({
     id: 'task-9',
     projectId: 'proj-1',
     epicId: 'epic-1',
     name: 'Fix Mobile Navigation Menu',
     description: 'Repair issues with the mobile hamburger menu',
-    relatedExpertiseDomains: ['frontend', 'qa'],
-    tags: ['bugfix', 'mobile', 'navigation'],
+    tags: ['bugfix', 'mobile-responsive', 'navigation', 'accessibility', 'user-experience'],
     status: 'in-progress',
     lastActive: '2025-03-28T16:15:00.000Z',
     type: 'bugfix',
     priority: 'high',
     assignedEmployeeIds: ['emp-1', 'emp-4', 'emp-8']
-  }
+  })
 ]
 
 const generateEpic1Workloads = (): TaskWorkload[] => {

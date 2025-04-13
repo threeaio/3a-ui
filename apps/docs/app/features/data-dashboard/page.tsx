@@ -11,7 +11,9 @@ export default function DataDashboardPage() {
     <main className="flex-1 bg-background">
       <div className="flex flex-col h-full p-5 gap-5">
         <Metrics />
-        <TaskStatusWidget className="h-40" />
+        <div className="py-10">
+          <TaskStatusWidget size="lg" />
+        </div>
         <div className="grid grid-cols-3 gap-5 min-h-0 flex-1">
           <DomainTaskStatusStacked />
           <DomainMetricsBar />

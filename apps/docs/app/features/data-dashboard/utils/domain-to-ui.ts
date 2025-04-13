@@ -1,4 +1,6 @@
 import { ProjectStatus, TaskStatus, EpicStatus, MilestoneStatus, TaskPriority } from '../types/domain'
+import { mapTagToDomains } from '../_MOCK-DATA/tag-to-domain-mapping'
+import { EmployeeSkill, ExpertiseDomain } from '../types/domain'
 
 export const STATUS_ORDER: Record<TaskStatus, number> = {
   planned: 0,
@@ -50,7 +52,7 @@ export const getPriorityBadgeColor = (priority: TaskPriority): string => {
 
 
 import { Task } from '@/features/data-dashboard/types/domain'
-import { BugIcon, BookmarkCheck, WrenchIcon, PencilRulerIcon, RefreshCwIcon, FileEditIcon, CheckIcon, ArrowUpRightIcon, TimerIcon } from 'lucide-react'
+import { BugIcon, BookmarkCheck, WrenchIcon, PencilRulerIcon, RefreshCwIcon, FileEditIcon, CheckIcon, ArrowUpRightIcon, TimerIcon, Brain } from 'lucide-react'
 
 export const getTaskTypeIcon = (type: Task['type']) => {
   switch (type) {
@@ -76,7 +78,7 @@ export const getTaskStatusIcon = (status: Task['status']) => {
     case 'in-progress':
       return { icon: ArrowUpRightIcon, label: 'In Progress', className: '' }
     default:
-      return { icon: TimerIcon, label: 'Pending' }
+      return { icon: Brain, label: 'Pending' }
   }
 }
 
@@ -89,4 +91,70 @@ export const getPriorityArrows = (priority: Task['priority']) => {
     default:
       return { count: 1, label: 'Low Priority' }
   }
+}
+
+type DomainColorScheme = {
+  bg: string
+  text: string
+  border: string
+}
+
+type DomainKey = ExpertiseDomain
+
+const DOMAIN_COLORS: Record<DomainKey, DomainColorScheme> = {
+  'frontend': { bg: 'bg-blue-500', text: 'text-white', border: 'border-blue-500' },
+  'backend': { bg: 'bg-green-500', text: 'text-white', border: 'border-green-500' },
+  'design': { bg: 'bg-purple-500', text: 'text-white', border: 'border-purple-500' },
+  'devops': { bg: 'bg-orange-500', text: 'text-white', border: 'border-orange-500' },
+  'qa': { bg: 'bg-yellow-500', text: 'text-white', border: 'border-yellow-500' },
+  'mobile': { bg: 'bg-pink-500', text: 'text-white', border: 'border-pink-500' },
+  'ux': { bg: 'bg-indigo-500', text: 'text-white', border: 'border-indigo-500' },
+  'pm': { bg: 'bg-cyan-500', text: 'text-white', border: 'border-cyan-500' },
+  'other': { bg: 'bg-gray-500', text: 'text-white', border: 'border-gray-500' },
+}
+
+const DOMAIN_COLORS_WITH_OPACITY: Record<DomainKey, DomainColorScheme> = {
+  'frontend': { bg: 'bg-blue-500/20', text: 'text-foreground', border: 'border-blue-500' },
+  'backend': { bg: 'bg-green-500/20', text: 'text-foreground', border: 'border-green-500' },
+  'design': { bg: 'bg-purple-500/20', text: 'text-foreground', border: 'border-purple-500' },
+  'devops': { bg: 'bg-orange-500/20', text: 'text-foreground', border: 'border-orange-500' },
+  'qa': { bg: 'bg-yellow-500/20', text: 'text-foreground', border: 'border-yellow-500' },
+  'mobile': { bg: 'bg-pink-500/20', text: 'text-foreground', border: 'border-pink-500' },
+  'ux': { bg: 'bg-indigo-500/20', text: 'text-foreground', border: 'border-indigo-500' },
+  'pm': { bg: 'bg-cyan-500/20', text: 'text-foreground', border: 'border-cyan-500' },
+  'other': { bg: 'bg-gray-500/20', text: 'text-foreground', border: 'border-gray-500' },
+}
+
+const getColorScheme = (domain: string, withOpacity = false): DomainColorScheme => {
+  const key = domain.toLowerCase() as DomainKey
+  const colors = withOpacity ? DOMAIN_COLORS_WITH_OPACITY : DOMAIN_COLORS
+  return colors[key] || colors.other
+}
+
+export const getDomainBadgeColor = (domain: string): string => {
+  const colors = getColorScheme(domain)
+  return `${colors.bg} ${colors.text}`
+}
+
+export const getTagBadgeColor = (tag: string): string => {
+  // Get the primary domain for this tag
+  const domains = mapTagToDomains(tag)
+  const primaryDomain = domains[0] || 'other'
+  
+  // Get the color scheme for this domain with opacity
+  const colors = getColorScheme(primaryDomain, true)
+  
+  // Return the classes
+  return `${colors.bg} ${colors.text} border ${colors.border}`
+}
+
+export const getSkillBadgeColor = (skill: EmployeeSkill): string => {
+  // Use the first related domain for the color scheme
+  const primaryDomain = skill.relatedExpertiseDomains[0] || 'other'
+  
+  // Get the color scheme with opacity
+  const colors = getColorScheme(primaryDomain, true)
+  
+  // Return the classes - same style as tags for consistency
+  return `${colors.bg} ${colors.text} border ${colors.border}`
 } 

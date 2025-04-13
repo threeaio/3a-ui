@@ -4,8 +4,8 @@ import { Task } from '@/features/data-dashboard/types/domain'
 import { Badge } from '@3a.solutions/ui/badge'
 import { useTasksData } from '../../../data-context/tasks-data-provider'
 import { Timer, CreditCard } from 'lucide-react'
-import { TaskAnalytics } from './task-analytics'
-import { TaskAssignees } from '@/features/data-dashboard/(pages)/tasks/task-details/task-assignees'
+import { TaskAssignees } from '@/features/data-dashboard/(pages)/epics/task-details/task-assignees'
+import { getDomainBadgeColor, getTagBadgeColor } from '@/features/data-dashboard/utils/domain-to-ui'
 
 export function TaskCard({ task }: { task: Task }) {
   const { getWorkloadsByTask, getTotalWorkloadForTask, getTaskCost } = useTasksData()
@@ -47,7 +47,7 @@ export function TaskCard({ task }: { task: Task }) {
   }
 
   return (
-    <div className="flex flex-col gap-5 p-5">
+    <div className="flex flex-col gap-5 py-5">
       {task.description && <p className="text-muted-foreground text-sm">{task.description}</p>}
 
       {/* <TaskAnalytics task={task} /> */}
@@ -64,7 +64,7 @@ export function TaskCard({ task }: { task: Task }) {
                 <p className="text-xs text-muted-foreground">Domains:</p>
                 <div className="flex flex-wrap gap-2">
                   {task.relatedExpertiseDomains.map((domain) => (
-                    <Badge key={domain} variant="default">
+                    <Badge key={domain} variant="default" className={getDomainBadgeColor(domain)}>
                       {domain}
                     </Badge>
                   ))}
@@ -79,7 +79,7 @@ export function TaskCard({ task }: { task: Task }) {
                 <p className="text-xs text-muted-foreground">Tags:</p>
                 <div className="flex flex-wrap gap-2">
                   {task.tags.map((tag) => (
-                    <Badge key={tag} variant="outline">
+                    <Badge key={tag} variant="outline" className={getTagBadgeColor(tag)}>
                       {tag}
                     </Badge>
                   ))}

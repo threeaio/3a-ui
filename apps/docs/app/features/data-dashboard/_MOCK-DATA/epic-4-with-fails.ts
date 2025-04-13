@@ -1,5 +1,6 @@
 import { Epic, Task, TaskWorkload } from '../types/domain'
 import { generateDayParts, generateDailyWorkload, generateDatesBetween } from './workload-utils'
+import { getDomainsFromTags } from './tag-to-domain-mapping'
 
 export const epic4: Epic = {
   id: 'epic-4',
@@ -11,77 +12,78 @@ export const epic4: Epic = {
   budget: 35000 // Intentionally low budget that will be exceeded
 }
 
+// Helper function to create a task with mapped domains
+const createTaskWithMappedDomains = (task: Omit<Task, 'relatedExpertiseDomains'> & { tags: string[] }): Task => ({
+  ...task,
+  relatedExpertiseDomains: getDomainsFromTags(task.tags)
+})
+
 export const epic4Tasks: Task[] = [
-  {
+  createTaskWithMappedDomains({
     id: 'task-17',
     projectId: 'proj-1',
     epicId: 'epic-4',
     name: 'Mobile API Development',
     description: 'Develop REST API endpoints for mobile app integration',
-    relatedExpertiseDomains: ['backend', 'qa'],
-    tags: ['api', 'mobile', 'feature'],
+    tags: ['api-development', 'rest-api', 'mobile-integration', 'api-documentation', 'versioning', 'swagger'],
     status: 'in-progress',
     lastActive: '2025-03-28T09:15:00.000Z',
     assignedEmployeeIds: [],
     type: 'feature',
     priority: 'high'
-  },
-  {
+  }),
+  createTaskWithMappedDomains({
     id: 'task-18',
     projectId: 'proj-1',
     epicId: 'epic-4',
     name: 'Push Notification System',
     description: 'Implement push notification service for mobile app',
-    relatedExpertiseDomains: ['backend', 'mobile', 'qa'],
-    tags: ['notifications', 'mobile', 'feature'],
+    tags: ['notifications', 'firebase-fcm', 'push-notifications', 'real-time', 'mobile-integration', 'background-services'],
     status: 'in-progress',
     lastActive: '2025-03-29T11:20:00.000Z',
     type: 'feature',
     priority: 'high',
     assignedEmployeeIds: ['emp-6', 'emp-8']
-  },
-  {
+  }),
+  createTaskWithMappedDomains({
     id: 'task-19',
     projectId: 'proj-1',
     epicId: 'epic-4',
     name: 'Mobile Analytics Integration',
     description: 'Set up analytics tracking for mobile app usage',
-    relatedExpertiseDomains: ['mobile'],
-    tags: ['analytics', 'mobile', 'monitoring'],
+    tags: ['analytics', 'mobile-tracking', 'user-behavior', 'metrics', 'firebase-analytics', 'event-tracking'],
     status: 'planned', 
     lastActive: '2025-03-25T14:30:00.000Z',
     type: 'feature',
     priority: 'medium',
     assignedEmployeeIds: []
-  },
-  {
+  }),
+  createTaskWithMappedDomains({
     id: 'task-20',
     projectId: 'proj-1',
     epicId: 'epic-4',
     name: 'Offline Mode Implementation',
     description: 'Develop offline functionality for mobile app',
-    relatedExpertiseDomains: ['mobile', 'frontend'],
-    tags: ['offline', 'mobile', 'feature'],
+    tags: ['offline-first', 'data-sync', 'local-storage', 'conflict-resolution', 'mobile-ux', 'service-worker'],
     status: 'planned', 
     lastActive: '2025-03-26T16:45:00.000Z',
     type: 'feature',
     priority: 'medium',
     assignedEmployeeIds: []
-  },
-  {
+  }),
+  createTaskWithMappedDomains({
     id: 'task-21',
     projectId: 'proj-1',
     epicId: 'epic-4',
     name: 'Mobile Payment SDK Integration',
     description: 'Integrate mobile payment SDK for in-app purchases',
-    relatedExpertiseDomains: ['mobile', 'backend', 'qa'],
-    tags: ['payments', 'mobile', 'security'],
+    tags: ['mobile-payments', 'stripe-sdk', 'apple-pay', 'google-pay', 'payment-security', 'in-app-purchases'],
     status: 'in-progress',
     lastActive: '2025-03-30T10:00:00.000Z',
     type: 'feature',
     priority: 'critical',
     assignedEmployeeIds: ['emp-6', 'emp-4', 'emp-8']
-  }
+  })
 ]
 
 const generateEpic4Workloads = (): TaskWorkload[] => {

@@ -1,7 +1,9 @@
 import { useMemo } from 'react'
 import { Task, TaskWorkload, Employee, ExpertiseDomain } from '@/features/data-dashboard/types/domain'
 import { LineChart, Line, ResponsiveContainer, Area } from 'recharts'
-
+import { MetricValue } from '@/ui/core-layout/metric-value'
+import { cn } from '@3a.solutions/ui/lib/utils'
+import { getDomainBadgeColor } from '@/features/data-dashboard/utils'
 interface EpicDomainMetricsProps {
   tasks: Task[]
   getWorkloadsByTask: (taskId: string) => Array<{ workload: TaskWorkload; employee: Employee }>
@@ -77,11 +79,12 @@ export function EpicDomainMetrics({ tasks, getWorkloadsByTask, employees }: Epic
         {domainMetrics.map((metric) => (
           <div key={metric.domain} className="px-5 flex flex-col min-h-[200px]">
             <div className="flex-1">
-              <h4 className="text-sm font-semibold mb-3 capitalize">{metric.domain}</h4>
+              <h4 className="text-sm font-semibold mb-3 capitalize flex items-center">
+                <span className={cn(getDomainBadgeColor(metric.domain), 'size-3 rounded-full inline-block mr-2')} />
+                <span>{metric.domain}</span>
+              </h4>
               <div>
-                <p className="text-4xl font-extralight font-mono tabular-nums">
-                  {metric.workloadPercentage.toFixed(0)}%
-                </p>
+                <MetricValue value={metric.workloadPercentage.toFixed(0)} unit="%" />
                 <p className="text-xs text-muted-foreground">of workload</p>
               </div>
             </div>

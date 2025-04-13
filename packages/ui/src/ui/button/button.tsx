@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Slot } from '@radix-ui/react-slot'
 import { cva, type VariantProps } from 'class-variance-authority'
+import { Sparkles } from 'lucide-react'
 
 import { cn } from '@3a.solutions/ui/lib/utils'
 
@@ -19,6 +20,7 @@ const buttonVariants = cva(
         secondary: 'bg-secondary text-secondary-foreground  hover:bg-secondary/80',
         ghost: 'hover:bg-accent hover:text-accent-foreground',
         link: 'text-default underline-offset-4 underline hover:no-underline',
+        ai: 'relative text-foreground before:absolute before:inset-[2px] before:rounded-[calc(var(--radius)-4px)] before:bg-card bg-gradient-to-r from-chart-1 via-chart-4 to-chart-2 animate-gradient-x ',
       },
       size: {
         default: 'h-9 px-4 py-2 has-[>svg]:pl-3 ',
@@ -51,3 +53,18 @@ function Button({
 }
 
 export { Button, buttonVariants }
+
+type AIButtonProps = Omit<React.ComponentProps<typeof Button>, 'variant'> & {
+  sparklesClassName?: string
+}
+
+export function AIButton({ children, className, sparklesClassName, ...props }: AIButtonProps) {
+  return (
+    <Button variant="ai" className={className} {...props}>
+      <span className="relative flex items-center gap-2">
+        <Sparkles className={cn('text-purple-500', sparklesClassName)} />
+        {children}
+      </span>
+    </Button>
+  )
+}

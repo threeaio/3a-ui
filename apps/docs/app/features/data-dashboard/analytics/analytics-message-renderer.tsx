@@ -164,14 +164,14 @@ export function renderEpicMessage(
           {unassignedInProgress.length > 0 && (
             <>
               {renderEpicTaskListMessage('NoAssigneeTaskInsight', unassignedInProgress)}
-              {highPriorityUnassigned.length > 0 && <br />}
+              {highPriorityUnassigned.length > 0}
             </>
           )}
           {highPriorityUnassigned.length > 0 &&
             renderEpicTaskListMessage('HighPriorityNoAssigneeTaskInsight', highPriorityUnassigned)}
           {staleTasks.length > 0 && (
             <>
-              {(unassignedInProgress.length > 0 || highPriorityUnassigned.length > 0) && <br />}
+              {unassignedInProgress.length > 0 || highPriorityUnassigned.length > 0}
               {renderEpicTaskListMessage('StaleTaskInsight', staleTasks)}
             </>
           )}
@@ -227,7 +227,7 @@ export function renderProjectMessage(
       return (
         <span className={ALERT_BASE_CLASS}>
           {data.affectedEpics.map((epic, index) => (
-            <div key={index} className="flex flex-col mt-2">
+            <div key={index} className="flex flex-col mt-1">
               <span className="text-foreground">
                 {epic.epicName} ({epic.type === 'EpicBudgetInsight' && 'Budget'}
                 {epic.type === 'EpicTaskIssuesInsight' && 'Task issues'})

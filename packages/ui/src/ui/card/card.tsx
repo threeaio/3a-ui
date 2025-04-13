@@ -6,7 +6,10 @@ function Card({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
       data-slot="card"
-      className={cn('bg-card text-card-foreground flex flex-col gap-5 rounded-lg py-5', className)}
+      className={cn(
+        'bg-card border text-card-foreground bg-gradient-to-b   from-card to-[color-mix(in_srgb,var(--background)_100%,var(--card))] flex flex-col gap-5 rounded-lg py-5 shadow-lg',
+        className,
+      )}
       {...props}
     />
   )
@@ -26,7 +29,7 @@ function CardHeader({ className, ...props }: React.ComponentProps<'div'>) {
 }
 
 function CardTitle({ className, ...props }: React.ComponentProps<'div'>) {
-  return <div data-slot="card-title" className={cn('leading-none text-sm font-normal', className)} {...props} />
+  return <div data-slot="card-title" className={cn('leading-none text-sm font-semibold', className)} {...props} />
 }
 
 function CardDescription({ className, ...props }: React.ComponentProps<'div'>) {
@@ -48,7 +51,13 @@ function CardContent({ className, ...props }: React.ComponentProps<'div'>) {
 }
 
 function CardFooter({ className, ...props }: React.ComponentProps<'div'>) {
-  return <div data-slot="card-footer" className={cn('flex items-center px-5 [.border-t]:pt-5', className)} {...props} />
+  return (
+    <div
+      data-slot="card-footer"
+      className={cn('flex items-center -mb-5 pb-5 rounded-b-lg bg-card/50 px-5 [.border-t]:pt-5', className)}
+      {...props}
+    />
+  )
 }
 
 export { Card, CardHeader, CardFooter, CardTitle, CardAction, CardDescription, CardContent }

@@ -1,5 +1,6 @@
 import { Epic, Task, TaskWorkload } from '../types/domain'
 import { generateDayParts, generateDailyWorkload, generateDatesBetween } from './workload-utils'
+import { getDomainsFromTags } from './tag-to-domain-mapping'
 
 export const epic3: Epic = {
   id: 'epic-3',
@@ -11,133 +12,130 @@ export const epic3: Epic = {
   assignedEmployeeIds: ['emp-6']
 }
 
+// Helper function to create a task with mapped domains
+const createTaskWithMappedDomains = (task: Omit<Task, 'relatedExpertiseDomains'> & { tags: string[] }): Task => ({
+  ...task,
+  relatedExpertiseDomains: getDomainsFromTags(task.tags)
+})
+
 export const epic3Tasks: Task[] = [
-  {
+  createTaskWithMappedDomains({
     id: 'task-5',
     projectId: 'proj-1',
     epicId: 'epic-3',
     name: 'Implement Product Filtering',
     description: 'Add advanced filtering options for product listings',
-    relatedExpertiseDomains: ['frontend', 'backend', 'qa'],
-    tags: ['feature', 'search', 'ui'],
+    tags: ['search', 'filtering', 'query-params', 'state-management', 'url-sync', 'performance-optimization'],
     status: 'in-progress',
     lastActive: '2025-03-27T15:10:22.000Z',
     type: 'feature',
     priority: 'medium',
     assignedEmployeeIds: ['emp-4', 'emp-6', 'emp-8']
-  },
-  {
+  }),
+  createTaskWithMappedDomains({
     id: 'task-8',
     projectId: 'proj-1',
     epicId: 'epic-3',
     name: 'Implement Order Tracking',
     description: 'Create order history and tracking functionality',
-    relatedExpertiseDomains: ['frontend', 'backend', 'qa'],
-    tags: ['orders', 'tracking', 'feature'],
+    tags: ['order-management', 'real-time-updates', 'notifications', 'data-visualization', 'user-dashboard'],
     status: 'planned',
     lastActive: '2025-03-24T11:45:22.000Z',
     type: 'feature',
     priority: 'high',
     assignedEmployeeIds: ['emp-4', 'emp-6', 'emp-8']
-  },
-  {
+  }),
+  createTaskWithMappedDomains({
     id: 'task-10',
     projectId: 'proj-1',
     epicId: 'epic-3',
     name: 'Implement Cart Persistence',
     description: 'Save shopping cart items across sessions',
-    relatedExpertiseDomains: ['frontend', 'backend', 'qa'],
-    tags: ['cart', 'persistence', 'feature'],
+    tags: ['cart', 'local-storage', 'session-management', 'data-sync', 'state-persistence', 'offline-support'],
     status: 'completed',
     lastActive: '2025-03-20T11:30:45.000Z',
     type: 'feature',
     priority: 'high',
     assignedEmployeeIds: ['emp-4', 'emp-6', 'emp-8']
-  },
-  {
+  }),
+  createTaskWithMappedDomains({
     id: 'task-11',
     projectId: 'proj-1',
     epicId: 'epic-3',
     name: 'Create Checkout Summary Component',
     description: 'Design and implement the checkout summary sidebar',
-    relatedExpertiseDomains: ['frontend', 'design', 'qa'],
-    tags: ['checkout', 'ui', 'component'],
+    tags: ['ui-component', 'checkout-flow', 'responsive-design', 'real-time-updates', 'price-calculation', 'shadcn-ui'],
     status: 'in-progress',
     lastActive: '2025-03-29T10:15:00.000Z',
     type: 'feature',
     priority: 'high',
     assignedEmployeeIds: ['emp-1', 'emp-5', 'emp-8']
-  },
-  {
+  }),
+  createTaskWithMappedDomains({
     id: 'task-12',
     projectId: 'proj-1',
     epicId: 'epic-3',
     name: 'Add Address Validation',
     description: 'Integrate address validation service for shipping info',
-    relatedExpertiseDomains: ['backend', 'frontend', 'qa'],
-    tags: ['validation', 'checkout', 'shipping'],
+    tags: ['validation', 'address-verification', 'form-handling', 'api-integration', 'error-handling', 'user-feedback'],
     status: 'planned',
     lastActive: '2025-03-26T09:25:30.000Z',
     type: 'feature',
     priority: 'medium',
     assignedEmployeeIds: ['emp-4', 'emp-6', 'emp-8']
-  },
-  {
+  }),
+  createTaskWithMappedDomains({
     id: 'task-13',
     projectId: 'proj-1',
     epicId: 'epic-3',
     name: 'Fix Cart Total Calculation',
     description: 'Fix incorrect total calculation when multiple discounts are applied',
-    relatedExpertiseDomains: ['frontend', 'qa'],
-    tags: ['bug', 'cart', 'pricing'],
+    tags: ['bugfix', 'price-calculation', 'discount-handling', 'unit-testing', 'edge-cases', 'regression-testing'],
     status: 'in-progress',
     lastActive: '2025-03-28T14:30:00.000Z',
     type: 'bugfix',
     priority: 'critical',
     assignedEmployeeIds: ['emp-4', 'emp-8']
-  },
-  {
+  }),
+  createTaskWithMappedDomains({
     id: 'task-14',
     projectId: 'proj-1',
     epicId: 'epic-3',
     name: 'Address Form Validation Issue',
     description: 'Fix validation error preventing valid international addresses from being submitted',
-    relatedExpertiseDomains: ['frontend', 'qa'],
-    tags: ['bug', 'validation', 'shipping'],
+    tags: ['bugfix', 'form-validation', 'internationalization', 'user-experience', 'error-handling', 'accessibility'],
     status: 'planned',
     lastActive: '2025-03-27T16:45:00.000Z',
     type: 'bugfix',
     priority: 'high',
     assignedEmployeeIds: ['emp-4', 'emp-8']
-  },
-  {
+  }),
+  createTaskWithMappedDomains({
     id: 'task-15',
     projectId: 'proj-1',
     epicId: 'epic-3',
     name: 'Fix Payment Processing Timeout',
     description: 'Resolve timeout issues during payment processing on slow connections',
-    relatedExpertiseDomains: ['backend', 'qa'],
-    tags: ['bug', 'payment', 'performance'],
+    tags: ['bugfix', 'payment-processing', 'error-handling', 'timeout-handling', 'network-resilience', 'user-feedback'],
     status: 'planned',
     lastActive: '2025-03-26T11:20:00.000Z',
     type: 'bugfix',
     priority: 'critical',
     assignedEmployeeIds: ['emp-6', 'emp-8']
-  },
-  {
+  }),
+  createTaskWithMappedDomains({
     id: 'task-16',
     projectId: 'proj-1',
     epicId: 'epic-3',
     name: 'Fix Order Confirmation Email',
     description: 'Fix missing order details in confirmation emails',
-    relatedExpertiseDomains: ['backend', 'qa'],
-    tags: ['bug', 'email', 'notification'],
+    tags: ['bugfix', 'email-templates', 'order-processing', 'transactional-email', 'data-validation', 'customer-communication'],
     status: 'in-progress',
     lastActive: '2025-03-25T09:15:00.000Z',
     type: 'bugfix',
     priority: 'high',
     assignedEmployeeIds: ['emp-6', 'emp-8']
-  }
+  })
 ]
 
 const generateEpic3Workloads = (): TaskWorkload[] => {
