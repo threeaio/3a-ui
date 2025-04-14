@@ -5,7 +5,7 @@ import * as ProgressPrimitive from '@radix-ui/react-progress'
 
 import { cn } from '@3a.solutions/ui/lib/utils'
 
-function Progress({ className, value, ...props }: React.ComponentProps<typeof ProgressPrimitive.Root>) {
+function Progress({ className, classNameIndicator, value, ...props }: React.ComponentProps<typeof ProgressPrimitive.Root> & { classNameIndicator?: string }) {
   return (
     <ProgressPrimitive.Root
       data-slot="progress"
@@ -14,7 +14,7 @@ function Progress({ className, value, ...props }: React.ComponentProps<typeof Pr
     >
       <ProgressPrimitive.Indicator
         data-slot="progress-indicator"
-        className="bg-default h-full w-full flex-1 transition-all"
+        className={cn('bg-default h-full w-full flex-1 transition-all', classNameIndicator)}
         style={{ transform: `translateX(-${100 - (value || 0)}%)` }}
       />
     </ProgressPrimitive.Root>

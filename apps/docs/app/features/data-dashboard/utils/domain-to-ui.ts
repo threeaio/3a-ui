@@ -94,6 +94,7 @@ export const getPriorityArrows = (priority: Task['priority']) => {
 }
 
 type DomainColorScheme = {
+  fill: string
   bg: string
   text: string
   border: string
@@ -101,28 +102,28 @@ type DomainColorScheme = {
 
 type DomainKey = ExpertiseDomain
 
-const DOMAIN_COLORS: Record<DomainKey, DomainColorScheme> = {
-  'frontend': { bg: 'bg-blue-500', text: 'text-white', border: 'border-blue-500' },
-  'backend': { bg: 'bg-green-500', text: 'text-white', border: 'border-green-500' },
-  'design': { bg: 'bg-purple-500', text: 'text-white', border: 'border-purple-500' },
-  'devops': { bg: 'bg-orange-500', text: 'text-white', border: 'border-orange-500' },
-  'qa': { bg: 'bg-yellow-500', text: 'text-white', border: 'border-yellow-500' },
-  'mobile': { bg: 'bg-pink-500', text: 'text-white', border: 'border-pink-500' },
-  'ux': { bg: 'bg-indigo-500', text: 'text-white', border: 'border-indigo-500' },
-  'pm': { bg: 'bg-cyan-500', text: 'text-white', border: 'border-cyan-500' },
-  'other': { bg: 'bg-gray-500', text: 'text-white', border: 'border-gray-500' },
+export const DOMAIN_COLORS: Record<DomainKey, DomainColorScheme> = {
+  'frontend': { fill: 'fill-blue-500', bg: 'bg-blue-500', text: 'text-white', border: 'border-blue-500' },
+  'backend': { fill: 'fill-green-500', bg: 'bg-green-500', text: 'text-white', border: 'border-green-500' },
+  'design': { fill: 'fill-purple-500', bg: 'bg-purple-500', text: 'text-white', border: 'border-purple-500' },
+  'devops': { fill: 'fill-orange-500', bg: 'bg-orange-500', text: 'text-white', border: 'border-orange-500' },
+  'qa': { fill: 'fill-yellow-500', bg: 'bg-yellow-500', text: 'text-white', border: 'border-yellow-500' },
+  'mobile': { fill: 'fill-pink-500', bg: 'bg-pink-500', text: 'text-white', border: 'border-pink-500' },
+  'ux': { fill: 'fill-indigo-500', bg: 'bg-indigo-500', text: 'text-white', border: 'border-indigo-500' },
+  'pm': { fill: 'fill-cyan-500', bg: 'bg-cyan-500', text: 'text-white', border: 'border-cyan-500' },
+  'other': { fill: 'fill-gray-500', bg: 'bg-gray-500', text: 'text-white', border: 'border-gray-500' },
 }
 
-const DOMAIN_COLORS_WITH_OPACITY: Record<DomainKey, DomainColorScheme> = {
-  'frontend': { bg: 'bg-blue-500/20', text: 'text-foreground', border: 'border-blue-500' },
-  'backend': { bg: 'bg-green-500/20', text: 'text-foreground', border: 'border-green-500' },
-  'design': { bg: 'bg-purple-500/20', text: 'text-foreground', border: 'border-purple-500' },
-  'devops': { bg: 'bg-orange-500/20', text: 'text-foreground', border: 'border-orange-500' },
-  'qa': { bg: 'bg-yellow-500/20', text: 'text-foreground', border: 'border-yellow-500' },
-  'mobile': { bg: 'bg-pink-500/20', text: 'text-foreground', border: 'border-pink-500' },
-  'ux': { bg: 'bg-indigo-500/20', text: 'text-foreground', border: 'border-indigo-500' },
-  'pm': { bg: 'bg-cyan-500/20', text: 'text-foreground', border: 'border-cyan-500' },
-  'other': { bg: 'bg-gray-500/20', text: 'text-foreground', border: 'border-gray-500' },
+export const DOMAIN_COLORS_WITH_OPACITY: Record<DomainKey, DomainColorScheme> = {
+  'frontend': { fill: 'fill-blue-500/20', bg: 'bg-blue-500/20', text: 'text-foreground', border: 'border-blue-500' },
+  'backend': { fill: 'fill-green-500/20', bg: 'bg-green-500/20', text: 'text-foreground', border: 'border-green-500' },
+  'design': { fill: 'fill-purple-500/20', bg: 'bg-purple-500/20', text: 'text-foreground', border: 'border-purple-500' },
+  'devops': { fill: 'fill-orange-500/20', bg: 'bg-orange-500/20', text: 'text-foreground', border: 'border-orange-500' },
+  'qa': { fill: 'fill-yellow-500/20', bg: 'bg-yellow-500/20', text: 'text-foreground', border: 'border-yellow-500' },
+  'mobile': { fill: 'fill-pink-500/20', bg: 'bg-pink-500/20', text: 'text-foreground', border: 'border-pink-500' },
+  'ux': { fill: 'fill-indigo-500/20', bg: 'bg-indigo-500/20', text: 'text-foreground', border: 'border-indigo-500' },
+  'pm': { fill: 'fill-cyan-500/20', bg: 'bg-cyan-500/20', text: 'text-foreground', border: 'border-cyan-500' },
+  'other': { fill: 'fill-gray-500/20', bg: 'bg-gray-500/20', text: 'text-foreground', border: 'border-gray-500' },
 }
 
 const getColorScheme = (domain: string, withOpacity = false): DomainColorScheme => {

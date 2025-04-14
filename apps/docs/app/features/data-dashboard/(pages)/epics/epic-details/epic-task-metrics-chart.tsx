@@ -41,7 +41,6 @@ export function EpicTaskMetricsChart({ tasks, getTaskCost }: EpicTaskMetricsChar
     const { x, y, width, value, index } = props
     if (!value || width === undefined) return null
 
-    const numericWidth = typeof width === 'string' ? parseFloat(width) : width
 
     return (
       <g>

@@ -12,7 +12,6 @@ export type Employee = {
     id: string
     name: string
     email: string
-    status: 'active' | 'inactive' | 'pending'
     lastActive: string
     avatar?: string
     hourlyRate?: number

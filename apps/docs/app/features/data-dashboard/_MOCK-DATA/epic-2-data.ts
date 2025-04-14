@@ -9,7 +9,7 @@ export const epic2: Epic = {
   description: 'Features focused on user authentication and secure transactions',
   status: 'planned',
   budget: 55000,
-  assignedEmployeeIds: ['emp-4']
+  assignedEmployeeIds: ['emp-4', 'emp-7']
 }
 
 // Helper function to create a task with mapped domains

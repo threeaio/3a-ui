@@ -8,7 +8,7 @@ export const epic4: Epic = {
   name: 'Mobile App Integration',
   description: 'Integrate mobile app features with existing e-commerce platform',
   status: 'in-progress',
-  assignedEmployeeIds: ['emp-6', 'emp-8'],
+  assignedEmployeeIds: ['emp-6', 'emp-7'],
   budget: 35000 // Intentionally low budget that will be exceeded
 }
 
