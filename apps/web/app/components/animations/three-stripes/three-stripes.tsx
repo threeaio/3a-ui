@@ -5,6 +5,7 @@ import { ThreeStripesProps } from './types'
 import { DEFAULT_STRIPE_CONFIG, CANVAS_STYLES } from './constants'
 import { calculateStripeHeight, calculateStripePoints, drawStripe } from './utils'
 import { drawDebugPoints, drawDebugHorizon } from './debug-utils'
+import { useTheme } from 'next-themes'
 
 export function ThreeStripes({
   stripeCount = DEFAULT_STRIPE_CONFIG.stripeCount,
@@ -25,6 +26,10 @@ export function ThreeStripes({
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const animatedHeightsRef = useRef<number[]>(new Array(stripeCount).fill(baseHeight))
   const requestAnimationFrameRef = useRef<number>(0)
+
+  const { resolvedTheme } = useTheme() // "dark" or "light"
+
+  console.log(resolvedTheme)
 
   // Animation effect
   useEffect(() => {

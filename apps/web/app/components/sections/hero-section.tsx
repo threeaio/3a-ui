@@ -1,5 +1,3 @@
-import { Badge } from '@3a-ui/ui/badge'
-import { NodeGardenCanvas } from '../animations/node-garden'
 
 export function HeroSection() {
   return (
