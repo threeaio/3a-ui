@@ -103,16 +103,20 @@ export function EpicWorkloadByType({ epicId }: Props) {
             tick={{ fill: 'var(--muted-foreground)' }}
             className="font-mono"
             minTickGap={40}
+            tickMargin={10}
             fontSize={11}
             tickFormatter={(value) => new Date(value).toLocaleDateString('de-DE', { month: '2-digit', day: '2-digit' })}
           />
           <YAxis
             stroke="var(--muted-foreground)"
             fontSize={11}
+            tickMargin={10}
+            orientation="right"
             className="font-mono"
             tick={{ fill: 'var(--muted-foreground)' }}
             tickFormatter={(value) => `${value}h`}
-            label={{ value: 'Hours', angle: -90, position: 'insideLeft', fill: 'var(--muted-foreground)' }}
+            width={30}
+            // label={{ value: 'Hours', angle: -90, position: 'insideLeft', fill: 'var(--muted-foreground)' }}
           />
           <ChartTooltip
             cursor={true}
@@ -128,7 +132,7 @@ export function EpicWorkloadByType({ epicId }: Props) {
           {Object.entries(colors).map(([type, color]) => (
             <Area
               key={type}
-              type="monotone"
+              type="natural"
               dataKey={type}
               stackId="1"
               stroke={color}

@@ -14,6 +14,7 @@ interface EmployeeContextType {
   getEmployeesByIds: (ids: string[]) => Employee[]
   getEmployeesBySkill: (skillId: string) => Employee[]
   getEmployeesByExpertiseDomain: (domain: ExpertiseDomain) => Employee[]
+  getExpertiseDomainsByEmployeeId: (employeeId: string) => ExpertiseDomain[]
 }
 
 // Create the context with default undefined value
@@ -37,16 +38,34 @@ export function EmployeeProvider({
     const getEmployeesByIds = (ids: string[]) => employees.filter((emp) => ids && ids.includes(emp.id))
 
     const getEmployeesBySkill = (skillId: string) =>
-      employees.filter((emp) => emp.skills.some((skill) => skill.id === skillId))
+      employees.filter((emp: Employee) => emp.skills.some((skill: EmployeeSkill) => skill.id === skillId))
 
     const getEmployeesByExpertiseDomain = (domain: ExpertiseDomain) =>
-      employees.filter((emp) => emp.skills.some((skill) => skill.relatedExpertiseDomains.includes(domain)))
+      employees.filter((emp: Employee) =>
+        emp.skills.some((skill: EmployeeSkill) => skill.relatedExpertiseDomains.includes(domain)),
+      )
+
+    const getExpertiseDomainsByEmployeeId = (employeeId: string) => {
+      const employee = getEmployeeById(employeeId)
+      return (
+        employee?.skills
+          .map((skill: EmployeeSkill) => skill.relatedExpertiseDomains)
+          .flat()
+          .reduce((acc: ExpertiseDomain[], domain: ExpertiseDomain) => {
+            if (!acc.includes(domain)) {
+              acc.push(domain)
+            }
+            return acc
+          }, [] as ExpertiseDomain[]) || []
+      )
+    }
 
     return {
       getEmployeeById,
       getEmployeesByIds,
       getEmployeesBySkill,
       getEmployeesByExpertiseDomain,
+      getExpertiseDomainsByEmployeeId,
     }
   }, [employees])
 

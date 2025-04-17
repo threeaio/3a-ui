@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from 'next/font/google'
 import { VisualizerToggle } from './ui/measure-visualizer/visualizer-toggle'
 import '@3a-ui/ui/styles.css'
 import './styles.css'
+import { ThemeProvider } from '@3a.solutions/ui/lib/theme'
 
 // Initialize the fonts
 const geist = Geist({
@@ -22,10 +23,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head></head>
       <body className={`${geist.variable} ${geistMono.variable} font-sans bg-sidebar`}>
-        <VisualizerToggle>{children}</VisualizerToggle>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <VisualizerToggle>{children}</VisualizerToggle>
+        </ThemeProvider>
       </body>
     </html>
   )

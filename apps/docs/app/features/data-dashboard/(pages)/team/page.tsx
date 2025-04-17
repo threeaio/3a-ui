@@ -2,7 +2,7 @@
 
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { useEmployeeContext } from '@/features/data-dashboard/data-context/employee-provider'
-import { TeamMemberCards } from './team-member-cards'
+import { TeamMemberCard } from './team-member-card'
 import { useTasksData } from '@/features/data-dashboard/data-context/tasks-data-provider'
 import { useProjectDataContext } from '@/features/data-dashboard/data-context/project-data-provider'
 
@@ -28,7 +28,7 @@ function TeamPageContent() {
       <div className="flex flex-col h-full gap-5 p-5">
         <div ref={parent} className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 auto-rows-fr">
           {employeesWithEpicsOrTasks.map((employee) => (
-            <TeamMemberCards key={employee.id} employee={employee} />
+            <TeamMemberCard key={employee.id} employee={employee} />
           ))}
         </div>
         <div>
@@ -40,7 +40,7 @@ function TeamPageContent() {
 
               <div ref={parent} className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 auto-rows-fr">
                 {employeesWithoutEpicsOrTasks.map((employee) => (
-                  <TeamMemberCards key={employee.id} employee={employee} />
+                  <TeamMemberCard key={employee.id} employee={employee} />
                 ))}
               </div>
             </>

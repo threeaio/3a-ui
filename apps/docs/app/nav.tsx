@@ -39,7 +39,10 @@ const navigationGroups: NavGroup[] = [
   },
   {
     title: 'Features',
-    items: [{ title: 'Staff Scheduling', href: '/features/staff-scheduler' }],
+    items: [
+      { title: 'Staff Scheduling', href: '/features/staff-scheduler' },
+      { title: 'Data Dashboard', href: '/features/data-dashboard' },
+    ],
   },
 ]
 

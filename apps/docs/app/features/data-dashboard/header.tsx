@@ -31,7 +31,7 @@ export const Header: React.FC<HeaderProps> = ({}) => {
           <div className="flex items-center gap-5">
             <div className="flex flex-row gap-10 items-center">
               <div className="flex flex-col gap-0.5">
-                <h1 className="font-semibold">{project.name}</h1>
+                <h1 className="font-medium text-sm">{project.name}</h1>
 
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <span className="flex items-center gap-1">

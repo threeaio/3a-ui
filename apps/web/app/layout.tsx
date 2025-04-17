@@ -2,6 +2,7 @@ import '@3a-ui/ui/styles.css'
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import './styles.css'
+import { ModeToggle, ThemeProvider } from '@3a.solutions/ui/lib/theme'
 
 // Initialize the fonts
 const geist = Geist({
@@ -22,26 +23,16 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              try {
-                let isDark = window.localStorage.getItem('theme')
-                if (isDark === 'system' || !isDark) {
-                  isDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-                } else {
-                  isDark = isDark === 'dark'
-                }
-                if (isDark) {
-                  document.documentElement.classList.add('dark')
-                }
-              } catch (e) {}
-            `,
-          }}
-        />
-      </head>
-      <body className={`${geist.variable} ${geistMono.variable} font-sans`}>{children}</body>
+      <head></head>
+
+      <body className={`${geist.variable} ${geistMono.variable} font-sans`}>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          {children}
+          <div className="fixed bottom-4 right-4 z-30">
+            <ModeToggle />
+          </div>
+        </ThemeProvider>
+      </body>
     </html>
   )
 }

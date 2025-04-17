@@ -77,6 +77,11 @@ const geistMono = Geist_Mono({
 </body>
 ```
 
+## Component-development
+
+- Every Component (that contains tsx/markup) should have at least a className prop and then merge into outer wrapper via cn from `import { cn } from '@3a.solutions/ui/lib/utils'`
+
+
 ## Development Setup
 
 ```bash

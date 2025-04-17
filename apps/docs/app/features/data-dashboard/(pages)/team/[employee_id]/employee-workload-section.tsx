@@ -36,6 +36,7 @@ export function EmployeeWorkloadSection({ employeeId }: EmployeeWorkloadSectionP
       }
     })
     .filter((task) => task.hours > 0)
+    .sort((a, b) => b.hours - a.hours)
 
   // Calculate total workload
   const totalWorkload = workloadData.reduce((total, data) => total + data.hours, 0)
@@ -68,7 +69,7 @@ export function EmployeeWorkloadSection({ employeeId }: EmployeeWorkloadSectionP
     tick: { color: 'var(--muted-foreground)' },
     grid: { color: 'var(--border)' },
     bar: {
-      color: 'var(--default)',
+      color: 'var(--primary)',
     },
   }
 
@@ -86,7 +87,7 @@ export function EmployeeWorkloadSection({ employeeId }: EmployeeWorkloadSectionP
         <ChartContainer
           config={chartConfig}
           className="w-full"
-          style={{ height: Math.max(200, workloadData.length * 50) + 'px' }}
+          style={{ height: Math.max(200, workloadData.length * 60) + 'px' }}
         >
           <ResponsiveContainer
             width="100%"
@@ -94,7 +95,12 @@ export function EmployeeWorkloadSection({ employeeId }: EmployeeWorkloadSectionP
               setChartWidth(width)
             }}
           >
-            <BarChart data={workloadData} layout="vertical" margin={{ top: 0, right: 20, left: 10, bottom: 20 }}>
+            <BarChart
+              data={workloadData}
+              layout="vertical"
+              margin={{ top: 0, right: 20, left: 10, bottom: 20 }}
+              barCategoryGap={10}
+            >
               <XAxis
                 type="number"
                 tick={{ fill: chartConfig.tick.color }}
@@ -108,7 +114,7 @@ export function EmployeeWorkloadSection({ employeeId }: EmployeeWorkloadSectionP
               <YAxis type="category" dataKey="name" tick={false} width={1} />
               <Bar
                 dataKey="hours"
-                barSize={4}
+                barSize={5}
                 name="Hours"
                 fill={chartConfig.bar.color}
                 radius={[0, 4, 4, 0]}

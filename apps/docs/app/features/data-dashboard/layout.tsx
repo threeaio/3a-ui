@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import ThemeSwitcher from '../../ui/core-layout/theme-switcher'
+import { ModeToggle } from '@3a.solutions/ui/lib/theme'
 import '@3a-ui/ui/styles.css'
 import { SidebarInset, SidebarProvider } from '@3a.solutions/ui/sidebar'
 import { AppSidebar } from '@/features/data-dashboard/sidebar'
@@ -46,7 +46,7 @@ export default function FeaturesLayout({ children }: { children: ReactNode }) {
                       </div>
                     </SidebarInset>
                     <div className="fixed bottom-4 right-4 hidden md:block z-100">
-                      <ThemeSwitcher />
+                      <ModeToggle />
                     </div>
                   </div>
                 </SidebarProvider>

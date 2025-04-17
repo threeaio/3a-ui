@@ -34,13 +34,13 @@ export function EmployeeSkillsSection({ employee }: EmployeeSkillsSectionProps) 
           const avgLevel = skills.reduce((sum, skill) => sum + skill.level, 0) / skills.length
           return (
             <Card key={domain}>
-              <CardHeader className="border-b">
+              <CardHeader className="border-b !pb-10">
                 <div className="flex items-center justify-between">
-                  <CardTitle className="flex items-center text-base">
+                  <CardTitle className="flex items-center gap-3">
                     <span>{domain}</span>
+                    <Badge variant="secondary">{skills.length} skills</Badge>
                   </CardTitle>
                   <div className="flex items-center gap-3">
-                    <Badge variant="secondary">{skills.length} skills</Badge>
                     <span className="text-sm text-muted-foreground">{avgLevel.toFixed(1)}/5</span>
                   </div>
                 </div>
@@ -59,7 +59,9 @@ export function EmployeeSkillsSection({ employee }: EmployeeSkillsSectionProps) 
                         <span className="text-muted-foreground">Level {skill.level}/5</span>
                       </div>
                       <Progress value={skill.level * 20} className="h-1" />
-                      {skill.description && <p className="text-sm text-muted-foreground">{skill.description}</p>}
+                      {skill.description && (
+                        <p className="text-sm text-muted-foreground text-xs">{skill.description}</p>
+                      )}
                     </div>
                   ))}
                 </div>

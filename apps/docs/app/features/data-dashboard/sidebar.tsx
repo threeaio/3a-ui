@@ -42,12 +42,12 @@ export function AppSidebar() {
 
   return (
     <Sidebar collapsible="icon">
-      <SidebarHeader className="flex items-center px-2">
+      <SidebarHeader className="flex items-center px-2 pt-9">
         <div className="w-2/3 h-10 flex justify-center">
           <Logo />
         </div>
       </SidebarHeader>
-      <SidebarContent>
+      <SidebarContent className="pt-3">
         <SidebarGroup>
           <SidebarGroupLabel>
             <span className="truncate">Project: {project?.name || ''}</span>

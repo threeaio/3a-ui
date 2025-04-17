@@ -24,13 +24,13 @@ Everytime we update values here we need to update the documentation in /tailwind
 
   /* Brand */
 
-  --color-brand-green-for-bright: oklch(0.59 1 185);
+  --color-brand-green-for-bright: oklch(0.4 0.5 215);
   --color-brand-green: oklch(0.845 0.2 160);
 
   /* Colors */
   --color-red-300: oklch(1 0.377 25.331);
   --color-red-500: oklch(0.857 0.337 25.331);
-  --color-red-700: oklch(0.577 0.245 27.325);
+  --color-red-700: oklch(0.627 0.2 16.325);
 
   --color-warning: oklch(0.95 0.6 90);
   --color-warning-foreground: oklch(0.15 0.1 200);
@@ -60,7 +60,7 @@ Everytime we update values here we need to update the documentation in /tailwind
   --default-foreground: var(--color-gray-50);
 
   --primary: var(--color-brand-green-for-bright);
-  --primary-foreground: var(--color-black);
+  --primary-foreground: var(--color-white);
 
   --secondary: var(--color-gray-200);
   --secondary-foreground: var(--color-gray-800);
@@ -71,8 +71,8 @@ Everytime we update values here we need to update the documentation in /tailwind
   --accent: var(--color-gray-200);
   --accent-foreground: var(--color-gray-800);
 
-  --destructive: var(--color-red-500);
-  --destructive-foreground: var(--color-gray-900);
+  --destructive: var(--color-red-700);
+  --destructive-foreground: var(--color-white);
 
   --success: var(--color-success);
   --warning: var(--color-warning);
@@ -134,7 +134,7 @@ Everytime we update values here we need to update the documentation in /tailwind
   --input: var(--color-gray-500);
   --ring: var(--color-gray-50);
 
-  --card: var(--color-gray-700);
+  --card: var(--color-gray-800);
   --card-foreground: var(--color-gray-50);
   --popover: var(--color-gray-900);
   --popover-foreground: var(--color-gray-50);

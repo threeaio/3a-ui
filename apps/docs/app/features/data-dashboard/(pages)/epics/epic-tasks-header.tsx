@@ -10,8 +10,8 @@ export function EpicsTasksHeader() {
   const {
     epicStatusFilter,
     setEpicStatusFilter,
-    taskStatusFilter,
-    setTaskStatusFilter,
+    //   taskStatusFilter,
+    //  setTaskStatusFilter,
     epicSortBy,
     setEpicSortBy,
     sortDirection,
@@ -27,14 +27,14 @@ export function EpicsTasksHeader() {
     })),
   ]
 
-  const taskStatusOptions = [
-    { value: 'all', label: 'All Tasks' },
-    ...statusOptions.map((status) => ({
-      value: status,
-      label: `${status.charAt(0).toUpperCase() + status.slice(1)} Tasks`,
-      className: getStatusBadgeColor(status),
-    })),
-  ]
+  // const taskStatusOptions = [
+  //   { value: 'all', label: 'All Tasks' },
+  //   ...statusOptions.map((status) => ({
+  //     value: status,
+  //     label: `${status.charAt(0).toUpperCase() + status.slice(1)} Tasks`,
+  //     className: getStatusBadgeColor(status),
+  //   })),
+  // ]
 
   const sortOptions = [
     { value: 'status:asc', label: 'Status (Planned → Completed)' },
@@ -62,14 +62,14 @@ export function EpicsTasksHeader() {
         onValueChange={(value) => setEpicStatusFilter(value as EpicStatus)}
         className={epicStatusFilter !== 'all' ? getStatusBadgeColor(epicStatusFilter as BaseStatus) : undefined}
       />
-      <BadgeSelect
+      {/* <BadgeSelect
         variant="outline"
         label="Task Status"
         options={taskStatusOptions}
         value={taskStatusFilter}
         onValueChange={(value) => setTaskStatusFilter(value as TaskStatus)}
         className={taskStatusFilter !== 'all' ? getStatusBadgeColor(taskStatusFilter as BaseStatus) : undefined}
-      />
+      /> */}
       <BadgeSelect
         variant="outline"
         label="Sort Epics"

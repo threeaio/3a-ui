@@ -11,9 +11,12 @@ import { EmployeeSkillsSection } from './employee-skills-section'
 import { EmployeeWorkloadSection } from './employee-workload-section'
 import { EmployeeWorkloadOverTimeSection } from './employee-workload-over-time-section'
 import { EmployeeAssignmentsSection } from './employee-assignments-section'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@3a-ui/ui/tabs'
+import { Badge } from '@3a-ui/ui/badge'
+import { getDomainBadgeColor } from '@/features/data-dashboard/utils'
 
 export function EmployeeDetailsContent({ employeeId }: { employeeId: string }) {
-  const { getEmployeeById } = useEmployeeContext()
+  const { getEmployeeById, getExpertiseDomainsByEmployeeId } = useEmployeeContext()
   const { tasks } = useProjectDataContext()
   const { epics } = useTasksData()
 
@@ -33,50 +36,61 @@ export function EmployeeDetailsContent({ employeeId }: { employeeId: string }) {
     <div className="space-y-5">
       {/* Header Section */}
       <div className="flex items-center h-40 justify-between">
-        <div className="flex items-center gap-5">
-          <Avatar className="size-20">
-            <AvatarImage src={employee.avatar} />
-            <AvatarFallback>{employee.name.slice(0, 2).toUpperCase()}</AvatarFallback>
-          </Avatar>
-          <div className="flex flex-col gap-1">
-            <div className="flex items-center gap-2">
-              <h1 className="font-semibold">{employee.name}</h1>
+        <div className="grid grid-cols-2 w-full">
+          <div className="flex items-center gap-2">
+            <div className="w-20">
+              <Link href="/features/data-dashboard/team">
+                <Button variant="ghost" size="icon" className="p-3 size-12">
+                  <ArrowLeft className="size-9" strokeWidth={1} />
+                  <span className="sr-only">Back to Team</span>
+                </Button>
+              </Link>
             </div>
-            <div className="text-muted-foreground">{employee.email}</div>
+            <div className="flex items-center gap-5">
+              <Avatar className="size-20">
+                <AvatarImage src={employee.avatar} />
+                <AvatarFallback>{employee.name.slice(0, 2).toUpperCase()}</AvatarFallback>
+              </Avatar>
+              <div className="flex flex-col gap-1">
+                <div className="flex items-center gap-2">
+                  <h1 className="font-semibold">{employee.name}</h1>
+                </div>
+                <div className="text-muted-foreground">{employee.email}</div>
+              </div>
+            </div>
           </div>
         </div>
-        <div>
-          <Link href="/features/data-dashboard/team">
-            <Button variant="ghost">
-              <ArrowLeft className="size-4" />
-              Back to Team
-            </Button>
-          </Link>
+        <div className="flex items-center gap-1.5">
+          {getExpertiseDomainsByEmployeeId(employeeId).map((domain) => (
+            <Badge key={domain} variant="secondary" className={getDomainBadgeColor(domain)}>
+              {domain}
+            </Badge>
+          ))}
         </div>
       </div>
 
-      {/* Skills and Expertise Section */}
-      {/* <div className="flex items-center h-20">
-        <h2 className="">Skills and Expertise</h2>
-      </div> */}
+      <Tabs defaultValue="general">
+        <TabsList className="flex items-center justify-center mb-2">
+          <TabsTrigger value="general">General</TabsTrigger>
+          <TabsTrigger value="project-metrics">Project Metrics</TabsTrigger>
+        </TabsList>
 
-      <EmployeeSkillsSection employee={employee} />
+        <TabsContent value="general">
+          <EmployeeSkillsSection employee={employee} />
+        </TabsContent>
 
-      {/* Workload Analysis */}
-
-      {/* <div className="flex items-center h-20">
-        <h2 className="">Workload</h2>
-      </div> */}
-      <div className="grid grid-cols-2 gap-4">
-        <EmployeeWorkloadSection employeeId={employeeId} />
-        <EmployeeWorkloadOverTimeSection employeeId={employeeId} />
-      </div>
-
-      {/* Assignments Section */}
-      {/* <div className="flex items-center h-20">
-        <h2 className="">Assignments</h2>
-      </div> */}
-      <EmployeeAssignmentsSection employeeId={employeeId} assignedTasks={assignedTasks} assignedEpics={assignedEpics} />
+        <TabsContent value="project-metrics">
+          <div className="grid grid-cols-2 gap-10 mb-10">
+            <EmployeeWorkloadSection employeeId={employeeId} />
+            <EmployeeWorkloadOverTimeSection employeeId={employeeId} />
+          </div>
+          <EmployeeAssignmentsSection
+            employeeId={employeeId}
+            assignedTasks={assignedTasks}
+            assignedEpics={assignedEpics}
+          />
+        </TabsContent>
+      </Tabs>
     </div>
   )
 }

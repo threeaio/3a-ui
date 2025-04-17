@@ -2,7 +2,7 @@
 
 import { useProjectDataContext } from '@/features/data-dashboard/data-context/project-data-provider'
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@3a.solutions/ui/chart'
-import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer } from 'recharts'
+import { LineChart, Line, XAxis, YAxis, ResponsiveContainer, Dot } from 'recharts'
 import { NOW } from '@/features/data-dashboard/_MOCK-DATA/NOW_provider'
 
 interface TeamMemberWorkloadChartProps {
@@ -59,39 +59,23 @@ export function TeamMemberWorkloadChart({ employeeId }: TeamMemberWorkloadChartP
     )
   }
 
-  // Get min and max values for Y axis
-  const maxHours = Math.max(...chartData.map((d) => d.hours))
-  const firstDate = chartData[0]!.date
-  const lastDate = chartData[chartData.length - 1]!.date
-
   const chartConfig = {
     label: { color: 'var(--foreground)' },
     tick: { color: 'var(--muted-foreground)' },
     grid: { color: 'var(--border)' },
-    bar: { color: 'var(--default)' },
+    line: { color: 'var(--primary)' },
   }
-
-  const xAxisTicks = [
-    { value: firstDate, key: 'start' },
-    { value: lastDate, key: 'end' },
-  ]
-
-  const yAxisTicks = [
-    { value: 0, key: 'min' },
-    { value: maxHours, key: 'max' },
-  ]
 
   return (
     <ChartContainer config={chartConfig} className="h-[140px] w-full">
       <ResponsiveContainer width="100%" height="100%">
-        <BarChart data={chartData} margin={{ top: 0, right: 25, left: 25, bottom: 0 }}>
+        <LineChart data={chartData} margin={{ top: 20, right: 25, left: 25, bottom: 0 }}>
           <XAxis
             dataKey="date"
             tick={{ fill: chartConfig.tick.color }}
             fontSize={11}
             className="tabular-nums font-mono"
             tickFormatter={(value) => new Date(value).toLocaleDateString('de-DE', { month: '2-digit', day: '2-digit' })}
-            // ticks={xAxisTicks.map((t) => t.value)}
             tickCount={2}
             tickMargin={10}
             minTickGap={100}
@@ -103,7 +87,6 @@ export function TeamMemberWorkloadChart({ employeeId }: TeamMemberWorkloadChartP
             width={10}
             className="tabular-nums font-mono"
             tickFormatter={(value) => `${value}h`}
-            // ticks={yAxisTicks.map((t) => t.value)}
             tickCount={2}
             axisLine={false}
             tickLine={false}
@@ -117,8 +100,17 @@ export function TeamMemberWorkloadChart({ employeeId }: TeamMemberWorkloadChartP
               />
             }
           />
-          <Bar dataKey="hours" fill={chartConfig.bar.color} maxBarSize={2} name="Hours" radius={[4, 4, 0, 0]} />
-        </BarChart>
+          <Line
+            type="linear"
+            dataKey="hours"
+            stroke={chartConfig.line.color}
+            strokeWidth={1}
+            name="Hours"
+            dot={false}
+            animationDuration={0}
+            activeDot={{ r: 5, fill: chartConfig.line.color }}
+          />
+        </LineChart>
       </ResponsiveContainer>
     </ChartContainer>
   )

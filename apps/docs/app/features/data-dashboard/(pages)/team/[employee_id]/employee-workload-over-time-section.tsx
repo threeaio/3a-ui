@@ -3,7 +3,7 @@
 import { useProjectDataContext } from '@/features/data-dashboard/data-context/project-data-provider'
 import { Card, CardContent, CardHeader, CardTitle } from '@3a-ui/ui/card'
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@3a-ui/ui/chart'
-import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer } from 'recharts'
+import { LineChart, Line, XAxis, YAxis, ResponsiveContainer, Dot } from 'recharts'
 import { Badge } from '@3a.solutions/ui/badge'
 import { NOW } from '@/features/data-dashboard/_MOCK-DATA/NOW_provider'
 
@@ -60,7 +60,7 @@ export function EmployeeWorkloadOverTimeSection({ employeeId }: EmployeeWorkload
     label: { color: 'var(--foreground)' },
     tick: { color: 'var(--muted-foreground)' },
     grid: { color: 'var(--border)' },
-    bar: { color: 'var(--default)' },
+    line: { color: 'var(--primary)' },
   }
 
   return (
@@ -72,9 +72,9 @@ export function EmployeeWorkloadOverTimeSection({ employeeId }: EmployeeWorkload
         </div>
       </CardHeader>
       <CardContent className="flex-1 flex flex-col justify-end">
-        <ChartContainer config={chartConfig} className="w-full">
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={chartData} margin={{ top: 0, right: 20, left: 20, bottom: 20 }}>
+        <ChartContainer config={chartConfig} className="max-h-[320px]">
+          <ResponsiveContainer>
+            <LineChart data={chartData} margin={{ top: 20, right: 20, left: 20, bottom: 20 }}>
               <XAxis
                 dataKey="date"
                 tick={{ fill: chartConfig.tick.color }}
@@ -103,8 +103,16 @@ export function EmployeeWorkloadOverTimeSection({ employeeId }: EmployeeWorkload
                   />
                 }
               />
-              <Bar dataKey="hours" fill={chartConfig.bar.color} maxBarSize={4} name="Hours" radius={[4, 4, 0, 0]} />
-            </BarChart>
+              <Line
+                type="linear"
+                dataKey="hours"
+                stroke={chartConfig.line.color}
+                strokeWidth={1}
+                name="Hours"
+                dot={false}
+                activeDot={{ r: 5, fill: chartConfig.line.color }}
+              />
+            </LineChart>
           </ResponsiveContainer>
         </ChartContainer>
       </CardContent>

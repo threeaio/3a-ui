@@ -98,7 +98,7 @@ export function TasksDataProvider({ children }: { children: ReactNode }) {
       if (epicSortBy === 'status') {
         return multiplier * (STATUS_ORDER[a.status] - STATUS_ORDER[b.status])
       } else {
-        return multiplier * (b.budget - a.budget)
+        return multiplier * (a.budget - b.budget)
       }
     })
 

@@ -18,6 +18,7 @@ export function EpicTaskMetricsChart({ tasks, getTaskCost }: EpicTaskMetricsChar
     return tasks
       .map((task) => ({
         name: task.name,
+        type: task.type,
         cost: getTaskCost(task.id),
       }))
       .filter((task) => task.cost > 0)
@@ -29,7 +30,7 @@ export function EpicTaskMetricsChart({ tasks, getTaskCost }: EpicTaskMetricsChar
     tick: { color: 'var(--muted-foreground)' },
     grid: { color: 'var(--border)' },
     bar: {
-      color: 'var(--default)',
+      color: 'var(--primary)',
     },
   }
 
@@ -41,9 +42,8 @@ export function EpicTaskMetricsChart({ tasks, getTaskCost }: EpicTaskMetricsChar
     const { x, y, width, value, index } = props
     if (!value || width === undefined) return null
 
-
     return (
-      <g>
+      <g fontSize={10}>
         <text x={(x as number) + 5} y={y} dy={-10} textAnchor="start" fill={chartConfig.label.color}>
           {chartData[index!]!.name}
         </text>
@@ -93,6 +93,7 @@ export function EpicTaskMetricsChart({ tasks, getTaskCost }: EpicTaskMetricsChar
               type="number"
               tick={{ fill: chartConfig.tick.color }}
               fontSize={11}
+              tickMargin={10}
               className="tabular-nums font-mono"
               tickFormatter={(value) => value.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })}
               tickLine={{ stroke: chartConfig.tick.color }}

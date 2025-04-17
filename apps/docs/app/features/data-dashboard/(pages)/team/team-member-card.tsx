@@ -11,7 +11,6 @@ import { Avatar, AvatarFallback, AvatarImage } from '@3a-ui/ui/avatar'
 import { Button } from '@3a-ui/ui/button'
 import { ArrowRightIcon } from 'lucide-react'
 import Link from 'next/link'
-import { sectionLabelClassName } from '@/ui/core-layout/section-label'
 import { MetricValue } from '@/ui/core-layout/metric-value'
 import { getDomainBadgeColor } from '@/features/data-dashboard/utils'
 
@@ -20,15 +19,19 @@ interface TeamMemberCardsProps {
   className?: string
 }
 
-export function TeamMemberCards({ employee, className }: TeamMemberCardsProps) {
+export function TeamMemberCard({ employee, className }: TeamMemberCardsProps) {
   const { tasks } = useProjectDataContext()
   const { epics } = useTasksData()
 
   // Get tasks assigned to this employee
-  const assignedTasks = tasks.filter((task) => task.assignedEmployeeIds.includes(employee.id) && task.status !== 'completed')
+  const assignedTasks = tasks.filter(
+    (task) => task.assignedEmployeeIds.includes(employee.id) && task.status !== 'completed',
+  )
 
   // Get epics where the employee is assigned
-  const assignedEpics = epics.filter((epic) => epic.assignedEmployeeIds.includes(employee.id) && epic.status !== 'completed') 
+  const assignedEpics = epics.filter(
+    (epic) => epic.assignedEmployeeIds.includes(employee.id) && epic.status !== 'completed',
+  )
 
   // Get unique expertise domains
   const expertiseDomains = Array.from(new Set(employee.skills.flatMap((skill) => skill.relatedExpertiseDomains)))
@@ -42,7 +45,7 @@ export function TeamMemberCards({ employee, className }: TeamMemberCardsProps) {
             <AvatarFallback>{employee.name.slice(0, 2).toUpperCase()}</AvatarFallback>
           </Avatar>
           <div>
-            <CardTitle className="font-normal">{employee.name}</CardTitle>
+            <CardTitle className="font-semibold text-base">{employee.name}</CardTitle>
             <p className="text-sm text-muted-foreground">{employee.email}</p>
           </div>
         </div>
@@ -63,7 +66,7 @@ export function TeamMemberCards({ employee, className }: TeamMemberCardsProps) {
         {/* Expertise Domains */}
         <div>
           <h3 className={cn('mb-2 text-muted-foreground text-sm')}>Expertise</h3>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-1.5">
             {expertiseDomains.map((domain) => (
               <Badge key={domain} variant="secondary" className={getDomainBadgeColor(domain)}>
                 {domain}
@@ -80,7 +83,7 @@ export function TeamMemberCards({ employee, className }: TeamMemberCardsProps) {
       </CardContent>
       <CardFooter className="border-t justify-end">
         <Link href={`/features/data-dashboard/team/${employee.id}`} className="">
-          <Button variant="secondary" size="sm" className="w-full">
+          <Button variant="outline" size="sm" className="w-full">
             <ArrowRightIcon className="size-4 mr-2" />
             View Details
           </Button>

@@ -4,6 +4,8 @@ import { EpicDetailsProps } from './epic-details'
 import { Badge } from '@3a.solutions/ui/badge'
 import { getDomainBadgeColor } from '@/features/data-dashboard/utils/domain-to-ui'
 import { Card, CardContent } from '@3a.solutions/ui/card'
+import { cn } from '@3a.solutions/ui/lib/utils'
+import { sectionLabelClassName } from '@/ui/core-layout/section-label'
 
 export function EpicDetailsPlanned({ epic }: EpicDetailsProps) {
   const { getTasksByEpic } = useTasksData()
@@ -32,7 +34,7 @@ export function EpicDetailsPlanned({ epic }: EpicDetailsProps) {
         <div className="grid grid-cols-12 gap-0">
           {/* Budget Overview */}
           <div className="col-span-6 pr-10 border-r">
-            <h3 className="font-medium mb-4">Budget Overview</h3>
+            <h3 className={cn(sectionLabelClassName, 'mb-5')}>Budget Overview</h3>
             <div className="flex flex-col gap-2">
               <div className="flex justify-between items-center">
                 <span className="text-muted-foreground">Total Budget:</span>
@@ -49,7 +51,7 @@ export function EpicDetailsPlanned({ epic }: EpicDetailsProps) {
           <div className="col-span-6 pl-5">
             <div className="space-y-6">
               <div>
-                <h3 className="font-medium mb-4">Required Expertise</h3>
+                <h3 className={cn(sectionLabelClassName, 'mb-5')}>Required Expertise</h3>
                 <div className="flex flex-wrap gap-2.5">
                   {domainExpertiseNeeded.map(({ domain, count }) => (
                     <Badge key={domain} variant="default" className={getDomainBadgeColor(domain)}>

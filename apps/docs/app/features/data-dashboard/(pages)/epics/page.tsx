@@ -2,11 +2,10 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@3a-ui/ui/card'
 import { Accordion } from '@3a-ui/ui/accordion'
-import { EpicTaskGroup } from './epic-task-group'
 import { TaskItem } from './task-details/task'
 import { useTasksData } from '../../data-context/tasks-data-provider'
 import { EpicsTasksHeader } from './epic-tasks-header'
-import { EpicTaskGroupCards } from '@/features/data-dashboard/(pages)/epics/epic-task-group-cards'
+import { EpicTaskGroupCard } from '@/features/data-dashboard/(pages)/epics/epic-task-group-card'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 
 function TasksPageContent() {
@@ -26,7 +25,7 @@ function TasksPageContent() {
         {/* Epic groups */}
         <div ref={parent} className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 auto-rows-fr">
           {epics.map((epic) => (
-            <EpicTaskGroupCards className="h-120" key={epic.id} epic={epic} tasks={getTasksByEpic(epic.id)} />
+            <EpicTaskGroupCard className="h-120" key={epic.id} epic={epic} tasks={getTasksByEpic(epic.id)} />
           ))}
         </div>
 

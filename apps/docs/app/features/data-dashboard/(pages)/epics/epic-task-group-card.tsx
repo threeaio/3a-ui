@@ -5,26 +5,18 @@ import { Epic, Task } from '@/features/data-dashboard/types/domain'
 import { Badge } from '@3a.solutions/ui/badge'
 import { Card, CardContent, CardFooter, CardHeader } from '@3a.solutions/ui/card'
 import { Button } from '@3a.solutions/ui/button'
-import { getStatusBadgeColor, getDomainBadgeColor } from '@/features/data-dashboard/utils'
+import { getDomainBadgeColor, getStatusBadgeColor } from '@/features/data-dashboard/utils'
 import { useTasksData } from '../../data-context/tasks-data-provider'
 import { cn } from '@3a.solutions/ui/lib/utils'
 import { ExternalLinkIcon, ArrowRightIcon } from 'lucide-react'
-import { EpicAnalyticsIcons } from '@/features/data-dashboard/(pages)/epics/epic-details/epic-analytics-icons'
-import { EpicAssignees } from '@/features/data-dashboard/(pages)/epics/epic-details/epic-assignees'
-import { TaskStatusWidget } from '@/features/data-dashboard/components/widgets/task-status-bar/task-status-widget'
-import { useProjectDataContext } from '@/features/data-dashboard/data-context/project-data-provider'
 import Link from 'next/link'
-import { sectionLabelClassName } from '@/ui/core-layout/section-label'
+import { TaskCardDetailsPlanned } from './card-details/task-card-details-planned'
+import { TaskCardDetailsInProgress } from './card-details/task-card-details-in-progress'
 
-export function EpicTaskGroupCards({ epic, tasks, className }: { epic: Epic; tasks: Task[]; className?: string }) {
+export function EpicTaskGroupCard({ epic, tasks, className }: { epic: Epic; tasks: Task[]; className?: string }) {
   const { getEpicCost } = useTasksData()
-  const { getTotalWorkloadForTask } = useProjectDataContext()
-
   const currentCost = getEpicCost(epic.id)
-  const percentage = epic.budget ? Math.round((currentCost / epic.budget) * 100) : 0
-
-  const SHOW_DOMAIN_COUNT = 6
-
+  const SHOW_DOMAIN_COUNT = 4
   // Calculate domain expertise requirements
   const domainExpertiseNeeded = useMemo(() => {
     const domains = new Map<string, number>()
@@ -37,12 +29,6 @@ export function EpicTaskGroupCards({ epic, tasks, className }: { epic: Epic; tas
       .sort((a, b) => b[1] - a[1])
       .map(([domain, count]) => ({ domain, count }))
   }, [tasks])
-
-  // Calculate total workload for in-progress epics
-  const totalWorkload = useMemo(() => {
-    if (epic.status !== 'in-progress') return null
-    return tasks.reduce((acc, task) => acc + getTotalWorkloadForTask(task.id), 0)
-  }, [tasks, getTotalWorkloadForTask, epic.status])
 
   return (
     <Card className={cn('', className)}>
@@ -58,42 +44,17 @@ export function EpicTaskGroupCards({ epic, tasks, className }: { epic: Epic; tas
         </div>
       </CardHeader>
 
-      <CardContent className="grid gap-5 flex-1">
-        <div className="self-start flex flex-col gap-5">
-          <div className="flex items-center justify-between ">
-            <EpicAssignees epicId={epic.id} />
-            <div>
-              <EpicAnalyticsIcons epic={epic} colorBySeverity={false} />
-            </div>
-          </div>
-          {/* Budget and Task Count */}
-          <div className="flex  items-center justify-between gap-5 ">
-            <span className={cn(sectionLabelClassName)}>Budget</span>
-            {epic.budget ? (
-              <div
-                className={cn(
-                  'font-mono tabular-nums border-default text-sm ',
-                  percentage > 100 && 'border-destructive text-destructive',
-                  percentage > 80 && percentage <= 100 && 'border-warning text-warning',
-                )}
-              >
-                {currentCost > 0 && <span>{currentCost.toLocaleString('de-DE')} € | </span>}
-                {epic.budget.toLocaleString('de-DE')} €
-              </div>
-            ) : (
-              <span></span>
-            )}
-          </div>
-        </div>
-
-        {/* Task Status Distribution */}
-        {epic.status !== 'planned' && (
-          <div className="space-y-2">
-            <TaskStatusWidget size="sm" mode="epic" epicId={epic.id} showLegend={false} />
-          </div>
+      <CardContent className="flex-1 flex flex-col justify-between">
+        {epic.status === 'planned' ? (
+          <TaskCardDetailsPlanned epic={epic} currentCost={currentCost} domainExpertiseNeeded={domainExpertiseNeeded} />
+        ) : (
+          <TaskCardDetailsInProgress
+            epic={epic}
+            currentCost={currentCost}
+            domainExpertiseNeeded={domainExpertiseNeeded}
+          />
         )}
-
-        <div className="border-t pt-5 self-end">
+        <div className="self-end">
           <div className="flex justify-end flex-wrap gap-2">
             {domainExpertiseNeeded.slice(0, SHOW_DOMAIN_COUNT).map(({ domain }) => (
               <Badge key={domain} variant="outline">
@@ -107,13 +68,14 @@ export function EpicTaskGroupCards({ epic, tasks, className }: { epic: Epic; tas
           </div>
         </div>
       </CardContent>
+
       <CardFooter className="border-t justify-between">
         <Button variant="ghost" className="text-sm">
           <ExternalLinkIcon className="size-4" />
           Open in Jira
         </Button>
         <Link href={`/features/data-dashboard/epics/${epic.id}`}>
-          <Button variant="secondary" size="sm">
+          <Button variant="outline" size="sm">
             <ArrowRightIcon className="size-4" />
             View Details
           </Button>

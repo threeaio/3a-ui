@@ -1,6 +1,6 @@
 import React from 'react'
 import Logo from './logo'
-import ThemeSwitcher from './theme-switcher'
+import { ModeToggle } from '@3a.solutions/ui/lib/theme'
 import { VisualizerToggleButton } from '../measure-visualizer/visualizer-toggle'
 
 interface HeaderProps {
@@ -30,7 +30,7 @@ export const Header: React.FC<HeaderProps> = ({ className = '' }) => {
 
           {/* Theme Switcher - Desktop */}
           <div className="hidden xl:block">
-            <ThemeSwitcher />
+            <ModeToggle />
           </div>
         </div>
       </div>

@@ -48,11 +48,11 @@ export const TaskTypeCostBar: React.FC<TaskTypeCostBarProps> = ({ className }) =
     tick: { color: 'var(--muted-foreground)' },
     grid: { color: 'var(--border)' },
     cost: { label: 'Cost (€)', color: 'var(--default)' },
-    destructive: { color: 'var(--destructive)' },
+    forBugfix: { color: 'var(--destructive)' },
   }
 
   const getBarColor = (entry: DataEntry) => {
-    return entry.type === 'bugfix' ? chartConfig.destructive.color : chartConfig.cost.color
+    return entry.type === 'bugfix' ? chartConfig.forBugfix.color : chartConfig.cost.color
   }
 
   return (
