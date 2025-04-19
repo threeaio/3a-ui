@@ -137,4 +137,5 @@ export const drawStripe = (ctx: CanvasRenderingContext2D, points: StripePoints):
   ctx.lineTo(points.rightExtendedFloor.x, points.rightExtendedFloor.y)
   ctx.lineTo(points.leftExtendedFloor.x, points.leftExtendedFloor.y)
   ctx.stroke()
+  ctx.fill()
 } 

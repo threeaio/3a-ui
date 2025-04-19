@@ -1,6 +1,5 @@
 'use client'
 
-import { Badge } from '@3a.solutions/ui/badge'
 import { cn } from '@3a.solutions/ui/lib/utils'
 
 const words = [
@@ -15,18 +14,17 @@ const words = [
 export function WordListSection() {
   return (
     <section className="container mx-auto px-5 md:px-10 py-160">
-      <div className="flex flex-wrap justify-center gap-4 md:gap-20">
+      <div className="flex flex-col items-start gap-2">
         {words.map((word, index) => (
-          <Badge
-            variant="outline"
+          <span
             key={index}
             className={cn(
-              'font-light  transition-all duration-300 hover:scale-110 hover:text-primary cursor-default text-normal px-6 py-2',
+              'text-5xl font-extrabold uppercase tracking-tight transition-all duration-300 hover:text-primary cursor-default',
             )}
-            style={{ transform: `rotate(${0}deg)` }}
+            style={{ transform: `rotate(${word.rotation}deg)` }}
           >
             {word.text}
-          </Badge>
+          </span>
         ))}
       </div>
     </section>

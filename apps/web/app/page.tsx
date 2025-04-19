@@ -24,12 +24,14 @@ export default function Page() {
         <WordListSection />
         <ScreenshotSection />
         {/* <FeaturesSection /> */}
-        {/* <BenefitsSection /> */}
-        {/* <TestimonialsSection /> */}
+        <TestimonialsSection />
+        <BenefitsSection />
+
         {/* <PricingSection /> */}
         {/* <ContactSection /> */}
         <FooterSection />
-        <div className="fixed bottom-0 left-0 right-0 bg-gradient-to-t from-background to-transparent h-100 z-10 pointer-events-none"></div>
+        <div className="fixed top-0 left-0 right-0 bg-gradient-to-b from-background to-transparent h-20 z-10 pointer-events-none"></div>
+        <div className="fixed bottom-0 left-0 right-0 bg-gradient-to-t from-background to-transparent h-60 z-10 pointer-events-none"></div>
       </div>
     </main>
   )

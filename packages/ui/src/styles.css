@@ -5,7 +5,7 @@ Everytime we update values here we need to update the documentation in /tailwind
 @import 'tailwindcss';
 @plugin 'tailwindcss-animate';
 @source './';
-
+@custom-variant dark (&:where(.dark, .dark *));
 /* Base color tokens */
 :root {
   /* Grayscale */
@@ -25,7 +25,7 @@ Everytime we update values here we need to update the documentation in /tailwind
   /* Brand */
 
   --color-brand-green-for-bright: oklch(0.4 0.5 215);
-  --color-brand-green: oklch(0.845 0.2 160);
+  --color-brand-green: oklch(0.845 0.5 173);
 
   /* Colors */
   --color-red-300: oklch(1 0.377 25.331);
@@ -238,6 +238,7 @@ Everytime we update values here we need to update the documentation in /tailwind
   }
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: 'liga' 1;
   }
 }
 

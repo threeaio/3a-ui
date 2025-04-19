@@ -3,7 +3,7 @@
 import { useProjectDataContext } from '@/features/data-dashboard/data-context/project-data-provider'
 import { Card, CardContent, CardHeader, CardTitle } from '@3a-ui/ui/card'
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@3a-ui/ui/chart'
-import { LineChart, Line, XAxis, YAxis, ResponsiveContainer, Dot } from 'recharts'
+import { LineChart, Line, XAxis, YAxis, ResponsiveContainer, Dot, ReferenceLine } from 'recharts'
 import { Badge } from '@3a.solutions/ui/badge'
 import { NOW } from '@/features/data-dashboard/_MOCK-DATA/NOW_provider'
 
@@ -89,7 +89,8 @@ export function EmployeeWorkloadOverTimeSection({ employeeId }: EmployeeWorkload
               <YAxis
                 tick={{ fill: chartConfig.tick.color }}
                 fontSize={11}
-                width={10}
+                domain={[0, 16]}
+                width={20}
                 tickMargin={10}
                 className="tabular-nums font-mono"
                 tickFormatter={(value) => `${value}h`}
@@ -103,6 +104,7 @@ export function EmployeeWorkloadOverTimeSection({ employeeId }: EmployeeWorkload
                   />
                 }
               />
+              <ReferenceLine y={8} stroke="var(--destructive)" strokeDasharray="3 3" />
               <Line
                 type="linear"
                 dataKey="hours"

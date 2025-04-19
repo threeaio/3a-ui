@@ -2,7 +2,7 @@
 
 import { useProjectDataContext } from '@/features/data-dashboard/data-context/project-data-provider'
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@3a.solutions/ui/chart'
-import { LineChart, Line, XAxis, YAxis, ResponsiveContainer, Dot } from 'recharts'
+import { LineChart, Line, XAxis, YAxis, ResponsiveContainer, Dot, ReferenceLine, Customized } from 'recharts'
 import { NOW } from '@/features/data-dashboard/_MOCK-DATA/NOW_provider'
 
 interface TeamMemberWorkloadChartProps {
@@ -85,6 +85,7 @@ export function TeamMemberWorkloadChart({ employeeId }: TeamMemberWorkloadChartP
             tick={{ fill: chartConfig.tick.color }}
             fontSize={11}
             width={10}
+            domain={[0, 16]}
             className="tabular-nums font-mono"
             tickFormatter={(value) => `${value}h`}
             tickCount={2}
@@ -100,6 +101,7 @@ export function TeamMemberWorkloadChart({ employeeId }: TeamMemberWorkloadChartP
               />
             }
           />
+          <ReferenceLine y={8} stroke="var(--destructive)" strokeDasharray="3 3" />
           <Line
             type="linear"
             dataKey="hours"

@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import { cn } from '@3a.solutions/ui/lib/utils'
 
 interface LogoProps {
   href?: string
@@ -93,7 +94,12 @@ export const Logo: React.FC<LogoProps> = ({ href = '/', className = '' }) => {
         <circle cx="9.28613" cy="310.791" r="8.90308" fill="currentColor"></circle>
       </svg> */}
 
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" className="w-12" viewBox="0.1 0.41 1185.93 1077.17">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        className={cn('w-12', className)}
+        viewBox="0.1 0.41 1185.93 1077.17"
+      >
         <rect
           x="0.0979004"
           y="938.181"

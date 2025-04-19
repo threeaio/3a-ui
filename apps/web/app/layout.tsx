@@ -1,16 +1,19 @@
 import '@3a-ui/ui/styles.css'
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+//import { Geist, Geist_Mono } from 'next/font/google'
+import { Geist, JetBrains_Mono } from 'next/font/google'
 import './styles.css'
 import { ModeToggle, ThemeProvider } from '@3a.solutions/ui/lib/theme'
 
 // Initialize the fonts
-const geist = Geist({
+const fontSans = Geist({
   subsets: ['latin'],
+
   variable: '--font-sans',
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
 })
 
-const geistMono = Geist_Mono({
+const fontMono = JetBrains_Mono({
   subsets: ['latin'],
   variable: '--font-mono',
 })
@@ -25,12 +28,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" suppressHydrationWarning>
       <head></head>
 
-      <body className={`${geist.variable} ${geistMono.variable} font-sans`}>
+      <body className={`${fontSans.variable} ${fontMono.variable} font-sans`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           {children}
-          <div className="fixed bottom-4 right-4 z-30">
-            <ModeToggle />
-          </div>
         </ThemeProvider>
       </body>
     </html>

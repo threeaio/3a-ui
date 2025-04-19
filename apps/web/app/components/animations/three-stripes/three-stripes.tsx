@@ -29,8 +29,6 @@ export function ThreeStripes({
 
   const { resolvedTheme } = useTheme() // "dark" or "light"
 
-  console.log(resolvedTheme)
-
   // Animation effect
   useEffect(() => {
     const animate = () => {
@@ -110,8 +108,9 @@ export function ThreeStripes({
       }
 
       // Set up stripe drawing style
-      ctx.strokeStyle = CANVAS_STYLES.stroke
-      ctx.lineWidth = CANVAS_STYLES.lineWidth
+      ctx.strokeStyle = resolvedTheme === 'dark' ? CANVAS_STYLES.strokeDark : CANVAS_STYLES.strokeLight
+      ctx.lineWidth = resolvedTheme === 'dark' ? CANVAS_STYLES.lineWidthDark : CANVAS_STYLES.lineWidthLight
+      ctx.fillStyle = resolvedTheme === 'dark' ? CANVAS_STYLES.fillDark : CANVAS_STYLES.fillLight
 
       // Draw stripes
       const totalUnitWidth = stripeWidth + gapWidth
@@ -162,6 +161,7 @@ export function ThreeStripes({
     controlPointDistanceFromHorizon,
     intermediatePointDistanceFromHorizon,
     roundness,
+    resolvedTheme,
   ])
 
   return (
