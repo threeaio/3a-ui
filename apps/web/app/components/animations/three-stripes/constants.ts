@@ -1,28 +1,30 @@
 import { sine } from '@threeaio/utils/animation'
 
 export const DEFAULT_STRIPE_CONFIG = {
-  stripeCount: 170,
+  stripeCount: 140,
   vanishingPointX: 0.5,
   stripeWidth: 10,
-  gapWidth: 3,
+  gapWidth: 4,
   verticalDistance: 60,
   debug: false,
   baseHeight: 60,
   offsetFromBottom: 0,
   primaryOscillator: {
     bpm: 7.5 / 3,
-    amplitude: 140,
+    amplitude: 150,
     waveform: sine,
+    phaseMultiplier: 1,
   },
   secondaryOscillator: {
-    bpm: 7.5 / 1.2,
-    amplitude: 160,
+    bpm: 12,
+    amplitude: 40,
     waveform: sine,
+    phaseMultiplier: 2.2,
   },
   bias: {
     position: 0.8,
-    amplitude: 120,
-    spread: 0.2,
+    amplitude: 180,
+    spread: 0.1,
   },
   // Curve control configuration defaults
   controlPointDistanceFromHorizon: 0,

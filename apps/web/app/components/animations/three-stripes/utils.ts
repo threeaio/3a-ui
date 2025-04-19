@@ -15,22 +15,23 @@ export const calculateStripeHeight = (
   secondaryOscillator: OscillatorConfig,
   bias: BiasConfig,
 ): number => {
-  const phaseShift = (index / stripeCount) * Math.PI * 2
-  const relativePosition = index / (stripeCount - 1)
-  const biasEffect = calculateBiasEffect(relativePosition, bias.position, bias.spread)
+  const _i = stripeCount - index - 1;
+  const phaseShift = (_i / stripeCount) * Math.PI * 2 
+  const relativePosition = _i / (stripeCount - 1)
+  const biasEffect = calculateBiasEffect(relativePosition, 1 - bias.position, bias.spread)
 
   const primaryOscillatorValue = oscillator({
     currentTimeMs: currentTime,
     bpm: primaryOscillator.bpm,
     waveformfun: primaryOscillator.waveform,
-    phaseShift,
+    phaseShift: phaseShift * primaryOscillator.phaseMultiplier,
   })
 
   const secondaryOscillatorValue = oscillator({
     currentTimeMs: currentTime,
     bpm: secondaryOscillator.bpm,
     waveformfun: secondaryOscillator.waveform,
-    phaseShift: phaseShift + 0.33,
+    phaseShift: phaseShift * secondaryOscillator.phaseMultiplier,
   })
 
   return (

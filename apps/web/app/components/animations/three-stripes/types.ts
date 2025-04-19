@@ -29,6 +29,7 @@ export interface OscillatorConfig {
   bpm: number
   amplitude: number
   waveform: (x: number) => number
+  phaseMultiplier: number
 }
 
 export interface BiasConfig {
