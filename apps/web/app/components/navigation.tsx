@@ -36,7 +36,7 @@ export function Navigation() {
 
   return (
     <>
-      <div ref={observerRef} className="h-[1px] w-full absolute top-200" />
+      <div ref={observerRef} className="h-[1px] w-full absolute top-100" />
       <header
         // bg-background/60 backdrop-blur-sm !h-20 border-b
         className={`fixed top-0 left-0 right-0 z-50 duration-400 transition-all h-40 ${!isOnTop && '!h-26 bg-background/80 backdrop-blur-sm border-b'}`}

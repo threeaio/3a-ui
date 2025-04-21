@@ -19,7 +19,7 @@ export const DEFAULT_STRIPE_CONFIG = {
     bpm: 12,
     amplitude: 40,
     waveform: sine,
-    phaseMultiplier: 2.2,
+    phaseMultiplier: 1.2,
   },
   bias: {
     position: 0.8,

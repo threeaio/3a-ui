@@ -1,3 +1,4 @@
+'use client'
 import { Navigation } from './components/navigation'
 import { ScrollToTop } from './components/scroll-to-top'
 import { HeroSection } from './components/sections/hero-section'
@@ -10,12 +11,13 @@ import { FooterSection } from './components/sections/footer-section'
 import { ThreeStripes } from './components/animations/three-stripes/three-stripes'
 import { WordListSection } from './components/sections/word-list-section'
 import { ScreenshotSection } from './components/sections/screenshot-section'
+import { ThreeStripesProvider } from './components/animations/three-stripes/three-stripes-context'
 
 export default function Page() {
   return (
     <main className="min-h-screen relative">
       <div className="absolute h-screen inset-0 z-0">
-        <ThreeStripes />
+          <ThreeStripes />
       </div>
       <div className="relative">
         <Navigation />

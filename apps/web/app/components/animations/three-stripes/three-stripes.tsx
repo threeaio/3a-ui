@@ -1,28 +1,31 @@
 'use client'
 
 import { useRef, useEffect } from 'react'
-import { ThreeStripesProps } from './types'
-import { DEFAULT_STRIPE_CONFIG, CANVAS_STYLES } from './constants'
+import { CANVAS_STYLES } from './constants'
 import { calculateStripeHeight, calculateStripePoints, drawStripe } from './utils'
 import { drawDebugPoints, drawDebugHorizon } from './debug-utils'
 import { useTheme } from 'next-themes'
+import { useThreeStripes } from './three-stripes-context'
 
-export function ThreeStripes({
-  stripeCount = DEFAULT_STRIPE_CONFIG.stripeCount,
-  vanishingPointX = DEFAULT_STRIPE_CONFIG.vanishingPointX,
-  stripeWidth = DEFAULT_STRIPE_CONFIG.stripeWidth,
-  gapWidth = DEFAULT_STRIPE_CONFIG.gapWidth,
-  verticalDistance = DEFAULT_STRIPE_CONFIG.verticalDistance,
-  debug = DEFAULT_STRIPE_CONFIG.debug,
-  baseHeight = DEFAULT_STRIPE_CONFIG.baseHeight,
-  offsetFromBottom = DEFAULT_STRIPE_CONFIG.offsetFromBottom,
-  primaryOscillator = DEFAULT_STRIPE_CONFIG.primaryOscillator,
-  secondaryOscillator = DEFAULT_STRIPE_CONFIG.secondaryOscillator,
-  bias = DEFAULT_STRIPE_CONFIG.bias,
-  controlPointDistanceFromHorizon = DEFAULT_STRIPE_CONFIG.controlPointDistanceFromHorizon,
-  intermediatePointDistanceFromHorizon = DEFAULT_STRIPE_CONFIG.intermediatePointDistanceFromHorizon,
-  roundness = DEFAULT_STRIPE_CONFIG.roundness,
-}: ThreeStripesProps) {
+export function ThreeStripes() {
+  const { config } = useThreeStripes()
+  const {
+    stripeCount,
+    vanishingPointX,
+    stripeWidth,
+    gapWidth,
+    verticalDistance,
+    debug,
+    baseHeight,
+    offsetFromBottom,
+    primaryOscillator,
+    secondaryOscillator,
+    bias,
+    controlPointDistanceFromHorizon,
+    intermediatePointDistanceFromHorizon,
+    roundness,
+  } = config
+
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const animatedHeightsRef = useRef<number[]>(new Array(stripeCount).fill(baseHeight))
   const requestAnimationFrameRef = useRef<number>(0)
@@ -165,10 +168,12 @@ export function ThreeStripes({
   ])
 
   return (
-    <div className="absolute inset-0 w-full h-full">
-      <canvas ref={canvasRef} className="w-full h-full" />
-      <div className="absolute inset-x-0 top-0 h-[20vh] bg-gradient-to-b from-background to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 h-[30vh] bg-gradient-to-t from-background to-transparent" />
-    </div>
+    <>
+      <div className="absolute inset-0 w-full h-full">
+        <canvas ref={canvasRef} className="w-full h-full" />
+        <div className="absolute inset-x-0 top-0 h-[20vh] bg-gradient-to-b from-background to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-[30vh] bg-gradient-to-t from-background to-transparent" />
+      </div>
+    </>
   )
 }

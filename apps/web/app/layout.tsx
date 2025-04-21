@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 import { Geist, JetBrains_Mono } from 'next/font/google'
 import './styles.css'
 import { ModeToggle, ThemeProvider } from '@3a.solutions/ui/lib/theme'
+import { ThreeStripesProvider } from './components/animations/three-stripes/three-stripes-context'
 
 // Initialize the fonts
 const fontSans = Geist({
@@ -30,7 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
       <body className={`${fontSans.variable} ${fontMono.variable} font-sans`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          {children}
+          <ThreeStripesProvider>{children}</ThreeStripesProvider>
         </ThemeProvider>
       </body>
     </html>
